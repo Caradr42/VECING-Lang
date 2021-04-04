@@ -1,0 +1,19 @@
+myProgram
+//this program does important stuff;
+
+(define (generate_pixel_tree position iter) 
+    (cond (> iter 1 )
+        [
+            (pixel position [225, 225, 225])
+            (generate_pixel_tree (add position [-1, -1]) (sub iter 1 ))
+            (generate_pixel_tree (add position [1, -1]) (sub iter 1 ))
+        ]
+        [
+            (pixel position [225, 225, 225])
+        ]
+    )
+);
+
+(render 
+((generate_pixel_tree [0, 0] 16) (generate_pixel_tree [3, 7] 12)) 
+);
