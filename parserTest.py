@@ -34,5 +34,3 @@ def parseFile(fileName, showTokens=False):
 
 print('\n')
 parseFile('tests/test1.vg', showTokens=True)
-# parseFile('test.txt')
-# parseFile('testFail2.txt')

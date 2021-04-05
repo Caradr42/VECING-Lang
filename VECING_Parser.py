@@ -14,7 +14,7 @@ class LanguageParser(Parser):
     # )
 
     ################ program ################
-    @_( 'ID a renderContainer' )
+    @_( 'ID a render' )
     def program(self, p):
         pass
     @_( 'defContainer a' )
@@ -26,7 +26,7 @@ class LanguageParser(Parser):
     
     
     ################ render ################
-    @_( 'RENDER listContainer b' )
+    @_( 'RENDER listContainer b END' )
     def render(self, p):
         pass
     @_( 'listContainer b' )
@@ -35,21 +35,6 @@ class LanguageParser(Parser):
     @_( 'empty' )
     def b(self, p):
         pass
-
-    ################ renderContainer ################
-    @_( 'k SEM_COL')
-    def renderContainer(self, p):
-        pass
-    @_( 'l', 
-        'm' )
-    def k(self, p):
-        pass
-    @_( 'LEFT_BRAKET render RIGHT_BRAKET' )
-    def l(self, p):
-        pass 
-    @_( 'LEFT_PARENTHESIS render RIGHT_PARENTHESIS' )
-    def m(self, p):
-        pass 
     
     ################ defContainer ################
     @_( 'c SEM_COL', 

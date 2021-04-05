@@ -1,132 +1,124 @@
 Grammar:
 
 Rule 0     S' -> program
-Rule 1     program -> ID a renderContainer
+Rule 1     program -> ID a render
 Rule 2     a -> empty
 Rule 3     a -> defContainer a
-Rule 4     render -> RENDER listContainer b
+Rule 4     render -> RENDER listContainer b END
 Rule 5     b -> empty
 Rule 6     b -> listContainer b
-Rule 7     renderContainer -> k SEM_COL
-Rule 8     k -> m
-Rule 9     k -> l
-Rule 10    l -> LEFT_BRAKET render RIGHT_BRAKET
-Rule 11    m -> LEFT_PARENTHESIS render RIGHT_PARENTHESIS
-Rule 12    defContainer -> d SEM_COL
-Rule 13    defContainer -> c SEM_COL
-Rule 14    c -> LEFT_BRAKET e RIGHT_BRAKET
-Rule 15    d -> LEFT_PARENTHESIS e RIGHT_PARENTHESIS
-Rule 16    e -> constDef
-Rule 17    e -> funcDef
-Rule 18    defParamContainer -> ID
-Rule 19    defParamContainer -> g
-Rule 20    defParamContainer -> f
-Rule 21    f -> LEFT_BRAKET defParam RIGHT_BRAKET
-Rule 22    g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS
-Rule 23    listContainer -> structure
-Rule 24    listContainer -> const
-Rule 25    listContainer -> ID
-Rule 26    listContainer -> i
-Rule 27    listContainer -> h
-Rule 28    h -> LEFT_BRAKET flist RIGHT_BRAKET
-Rule 29    i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-Rule 30    flist -> j
-Rule 31    flist -> j flist
-Rule 32    j -> functionList
-Rule 33    j -> listContainer
-Rule 34    comment -> COMMENT
-Rule 35    constDef -> DEFINE ID const
-Rule 36    funcDef -> DEFINE defParamContainer listContainer
-Rule 37    defParam -> ID
-Rule 38    defParam -> ID defParam
-Rule 39    constNum -> CONST_BOOL
-Rule 40    constNum -> CONST_FLOAT
-Rule 41    constNum -> CONST_INT
-Rule 42    const -> NULL
-Rule 43    const -> CONST_LIST
-Rule 44    const -> constNum
-Rule 45    vector -> ID w
-Rule 46    vector -> listContainer w
-Rule 47    vector -> constNum w
-Rule 48    w -> empty
-Rule 49    w -> COMMA vector
-Rule 50    structure -> LEFT_BRAKET x RIGHT_BRAKET
-Rule 51    x -> vector y
-Rule 52    x -> structure y
-Rule 53    y -> empty
-Rule 54    y -> COMMA x
-Rule 55    functionList -> OP_MATH z
-Rule 56    functionList -> OP_COMP z
-Rule 57    functionList -> ID z
-Rule 58    functionList -> LANGUAGE_FUNC z
-Rule 59    z -> empty
-Rule 60    z -> listContainer z
-Rule 61    empty -> <empty>
+Rule 7     defContainer -> d SEM_COL
+Rule 8     defContainer -> c SEM_COL
+Rule 9     c -> LEFT_BRAKET e RIGHT_BRAKET
+Rule 10    d -> LEFT_PARENTHESIS e RIGHT_PARENTHESIS
+Rule 11    e -> constDef
+Rule 12    e -> funcDef
+Rule 13    defParamContainer -> ID
+Rule 14    defParamContainer -> g
+Rule 15    defParamContainer -> f
+Rule 16    f -> LEFT_BRAKET defParam RIGHT_BRAKET
+Rule 17    g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS
+Rule 18    listContainer -> structure
+Rule 19    listContainer -> const
+Rule 20    listContainer -> ID
+Rule 21    listContainer -> i
+Rule 22    listContainer -> h
+Rule 23    h -> LEFT_BRAKET flist RIGHT_BRAKET
+Rule 24    i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+Rule 25    flist -> j
+Rule 26    flist -> j flist
+Rule 27    j -> functionList
+Rule 28    j -> listContainer
+Rule 29    comment -> COMMENT
+Rule 30    constDef -> DEFINE ID const
+Rule 31    funcDef -> DEFINE defParamContainer listContainer
+Rule 32    defParam -> ID
+Rule 33    defParam -> ID defParam
+Rule 34    constNum -> CONST_BOOL
+Rule 35    constNum -> CONST_FLOAT
+Rule 36    constNum -> CONST_INT
+Rule 37    const -> NULL
+Rule 38    const -> CONST_LIST
+Rule 39    const -> constNum
+Rule 40    vector -> ID w
+Rule 41    vector -> listContainer w
+Rule 42    vector -> constNum w
+Rule 43    w -> empty
+Rule 44    w -> COMMA vector
+Rule 45    structure -> LEFT_BRAKET x RIGHT_BRAKET
+Rule 46    x -> vector y
+Rule 47    x -> structure y
+Rule 48    y -> empty
+Rule 49    y -> COMMA x
+Rule 50    functionList -> OP_MATH z
+Rule 51    functionList -> OP_COMP z
+Rule 52    functionList -> ID z
+Rule 53    functionList -> LANGUAGE_FUNC z
+Rule 54    z -> empty
+Rule 55    z -> listContainer z
+Rule 56    empty -> <empty>
 
 Terminals, with rules where they appear:
 
-COMMA                : 49 54
-COMMENT              : 34
-CONST_BOOL           : 39
-CONST_FLOAT          : 40
-CONST_INT            : 41
-CONST_LIST           : 43
-DEFINE               : 35 36
-ID                   : 1 18 25 35 37 38 45 57
-LANGUAGE_FUNC        : 58
-LEFT_BRAKET          : 10 14 21 28 50
-LEFT_PARENTHESIS     : 11 15 22 29
-NULL                 : 42
-OP_COMP              : 56
-OP_MATH              : 55
+COMMA                : 44 49
+COMMENT              : 29
+CONST_BOOL           : 34
+CONST_FLOAT          : 35
+CONST_INT            : 36
+CONST_LIST           : 38
+DEFINE               : 30 31
+END                  : 4
+ID                   : 1 13 20 30 32 33 40 52
+LANGUAGE_FUNC        : 53
+LEFT_BRAKET          : 9 16 23 45
+LEFT_PARENTHESIS     : 10 17 24
+NULL                 : 37
+OP_COMP              : 51
+OP_MATH              : 50
 RENDER               : 4
-RIGHT_BRAKET         : 10 14 21 28 50
-RIGHT_PARENTHESIS    : 11 15 22 29
-SEM_COL              : 7 12 13
+RIGHT_BRAKET         : 9 16 23 45
+RIGHT_PARENTHESIS    : 10 17 24
+SEM_COL              : 7 8
 error                : 
 
 Nonterminals, with rules where they appear:
 
 a                    : 1 3
 b                    : 4 6
-c                    : 13
+c                    : 8
 comment              : 
-const                : 24 35
-constDef             : 16
-constNum             : 44 47
-d                    : 12
+const                : 19 30
+constDef             : 11
+constNum             : 39 42
+d                    : 7
 defContainer         : 3
-defParam             : 21 22 38
-defParamContainer    : 36
-e                    : 14 15
-empty                : 2 5 48 53 59
-f                    : 20
-flist                : 28 29 31
-funcDef              : 17
-functionList         : 32
-g                    : 19
-h                    : 27
-i                    : 26
-j                    : 30 31
-k                    : 7
-l                    : 9
-listContainer        : 4 6 33 36 46 60
-m                    : 8
+defParam             : 16 17 33
+defParamContainer    : 31
+e                    : 9 10
+empty                : 2 5 43 48 54
+f                    : 15
+flist                : 23 24 26
+funcDef              : 12
+functionList         : 27
+g                    : 14
+h                    : 22
+i                    : 21
+j                    : 25 26
+listContainer        : 4 6 28 31 41 55
 program              : 0
-render               : 10 11
-renderContainer      : 1
-structure            : 23 52
-vector               : 49 51
-w                    : 45 46 47
-x                    : 50 54
-y                    : 51 52
-z                    : 55 56 57 58 60
+render               : 1
+structure            : 18 47
+vector               : 44 46
+w                    : 40 41 42
+x                    : 45 49
+y                    : 46 47
+z                    : 50 51 52 53 55
 
 
 state 0
 
     (0) S' -> . program
-    (1) program -> . ID a renderContainer
+    (1) program -> . ID a render
     ID              shift and go to state 2
 
     program                        shift and go to state 1
@@ -138,16 +130,15 @@ state 1
 
 state 2
 
-    (1) program -> ID . a renderContainer
+    (1) program -> ID . a render
     (2) a -> . empty
     (3) a -> . defContainer a
-    (61) empty -> .
-    (12) defContainer -> . d SEM_COL
-    (13) defContainer -> . c SEM_COL
-    (15) d -> . LEFT_PARENTHESIS e RIGHT_PARENTHESIS
-    (14) c -> . LEFT_BRAKET e RIGHT_BRAKET
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+    (56) empty -> .
+    (7) defContainer -> . d SEM_COL
+    (8) defContainer -> . c SEM_COL
+    (10) d -> . LEFT_PARENTHESIS e RIGHT_PARENTHESIS
+    (9) c -> . LEFT_BRAKET e RIGHT_BRAKET
+    RENDER          reduce using rule 56 (empty -> .)
     LEFT_PARENTHESIS shift and go to state 8
     LEFT_BRAKET     shift and go to state 9
 
@@ -159,25 +150,16 @@ state 2
 
 state 3
 
-    (1) program -> ID a . renderContainer
-    (7) renderContainer -> . k SEM_COL
-    (8) k -> . m
-    (9) k -> . l
-    (11) m -> . LEFT_PARENTHESIS render RIGHT_PARENTHESIS
-    (10) l -> . LEFT_BRAKET render RIGHT_BRAKET
-    LEFT_PARENTHESIS shift and go to state 14
-    LEFT_BRAKET     shift and go to state 15
+    (1) program -> ID a . render
+    (4) render -> . RENDER listContainer b END
+    RENDER          shift and go to state 11
 
-    renderContainer                shift and go to state 10
-    k                              shift and go to state 11
-    m                              shift and go to state 12
-    l                              shift and go to state 13
+    render                         shift and go to state 10
 
 state 4
 
     (2) a -> empty .
-    LEFT_PARENTHESIS reduce using rule 2 (a -> empty .)
-    LEFT_BRAKET     reduce using rule 2 (a -> empty .)
+    RENDER          reduce using rule 2 (a -> empty .)
 
 
 state 5
@@ -185,1512 +167,1429 @@ state 5
     (3) a -> defContainer . a
     (2) a -> . empty
     (3) a -> . defContainer a
-    (61) empty -> .
-    (12) defContainer -> . d SEM_COL
-    (13) defContainer -> . c SEM_COL
-    (15) d -> . LEFT_PARENTHESIS e RIGHT_PARENTHESIS
-    (14) c -> . LEFT_BRAKET e RIGHT_BRAKET
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+    (56) empty -> .
+    (7) defContainer -> . d SEM_COL
+    (8) defContainer -> . c SEM_COL
+    (10) d -> . LEFT_PARENTHESIS e RIGHT_PARENTHESIS
+    (9) c -> . LEFT_BRAKET e RIGHT_BRAKET
+    RENDER          reduce using rule 56 (empty -> .)
     LEFT_PARENTHESIS shift and go to state 8
     LEFT_BRAKET     shift and go to state 9
 
     defContainer                   shift and go to state 5
-    a                              shift and go to state 16
+    a                              shift and go to state 12
     empty                          shift and go to state 4
     d                              shift and go to state 6
     c                              shift and go to state 7
 
 state 6
 
-    (12) defContainer -> d . SEM_COL
-    SEM_COL         shift and go to state 17
+    (7) defContainer -> d . SEM_COL
+    SEM_COL         shift and go to state 13
 
 
 state 7
 
-    (13) defContainer -> c . SEM_COL
-    SEM_COL         shift and go to state 18
+    (8) defContainer -> c . SEM_COL
+    SEM_COL         shift and go to state 14
 
 
 state 8
 
-    (15) d -> LEFT_PARENTHESIS . e RIGHT_PARENTHESIS
-    (16) e -> . constDef
-    (17) e -> . funcDef
-    (35) constDef -> . DEFINE ID const
-    (36) funcDef -> . DEFINE defParamContainer listContainer
-    DEFINE          shift and go to state 22
+    (10) d -> LEFT_PARENTHESIS . e RIGHT_PARENTHESIS
+    (11) e -> . constDef
+    (12) e -> . funcDef
+    (30) constDef -> . DEFINE ID const
+    (31) funcDef -> . DEFINE defParamContainer listContainer
+    DEFINE          shift and go to state 18
 
-    e                              shift and go to state 19
-    constDef                       shift and go to state 20
-    funcDef                        shift and go to state 21
+    e                              shift and go to state 15
+    constDef                       shift and go to state 16
+    funcDef                        shift and go to state 17
 
 state 9
 
-    (14) c -> LEFT_BRAKET . e RIGHT_BRAKET
-    (16) e -> . constDef
-    (17) e -> . funcDef
-    (35) constDef -> . DEFINE ID const
-    (36) funcDef -> . DEFINE defParamContainer listContainer
-    DEFINE          shift and go to state 22
+    (9) c -> LEFT_BRAKET . e RIGHT_BRAKET
+    (11) e -> . constDef
+    (12) e -> . funcDef
+    (30) constDef -> . DEFINE ID const
+    (31) funcDef -> . DEFINE defParamContainer listContainer
+    DEFINE          shift and go to state 18
 
-    e                              shift and go to state 23
-    constDef                       shift and go to state 20
-    funcDef                        shift and go to state 21
+    e                              shift and go to state 19
+    constDef                       shift and go to state 16
+    funcDef                        shift and go to state 17
 
 state 10
 
-    (1) program -> ID a renderContainer .
-    $end            reduce using rule 1 (program -> ID a renderContainer .)
+    (1) program -> ID a render .
+    $end            reduce using rule 1 (program -> ID a render .)
 
 
 state 11
 
-    (7) renderContainer -> k . SEM_COL
-    SEM_COL         shift and go to state 24
+    (4) render -> RENDER . listContainer b END
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    listContainer                  shift and go to state 20
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 12
 
-    (8) k -> m .
-    SEM_COL         reduce using rule 8 (k -> m .)
+    (3) a -> defContainer a .
+    RENDER          reduce using rule 3 (a -> defContainer a .)
 
 
 state 13
 
-    (9) k -> l .
-    SEM_COL         reduce using rule 9 (k -> l .)
+    (7) defContainer -> d SEM_COL .
+    LEFT_PARENTHESIS reduce using rule 7 (defContainer -> d SEM_COL .)
+    LEFT_BRAKET     reduce using rule 7 (defContainer -> d SEM_COL .)
+    RENDER          reduce using rule 7 (defContainer -> d SEM_COL .)
 
 
 state 14
 
-    (11) m -> LEFT_PARENTHESIS . render RIGHT_PARENTHESIS
-    (4) render -> . RENDER listContainer b
-    RENDER          shift and go to state 26
+    (8) defContainer -> c SEM_COL .
+    LEFT_PARENTHESIS reduce using rule 8 (defContainer -> c SEM_COL .)
+    LEFT_BRAKET     reduce using rule 8 (defContainer -> c SEM_COL .)
+    RENDER          reduce using rule 8 (defContainer -> c SEM_COL .)
 
-    render                         shift and go to state 25
 
 state 15
 
-    (10) l -> LEFT_BRAKET . render RIGHT_BRAKET
-    (4) render -> . RENDER listContainer b
-    RENDER          shift and go to state 26
+    (10) d -> LEFT_PARENTHESIS e . RIGHT_PARENTHESIS
+    RIGHT_PARENTHESIS shift and go to state 34
 
-    render                         shift and go to state 27
 
 state 16
 
-    (3) a -> defContainer a .
-    LEFT_PARENTHESIS reduce using rule 3 (a -> defContainer a .)
-    LEFT_BRAKET     reduce using rule 3 (a -> defContainer a .)
+    (11) e -> constDef .
+    RIGHT_PARENTHESIS reduce using rule 11 (e -> constDef .)
+    RIGHT_BRAKET    reduce using rule 11 (e -> constDef .)
 
 
 state 17
 
-    (12) defContainer -> d SEM_COL .
-    LEFT_PARENTHESIS reduce using rule 12 (defContainer -> d SEM_COL .)
-    LEFT_BRAKET     reduce using rule 12 (defContainer -> d SEM_COL .)
+    (12) e -> funcDef .
+    RIGHT_PARENTHESIS reduce using rule 12 (e -> funcDef .)
+    RIGHT_BRAKET    reduce using rule 12 (e -> funcDef .)
 
 
 state 18
 
-    (13) defContainer -> c SEM_COL .
-    LEFT_PARENTHESIS reduce using rule 13 (defContainer -> c SEM_COL .)
-    LEFT_BRAKET     reduce using rule 13 (defContainer -> c SEM_COL .)
+    (30) constDef -> DEFINE . ID const
+    (31) funcDef -> DEFINE . defParamContainer listContainer
+    (13) defParamContainer -> . ID
+    (14) defParamContainer -> . g
+    (15) defParamContainer -> . f
+    (17) g -> . LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS
+    (16) f -> . LEFT_BRAKET defParam RIGHT_BRAKET
+    ID              shift and go to state 35
+    LEFT_PARENTHESIS shift and go to state 39
+    LEFT_BRAKET     shift and go to state 40
 
+    defParamContainer              shift and go to state 36
+    g                              shift and go to state 37
+    f                              shift and go to state 38
 
 state 19
 
-    (15) d -> LEFT_PARENTHESIS e . RIGHT_PARENTHESIS
-    RIGHT_PARENTHESIS shift and go to state 28
+    (9) c -> LEFT_BRAKET e . RIGHT_BRAKET
+    RIGHT_BRAKET    shift and go to state 41
 
 
 state 20
 
-    (16) e -> constDef .
-    RIGHT_PARENTHESIS reduce using rule 16 (e -> constDef .)
-    RIGHT_BRAKET    reduce using rule 16 (e -> constDef .)
+    (4) render -> RENDER listContainer . b END
+    (5) b -> . empty
+    (6) b -> . listContainer b
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    END             reduce using rule 56 (empty -> .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    listContainer                  shift and go to state 42
+    b                              shift and go to state 43
+    empty                          shift and go to state 44
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 21
 
-    (17) e -> funcDef .
-    RIGHT_PARENTHESIS reduce using rule 17 (e -> funcDef .)
-    RIGHT_BRAKET    reduce using rule 17 (e -> funcDef .)
+    (18) listContainer -> structure .
+    ID              reduce using rule 18 (listContainer -> structure .)
+    LEFT_BRAKET     reduce using rule 18 (listContainer -> structure .)
+    NULL            reduce using rule 18 (listContainer -> structure .)
+    CONST_LIST      reduce using rule 18 (listContainer -> structure .)
+    LEFT_PARENTHESIS reduce using rule 18 (listContainer -> structure .)
+    CONST_BOOL      reduce using rule 18 (listContainer -> structure .)
+    CONST_FLOAT     reduce using rule 18 (listContainer -> structure .)
+    CONST_INT       reduce using rule 18 (listContainer -> structure .)
+    END             reduce using rule 18 (listContainer -> structure .)
+    OP_MATH         reduce using rule 18 (listContainer -> structure .)
+    OP_COMP         reduce using rule 18 (listContainer -> structure .)
+    LANGUAGE_FUNC   reduce using rule 18 (listContainer -> structure .)
+    RIGHT_PARENTHESIS reduce using rule 18 (listContainer -> structure .)
+    RIGHT_BRAKET    reduce using rule 18 (listContainer -> structure .)
+    COMMA           reduce using rule 18 (listContainer -> structure .)
 
 
 state 22
 
-    (35) constDef -> DEFINE . ID const
-    (36) funcDef -> DEFINE . defParamContainer listContainer
-    (18) defParamContainer -> . ID
-    (19) defParamContainer -> . g
-    (20) defParamContainer -> . f
-    (22) g -> . LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS
-    (21) f -> . LEFT_BRAKET defParam RIGHT_BRAKET
-    ID              shift and go to state 29
-    LEFT_PARENTHESIS shift and go to state 33
-    LEFT_BRAKET     shift and go to state 34
+    (19) listContainer -> const .
+    ID              reduce using rule 19 (listContainer -> const .)
+    LEFT_BRAKET     reduce using rule 19 (listContainer -> const .)
+    NULL            reduce using rule 19 (listContainer -> const .)
+    CONST_LIST      reduce using rule 19 (listContainer -> const .)
+    LEFT_PARENTHESIS reduce using rule 19 (listContainer -> const .)
+    CONST_BOOL      reduce using rule 19 (listContainer -> const .)
+    CONST_FLOAT     reduce using rule 19 (listContainer -> const .)
+    CONST_INT       reduce using rule 19 (listContainer -> const .)
+    END             reduce using rule 19 (listContainer -> const .)
+    COMMA           reduce using rule 19 (listContainer -> const .)
+    RIGHT_BRAKET    reduce using rule 19 (listContainer -> const .)
+    OP_MATH         reduce using rule 19 (listContainer -> const .)
+    OP_COMP         reduce using rule 19 (listContainer -> const .)
+    LANGUAGE_FUNC   reduce using rule 19 (listContainer -> const .)
+    RIGHT_PARENTHESIS reduce using rule 19 (listContainer -> const .)
 
-    defParamContainer              shift and go to state 30
-    g                              shift and go to state 31
-    f                              shift and go to state 32
 
 state 23
 
-    (14) c -> LEFT_BRAKET e . RIGHT_BRAKET
-    RIGHT_BRAKET    shift and go to state 35
+    (20) listContainer -> ID .
+    ID              reduce using rule 20 (listContainer -> ID .)
+    LEFT_BRAKET     reduce using rule 20 (listContainer -> ID .)
+    NULL            reduce using rule 20 (listContainer -> ID .)
+    CONST_LIST      reduce using rule 20 (listContainer -> ID .)
+    LEFT_PARENTHESIS reduce using rule 20 (listContainer -> ID .)
+    CONST_BOOL      reduce using rule 20 (listContainer -> ID .)
+    CONST_FLOAT     reduce using rule 20 (listContainer -> ID .)
+    CONST_INT       reduce using rule 20 (listContainer -> ID .)
+    END             reduce using rule 20 (listContainer -> ID .)
+    RIGHT_PARENTHESIS reduce using rule 20 (listContainer -> ID .)
+    RIGHT_BRAKET    reduce using rule 20 (listContainer -> ID .)
+    OP_MATH         reduce using rule 20 (listContainer -> ID .)
+    OP_COMP         reduce using rule 20 (listContainer -> ID .)
+    LANGUAGE_FUNC   reduce using rule 20 (listContainer -> ID .)
 
 
 state 24
 
-    (7) renderContainer -> k SEM_COL .
-    $end            reduce using rule 7 (renderContainer -> k SEM_COL .)
+    (21) listContainer -> i .
+    ID              reduce using rule 21 (listContainer -> i .)
+    LEFT_BRAKET     reduce using rule 21 (listContainer -> i .)
+    NULL            reduce using rule 21 (listContainer -> i .)
+    CONST_LIST      reduce using rule 21 (listContainer -> i .)
+    LEFT_PARENTHESIS reduce using rule 21 (listContainer -> i .)
+    CONST_BOOL      reduce using rule 21 (listContainer -> i .)
+    CONST_FLOAT     reduce using rule 21 (listContainer -> i .)
+    CONST_INT       reduce using rule 21 (listContainer -> i .)
+    END             reduce using rule 21 (listContainer -> i .)
+    COMMA           reduce using rule 21 (listContainer -> i .)
+    RIGHT_BRAKET    reduce using rule 21 (listContainer -> i .)
+    OP_MATH         reduce using rule 21 (listContainer -> i .)
+    OP_COMP         reduce using rule 21 (listContainer -> i .)
+    LANGUAGE_FUNC   reduce using rule 21 (listContainer -> i .)
+    RIGHT_PARENTHESIS reduce using rule 21 (listContainer -> i .)
 
 
 state 25
 
-    (11) m -> LEFT_PARENTHESIS render . RIGHT_PARENTHESIS
-    RIGHT_PARENTHESIS shift and go to state 36
+    (22) listContainer -> h .
+    ID              reduce using rule 22 (listContainer -> h .)
+    LEFT_BRAKET     reduce using rule 22 (listContainer -> h .)
+    NULL            reduce using rule 22 (listContainer -> h .)
+    CONST_LIST      reduce using rule 22 (listContainer -> h .)
+    LEFT_PARENTHESIS reduce using rule 22 (listContainer -> h .)
+    CONST_BOOL      reduce using rule 22 (listContainer -> h .)
+    CONST_FLOAT     reduce using rule 22 (listContainer -> h .)
+    CONST_INT       reduce using rule 22 (listContainer -> h .)
+    END             reduce using rule 22 (listContainer -> h .)
+    COMMA           reduce using rule 22 (listContainer -> h .)
+    RIGHT_BRAKET    reduce using rule 22 (listContainer -> h .)
+    OP_MATH         reduce using rule 22 (listContainer -> h .)
+    OP_COMP         reduce using rule 22 (listContainer -> h .)
+    LANGUAGE_FUNC   reduce using rule 22 (listContainer -> h .)
+    RIGHT_PARENTHESIS reduce using rule 22 (listContainer -> h .)
 
 
 state 26
 
-    (4) render -> RENDER . listContainer b
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (45) structure -> LEFT_BRAKET . x RIGHT_BRAKET
+    (23) h -> LEFT_BRAKET . flist RIGHT_BRAKET
+    (46) x -> . vector y
+    (47) x -> . structure y
+    (25) flist -> . j
+    (26) flist -> . j flist
+    (40) vector -> . ID w
+    (41) vector -> . listContainer w
+    (42) vector -> . constNum w
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (27) j -> . functionList
+    (28) j -> . listContainer
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    (50) functionList -> . OP_MATH z
+    (51) functionList -> . OP_COMP z
+    (52) functionList -> . ID z
+    (53) functionList -> . LANGUAGE_FUNC z
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    ID              shift and go to state 50
+    LEFT_BRAKET     shift and go to state 26
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
+    OP_MATH         shift and go to state 54
+    OP_COMP         shift and go to state 55
+    LANGUAGE_FUNC   shift and go to state 56
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
 
-    listContainer                  shift and go to state 37
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
+    x                              shift and go to state 45
+    flist                          shift and go to state 46
+    vector                         shift and go to state 47
+    structure                      shift and go to state 48
+    j                              shift and go to state 49
+    listContainer                  shift and go to state 51
+    constNum                       shift and go to state 52
+    functionList                   shift and go to state 53
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
 
 state 27
 
-    (10) l -> LEFT_BRAKET render . RIGHT_BRAKET
-    RIGHT_BRAKET    shift and go to state 51
+    (37) const -> NULL .
+    ID              reduce using rule 37 (const -> NULL .)
+    LEFT_BRAKET     reduce using rule 37 (const -> NULL .)
+    NULL            reduce using rule 37 (const -> NULL .)
+    CONST_LIST      reduce using rule 37 (const -> NULL .)
+    LEFT_PARENTHESIS reduce using rule 37 (const -> NULL .)
+    CONST_BOOL      reduce using rule 37 (const -> NULL .)
+    CONST_FLOAT     reduce using rule 37 (const -> NULL .)
+    CONST_INT       reduce using rule 37 (const -> NULL .)
+    END             reduce using rule 37 (const -> NULL .)
+    COMMA           reduce using rule 37 (const -> NULL .)
+    RIGHT_BRAKET    reduce using rule 37 (const -> NULL .)
+    OP_MATH         reduce using rule 37 (const -> NULL .)
+    OP_COMP         reduce using rule 37 (const -> NULL .)
+    LANGUAGE_FUNC   reduce using rule 37 (const -> NULL .)
+    RIGHT_PARENTHESIS reduce using rule 37 (const -> NULL .)
 
 
 state 28
 
-    (15) d -> LEFT_PARENTHESIS e RIGHT_PARENTHESIS .
-    SEM_COL         reduce using rule 15 (d -> LEFT_PARENTHESIS e RIGHT_PARENTHESIS .)
+    (38) const -> CONST_LIST .
+    ID              reduce using rule 38 (const -> CONST_LIST .)
+    LEFT_BRAKET     reduce using rule 38 (const -> CONST_LIST .)
+    NULL            reduce using rule 38 (const -> CONST_LIST .)
+    CONST_LIST      reduce using rule 38 (const -> CONST_LIST .)
+    LEFT_PARENTHESIS reduce using rule 38 (const -> CONST_LIST .)
+    CONST_BOOL      reduce using rule 38 (const -> CONST_LIST .)
+    CONST_FLOAT     reduce using rule 38 (const -> CONST_LIST .)
+    CONST_INT       reduce using rule 38 (const -> CONST_LIST .)
+    END             reduce using rule 38 (const -> CONST_LIST .)
+    COMMA           reduce using rule 38 (const -> CONST_LIST .)
+    RIGHT_BRAKET    reduce using rule 38 (const -> CONST_LIST .)
+    OP_MATH         reduce using rule 38 (const -> CONST_LIST .)
+    OP_COMP         reduce using rule 38 (const -> CONST_LIST .)
+    LANGUAGE_FUNC   reduce using rule 38 (const -> CONST_LIST .)
+    RIGHT_PARENTHESIS reduce using rule 38 (const -> CONST_LIST .)
 
 
 state 29
 
-    (35) constDef -> DEFINE ID . const
-    (18) defParamContainer -> ID .
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-  ! shift/reduce conflict for NULL resolved as shift
-  ! shift/reduce conflict for CONST_LIST resolved as shift
-  ! shift/reduce conflict for CONST_BOOL resolved as shift
-  ! shift/reduce conflict for CONST_FLOAT resolved as shift
-  ! shift/reduce conflict for CONST_INT resolved as shift
-    ID              reduce using rule 18 (defParamContainer -> ID .)
-    LEFT_BRAKET     reduce using rule 18 (defParamContainer -> ID .)
-    LEFT_PARENTHESIS reduce using rule 18 (defParamContainer -> ID .)
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (39) const -> constNum .
+    ID              reduce using rule 39 (const -> constNum .)
+    LEFT_BRAKET     reduce using rule 39 (const -> constNum .)
+    NULL            reduce using rule 39 (const -> constNum .)
+    CONST_LIST      reduce using rule 39 (const -> constNum .)
+    LEFT_PARENTHESIS reduce using rule 39 (const -> constNum .)
+    CONST_BOOL      reduce using rule 39 (const -> constNum .)
+    CONST_FLOAT     reduce using rule 39 (const -> constNum .)
+    CONST_INT       reduce using rule 39 (const -> constNum .)
+    END             reduce using rule 39 (const -> constNum .)
+    OP_MATH         reduce using rule 39 (const -> constNum .)
+    OP_COMP         reduce using rule 39 (const -> constNum .)
+    LANGUAGE_FUNC   reduce using rule 39 (const -> constNum .)
+    RIGHT_PARENTHESIS reduce using rule 39 (const -> constNum .)
+    RIGHT_BRAKET    reduce using rule 39 (const -> constNum .)
 
-    const                          shift and go to state 52
-    constNum                       shift and go to state 46
 
 state 30
 
-    (36) funcDef -> DEFINE defParamContainer . listContainer
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (24) i -> LEFT_PARENTHESIS . flist RIGHT_PARENTHESIS
+    (25) flist -> . j
+    (26) flist -> . j flist
+    (27) j -> . functionList
+    (28) j -> . listContainer
+    (50) functionList -> . OP_MATH z
+    (51) functionList -> . OP_COMP z
+    (52) functionList -> . ID z
+    (53) functionList -> . LANGUAGE_FUNC z
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    OP_MATH         shift and go to state 54
+    OP_COMP         shift and go to state 55
+    ID              shift and go to state 59
+    LANGUAGE_FUNC   shift and go to state 56
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
-    listContainer                  shift and go to state 53
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
+    flist                          shift and go to state 57
+    j                              shift and go to state 49
+    functionList                   shift and go to state 53
+    listContainer                  shift and go to state 58
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 31
 
-    (19) defParamContainer -> g .
-    ID              reduce using rule 19 (defParamContainer -> g .)
-    LEFT_BRAKET     reduce using rule 19 (defParamContainer -> g .)
-    NULL            reduce using rule 19 (defParamContainer -> g .)
-    CONST_LIST      reduce using rule 19 (defParamContainer -> g .)
-    LEFT_PARENTHESIS reduce using rule 19 (defParamContainer -> g .)
-    CONST_BOOL      reduce using rule 19 (defParamContainer -> g .)
-    CONST_FLOAT     reduce using rule 19 (defParamContainer -> g .)
-    CONST_INT       reduce using rule 19 (defParamContainer -> g .)
+    (34) constNum -> CONST_BOOL .
+    ID              reduce using rule 34 (constNum -> CONST_BOOL .)
+    LEFT_BRAKET     reduce using rule 34 (constNum -> CONST_BOOL .)
+    NULL            reduce using rule 34 (constNum -> CONST_BOOL .)
+    CONST_LIST      reduce using rule 34 (constNum -> CONST_BOOL .)
+    LEFT_PARENTHESIS reduce using rule 34 (constNum -> CONST_BOOL .)
+    CONST_BOOL      reduce using rule 34 (constNum -> CONST_BOOL .)
+    CONST_FLOAT     reduce using rule 34 (constNum -> CONST_BOOL .)
+    CONST_INT       reduce using rule 34 (constNum -> CONST_BOOL .)
+    END             reduce using rule 34 (constNum -> CONST_BOOL .)
+    COMMA           reduce using rule 34 (constNum -> CONST_BOOL .)
+    RIGHT_BRAKET    reduce using rule 34 (constNum -> CONST_BOOL .)
+    OP_MATH         reduce using rule 34 (constNum -> CONST_BOOL .)
+    OP_COMP         reduce using rule 34 (constNum -> CONST_BOOL .)
+    LANGUAGE_FUNC   reduce using rule 34 (constNum -> CONST_BOOL .)
+    RIGHT_PARENTHESIS reduce using rule 34 (constNum -> CONST_BOOL .)
 
 
 state 32
 
-    (20) defParamContainer -> f .
-    ID              reduce using rule 20 (defParamContainer -> f .)
-    LEFT_BRAKET     reduce using rule 20 (defParamContainer -> f .)
-    NULL            reduce using rule 20 (defParamContainer -> f .)
-    CONST_LIST      reduce using rule 20 (defParamContainer -> f .)
-    LEFT_PARENTHESIS reduce using rule 20 (defParamContainer -> f .)
-    CONST_BOOL      reduce using rule 20 (defParamContainer -> f .)
-    CONST_FLOAT     reduce using rule 20 (defParamContainer -> f .)
-    CONST_INT       reduce using rule 20 (defParamContainer -> f .)
+    (35) constNum -> CONST_FLOAT .
+    ID              reduce using rule 35 (constNum -> CONST_FLOAT .)
+    LEFT_BRAKET     reduce using rule 35 (constNum -> CONST_FLOAT .)
+    NULL            reduce using rule 35 (constNum -> CONST_FLOAT .)
+    CONST_LIST      reduce using rule 35 (constNum -> CONST_FLOAT .)
+    LEFT_PARENTHESIS reduce using rule 35 (constNum -> CONST_FLOAT .)
+    CONST_BOOL      reduce using rule 35 (constNum -> CONST_FLOAT .)
+    CONST_FLOAT     reduce using rule 35 (constNum -> CONST_FLOAT .)
+    CONST_INT       reduce using rule 35 (constNum -> CONST_FLOAT .)
+    END             reduce using rule 35 (constNum -> CONST_FLOAT .)
+    COMMA           reduce using rule 35 (constNum -> CONST_FLOAT .)
+    RIGHT_BRAKET    reduce using rule 35 (constNum -> CONST_FLOAT .)
+    OP_MATH         reduce using rule 35 (constNum -> CONST_FLOAT .)
+    OP_COMP         reduce using rule 35 (constNum -> CONST_FLOAT .)
+    LANGUAGE_FUNC   reduce using rule 35 (constNum -> CONST_FLOAT .)
+    RIGHT_PARENTHESIS reduce using rule 35 (constNum -> CONST_FLOAT .)
 
 
 state 33
 
-    (22) g -> LEFT_PARENTHESIS . defParam RIGHT_PARENTHESIS
-    (37) defParam -> . ID
-    (38) defParam -> . ID defParam
-    ID              shift and go to state 55
+    (36) constNum -> CONST_INT .
+    ID              reduce using rule 36 (constNum -> CONST_INT .)
+    LEFT_BRAKET     reduce using rule 36 (constNum -> CONST_INT .)
+    NULL            reduce using rule 36 (constNum -> CONST_INT .)
+    CONST_LIST      reduce using rule 36 (constNum -> CONST_INT .)
+    LEFT_PARENTHESIS reduce using rule 36 (constNum -> CONST_INT .)
+    CONST_BOOL      reduce using rule 36 (constNum -> CONST_INT .)
+    CONST_FLOAT     reduce using rule 36 (constNum -> CONST_INT .)
+    CONST_INT       reduce using rule 36 (constNum -> CONST_INT .)
+    END             reduce using rule 36 (constNum -> CONST_INT .)
+    COMMA           reduce using rule 36 (constNum -> CONST_INT .)
+    RIGHT_BRAKET    reduce using rule 36 (constNum -> CONST_INT .)
+    OP_MATH         reduce using rule 36 (constNum -> CONST_INT .)
+    OP_COMP         reduce using rule 36 (constNum -> CONST_INT .)
+    LANGUAGE_FUNC   reduce using rule 36 (constNum -> CONST_INT .)
+    RIGHT_PARENTHESIS reduce using rule 36 (constNum -> CONST_INT .)
 
-    defParam                       shift and go to state 54
 
 state 34
 
-    (21) f -> LEFT_BRAKET . defParam RIGHT_BRAKET
-    (37) defParam -> . ID
-    (38) defParam -> . ID defParam
-    ID              shift and go to state 55
+    (10) d -> LEFT_PARENTHESIS e RIGHT_PARENTHESIS .
+    SEM_COL         reduce using rule 10 (d -> LEFT_PARENTHESIS e RIGHT_PARENTHESIS .)
 
-    defParam                       shift and go to state 56
 
 state 35
 
-    (14) c -> LEFT_BRAKET e RIGHT_BRAKET .
-    SEM_COL         reduce using rule 14 (c -> LEFT_BRAKET e RIGHT_BRAKET .)
+    (30) constDef -> DEFINE ID . const
+    (13) defParamContainer -> ID .
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+  ! shift/reduce conflict for NULL resolved as shift
+  ! shift/reduce conflict for CONST_LIST resolved as shift
+  ! shift/reduce conflict for CONST_BOOL resolved as shift
+  ! shift/reduce conflict for CONST_FLOAT resolved as shift
+  ! shift/reduce conflict for CONST_INT resolved as shift
+    ID              reduce using rule 13 (defParamContainer -> ID .)
+    LEFT_BRAKET     reduce using rule 13 (defParamContainer -> ID .)
+    LEFT_PARENTHESIS reduce using rule 13 (defParamContainer -> ID .)
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    const                          shift and go to state 60
+    constNum                       shift and go to state 29
 
 state 36
 
-    (11) m -> LEFT_PARENTHESIS render RIGHT_PARENTHESIS .
-    SEM_COL         reduce using rule 11 (m -> LEFT_PARENTHESIS render RIGHT_PARENTHESIS .)
+    (31) funcDef -> DEFINE defParamContainer . listContainer
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    listContainer                  shift and go to state 61
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 37
 
-    (4) render -> RENDER listContainer . b
-    (5) b -> . empty
-    (6) b -> . listContainer b
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    RIGHT_PARENTHESIS reduce using rule 61 (empty -> .)
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (14) defParamContainer -> g .
+    ID              reduce using rule 14 (defParamContainer -> g .)
+    LEFT_BRAKET     reduce using rule 14 (defParamContainer -> g .)
+    NULL            reduce using rule 14 (defParamContainer -> g .)
+    CONST_LIST      reduce using rule 14 (defParamContainer -> g .)
+    LEFT_PARENTHESIS reduce using rule 14 (defParamContainer -> g .)
+    CONST_BOOL      reduce using rule 14 (defParamContainer -> g .)
+    CONST_FLOAT     reduce using rule 14 (defParamContainer -> g .)
+    CONST_INT       reduce using rule 14 (defParamContainer -> g .)
 
-    listContainer                  shift and go to state 57
-    b                              shift and go to state 58
-    empty                          shift and go to state 59
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 38
 
-    (23) listContainer -> structure .
-    ID              reduce using rule 23 (listContainer -> structure .)
-    LEFT_BRAKET     reduce using rule 23 (listContainer -> structure .)
-    NULL            reduce using rule 23 (listContainer -> structure .)
-    CONST_LIST      reduce using rule 23 (listContainer -> structure .)
-    LEFT_PARENTHESIS reduce using rule 23 (listContainer -> structure .)
-    CONST_BOOL      reduce using rule 23 (listContainer -> structure .)
-    CONST_FLOAT     reduce using rule 23 (listContainer -> structure .)
-    CONST_INT       reduce using rule 23 (listContainer -> structure .)
-    RIGHT_PARENTHESIS reduce using rule 23 (listContainer -> structure .)
-    RIGHT_BRAKET    reduce using rule 23 (listContainer -> structure .)
-    OP_MATH         reduce using rule 23 (listContainer -> structure .)
-    OP_COMP         reduce using rule 23 (listContainer -> structure .)
-    LANGUAGE_FUNC   reduce using rule 23 (listContainer -> structure .)
-    COMMA           reduce using rule 23 (listContainer -> structure .)
+    (15) defParamContainer -> f .
+    ID              reduce using rule 15 (defParamContainer -> f .)
+    LEFT_BRAKET     reduce using rule 15 (defParamContainer -> f .)
+    NULL            reduce using rule 15 (defParamContainer -> f .)
+    CONST_LIST      reduce using rule 15 (defParamContainer -> f .)
+    LEFT_PARENTHESIS reduce using rule 15 (defParamContainer -> f .)
+    CONST_BOOL      reduce using rule 15 (defParamContainer -> f .)
+    CONST_FLOAT     reduce using rule 15 (defParamContainer -> f .)
+    CONST_INT       reduce using rule 15 (defParamContainer -> f .)
 
 
 state 39
 
-    (24) listContainer -> const .
-    ID              reduce using rule 24 (listContainer -> const .)
-    LEFT_BRAKET     reduce using rule 24 (listContainer -> const .)
-    NULL            reduce using rule 24 (listContainer -> const .)
-    CONST_LIST      reduce using rule 24 (listContainer -> const .)
-    LEFT_PARENTHESIS reduce using rule 24 (listContainer -> const .)
-    CONST_BOOL      reduce using rule 24 (listContainer -> const .)
-    CONST_FLOAT     reduce using rule 24 (listContainer -> const .)
-    CONST_INT       reduce using rule 24 (listContainer -> const .)
-    RIGHT_PARENTHESIS reduce using rule 24 (listContainer -> const .)
-    RIGHT_BRAKET    reduce using rule 24 (listContainer -> const .)
-    COMMA           reduce using rule 24 (listContainer -> const .)
-    OP_MATH         reduce using rule 24 (listContainer -> const .)
-    OP_COMP         reduce using rule 24 (listContainer -> const .)
-    LANGUAGE_FUNC   reduce using rule 24 (listContainer -> const .)
+    (17) g -> LEFT_PARENTHESIS . defParam RIGHT_PARENTHESIS
+    (32) defParam -> . ID
+    (33) defParam -> . ID defParam
+    ID              shift and go to state 63
 
+    defParam                       shift and go to state 62
 
 state 40
 
-    (25) listContainer -> ID .
-    ID              reduce using rule 25 (listContainer -> ID .)
-    LEFT_BRAKET     reduce using rule 25 (listContainer -> ID .)
-    NULL            reduce using rule 25 (listContainer -> ID .)
-    CONST_LIST      reduce using rule 25 (listContainer -> ID .)
-    LEFT_PARENTHESIS reduce using rule 25 (listContainer -> ID .)
-    CONST_BOOL      reduce using rule 25 (listContainer -> ID .)
-    CONST_FLOAT     reduce using rule 25 (listContainer -> ID .)
-    CONST_INT       reduce using rule 25 (listContainer -> ID .)
-    RIGHT_PARENTHESIS reduce using rule 25 (listContainer -> ID .)
-    RIGHT_BRAKET    reduce using rule 25 (listContainer -> ID .)
-    OP_MATH         reduce using rule 25 (listContainer -> ID .)
-    OP_COMP         reduce using rule 25 (listContainer -> ID .)
-    LANGUAGE_FUNC   reduce using rule 25 (listContainer -> ID .)
+    (16) f -> LEFT_BRAKET . defParam RIGHT_BRAKET
+    (32) defParam -> . ID
+    (33) defParam -> . ID defParam
+    ID              shift and go to state 63
 
+    defParam                       shift and go to state 64
 
 state 41
 
-    (26) listContainer -> i .
-    ID              reduce using rule 26 (listContainer -> i .)
-    LEFT_BRAKET     reduce using rule 26 (listContainer -> i .)
-    NULL            reduce using rule 26 (listContainer -> i .)
-    CONST_LIST      reduce using rule 26 (listContainer -> i .)
-    LEFT_PARENTHESIS reduce using rule 26 (listContainer -> i .)
-    CONST_BOOL      reduce using rule 26 (listContainer -> i .)
-    CONST_FLOAT     reduce using rule 26 (listContainer -> i .)
-    CONST_INT       reduce using rule 26 (listContainer -> i .)
-    RIGHT_PARENTHESIS reduce using rule 26 (listContainer -> i .)
-    RIGHT_BRAKET    reduce using rule 26 (listContainer -> i .)
-    COMMA           reduce using rule 26 (listContainer -> i .)
-    OP_MATH         reduce using rule 26 (listContainer -> i .)
-    OP_COMP         reduce using rule 26 (listContainer -> i .)
-    LANGUAGE_FUNC   reduce using rule 26 (listContainer -> i .)
+    (9) c -> LEFT_BRAKET e RIGHT_BRAKET .
+    SEM_COL         reduce using rule 9 (c -> LEFT_BRAKET e RIGHT_BRAKET .)
 
 
 state 42
 
-    (27) listContainer -> h .
-    ID              reduce using rule 27 (listContainer -> h .)
-    LEFT_BRAKET     reduce using rule 27 (listContainer -> h .)
-    NULL            reduce using rule 27 (listContainer -> h .)
-    CONST_LIST      reduce using rule 27 (listContainer -> h .)
-    LEFT_PARENTHESIS reduce using rule 27 (listContainer -> h .)
-    CONST_BOOL      reduce using rule 27 (listContainer -> h .)
-    CONST_FLOAT     reduce using rule 27 (listContainer -> h .)
-    CONST_INT       reduce using rule 27 (listContainer -> h .)
-    RIGHT_PARENTHESIS reduce using rule 27 (listContainer -> h .)
-    RIGHT_BRAKET    reduce using rule 27 (listContainer -> h .)
-    COMMA           reduce using rule 27 (listContainer -> h .)
-    OP_MATH         reduce using rule 27 (listContainer -> h .)
-    OP_COMP         reduce using rule 27 (listContainer -> h .)
-    LANGUAGE_FUNC   reduce using rule 27 (listContainer -> h .)
+    (6) b -> listContainer . b
+    (5) b -> . empty
+    (6) b -> . listContainer b
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    END             reduce using rule 56 (empty -> .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    listContainer                  shift and go to state 42
+    b                              shift and go to state 65
+    empty                          shift and go to state 44
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 43
 
-    (50) structure -> LEFT_BRAKET . x RIGHT_BRAKET
-    (28) h -> LEFT_BRAKET . flist RIGHT_BRAKET
-    (51) x -> . vector y
-    (52) x -> . structure y
-    (30) flist -> . j
-    (31) flist -> . j flist
-    (45) vector -> . ID w
-    (46) vector -> . listContainer w
-    (47) vector -> . constNum w
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (32) j -> . functionList
-    (33) j -> . listContainer
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    (55) functionList -> . OP_MATH z
-    (56) functionList -> . OP_COMP z
-    (57) functionList -> . ID z
-    (58) functionList -> . LANGUAGE_FUNC z
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    ID              shift and go to state 65
-    LEFT_BRAKET     shift and go to state 43
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
-    OP_MATH         shift and go to state 69
-    OP_COMP         shift and go to state 70
-    LANGUAGE_FUNC   shift and go to state 71
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
+    (4) render -> RENDER listContainer b . END
+    END             shift and go to state 66
 
-    x                              shift and go to state 60
-    flist                          shift and go to state 61
-    vector                         shift and go to state 62
-    structure                      shift and go to state 63
-    j                              shift and go to state 64
-    listContainer                  shift and go to state 66
-    constNum                       shift and go to state 67
-    functionList                   shift and go to state 68
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
 
 state 44
 
-    (42) const -> NULL .
-    ID              reduce using rule 42 (const -> NULL .)
-    LEFT_BRAKET     reduce using rule 42 (const -> NULL .)
-    NULL            reduce using rule 42 (const -> NULL .)
-    CONST_LIST      reduce using rule 42 (const -> NULL .)
-    LEFT_PARENTHESIS reduce using rule 42 (const -> NULL .)
-    CONST_BOOL      reduce using rule 42 (const -> NULL .)
-    CONST_FLOAT     reduce using rule 42 (const -> NULL .)
-    CONST_INT       reduce using rule 42 (const -> NULL .)
-    RIGHT_PARENTHESIS reduce using rule 42 (const -> NULL .)
-    RIGHT_BRAKET    reduce using rule 42 (const -> NULL .)
-    COMMA           reduce using rule 42 (const -> NULL .)
-    OP_MATH         reduce using rule 42 (const -> NULL .)
-    OP_COMP         reduce using rule 42 (const -> NULL .)
-    LANGUAGE_FUNC   reduce using rule 42 (const -> NULL .)
+    (5) b -> empty .
+    END             reduce using rule 5 (b -> empty .)
 
 
 state 45
 
-    (43) const -> CONST_LIST .
-    ID              reduce using rule 43 (const -> CONST_LIST .)
-    LEFT_BRAKET     reduce using rule 43 (const -> CONST_LIST .)
-    NULL            reduce using rule 43 (const -> CONST_LIST .)
-    CONST_LIST      reduce using rule 43 (const -> CONST_LIST .)
-    LEFT_PARENTHESIS reduce using rule 43 (const -> CONST_LIST .)
-    CONST_BOOL      reduce using rule 43 (const -> CONST_LIST .)
-    CONST_FLOAT     reduce using rule 43 (const -> CONST_LIST .)
-    CONST_INT       reduce using rule 43 (const -> CONST_LIST .)
-    RIGHT_PARENTHESIS reduce using rule 43 (const -> CONST_LIST .)
-    RIGHT_BRAKET    reduce using rule 43 (const -> CONST_LIST .)
-    COMMA           reduce using rule 43 (const -> CONST_LIST .)
-    OP_MATH         reduce using rule 43 (const -> CONST_LIST .)
-    OP_COMP         reduce using rule 43 (const -> CONST_LIST .)
-    LANGUAGE_FUNC   reduce using rule 43 (const -> CONST_LIST .)
+    (45) structure -> LEFT_BRAKET x . RIGHT_BRAKET
+    RIGHT_BRAKET    shift and go to state 67
 
 
 state 46
 
-    (44) const -> constNum .
-    ID              reduce using rule 44 (const -> constNum .)
-    LEFT_BRAKET     reduce using rule 44 (const -> constNum .)
-    NULL            reduce using rule 44 (const -> constNum .)
-    CONST_LIST      reduce using rule 44 (const -> constNum .)
-    LEFT_PARENTHESIS reduce using rule 44 (const -> constNum .)
-    CONST_BOOL      reduce using rule 44 (const -> constNum .)
-    CONST_FLOAT     reduce using rule 44 (const -> constNum .)
-    CONST_INT       reduce using rule 44 (const -> constNum .)
-    RIGHT_PARENTHESIS reduce using rule 44 (const -> constNum .)
-    RIGHT_BRAKET    reduce using rule 44 (const -> constNum .)
-    OP_MATH         reduce using rule 44 (const -> constNum .)
-    OP_COMP         reduce using rule 44 (const -> constNum .)
-    LANGUAGE_FUNC   reduce using rule 44 (const -> constNum .)
+    (23) h -> LEFT_BRAKET flist . RIGHT_BRAKET
+    RIGHT_BRAKET    shift and go to state 68
 
 
 state 47
 
-    (29) i -> LEFT_PARENTHESIS . flist RIGHT_PARENTHESIS
-    (30) flist -> . j
-    (31) flist -> . j flist
-    (32) j -> . functionList
-    (33) j -> . listContainer
-    (55) functionList -> . OP_MATH z
-    (56) functionList -> . OP_COMP z
-    (57) functionList -> . ID z
-    (58) functionList -> . LANGUAGE_FUNC z
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    OP_MATH         shift and go to state 69
-    OP_COMP         shift and go to state 70
-    ID              shift and go to state 74
-    LANGUAGE_FUNC   shift and go to state 71
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (46) x -> vector . y
+    (48) y -> . empty
+    (49) y -> . COMMA x
+    (56) empty -> .
+    COMMA           shift and go to state 71
+    RIGHT_BRAKET    reduce using rule 56 (empty -> .)
 
-    flist                          shift and go to state 72
-    j                              shift and go to state 64
-    functionList                   shift and go to state 68
-    listContainer                  shift and go to state 73
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
+    y                              shift and go to state 69
+    empty                          shift and go to state 70
 
 state 48
 
-    (39) constNum -> CONST_BOOL .
-    ID              reduce using rule 39 (constNum -> CONST_BOOL .)
-    LEFT_BRAKET     reduce using rule 39 (constNum -> CONST_BOOL .)
-    NULL            reduce using rule 39 (constNum -> CONST_BOOL .)
-    CONST_LIST      reduce using rule 39 (constNum -> CONST_BOOL .)
-    LEFT_PARENTHESIS reduce using rule 39 (constNum -> CONST_BOOL .)
-    CONST_BOOL      reduce using rule 39 (constNum -> CONST_BOOL .)
-    CONST_FLOAT     reduce using rule 39 (constNum -> CONST_BOOL .)
-    CONST_INT       reduce using rule 39 (constNum -> CONST_BOOL .)
-    RIGHT_PARENTHESIS reduce using rule 39 (constNum -> CONST_BOOL .)
-    RIGHT_BRAKET    reduce using rule 39 (constNum -> CONST_BOOL .)
-    COMMA           reduce using rule 39 (constNum -> CONST_BOOL .)
-    OP_MATH         reduce using rule 39 (constNum -> CONST_BOOL .)
-    OP_COMP         reduce using rule 39 (constNum -> CONST_BOOL .)
-    LANGUAGE_FUNC   reduce using rule 39 (constNum -> CONST_BOOL .)
+    (47) x -> structure . y
+    (18) listContainer -> structure .
+    (48) y -> . empty
+    (49) y -> . COMMA x
+    (56) empty -> .
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 18 (listContainer -> structure .)
+    RIGHT_BRAKET    reduce using rule 18 (listContainer -> structure .)
+    OP_MATH         reduce using rule 18 (listContainer -> structure .)
+    OP_COMP         reduce using rule 18 (listContainer -> structure .)
+    ID              reduce using rule 18 (listContainer -> structure .)
+    LANGUAGE_FUNC   reduce using rule 18 (listContainer -> structure .)
+    LEFT_BRAKET     reduce using rule 18 (listContainer -> structure .)
+    NULL            reduce using rule 18 (listContainer -> structure .)
+    CONST_LIST      reduce using rule 18 (listContainer -> structure .)
+    LEFT_PARENTHESIS reduce using rule 18 (listContainer -> structure .)
+    CONST_BOOL      reduce using rule 18 (listContainer -> structure .)
+    CONST_FLOAT     reduce using rule 18 (listContainer -> structure .)
+    CONST_INT       reduce using rule 18 (listContainer -> structure .)
+    COMMA           shift and go to state 71
 
+    y                              shift and go to state 72
+    empty                          shift and go to state 70
 
 state 49
 
-    (40) constNum -> CONST_FLOAT .
-    ID              reduce using rule 40 (constNum -> CONST_FLOAT .)
-    LEFT_BRAKET     reduce using rule 40 (constNum -> CONST_FLOAT .)
-    NULL            reduce using rule 40 (constNum -> CONST_FLOAT .)
-    CONST_LIST      reduce using rule 40 (constNum -> CONST_FLOAT .)
-    LEFT_PARENTHESIS reduce using rule 40 (constNum -> CONST_FLOAT .)
-    CONST_BOOL      reduce using rule 40 (constNum -> CONST_FLOAT .)
-    CONST_FLOAT     reduce using rule 40 (constNum -> CONST_FLOAT .)
-    CONST_INT       reduce using rule 40 (constNum -> CONST_FLOAT .)
-    RIGHT_PARENTHESIS reduce using rule 40 (constNum -> CONST_FLOAT .)
-    RIGHT_BRAKET    reduce using rule 40 (constNum -> CONST_FLOAT .)
-    COMMA           reduce using rule 40 (constNum -> CONST_FLOAT .)
-    OP_MATH         reduce using rule 40 (constNum -> CONST_FLOAT .)
-    OP_COMP         reduce using rule 40 (constNum -> CONST_FLOAT .)
-    LANGUAGE_FUNC   reduce using rule 40 (constNum -> CONST_FLOAT .)
+    (25) flist -> j .
+    (26) flist -> j . flist
+    (25) flist -> . j
+    (26) flist -> . j flist
+    (27) j -> . functionList
+    (28) j -> . listContainer
+    (50) functionList -> . OP_MATH z
+    (51) functionList -> . OP_COMP z
+    (52) functionList -> . ID z
+    (53) functionList -> . LANGUAGE_FUNC z
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    RIGHT_BRAKET    reduce using rule 25 (flist -> j .)
+    RIGHT_PARENTHESIS reduce using rule 25 (flist -> j .)
+    OP_MATH         shift and go to state 54
+    OP_COMP         shift and go to state 55
+    ID              shift and go to state 59
+    LANGUAGE_FUNC   shift and go to state 56
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    j                              shift and go to state 49
+    flist                          shift and go to state 73
+    functionList                   shift and go to state 53
+    listContainer                  shift and go to state 58
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 50
 
-    (41) constNum -> CONST_INT .
-    ID              reduce using rule 41 (constNum -> CONST_INT .)
-    LEFT_BRAKET     reduce using rule 41 (constNum -> CONST_INT .)
-    NULL            reduce using rule 41 (constNum -> CONST_INT .)
-    CONST_LIST      reduce using rule 41 (constNum -> CONST_INT .)
-    LEFT_PARENTHESIS reduce using rule 41 (constNum -> CONST_INT .)
-    CONST_BOOL      reduce using rule 41 (constNum -> CONST_INT .)
-    CONST_FLOAT     reduce using rule 41 (constNum -> CONST_INT .)
-    CONST_INT       reduce using rule 41 (constNum -> CONST_INT .)
-    RIGHT_PARENTHESIS reduce using rule 41 (constNum -> CONST_INT .)
-    RIGHT_BRAKET    reduce using rule 41 (constNum -> CONST_INT .)
-    COMMA           reduce using rule 41 (constNum -> CONST_INT .)
-    OP_MATH         reduce using rule 41 (constNum -> CONST_INT .)
-    OP_COMP         reduce using rule 41 (constNum -> CONST_INT .)
-    LANGUAGE_FUNC   reduce using rule 41 (constNum -> CONST_INT .)
+    (40) vector -> ID . w
+    (20) listContainer -> ID .
+    (52) functionList -> ID . z
+    (43) w -> . empty
+    (44) w -> . COMMA vector
+    (54) z -> . empty
+    (55) z -> . listContainer z
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for OP_MATH resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for OP_COMP resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for ID resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for LANGUAGE_FUNC resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for LEFT_BRAKET resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for NULL resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_LIST resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for LEFT_PARENTHESIS resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_BOOL resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_FLOAT resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_INT resolved using rule 20 (listContainer -> ID .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+  ! shift/reduce conflict for NULL resolved as shift
+  ! shift/reduce conflict for CONST_LIST resolved as shift
+  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
+  ! shift/reduce conflict for CONST_BOOL resolved as shift
+  ! shift/reduce conflict for CONST_FLOAT resolved as shift
+  ! shift/reduce conflict for CONST_INT resolved as shift
+    RIGHT_BRAKET    reduce using rule 20 (listContainer -> ID .)
+    OP_MATH         reduce using rule 20 (listContainer -> ID .)
+    OP_COMP         reduce using rule 20 (listContainer -> ID .)
+    LANGUAGE_FUNC   reduce using rule 20 (listContainer -> ID .)
+    COMMA           shift and go to state 77
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    w                              shift and go to state 74
+    z                              shift and go to state 75
+    empty                          shift and go to state 76
+    listContainer                  shift and go to state 78
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 51
 
-    (10) l -> LEFT_BRAKET render RIGHT_BRAKET .
-    SEM_COL         reduce using rule 10 (l -> LEFT_BRAKET render RIGHT_BRAKET .)
+    (41) vector -> listContainer . w
+    (28) j -> listContainer .
+    (43) w -> . empty
+    (44) w -> . COMMA vector
+    (56) empty -> .
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 28 (j -> listContainer .)
+    OP_MATH         reduce using rule 28 (j -> listContainer .)
+    OP_COMP         reduce using rule 28 (j -> listContainer .)
+    ID              reduce using rule 28 (j -> listContainer .)
+    LANGUAGE_FUNC   reduce using rule 28 (j -> listContainer .)
+    LEFT_BRAKET     reduce using rule 28 (j -> listContainer .)
+    NULL            reduce using rule 28 (j -> listContainer .)
+    CONST_LIST      reduce using rule 28 (j -> listContainer .)
+    LEFT_PARENTHESIS reduce using rule 28 (j -> listContainer .)
+    CONST_BOOL      reduce using rule 28 (j -> listContainer .)
+    CONST_FLOAT     reduce using rule 28 (j -> listContainer .)
+    CONST_INT       reduce using rule 28 (j -> listContainer .)
+    RIGHT_BRAKET    reduce using rule 28 (j -> listContainer .)
+    COMMA           shift and go to state 77
 
+    w                              shift and go to state 79
+    empty                          shift and go to state 80
 
 state 52
 
-    (35) constDef -> DEFINE ID const .
-    RIGHT_PARENTHESIS reduce using rule 35 (constDef -> DEFINE ID const .)
-    RIGHT_BRAKET    reduce using rule 35 (constDef -> DEFINE ID const .)
+    (42) vector -> constNum . w
+    (39) const -> constNum .
+    (43) w -> . empty
+    (44) w -> . COMMA vector
+    (56) empty -> .
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 39 (const -> constNum .)
+    RIGHT_BRAKET    reduce using rule 39 (const -> constNum .)
+    OP_MATH         reduce using rule 39 (const -> constNum .)
+    OP_COMP         reduce using rule 39 (const -> constNum .)
+    ID              reduce using rule 39 (const -> constNum .)
+    LANGUAGE_FUNC   reduce using rule 39 (const -> constNum .)
+    LEFT_BRAKET     reduce using rule 39 (const -> constNum .)
+    NULL            reduce using rule 39 (const -> constNum .)
+    CONST_LIST      reduce using rule 39 (const -> constNum .)
+    LEFT_PARENTHESIS reduce using rule 39 (const -> constNum .)
+    CONST_BOOL      reduce using rule 39 (const -> constNum .)
+    CONST_FLOAT     reduce using rule 39 (const -> constNum .)
+    CONST_INT       reduce using rule 39 (const -> constNum .)
+    COMMA           shift and go to state 77
 
+    w                              shift and go to state 81
+    empty                          shift and go to state 80
 
 state 53
 
-    (36) funcDef -> DEFINE defParamContainer listContainer .
-    RIGHT_PARENTHESIS reduce using rule 36 (funcDef -> DEFINE defParamContainer listContainer .)
-    RIGHT_BRAKET    reduce using rule 36 (funcDef -> DEFINE defParamContainer listContainer .)
+    (27) j -> functionList .
+    OP_MATH         reduce using rule 27 (j -> functionList .)
+    OP_COMP         reduce using rule 27 (j -> functionList .)
+    ID              reduce using rule 27 (j -> functionList .)
+    LANGUAGE_FUNC   reduce using rule 27 (j -> functionList .)
+    LEFT_BRAKET     reduce using rule 27 (j -> functionList .)
+    NULL            reduce using rule 27 (j -> functionList .)
+    CONST_LIST      reduce using rule 27 (j -> functionList .)
+    LEFT_PARENTHESIS reduce using rule 27 (j -> functionList .)
+    CONST_BOOL      reduce using rule 27 (j -> functionList .)
+    CONST_FLOAT     reduce using rule 27 (j -> functionList .)
+    CONST_INT       reduce using rule 27 (j -> functionList .)
+    RIGHT_BRAKET    reduce using rule 27 (j -> functionList .)
+    RIGHT_PARENTHESIS reduce using rule 27 (j -> functionList .)
 
 
 state 54
 
-    (22) g -> LEFT_PARENTHESIS defParam . RIGHT_PARENTHESIS
-    RIGHT_PARENTHESIS shift and go to state 75
+    (50) functionList -> OP_MATH . z
+    (54) z -> . empty
+    (55) z -> . listContainer z
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+  ! shift/reduce conflict for NULL resolved as shift
+  ! shift/reduce conflict for CONST_LIST resolved as shift
+  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
+  ! shift/reduce conflict for CONST_BOOL resolved as shift
+  ! shift/reduce conflict for CONST_FLOAT resolved as shift
+  ! shift/reduce conflict for CONST_INT resolved as shift
+    OP_MATH         reduce using rule 56 (empty -> .)
+    OP_COMP         reduce using rule 56 (empty -> .)
+    LANGUAGE_FUNC   reduce using rule 56 (empty -> .)
+    RIGHT_BRAKET    reduce using rule 56 (empty -> .)
+    RIGHT_PARENTHESIS reduce using rule 56 (empty -> .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    z                              shift and go to state 82
+    empty                          shift and go to state 83
+    listContainer                  shift and go to state 78
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 55
 
-    (37) defParam -> ID .
-    (38) defParam -> ID . defParam
-    (37) defParam -> . ID
-    (38) defParam -> . ID defParam
-    RIGHT_PARENTHESIS reduce using rule 37 (defParam -> ID .)
-    RIGHT_BRAKET    reduce using rule 37 (defParam -> ID .)
-    ID              shift and go to state 55
+    (51) functionList -> OP_COMP . z
+    (54) z -> . empty
+    (55) z -> . listContainer z
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+  ! shift/reduce conflict for NULL resolved as shift
+  ! shift/reduce conflict for CONST_LIST resolved as shift
+  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
+  ! shift/reduce conflict for CONST_BOOL resolved as shift
+  ! shift/reduce conflict for CONST_FLOAT resolved as shift
+  ! shift/reduce conflict for CONST_INT resolved as shift
+    OP_MATH         reduce using rule 56 (empty -> .)
+    OP_COMP         reduce using rule 56 (empty -> .)
+    LANGUAGE_FUNC   reduce using rule 56 (empty -> .)
+    RIGHT_BRAKET    reduce using rule 56 (empty -> .)
+    RIGHT_PARENTHESIS reduce using rule 56 (empty -> .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
-    defParam                       shift and go to state 76
+    z                              shift and go to state 84
+    empty                          shift and go to state 83
+    listContainer                  shift and go to state 78
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 56
 
-    (21) f -> LEFT_BRAKET defParam . RIGHT_BRAKET
-    RIGHT_BRAKET    shift and go to state 77
+    (53) functionList -> LANGUAGE_FUNC . z
+    (54) z -> . empty
+    (55) z -> . listContainer z
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+  ! shift/reduce conflict for NULL resolved as shift
+  ! shift/reduce conflict for CONST_LIST resolved as shift
+  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
+  ! shift/reduce conflict for CONST_BOOL resolved as shift
+  ! shift/reduce conflict for CONST_FLOAT resolved as shift
+  ! shift/reduce conflict for CONST_INT resolved as shift
+    OP_MATH         reduce using rule 56 (empty -> .)
+    OP_COMP         reduce using rule 56 (empty -> .)
+    LANGUAGE_FUNC   reduce using rule 56 (empty -> .)
+    RIGHT_BRAKET    reduce using rule 56 (empty -> .)
+    RIGHT_PARENTHESIS reduce using rule 56 (empty -> .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    z                              shift and go to state 85
+    empty                          shift and go to state 83
+    listContainer                  shift and go to state 78
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 57
 
-    (6) b -> listContainer . b
-    (5) b -> . empty
-    (6) b -> . listContainer b
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    RIGHT_PARENTHESIS reduce using rule 61 (empty -> .)
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (24) i -> LEFT_PARENTHESIS flist . RIGHT_PARENTHESIS
+    RIGHT_PARENTHESIS shift and go to state 86
 
-    listContainer                  shift and go to state 57
-    b                              shift and go to state 78
-    empty                          shift and go to state 59
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 58
 
-    (4) render -> RENDER listContainer b .
-    RIGHT_PARENTHESIS reduce using rule 4 (render -> RENDER listContainer b .)
-    RIGHT_BRAKET    reduce using rule 4 (render -> RENDER listContainer b .)
+    (28) j -> listContainer .
+    OP_MATH         reduce using rule 28 (j -> listContainer .)
+    OP_COMP         reduce using rule 28 (j -> listContainer .)
+    ID              reduce using rule 28 (j -> listContainer .)
+    LANGUAGE_FUNC   reduce using rule 28 (j -> listContainer .)
+    LEFT_BRAKET     reduce using rule 28 (j -> listContainer .)
+    NULL            reduce using rule 28 (j -> listContainer .)
+    CONST_LIST      reduce using rule 28 (j -> listContainer .)
+    LEFT_PARENTHESIS reduce using rule 28 (j -> listContainer .)
+    CONST_BOOL      reduce using rule 28 (j -> listContainer .)
+    CONST_FLOAT     reduce using rule 28 (j -> listContainer .)
+    CONST_INT       reduce using rule 28 (j -> listContainer .)
+    RIGHT_PARENTHESIS reduce using rule 28 (j -> listContainer .)
+    RIGHT_BRAKET    reduce using rule 28 (j -> listContainer .)
 
 
 state 59
 
-    (5) b -> empty .
-    RIGHT_PARENTHESIS reduce using rule 5 (b -> empty .)
-    RIGHT_BRAKET    reduce using rule 5 (b -> empty .)
+    (52) functionList -> ID . z
+    (20) listContainer -> ID .
+    (54) z -> . empty
+    (55) z -> . listContainer z
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+  ! reduce/reduce conflict for OP_MATH resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for OP_COMP resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for ID resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for LANGUAGE_FUNC resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for LEFT_BRAKET resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for NULL resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_LIST resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for LEFT_PARENTHESIS resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_BOOL resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_FLOAT resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for CONST_INT resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for RIGHT_PARENTHESIS resolved using rule 20 (listContainer -> ID .)
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 20 (listContainer -> ID .)
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
+  ! shift/reduce conflict for NULL resolved as shift
+  ! shift/reduce conflict for CONST_LIST resolved as shift
+  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
+  ! shift/reduce conflict for CONST_BOOL resolved as shift
+  ! shift/reduce conflict for CONST_FLOAT resolved as shift
+  ! shift/reduce conflict for CONST_INT resolved as shift
+    OP_MATH         reduce using rule 20 (listContainer -> ID .)
+    OP_COMP         reduce using rule 20 (listContainer -> ID .)
+    LANGUAGE_FUNC   reduce using rule 20 (listContainer -> ID .)
+    RIGHT_PARENTHESIS reduce using rule 20 (listContainer -> ID .)
+    RIGHT_BRAKET    reduce using rule 20 (listContainer -> ID .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
+    z                              shift and go to state 75
+    empty                          shift and go to state 83
+    listContainer                  shift and go to state 78
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
 
 state 60
 
-    (50) structure -> LEFT_BRAKET x . RIGHT_BRAKET
-    RIGHT_BRAKET    shift and go to state 79
+    (30) constDef -> DEFINE ID const .
+    RIGHT_PARENTHESIS reduce using rule 30 (constDef -> DEFINE ID const .)
+    RIGHT_BRAKET    reduce using rule 30 (constDef -> DEFINE ID const .)
 
 
 state 61
 
-    (28) h -> LEFT_BRAKET flist . RIGHT_BRAKET
-    RIGHT_BRAKET    shift and go to state 80
+    (31) funcDef -> DEFINE defParamContainer listContainer .
+    RIGHT_PARENTHESIS reduce using rule 31 (funcDef -> DEFINE defParamContainer listContainer .)
+    RIGHT_BRAKET    reduce using rule 31 (funcDef -> DEFINE defParamContainer listContainer .)
 
 
 state 62
 
-    (51) x -> vector . y
-    (53) y -> . empty
-    (54) y -> . COMMA x
-    (61) empty -> .
-    COMMA           shift and go to state 83
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
+    (17) g -> LEFT_PARENTHESIS defParam . RIGHT_PARENTHESIS
+    RIGHT_PARENTHESIS shift and go to state 87
 
-    y                              shift and go to state 81
-    empty                          shift and go to state 82
 
 state 63
 
-    (52) x -> structure . y
-    (23) listContainer -> structure .
-    (53) y -> . empty
-    (54) y -> . COMMA x
-    (61) empty -> .
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 23 (listContainer -> structure .)
-    RIGHT_BRAKET    reduce using rule 23 (listContainer -> structure .)
-    OP_MATH         reduce using rule 23 (listContainer -> structure .)
-    OP_COMP         reduce using rule 23 (listContainer -> structure .)
-    ID              reduce using rule 23 (listContainer -> structure .)
-    LANGUAGE_FUNC   reduce using rule 23 (listContainer -> structure .)
-    LEFT_BRAKET     reduce using rule 23 (listContainer -> structure .)
-    NULL            reduce using rule 23 (listContainer -> structure .)
-    CONST_LIST      reduce using rule 23 (listContainer -> structure .)
-    LEFT_PARENTHESIS reduce using rule 23 (listContainer -> structure .)
-    CONST_BOOL      reduce using rule 23 (listContainer -> structure .)
-    CONST_FLOAT     reduce using rule 23 (listContainer -> structure .)
-    CONST_INT       reduce using rule 23 (listContainer -> structure .)
-    COMMA           shift and go to state 83
+    (32) defParam -> ID .
+    (33) defParam -> ID . defParam
+    (32) defParam -> . ID
+    (33) defParam -> . ID defParam
+    RIGHT_PARENTHESIS reduce using rule 32 (defParam -> ID .)
+    RIGHT_BRAKET    reduce using rule 32 (defParam -> ID .)
+    ID              shift and go to state 63
 
-    y                              shift and go to state 84
-    empty                          shift and go to state 82
+    defParam                       shift and go to state 88
 
 state 64
 
-    (30) flist -> j .
-    (31) flist -> j . flist
-    (30) flist -> . j
-    (31) flist -> . j flist
-    (32) j -> . functionList
-    (33) j -> . listContainer
-    (55) functionList -> . OP_MATH z
-    (56) functionList -> . OP_COMP z
-    (57) functionList -> . ID z
-    (58) functionList -> . LANGUAGE_FUNC z
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    RIGHT_BRAKET    reduce using rule 30 (flist -> j .)
-    RIGHT_PARENTHESIS reduce using rule 30 (flist -> j .)
-    OP_MATH         shift and go to state 69
-    OP_COMP         shift and go to state 70
-    ID              shift and go to state 74
-    LANGUAGE_FUNC   shift and go to state 71
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (16) f -> LEFT_BRAKET defParam . RIGHT_BRAKET
+    RIGHT_BRAKET    shift and go to state 89
 
-    j                              shift and go to state 64
-    flist                          shift and go to state 85
-    functionList                   shift and go to state 68
-    listContainer                  shift and go to state 73
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 65
 
-    (45) vector -> ID . w
-    (25) listContainer -> ID .
-    (57) functionList -> ID . z
-    (48) w -> . empty
-    (49) w -> . COMMA vector
-    (59) z -> . empty
-    (60) z -> . listContainer z
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for OP_MATH resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for OP_COMP resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for ID resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for LANGUAGE_FUNC resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for LEFT_BRAKET resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for NULL resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_LIST resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for LEFT_PARENTHESIS resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_BOOL resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_FLOAT resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_INT resolved using rule 25 (listContainer -> ID .)
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
-  ! shift/reduce conflict for NULL resolved as shift
-  ! shift/reduce conflict for CONST_LIST resolved as shift
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for CONST_BOOL resolved as shift
-  ! shift/reduce conflict for CONST_FLOAT resolved as shift
-  ! shift/reduce conflict for CONST_INT resolved as shift
-    RIGHT_BRAKET    reduce using rule 25 (listContainer -> ID .)
-    OP_MATH         reduce using rule 25 (listContainer -> ID .)
-    OP_COMP         reduce using rule 25 (listContainer -> ID .)
-    LANGUAGE_FUNC   reduce using rule 25 (listContainer -> ID .)
-    COMMA           shift and go to state 89
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (6) b -> listContainer b .
+    END             reduce using rule 6 (b -> listContainer b .)
 
-    w                              shift and go to state 86
-    z                              shift and go to state 87
-    empty                          shift and go to state 88
-    listContainer                  shift and go to state 90
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 66
 
-    (46) vector -> listContainer . w
-    (33) j -> listContainer .
-    (48) w -> . empty
-    (49) w -> . COMMA vector
-    (61) empty -> .
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 33 (j -> listContainer .)
-    OP_MATH         reduce using rule 33 (j -> listContainer .)
-    OP_COMP         reduce using rule 33 (j -> listContainer .)
-    ID              reduce using rule 33 (j -> listContainer .)
-    LANGUAGE_FUNC   reduce using rule 33 (j -> listContainer .)
-    LEFT_BRAKET     reduce using rule 33 (j -> listContainer .)
-    NULL            reduce using rule 33 (j -> listContainer .)
-    CONST_LIST      reduce using rule 33 (j -> listContainer .)
-    LEFT_PARENTHESIS reduce using rule 33 (j -> listContainer .)
-    CONST_BOOL      reduce using rule 33 (j -> listContainer .)
-    CONST_FLOAT     reduce using rule 33 (j -> listContainer .)
-    CONST_INT       reduce using rule 33 (j -> listContainer .)
-    RIGHT_BRAKET    reduce using rule 33 (j -> listContainer .)
-    COMMA           shift and go to state 89
+    (4) render -> RENDER listContainer b END .
+    $end            reduce using rule 4 (render -> RENDER listContainer b END .)
 
-    w                              shift and go to state 91
-    empty                          shift and go to state 92
 
 state 67
 
-    (47) vector -> constNum . w
-    (44) const -> constNum .
-    (48) w -> . empty
-    (49) w -> . COMMA vector
-    (61) empty -> .
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 44 (const -> constNum .)
-    RIGHT_BRAKET    reduce using rule 44 (const -> constNum .)
-    OP_MATH         reduce using rule 44 (const -> constNum .)
-    OP_COMP         reduce using rule 44 (const -> constNum .)
-    ID              reduce using rule 44 (const -> constNum .)
-    LANGUAGE_FUNC   reduce using rule 44 (const -> constNum .)
-    LEFT_BRAKET     reduce using rule 44 (const -> constNum .)
-    NULL            reduce using rule 44 (const -> constNum .)
-    CONST_LIST      reduce using rule 44 (const -> constNum .)
-    LEFT_PARENTHESIS reduce using rule 44 (const -> constNum .)
-    CONST_BOOL      reduce using rule 44 (const -> constNum .)
-    CONST_FLOAT     reduce using rule 44 (const -> constNum .)
-    CONST_INT       reduce using rule 44 (const -> constNum .)
-    COMMA           shift and go to state 89
+    (45) structure -> LEFT_BRAKET x RIGHT_BRAKET .
+    ID              reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    LEFT_BRAKET     reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    NULL            reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    CONST_LIST      reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    LEFT_PARENTHESIS reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    CONST_BOOL      reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    CONST_FLOAT     reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    CONST_INT       reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    END             reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    COMMA           reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    RIGHT_BRAKET    reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    OP_MATH         reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    OP_COMP         reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    LANGUAGE_FUNC   reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
+    RIGHT_PARENTHESIS reduce using rule 45 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
 
-    w                              shift and go to state 93
-    empty                          shift and go to state 92
 
 state 68
 
-    (32) j -> functionList .
-    OP_MATH         reduce using rule 32 (j -> functionList .)
-    OP_COMP         reduce using rule 32 (j -> functionList .)
-    ID              reduce using rule 32 (j -> functionList .)
-    LANGUAGE_FUNC   reduce using rule 32 (j -> functionList .)
-    LEFT_BRAKET     reduce using rule 32 (j -> functionList .)
-    NULL            reduce using rule 32 (j -> functionList .)
-    CONST_LIST      reduce using rule 32 (j -> functionList .)
-    LEFT_PARENTHESIS reduce using rule 32 (j -> functionList .)
-    CONST_BOOL      reduce using rule 32 (j -> functionList .)
-    CONST_FLOAT     reduce using rule 32 (j -> functionList .)
-    CONST_INT       reduce using rule 32 (j -> functionList .)
-    RIGHT_BRAKET    reduce using rule 32 (j -> functionList .)
-    RIGHT_PARENTHESIS reduce using rule 32 (j -> functionList .)
+    (23) h -> LEFT_BRAKET flist RIGHT_BRAKET .
+    ID              reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    LEFT_BRAKET     reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    NULL            reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    CONST_LIST      reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    LEFT_PARENTHESIS reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    CONST_BOOL      reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    CONST_FLOAT     reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    CONST_INT       reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    END             reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    COMMA           reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    RIGHT_BRAKET    reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    OP_MATH         reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    OP_COMP         reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    LANGUAGE_FUNC   reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
+    RIGHT_PARENTHESIS reduce using rule 23 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
 
 
 state 69
 
-    (55) functionList -> OP_MATH . z
-    (59) z -> . empty
-    (60) z -> . listContainer z
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
-  ! shift/reduce conflict for NULL resolved as shift
-  ! shift/reduce conflict for CONST_LIST resolved as shift
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for CONST_BOOL resolved as shift
-  ! shift/reduce conflict for CONST_FLOAT resolved as shift
-  ! shift/reduce conflict for CONST_INT resolved as shift
-    OP_MATH         reduce using rule 61 (empty -> .)
-    OP_COMP         reduce using rule 61 (empty -> .)
-    LANGUAGE_FUNC   reduce using rule 61 (empty -> .)
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-    RIGHT_PARENTHESIS reduce using rule 61 (empty -> .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (46) x -> vector y .
+    RIGHT_BRAKET    reduce using rule 46 (x -> vector y .)
 
-    z                              shift and go to state 94
-    empty                          shift and go to state 95
-    listContainer                  shift and go to state 90
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 70
 
-    (56) functionList -> OP_COMP . z
-    (59) z -> . empty
-    (60) z -> . listContainer z
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
-  ! shift/reduce conflict for NULL resolved as shift
-  ! shift/reduce conflict for CONST_LIST resolved as shift
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for CONST_BOOL resolved as shift
-  ! shift/reduce conflict for CONST_FLOAT resolved as shift
-  ! shift/reduce conflict for CONST_INT resolved as shift
-    OP_MATH         reduce using rule 61 (empty -> .)
-    OP_COMP         reduce using rule 61 (empty -> .)
-    LANGUAGE_FUNC   reduce using rule 61 (empty -> .)
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-    RIGHT_PARENTHESIS reduce using rule 61 (empty -> .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (48) y -> empty .
+    RIGHT_BRAKET    reduce using rule 48 (y -> empty .)
 
-    z                              shift and go to state 96
-    empty                          shift and go to state 95
-    listContainer                  shift and go to state 90
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 71
 
-    (58) functionList -> LANGUAGE_FUNC . z
-    (59) z -> . empty
-    (60) z -> . listContainer z
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
-  ! shift/reduce conflict for NULL resolved as shift
-  ! shift/reduce conflict for CONST_LIST resolved as shift
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for CONST_BOOL resolved as shift
-  ! shift/reduce conflict for CONST_FLOAT resolved as shift
-  ! shift/reduce conflict for CONST_INT resolved as shift
-    OP_MATH         reduce using rule 61 (empty -> .)
-    OP_COMP         reduce using rule 61 (empty -> .)
-    LANGUAGE_FUNC   reduce using rule 61 (empty -> .)
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-    RIGHT_PARENTHESIS reduce using rule 61 (empty -> .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (49) y -> COMMA . x
+    (46) x -> . vector y
+    (47) x -> . structure y
+    (40) vector -> . ID w
+    (41) vector -> . listContainer w
+    (42) vector -> . constNum w
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    ID              shift and go to state 91
+    LEFT_BRAKET     shift and go to state 26
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
 
-    z                              shift and go to state 97
-    empty                          shift and go to state 95
-    listContainer                  shift and go to state 90
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
+    x                              shift and go to state 90
+    vector                         shift and go to state 47
+    structure                      shift and go to state 48
+    listContainer                  shift and go to state 92
+    constNum                       shift and go to state 52
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
 
 state 72
 
-    (29) i -> LEFT_PARENTHESIS flist . RIGHT_PARENTHESIS
-    RIGHT_PARENTHESIS shift and go to state 98
+    (47) x -> structure y .
+    RIGHT_BRAKET    reduce using rule 47 (x -> structure y .)
 
 
 state 73
 
-    (33) j -> listContainer .
-    OP_MATH         reduce using rule 33 (j -> listContainer .)
-    OP_COMP         reduce using rule 33 (j -> listContainer .)
-    ID              reduce using rule 33 (j -> listContainer .)
-    LANGUAGE_FUNC   reduce using rule 33 (j -> listContainer .)
-    LEFT_BRAKET     reduce using rule 33 (j -> listContainer .)
-    NULL            reduce using rule 33 (j -> listContainer .)
-    CONST_LIST      reduce using rule 33 (j -> listContainer .)
-    LEFT_PARENTHESIS reduce using rule 33 (j -> listContainer .)
-    CONST_BOOL      reduce using rule 33 (j -> listContainer .)
-    CONST_FLOAT     reduce using rule 33 (j -> listContainer .)
-    CONST_INT       reduce using rule 33 (j -> listContainer .)
-    RIGHT_PARENTHESIS reduce using rule 33 (j -> listContainer .)
-    RIGHT_BRAKET    reduce using rule 33 (j -> listContainer .)
+    (26) flist -> j flist .
+    RIGHT_BRAKET    reduce using rule 26 (flist -> j flist .)
+    RIGHT_PARENTHESIS reduce using rule 26 (flist -> j flist .)
 
 
 state 74
 
-    (57) functionList -> ID . z
-    (25) listContainer -> ID .
-    (59) z -> . empty
-    (60) z -> . listContainer z
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-  ! reduce/reduce conflict for OP_MATH resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for OP_COMP resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for ID resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for LANGUAGE_FUNC resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for LEFT_BRAKET resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for NULL resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_LIST resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for LEFT_PARENTHESIS resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_BOOL resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_FLOAT resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for CONST_INT resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for RIGHT_PARENTHESIS resolved using rule 25 (listContainer -> ID .)
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 25 (listContainer -> ID .)
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for LEFT_BRAKET resolved as shift
-  ! shift/reduce conflict for NULL resolved as shift
-  ! shift/reduce conflict for CONST_LIST resolved as shift
-  ! shift/reduce conflict for LEFT_PARENTHESIS resolved as shift
-  ! shift/reduce conflict for CONST_BOOL resolved as shift
-  ! shift/reduce conflict for CONST_FLOAT resolved as shift
-  ! shift/reduce conflict for CONST_INT resolved as shift
-    OP_MATH         reduce using rule 25 (listContainer -> ID .)
-    OP_COMP         reduce using rule 25 (listContainer -> ID .)
-    LANGUAGE_FUNC   reduce using rule 25 (listContainer -> ID .)
-    RIGHT_PARENTHESIS reduce using rule 25 (listContainer -> ID .)
-    RIGHT_BRAKET    reduce using rule 25 (listContainer -> ID .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    (40) vector -> ID w .
+    COMMA           reduce using rule 40 (vector -> ID w .)
+    RIGHT_BRAKET    reduce using rule 40 (vector -> ID w .)
 
-    z                              shift and go to state 87
-    empty                          shift and go to state 95
-    listContainer                  shift and go to state 90
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
 
 state 75
 
-    (22) g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .
-    ID              reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    LEFT_BRAKET     reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    NULL            reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    CONST_LIST      reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    LEFT_PARENTHESIS reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    CONST_BOOL      reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    CONST_FLOAT     reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
-    CONST_INT       reduce using rule 22 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    (52) functionList -> ID z .
+    OP_MATH         reduce using rule 52 (functionList -> ID z .)
+    OP_COMP         reduce using rule 52 (functionList -> ID z .)
+    ID              reduce using rule 52 (functionList -> ID z .)
+    LANGUAGE_FUNC   reduce using rule 52 (functionList -> ID z .)
+    LEFT_BRAKET     reduce using rule 52 (functionList -> ID z .)
+    NULL            reduce using rule 52 (functionList -> ID z .)
+    CONST_LIST      reduce using rule 52 (functionList -> ID z .)
+    LEFT_PARENTHESIS reduce using rule 52 (functionList -> ID z .)
+    CONST_BOOL      reduce using rule 52 (functionList -> ID z .)
+    CONST_FLOAT     reduce using rule 52 (functionList -> ID z .)
+    CONST_INT       reduce using rule 52 (functionList -> ID z .)
+    RIGHT_BRAKET    reduce using rule 52 (functionList -> ID z .)
+    RIGHT_PARENTHESIS reduce using rule 52 (functionList -> ID z .)
 
 
 state 76
 
-    (38) defParam -> ID defParam .
-    RIGHT_PARENTHESIS reduce using rule 38 (defParam -> ID defParam .)
-    RIGHT_BRAKET    reduce using rule 38 (defParam -> ID defParam .)
+    (43) w -> empty .
+    (54) z -> empty .
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 43 (w -> empty .)
+    COMMA           reduce using rule 43 (w -> empty .)
+    RIGHT_BRAKET    reduce using rule 43 (w -> empty .)
+    OP_MATH         reduce using rule 54 (z -> empty .)
+    OP_COMP         reduce using rule 54 (z -> empty .)
+    ID              reduce using rule 54 (z -> empty .)
+    LANGUAGE_FUNC   reduce using rule 54 (z -> empty .)
+    LEFT_BRAKET     reduce using rule 54 (z -> empty .)
+    NULL            reduce using rule 54 (z -> empty .)
+    CONST_LIST      reduce using rule 54 (z -> empty .)
+    LEFT_PARENTHESIS reduce using rule 54 (z -> empty .)
+    CONST_BOOL      reduce using rule 54 (z -> empty .)
+    CONST_FLOAT     reduce using rule 54 (z -> empty .)
+    CONST_INT       reduce using rule 54 (z -> empty .)
 
 
 state 77
 
-    (21) f -> LEFT_BRAKET defParam RIGHT_BRAKET .
-    ID              reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    LEFT_BRAKET     reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    NULL            reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    CONST_LIST      reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    LEFT_PARENTHESIS reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    CONST_BOOL      reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    CONST_FLOAT     reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
-    CONST_INT       reduce using rule 21 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    (44) w -> COMMA . vector
+    (40) vector -> . ID w
+    (41) vector -> . listContainer w
+    (42) vector -> . constNum w
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    ID              shift and go to state 91
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
 
+    vector                         shift and go to state 93
+    listContainer                  shift and go to state 92
+    constNum                       shift and go to state 52
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
 
 state 78
 
-    (6) b -> listContainer b .
-    RIGHT_PARENTHESIS reduce using rule 6 (b -> listContainer b .)
-    RIGHT_BRAKET    reduce using rule 6 (b -> listContainer b .)
-
-
-state 79
-
-    (50) structure -> LEFT_BRAKET x RIGHT_BRAKET .
-    ID              reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    LEFT_BRAKET     reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    NULL            reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    CONST_LIST      reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    LEFT_PARENTHESIS reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    CONST_BOOL      reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    CONST_FLOAT     reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    CONST_INT       reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    RIGHT_PARENTHESIS reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    RIGHT_BRAKET    reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    COMMA           reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    OP_MATH         reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    OP_COMP         reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-    LANGUAGE_FUNC   reduce using rule 50 (structure -> LEFT_BRAKET x RIGHT_BRAKET .)
-
-
-state 80
-
-    (28) h -> LEFT_BRAKET flist RIGHT_BRAKET .
-    ID              reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    LEFT_BRAKET     reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    NULL            reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    CONST_LIST      reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    LEFT_PARENTHESIS reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    CONST_BOOL      reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    CONST_FLOAT     reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    CONST_INT       reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    RIGHT_PARENTHESIS reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    RIGHT_BRAKET    reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    COMMA           reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    OP_MATH         reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    OP_COMP         reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-    LANGUAGE_FUNC   reduce using rule 28 (h -> LEFT_BRAKET flist RIGHT_BRAKET .)
-
-
-state 81
-
-    (51) x -> vector y .
-    RIGHT_BRAKET    reduce using rule 51 (x -> vector y .)
-
-
-state 82
-
-    (53) y -> empty .
-    RIGHT_BRAKET    reduce using rule 53 (y -> empty .)
-
-
-state 83
-
-    (54) y -> COMMA . x
-    (51) x -> . vector y
-    (52) x -> . structure y
-    (45) vector -> . ID w
-    (46) vector -> . listContainer w
-    (47) vector -> . constNum w
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    ID              shift and go to state 100
-    LEFT_BRAKET     shift and go to state 43
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-
-    x                              shift and go to state 99
-    vector                         shift and go to state 62
-    structure                      shift and go to state 63
-    listContainer                  shift and go to state 101
-    constNum                       shift and go to state 67
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-
-state 84
-
-    (52) x -> structure y .
-    RIGHT_BRAKET    reduce using rule 52 (x -> structure y .)
-
-
-state 85
-
-    (31) flist -> j flist .
-    RIGHT_BRAKET    reduce using rule 31 (flist -> j flist .)
-    RIGHT_PARENTHESIS reduce using rule 31 (flist -> j flist .)
-
-
-state 86
-
-    (45) vector -> ID w .
-    COMMA           reduce using rule 45 (vector -> ID w .)
-    RIGHT_BRAKET    reduce using rule 45 (vector -> ID w .)
-
-
-state 87
-
-    (57) functionList -> ID z .
-    OP_MATH         reduce using rule 57 (functionList -> ID z .)
-    OP_COMP         reduce using rule 57 (functionList -> ID z .)
-    ID              reduce using rule 57 (functionList -> ID z .)
-    LANGUAGE_FUNC   reduce using rule 57 (functionList -> ID z .)
-    LEFT_BRAKET     reduce using rule 57 (functionList -> ID z .)
-    NULL            reduce using rule 57 (functionList -> ID z .)
-    CONST_LIST      reduce using rule 57 (functionList -> ID z .)
-    LEFT_PARENTHESIS reduce using rule 57 (functionList -> ID z .)
-    CONST_BOOL      reduce using rule 57 (functionList -> ID z .)
-    CONST_FLOAT     reduce using rule 57 (functionList -> ID z .)
-    CONST_INT       reduce using rule 57 (functionList -> ID z .)
-    RIGHT_BRAKET    reduce using rule 57 (functionList -> ID z .)
-    RIGHT_PARENTHESIS reduce using rule 57 (functionList -> ID z .)
-
-
-state 88
-
-    (48) w -> empty .
-    (59) z -> empty .
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 48 (w -> empty .)
-    COMMA           reduce using rule 48 (w -> empty .)
-    RIGHT_BRAKET    reduce using rule 48 (w -> empty .)
-    OP_MATH         reduce using rule 59 (z -> empty .)
-    OP_COMP         reduce using rule 59 (z -> empty .)
-    ID              reduce using rule 59 (z -> empty .)
-    LANGUAGE_FUNC   reduce using rule 59 (z -> empty .)
-    LEFT_BRAKET     reduce using rule 59 (z -> empty .)
-    NULL            reduce using rule 59 (z -> empty .)
-    CONST_LIST      reduce using rule 59 (z -> empty .)
-    LEFT_PARENTHESIS reduce using rule 59 (z -> empty .)
-    CONST_BOOL      reduce using rule 59 (z -> empty .)
-    CONST_FLOAT     reduce using rule 59 (z -> empty .)
-    CONST_INT       reduce using rule 59 (z -> empty .)
-
-
-state 89
-
-    (49) w -> COMMA . vector
-    (45) vector -> . ID w
-    (46) vector -> . listContainer w
-    (47) vector -> . constNum w
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    ID              shift and go to state 100
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-
-    vector                         shift and go to state 102
-    listContainer                  shift and go to state 101
-    constNum                       shift and go to state 67
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-
-state 90
-
-    (60) z -> listContainer . z
-    (59) z -> . empty
-    (60) z -> . listContainer z
-    (61) empty -> .
-    (23) listContainer -> . structure
-    (24) listContainer -> . const
-    (25) listContainer -> . ID
-    (26) listContainer -> . i
-    (27) listContainer -> . h
-    (50) structure -> . LEFT_BRAKET x RIGHT_BRAKET
-    (42) const -> . NULL
-    (43) const -> . CONST_LIST
-    (44) const -> . constNum
-    (29) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
-    (28) h -> . LEFT_BRAKET flist RIGHT_BRAKET
-    (39) constNum -> . CONST_BOOL
-    (40) constNum -> . CONST_FLOAT
-    (41) constNum -> . CONST_INT
+    (55) z -> listContainer . z
+    (54) z -> . empty
+    (55) z -> . listContainer z
+    (56) empty -> .
+    (18) listContainer -> . structure
+    (19) listContainer -> . const
+    (20) listContainer -> . ID
+    (21) listContainer -> . i
+    (22) listContainer -> . h
+    (45) structure -> . LEFT_BRAKET x RIGHT_BRAKET
+    (37) const -> . NULL
+    (38) const -> . CONST_LIST
+    (39) const -> . constNum
+    (24) i -> . LEFT_PARENTHESIS flist RIGHT_PARENTHESIS
+    (23) h -> . LEFT_BRAKET flist RIGHT_BRAKET
+    (34) constNum -> . CONST_BOOL
+    (35) constNum -> . CONST_FLOAT
+    (36) constNum -> . CONST_INT
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for LEFT_BRAKET resolved as shift
   ! shift/reduce conflict for NULL resolved as shift
@@ -1699,280 +1598,310 @@ state 90
   ! shift/reduce conflict for CONST_BOOL resolved as shift
   ! shift/reduce conflict for CONST_FLOAT resolved as shift
   ! shift/reduce conflict for CONST_INT resolved as shift
-    OP_MATH         reduce using rule 61 (empty -> .)
-    OP_COMP         reduce using rule 61 (empty -> .)
-    LANGUAGE_FUNC   reduce using rule 61 (empty -> .)
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-    RIGHT_PARENTHESIS reduce using rule 61 (empty -> .)
-    ID              shift and go to state 40
-    LEFT_BRAKET     shift and go to state 43
-    NULL            shift and go to state 44
-    CONST_LIST      shift and go to state 45
-    LEFT_PARENTHESIS shift and go to state 47
-    CONST_BOOL      shift and go to state 48
-    CONST_FLOAT     shift and go to state 49
-    CONST_INT       shift and go to state 50
+    OP_MATH         reduce using rule 56 (empty -> .)
+    OP_COMP         reduce using rule 56 (empty -> .)
+    LANGUAGE_FUNC   reduce using rule 56 (empty -> .)
+    RIGHT_BRAKET    reduce using rule 56 (empty -> .)
+    RIGHT_PARENTHESIS reduce using rule 56 (empty -> .)
+    ID              shift and go to state 23
+    LEFT_BRAKET     shift and go to state 26
+    NULL            shift and go to state 27
+    CONST_LIST      shift and go to state 28
+    LEFT_PARENTHESIS shift and go to state 30
+    CONST_BOOL      shift and go to state 31
+    CONST_FLOAT     shift and go to state 32
+    CONST_INT       shift and go to state 33
 
-    listContainer                  shift and go to state 90
-    z                              shift and go to state 103
-    empty                          shift and go to state 95
-    structure                      shift and go to state 38
-    const                          shift and go to state 39
-    i                              shift and go to state 41
-    h                              shift and go to state 42
-    constNum                       shift and go to state 46
+    listContainer                  shift and go to state 78
+    z                              shift and go to state 94
+    empty                          shift and go to state 83
+    structure                      shift and go to state 21
+    const                          shift and go to state 22
+    i                              shift and go to state 24
+    h                              shift and go to state 25
+    constNum                       shift and go to state 29
+
+state 79
+
+    (41) vector -> listContainer w .
+    COMMA           reduce using rule 41 (vector -> listContainer w .)
+    RIGHT_BRAKET    reduce using rule 41 (vector -> listContainer w .)
+
+
+state 80
+
+    (43) w -> empty .
+    COMMA           reduce using rule 43 (w -> empty .)
+    RIGHT_BRAKET    reduce using rule 43 (w -> empty .)
+
+
+state 81
+
+    (42) vector -> constNum w .
+    COMMA           reduce using rule 42 (vector -> constNum w .)
+    RIGHT_BRAKET    reduce using rule 42 (vector -> constNum w .)
+
+
+state 82
+
+    (50) functionList -> OP_MATH z .
+    OP_MATH         reduce using rule 50 (functionList -> OP_MATH z .)
+    OP_COMP         reduce using rule 50 (functionList -> OP_MATH z .)
+    ID              reduce using rule 50 (functionList -> OP_MATH z .)
+    LANGUAGE_FUNC   reduce using rule 50 (functionList -> OP_MATH z .)
+    LEFT_BRAKET     reduce using rule 50 (functionList -> OP_MATH z .)
+    NULL            reduce using rule 50 (functionList -> OP_MATH z .)
+    CONST_LIST      reduce using rule 50 (functionList -> OP_MATH z .)
+    LEFT_PARENTHESIS reduce using rule 50 (functionList -> OP_MATH z .)
+    CONST_BOOL      reduce using rule 50 (functionList -> OP_MATH z .)
+    CONST_FLOAT     reduce using rule 50 (functionList -> OP_MATH z .)
+    CONST_INT       reduce using rule 50 (functionList -> OP_MATH z .)
+    RIGHT_BRAKET    reduce using rule 50 (functionList -> OP_MATH z .)
+    RIGHT_PARENTHESIS reduce using rule 50 (functionList -> OP_MATH z .)
+
+
+state 83
+
+    (54) z -> empty .
+    OP_MATH         reduce using rule 54 (z -> empty .)
+    OP_COMP         reduce using rule 54 (z -> empty .)
+    ID              reduce using rule 54 (z -> empty .)
+    LANGUAGE_FUNC   reduce using rule 54 (z -> empty .)
+    LEFT_BRAKET     reduce using rule 54 (z -> empty .)
+    NULL            reduce using rule 54 (z -> empty .)
+    CONST_LIST      reduce using rule 54 (z -> empty .)
+    LEFT_PARENTHESIS reduce using rule 54 (z -> empty .)
+    CONST_BOOL      reduce using rule 54 (z -> empty .)
+    CONST_FLOAT     reduce using rule 54 (z -> empty .)
+    CONST_INT       reduce using rule 54 (z -> empty .)
+    RIGHT_BRAKET    reduce using rule 54 (z -> empty .)
+    RIGHT_PARENTHESIS reduce using rule 54 (z -> empty .)
+
+
+state 84
+
+    (51) functionList -> OP_COMP z .
+    OP_MATH         reduce using rule 51 (functionList -> OP_COMP z .)
+    OP_COMP         reduce using rule 51 (functionList -> OP_COMP z .)
+    ID              reduce using rule 51 (functionList -> OP_COMP z .)
+    LANGUAGE_FUNC   reduce using rule 51 (functionList -> OP_COMP z .)
+    LEFT_BRAKET     reduce using rule 51 (functionList -> OP_COMP z .)
+    NULL            reduce using rule 51 (functionList -> OP_COMP z .)
+    CONST_LIST      reduce using rule 51 (functionList -> OP_COMP z .)
+    LEFT_PARENTHESIS reduce using rule 51 (functionList -> OP_COMP z .)
+    CONST_BOOL      reduce using rule 51 (functionList -> OP_COMP z .)
+    CONST_FLOAT     reduce using rule 51 (functionList -> OP_COMP z .)
+    CONST_INT       reduce using rule 51 (functionList -> OP_COMP z .)
+    RIGHT_BRAKET    reduce using rule 51 (functionList -> OP_COMP z .)
+    RIGHT_PARENTHESIS reduce using rule 51 (functionList -> OP_COMP z .)
+
+
+state 85
+
+    (53) functionList -> LANGUAGE_FUNC z .
+    OP_MATH         reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    OP_COMP         reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    ID              reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    LANGUAGE_FUNC   reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    LEFT_BRAKET     reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    NULL            reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    CONST_LIST      reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    LEFT_PARENTHESIS reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    CONST_BOOL      reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    CONST_FLOAT     reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    CONST_INT       reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    RIGHT_BRAKET    reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+    RIGHT_PARENTHESIS reduce using rule 53 (functionList -> LANGUAGE_FUNC z .)
+
+
+state 86
+
+    (24) i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .
+    ID              reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    LEFT_BRAKET     reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    NULL            reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    CONST_LIST      reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    LEFT_PARENTHESIS reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    CONST_BOOL      reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    CONST_FLOAT     reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    CONST_INT       reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    END             reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    COMMA           reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    RIGHT_BRAKET    reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    OP_MATH         reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    OP_COMP         reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    LANGUAGE_FUNC   reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+    RIGHT_PARENTHESIS reduce using rule 24 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
+
+
+state 87
+
+    (17) g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .
+    ID              reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    LEFT_BRAKET     reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    NULL            reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    CONST_LIST      reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    LEFT_PARENTHESIS reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    CONST_BOOL      reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    CONST_FLOAT     reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+    CONST_INT       reduce using rule 17 (g -> LEFT_PARENTHESIS defParam RIGHT_PARENTHESIS .)
+
+
+state 88
+
+    (33) defParam -> ID defParam .
+    RIGHT_PARENTHESIS reduce using rule 33 (defParam -> ID defParam .)
+    RIGHT_BRAKET    reduce using rule 33 (defParam -> ID defParam .)
+
+
+state 89
+
+    (16) f -> LEFT_BRAKET defParam RIGHT_BRAKET .
+    ID              reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    LEFT_BRAKET     reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    NULL            reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    CONST_LIST      reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    LEFT_PARENTHESIS reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    CONST_BOOL      reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    CONST_FLOAT     reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+    CONST_INT       reduce using rule 16 (f -> LEFT_BRAKET defParam RIGHT_BRAKET .)
+
+
+state 90
+
+    (49) y -> COMMA x .
+    RIGHT_BRAKET    reduce using rule 49 (y -> COMMA x .)
+
 
 state 91
 
-    (46) vector -> listContainer w .
-    COMMA           reduce using rule 46 (vector -> listContainer w .)
-    RIGHT_BRAKET    reduce using rule 46 (vector -> listContainer w .)
+    (40) vector -> ID . w
+    (20) listContainer -> ID .
+    (43) w -> . empty
+    (44) w -> . COMMA vector
+    (56) empty -> .
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 20 (listContainer -> ID .)
+    RIGHT_BRAKET    reduce using rule 20 (listContainer -> ID .)
+    COMMA           shift and go to state 77
 
+    w                              shift and go to state 74
+    empty                          shift and go to state 80
 
 state 92
 
-    (48) w -> empty .
-    COMMA           reduce using rule 48 (w -> empty .)
-    RIGHT_BRAKET    reduce using rule 48 (w -> empty .)
+    (41) vector -> listContainer . w
+    (43) w -> . empty
+    (44) w -> . COMMA vector
+    (56) empty -> .
+  ! shift/reduce conflict for COMMA resolved as shift
+    COMMA           shift and go to state 77
+    RIGHT_BRAKET    reduce using rule 56 (empty -> .)
 
+    w                              shift and go to state 79
+    empty                          shift and go to state 80
 
 state 93
 
-    (47) vector -> constNum w .
-    COMMA           reduce using rule 47 (vector -> constNum w .)
-    RIGHT_BRAKET    reduce using rule 47 (vector -> constNum w .)
+    (44) w -> COMMA vector .
+    COMMA           reduce using rule 44 (w -> COMMA vector .)
+    RIGHT_BRAKET    reduce using rule 44 (w -> COMMA vector .)
 
 
 state 94
 
-    (55) functionList -> OP_MATH z .
-    OP_MATH         reduce using rule 55 (functionList -> OP_MATH z .)
-    OP_COMP         reduce using rule 55 (functionList -> OP_MATH z .)
-    ID              reduce using rule 55 (functionList -> OP_MATH z .)
-    LANGUAGE_FUNC   reduce using rule 55 (functionList -> OP_MATH z .)
-    LEFT_BRAKET     reduce using rule 55 (functionList -> OP_MATH z .)
-    NULL            reduce using rule 55 (functionList -> OP_MATH z .)
-    CONST_LIST      reduce using rule 55 (functionList -> OP_MATH z .)
-    LEFT_PARENTHESIS reduce using rule 55 (functionList -> OP_MATH z .)
-    CONST_BOOL      reduce using rule 55 (functionList -> OP_MATH z .)
-    CONST_FLOAT     reduce using rule 55 (functionList -> OP_MATH z .)
-    CONST_INT       reduce using rule 55 (functionList -> OP_MATH z .)
-    RIGHT_BRAKET    reduce using rule 55 (functionList -> OP_MATH z .)
-    RIGHT_PARENTHESIS reduce using rule 55 (functionList -> OP_MATH z .)
-
-
-state 95
-
-    (59) z -> empty .
-    OP_MATH         reduce using rule 59 (z -> empty .)
-    OP_COMP         reduce using rule 59 (z -> empty .)
-    ID              reduce using rule 59 (z -> empty .)
-    LANGUAGE_FUNC   reduce using rule 59 (z -> empty .)
-    LEFT_BRAKET     reduce using rule 59 (z -> empty .)
-    NULL            reduce using rule 59 (z -> empty .)
-    CONST_LIST      reduce using rule 59 (z -> empty .)
-    LEFT_PARENTHESIS reduce using rule 59 (z -> empty .)
-    CONST_BOOL      reduce using rule 59 (z -> empty .)
-    CONST_FLOAT     reduce using rule 59 (z -> empty .)
-    CONST_INT       reduce using rule 59 (z -> empty .)
-    RIGHT_BRAKET    reduce using rule 59 (z -> empty .)
-    RIGHT_PARENTHESIS reduce using rule 59 (z -> empty .)
-
-
-state 96
-
-    (56) functionList -> OP_COMP z .
-    OP_MATH         reduce using rule 56 (functionList -> OP_COMP z .)
-    OP_COMP         reduce using rule 56 (functionList -> OP_COMP z .)
-    ID              reduce using rule 56 (functionList -> OP_COMP z .)
-    LANGUAGE_FUNC   reduce using rule 56 (functionList -> OP_COMP z .)
-    LEFT_BRAKET     reduce using rule 56 (functionList -> OP_COMP z .)
-    NULL            reduce using rule 56 (functionList -> OP_COMP z .)
-    CONST_LIST      reduce using rule 56 (functionList -> OP_COMP z .)
-    LEFT_PARENTHESIS reduce using rule 56 (functionList -> OP_COMP z .)
-    CONST_BOOL      reduce using rule 56 (functionList -> OP_COMP z .)
-    CONST_FLOAT     reduce using rule 56 (functionList -> OP_COMP z .)
-    CONST_INT       reduce using rule 56 (functionList -> OP_COMP z .)
-    RIGHT_BRAKET    reduce using rule 56 (functionList -> OP_COMP z .)
-    RIGHT_PARENTHESIS reduce using rule 56 (functionList -> OP_COMP z .)
-
-
-state 97
-
-    (58) functionList -> LANGUAGE_FUNC z .
-    OP_MATH         reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    OP_COMP         reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    ID              reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    LANGUAGE_FUNC   reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    LEFT_BRAKET     reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    NULL            reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    CONST_LIST      reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    LEFT_PARENTHESIS reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    CONST_BOOL      reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    CONST_FLOAT     reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    CONST_INT       reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    RIGHT_BRAKET    reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-    RIGHT_PARENTHESIS reduce using rule 58 (functionList -> LANGUAGE_FUNC z .)
-
-
-state 98
-
-    (29) i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .
-    ID              reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    LEFT_BRAKET     reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    NULL            reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    CONST_LIST      reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    LEFT_PARENTHESIS reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    CONST_BOOL      reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    CONST_FLOAT     reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    CONST_INT       reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    RIGHT_PARENTHESIS reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    RIGHT_BRAKET    reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    COMMA           reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    OP_MATH         reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    OP_COMP         reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-    LANGUAGE_FUNC   reduce using rule 29 (i -> LEFT_PARENTHESIS flist RIGHT_PARENTHESIS .)
-
-
-state 99
-
-    (54) y -> COMMA x .
-    RIGHT_BRAKET    reduce using rule 54 (y -> COMMA x .)
-
-
-state 100
-
-    (45) vector -> ID . w
-    (25) listContainer -> ID .
-    (48) w -> . empty
-    (49) w -> . COMMA vector
-    (61) empty -> .
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! shift/reduce conflict for COMMA resolved as shift
-  ! reduce/reduce conflict for RIGHT_BRAKET resolved using rule 25 (listContainer -> ID .)
-    RIGHT_BRAKET    reduce using rule 25 (listContainer -> ID .)
-    COMMA           shift and go to state 89
-
-    w                              shift and go to state 86
-    empty                          shift and go to state 92
-
-state 101
-
-    (46) vector -> listContainer . w
-    (48) w -> . empty
-    (49) w -> . COMMA vector
-    (61) empty -> .
-  ! shift/reduce conflict for COMMA resolved as shift
-    COMMA           shift and go to state 89
-    RIGHT_BRAKET    reduce using rule 61 (empty -> .)
-
-    w                              shift and go to state 91
-    empty                          shift and go to state 92
-
-state 102
-
-    (49) w -> COMMA vector .
-    COMMA           reduce using rule 49 (w -> COMMA vector .)
-    RIGHT_BRAKET    reduce using rule 49 (w -> COMMA vector .)
-
-
-state 103
-
-    (60) z -> listContainer z .
-    OP_MATH         reduce using rule 60 (z -> listContainer z .)
-    OP_COMP         reduce using rule 60 (z -> listContainer z .)
-    ID              reduce using rule 60 (z -> listContainer z .)
-    LANGUAGE_FUNC   reduce using rule 60 (z -> listContainer z .)
-    LEFT_BRAKET     reduce using rule 60 (z -> listContainer z .)
-    NULL            reduce using rule 60 (z -> listContainer z .)
-    CONST_LIST      reduce using rule 60 (z -> listContainer z .)
-    LEFT_PARENTHESIS reduce using rule 60 (z -> listContainer z .)
-    CONST_BOOL      reduce using rule 60 (z -> listContainer z .)
-    CONST_FLOAT     reduce using rule 60 (z -> listContainer z .)
-    CONST_INT       reduce using rule 60 (z -> listContainer z .)
-    RIGHT_BRAKET    reduce using rule 60 (z -> listContainer z .)
-    RIGHT_PARENTHESIS reduce using rule 60 (z -> listContainer z .)
+    (55) z -> listContainer z .
+    OP_MATH         reduce using rule 55 (z -> listContainer z .)
+    OP_COMP         reduce using rule 55 (z -> listContainer z .)
+    ID              reduce using rule 55 (z -> listContainer z .)
+    LANGUAGE_FUNC   reduce using rule 55 (z -> listContainer z .)
+    LEFT_BRAKET     reduce using rule 55 (z -> listContainer z .)
+    NULL            reduce using rule 55 (z -> listContainer z .)
+    CONST_LIST      reduce using rule 55 (z -> listContainer z .)
+    LEFT_PARENTHESIS reduce using rule 55 (z -> listContainer z .)
+    CONST_BOOL      reduce using rule 55 (z -> listContainer z .)
+    CONST_FLOAT     reduce using rule 55 (z -> listContainer z .)
+    CONST_INT       reduce using rule 55 (z -> listContainer z .)
+    RIGHT_BRAKET    reduce using rule 55 (z -> listContainer z .)
+    RIGHT_PARENTHESIS reduce using rule 55 (z -> listContainer z .)
 
 
 Conflicts:
 
-shift/reduce conflict for LEFT_PARENTHESIS in state 2 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 2 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 5 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 5 resolved as shift
-shift/reduce conflict for NULL in state 29 resolved as shift
-shift/reduce conflict for CONST_LIST in state 29 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 29 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 29 resolved as shift
-shift/reduce conflict for CONST_INT in state 29 resolved as shift
-shift/reduce conflict for COMMA in state 63 resolved as shift
-shift/reduce conflict for COMMA in state 65 resolved as shift
-shift/reduce conflict for COMMA in state 65 resolved as shift
-shift/reduce conflict for ID in state 65 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 65 resolved as shift
-shift/reduce conflict for NULL in state 65 resolved as shift
-shift/reduce conflict for CONST_LIST in state 65 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 65 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 65 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 65 resolved as shift
-shift/reduce conflict for CONST_INT in state 65 resolved as shift
-shift/reduce conflict for COMMA in state 66 resolved as shift
-shift/reduce conflict for COMMA in state 67 resolved as shift
-shift/reduce conflict for COMMA in state 67 resolved as shift
-shift/reduce conflict for ID in state 69 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 69 resolved as shift
-shift/reduce conflict for NULL in state 69 resolved as shift
-shift/reduce conflict for CONST_LIST in state 69 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 69 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 69 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 69 resolved as shift
-shift/reduce conflict for CONST_INT in state 69 resolved as shift
-shift/reduce conflict for ID in state 70 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 70 resolved as shift
-shift/reduce conflict for NULL in state 70 resolved as shift
-shift/reduce conflict for CONST_LIST in state 70 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 70 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 70 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 70 resolved as shift
-shift/reduce conflict for CONST_INT in state 70 resolved as shift
-shift/reduce conflict for ID in state 71 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 71 resolved as shift
-shift/reduce conflict for NULL in state 71 resolved as shift
-shift/reduce conflict for CONST_LIST in state 71 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 71 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 71 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 71 resolved as shift
-shift/reduce conflict for CONST_INT in state 71 resolved as shift
-shift/reduce conflict for ID in state 74 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 74 resolved as shift
-shift/reduce conflict for NULL in state 74 resolved as shift
-shift/reduce conflict for CONST_LIST in state 74 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 74 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 74 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 74 resolved as shift
-shift/reduce conflict for CONST_INT in state 74 resolved as shift
-shift/reduce conflict for ID in state 90 resolved as shift
-shift/reduce conflict for LEFT_BRAKET in state 90 resolved as shift
-shift/reduce conflict for NULL in state 90 resolved as shift
-shift/reduce conflict for CONST_LIST in state 90 resolved as shift
-shift/reduce conflict for LEFT_PARENTHESIS in state 90 resolved as shift
-shift/reduce conflict for CONST_BOOL in state 90 resolved as shift
-shift/reduce conflict for CONST_FLOAT in state 90 resolved as shift
-shift/reduce conflict for CONST_INT in state 90 resolved as shift
-shift/reduce conflict for COMMA in state 100 resolved as shift
-shift/reduce conflict for COMMA in state 100 resolved as shift
-shift/reduce conflict for COMMA in state 101 resolved as shift
-reduce/reduce conflict in state 63 resolved using rule listContainer -> structure
-rejected rule (empty -> <empty>) in state 63
-reduce/reduce conflict in state 65 resolved using rule listContainer -> ID
-rejected rule (empty -> <empty>) in state 65
-reduce/reduce conflict in state 66 resolved using rule j -> listContainer
-rejected rule (empty -> <empty>) in state 66
-reduce/reduce conflict in state 67 resolved using rule const -> constNum
-rejected rule (empty -> <empty>) in state 67
-reduce/reduce conflict in state 74 resolved using rule listContainer -> ID
-rejected rule (empty -> <empty>) in state 74
-reduce/reduce conflict in state 88 resolved using rule w -> empty
-rejected rule (z -> empty) in state 88
-reduce/reduce conflict in state 100 resolved using rule listContainer -> ID
-rejected rule (empty -> <empty>) in state 100
+shift/reduce conflict for NULL in state 35 resolved as shift
+shift/reduce conflict for CONST_LIST in state 35 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 35 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 35 resolved as shift
+shift/reduce conflict for CONST_INT in state 35 resolved as shift
+shift/reduce conflict for COMMA in state 48 resolved as shift
+shift/reduce conflict for COMMA in state 50 resolved as shift
+shift/reduce conflict for COMMA in state 50 resolved as shift
+shift/reduce conflict for ID in state 50 resolved as shift
+shift/reduce conflict for LEFT_BRAKET in state 50 resolved as shift
+shift/reduce conflict for NULL in state 50 resolved as shift
+shift/reduce conflict for CONST_LIST in state 50 resolved as shift
+shift/reduce conflict for LEFT_PARENTHESIS in state 50 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 50 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 50 resolved as shift
+shift/reduce conflict for CONST_INT in state 50 resolved as shift
+shift/reduce conflict for COMMA in state 51 resolved as shift
+shift/reduce conflict for COMMA in state 52 resolved as shift
+shift/reduce conflict for COMMA in state 52 resolved as shift
+shift/reduce conflict for ID in state 54 resolved as shift
+shift/reduce conflict for LEFT_BRAKET in state 54 resolved as shift
+shift/reduce conflict for NULL in state 54 resolved as shift
+shift/reduce conflict for CONST_LIST in state 54 resolved as shift
+shift/reduce conflict for LEFT_PARENTHESIS in state 54 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 54 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 54 resolved as shift
+shift/reduce conflict for CONST_INT in state 54 resolved as shift
+shift/reduce conflict for ID in state 55 resolved as shift
+shift/reduce conflict for LEFT_BRAKET in state 55 resolved as shift
+shift/reduce conflict for NULL in state 55 resolved as shift
+shift/reduce conflict for CONST_LIST in state 55 resolved as shift
+shift/reduce conflict for LEFT_PARENTHESIS in state 55 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 55 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 55 resolved as shift
+shift/reduce conflict for CONST_INT in state 55 resolved as shift
+shift/reduce conflict for ID in state 56 resolved as shift
+shift/reduce conflict for LEFT_BRAKET in state 56 resolved as shift
+shift/reduce conflict for NULL in state 56 resolved as shift
+shift/reduce conflict for CONST_LIST in state 56 resolved as shift
+shift/reduce conflict for LEFT_PARENTHESIS in state 56 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 56 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 56 resolved as shift
+shift/reduce conflict for CONST_INT in state 56 resolved as shift
+shift/reduce conflict for ID in state 59 resolved as shift
+shift/reduce conflict for LEFT_BRAKET in state 59 resolved as shift
+shift/reduce conflict for NULL in state 59 resolved as shift
+shift/reduce conflict for CONST_LIST in state 59 resolved as shift
+shift/reduce conflict for LEFT_PARENTHESIS in state 59 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 59 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 59 resolved as shift
+shift/reduce conflict for CONST_INT in state 59 resolved as shift
+shift/reduce conflict for ID in state 78 resolved as shift
+shift/reduce conflict for LEFT_BRAKET in state 78 resolved as shift
+shift/reduce conflict for NULL in state 78 resolved as shift
+shift/reduce conflict for CONST_LIST in state 78 resolved as shift
+shift/reduce conflict for LEFT_PARENTHESIS in state 78 resolved as shift
+shift/reduce conflict for CONST_BOOL in state 78 resolved as shift
+shift/reduce conflict for CONST_FLOAT in state 78 resolved as shift
+shift/reduce conflict for CONST_INT in state 78 resolved as shift
+shift/reduce conflict for COMMA in state 91 resolved as shift
+shift/reduce conflict for COMMA in state 91 resolved as shift
+shift/reduce conflict for COMMA in state 92 resolved as shift
+reduce/reduce conflict in state 48 resolved using rule listContainer -> structure
+rejected rule (empty -> <empty>) in state 48
+reduce/reduce conflict in state 50 resolved using rule listContainer -> ID
+rejected rule (empty -> <empty>) in state 50
+reduce/reduce conflict in state 51 resolved using rule j -> listContainer
+rejected rule (empty -> <empty>) in state 51
+reduce/reduce conflict in state 52 resolved using rule const -> constNum
+rejected rule (empty -> <empty>) in state 52
+reduce/reduce conflict in state 59 resolved using rule listContainer -> ID
+rejected rule (empty -> <empty>) in state 59
+reduce/reduce conflict in state 76 resolved using rule w -> empty
+rejected rule (z -> empty) in state 76
+reduce/reduce conflict in state 91 resolved using rule listContainer -> ID
+rejected rule (empty -> <empty>) in state 91
