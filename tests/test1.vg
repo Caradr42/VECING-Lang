@@ -14,6 +14,10 @@ myProgram
     )
 );
 
-(render 
-((generate_pixel_tree [0, 0] 16) (generate_pixel_tree [3, 7] 12)) 
-);
+(define (generate_pixel_tree position iter) 2);
+
+RENDER 
+
+(generate_pixel_tree [0, 4] 16)
+
+END

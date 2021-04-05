@@ -12,7 +12,11 @@ class LanguageLexer(Lexer):
     ignore_newline = r'\n+'
 
     #Tokens Regexes
-    COMMENT = r'\/\/.*;'
+    #COMMENT = r'\/\/.*;'
+    @_(r'\/\/.*;')
+    def COMMENT(self, t):
+        pass
+
     SEM_COL = r'\;'
     COMMA = r'\,'
     LEFT_PARENTHESIS = r'\('
@@ -22,18 +26,18 @@ class LanguageLexer(Lexer):
     OP_COMP = r'\<\=|\>\=|\<|\>|\!\=|\='
     OP_MATH = r'add|sub|mult|power|div|sqrt|abs'
     NULL = r'null|\(\)'
-    DEFINE = r'def|define'
+    DEFINE = r'define|def'
     RENDER = r'render'
     LANGUAGE_FUNC = r'cond|else|map|apply'
     
     #CONST_FLOAT = r'(\-)?[0-9]+\.[0-9]+'
-    @_(r'(\-)?[0-9]+\.[0-9]+')
+    @_(r'(\-)?[0-9]+\.[0-9]+')              #do not pay attention to IDE not recognizing the decorators
     def CONST_FLOAT(self, t):
         t.value = float(t.value)
         return t
     
     #CONST_INT = r'\-?[0-9]+'
-    @_(r'\-?[0-9]+') #do not pay attention to IDE not recognizing the decorator
+    @_(r'\-?[0-9]+') 
     def CONST_INT(self, t):
         t.value =  int(t.value)
         return t
