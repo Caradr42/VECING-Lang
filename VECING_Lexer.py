@@ -5,7 +5,7 @@ import re
 
 class LanguageLexer(Lexer):
     tokens = {'COMMENT', 'SEM_COL', 'COMMA', 'LEFT_PARENTHESIS', 'RIGHT_PARENTHESIS',
-              'LEFT_BRAKET', 'RIGHT_BRAKET', 'OP_COMP', 'OP_MATH', 'NULL', 'DEFINE', 'RENDER', 'END',
+              'LEFT_BRAKET', 'RIGHT_BRAKET', 'OP_COMP', 'OP_MATH', 'NULL', 'DEFINE', 'CONST', 'LAMBDA', 'RENDER', 'END',
               'LANGUAGE_FUNC', 'ID', 'CONST_INT', 'CONST_FLOAT', 'CONST_BOOL', 'CONST_LIST'}
     # characters to ignore
     ignore = ' \t'
@@ -25,8 +25,10 @@ class LanguageLexer(Lexer):
     RIGHT_BRAKET = r'\]'
     OP_COMP = r'\<\=|\>\=|\<|\>|\!\=|\='
     OP_MATH = r'add|sub|mult|power|div|sqrt|abs'
-    NULL = r'null|\(\)'
-    DEFINE = r'define|def'
+    NULL = r'null|NULL|\(\)'
+    DEFINE = r'DEFINE|define|DEF|def'
+    CONST = r'CONST|const'
+    LAMBDA = r'lambda'
     RENDER = r'RENDER|render'
     END = r'END|end'
     LANGUAGE_FUNC = r'cond|else|map|apply'
