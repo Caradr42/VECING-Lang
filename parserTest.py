@@ -2,14 +2,16 @@ import os
 from VECING_Parser import LanguageParser
 from VECING_Lexer import LanguageLexer
 
+
 def getRelativePath(relPath):
     currDir = os.path.dirname(__file__)
     return os.path.join(currDir, relPath)
 
-def parseFile(fileName, showTokens=False):
+
+def parseFile(fileName, showTokens=False, showSymbols=False):
     lexer = LanguageLexer()
     parser = LanguageParser()
-    
+
     with open(getRelativePath(fileName), 'r') as file:
         data = file.read()
     lexerData = lexer.tokenize(data)
@@ -21,11 +23,12 @@ def parseFile(fileName, showTokens=False):
         except Exception as e:
             print(e)
 
-    
     try:
         parser.parse(LanguageLexer().tokenize(data))
         print("Apropiado")
         print("No errors found in file {}".format(fileName))
+        if showSymbols:
+            print('\n{}'.format(parser.symbols))
     except Exception as e:
         print("File {} has error".format(fileName))
         print(e)
@@ -33,4 +36,4 @@ def parseFile(fileName, showTokens=False):
 
 
 print('\n')
-parseFile('tests/test1.vg', showTokens=True)
+parseFile('tests/test1.vg', showTokens=True, showSymbols=True)
