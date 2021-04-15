@@ -1,7 +1,7 @@
 myProgram
 //this program does important stuff;
 
-(define (generate_pixel_tree position iter) 
+(define generate_pixel_tree (position iter) 
     (cond (> iter 1 )
         [
             (pixel position [225, 225, 225])
@@ -14,7 +14,7 @@ myProgram
     )
 );
 
-(define (generate_pixel_tree position iter) 2);
+(define generate_pixel_tree2 (position iter) 2);
 
 RENDER 
 
