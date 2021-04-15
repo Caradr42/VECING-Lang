@@ -4,14 +4,14 @@ import re
 
 
 class LanguageLexer(Lexer):
-    tokens = {  'COMMENT', 'SEM_COL', 'COMMA', 'LEFT_PARENTHESIS', 'RIGHT_PARENTHESIS', 
-                'LEFT_BRAKET', 'RIGHT_BRAKET', 'OP_COMP', 'OP_MATH', 'NULL', 'DEFINE', 'RENDER', 'END',
-                'LANGUAGE_FUNC', 'ID', 'CONST_INT', 'CONST_FLOAT', 'CONST_BOOL', 'CONST_LIST'}
-    #characters to ignore
+    tokens = {'COMMENT', 'SEM_COL', 'COMMA', 'LEFT_PARENTHESIS', 'RIGHT_PARENTHESIS',
+              'LEFT_BRAKET', 'RIGHT_BRAKET', 'OP_COMP', 'OP_MATH', 'NULL', 'DEFINE', 'RENDER', 'END',
+              'LANGUAGE_FUNC', 'ID', 'CONST_INT', 'CONST_FLOAT', 'CONST_BOOL', 'CONST_LIST'}
+    # characters to ignore
     ignore = ' \t'
     ignore_newline = r'\n+'
 
-    #Tokens Regexes
+    # Tokens Regexes
     #COMMENT = r'\/\/.*;'
     @_(r'\/\/.*;')
     def COMMENT(self, t):
@@ -30,28 +30,28 @@ class LanguageLexer(Lexer):
     RENDER = r'RENDER|render'
     END = r'END|end'
     LANGUAGE_FUNC = r'cond|else|map|apply'
-    
+
     #CONST_FLOAT = r'(\-)?[0-9]+\.[0-9]+'
-    @_(r'(\-)?[0-9]+\.[0-9]+')              #do not pay attention to IDE not recognizing the decorators
+    # do not pay attention to IDE not recognizing the decorators
+    @_(r'(\-)?[0-9]+\.[0-9]+')
     def CONST_FLOAT(self, t):
         t.value = float(t.value)
         return t
-    
+
     #CONST_INT = r'\-?[0-9]+'
-    @_(r'\-?[0-9]+') 
+    @_(r'\-?[0-9]+')
     def CONST_INT(self, t):
-        t.value =  int(t.value)
+        t.value = int(t.value)
         return t
 
-    #CONST_BOOL = r'#false|#true'
+    # CONST_BOOL = r'#false|#true'
     @_(r'#false|#true')
     def CTE_BOOL(self, t):
         t.value = False if t.value == '#false' else True
         return t
 
-
     "[1 2.3 #true]"
-    #CONST_LIST = r'\"\(\s*(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true)(\s+(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true))*\s*\)\"|\"\[\s*(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true)(\s+(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true))*\s*\]\"'
+    # CONST_LIST = r'\"\(\s*(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true)(\s+(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true))*\s*\)\"|\"\[\s*(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true)(\s+(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true))*\s*\]\"'
     @_(r'\"\(\s*(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true)(\s+(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true))*\s*\)\"|\"\[\s*(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true)(\s+(((\-)?[0-9]+\.[0-9]+)|((\-)?[0-9]+)|#false|#true))*\s*\]\"')
     def CONST_LIST(self, t):
         temp = list(re.split(r'\s+', t.value[2:-2]))
