@@ -2,16 +2,16 @@ myProgram
 //this program does important stuff;
 
 (define generate_pixel_tree (position iter) 
-    (cond (> iter 1 )
-        [
-            (pixel position [225, 225, 225])
-            (generate_pixel_tree (add position [-1, -1]) (sub iter 1 ))
-            (generate_pixel_tree (add position [1, -1]) (sub iter 1 ))
+    (cond (
+        [(> iter 1 )  
+            [
+                (pixel position [225, 225, 225])
+                (generate_pixel_tree (add position [-1, -1]) (sub iter 1 ))
+                ((lambda (x y) (lambda (z) (add x y z)) x) iter)
+            ]
         ]
-        [
-            (pixel position [225, 225, 225])
-        ]
-    )
+        [else (pixel position [225, 225, 225])]
+    ))
 );
 
 (define generate_pixel_tree2 (position iter) 2);
