@@ -104,9 +104,11 @@ class LanguageParser(Parser):
     def flist(self, p):
         pass
 
-    @_('listContainer', 'functionList')
+    @_('listContainer', 'functionList', 'functionLambda')
     def j(self, p):
         pass
+
+    # functionLambda
 
     ################ comment  ################
     @_('COMMENT')
@@ -183,8 +185,7 @@ class LanguageParser(Parser):
     @_('LANGUAGE_FUNC z',
         'ID z',
         'OP_COMP z',
-        'OP_MATH z',
-        'pushLambda z')
+        'OP_MATH z')
     def functionList(self, p):
         pass
 
@@ -194,6 +195,11 @@ class LanguageParser(Parser):
 
     @_('empty')
     def z(self, p):
+        pass
+
+    ################ functionLambda ################
+    @_('pushLambda defParamContainer listContainer popFunction')
+    def functionLambda(self, p):
         pass
 
     ################ pushActions ################
@@ -215,6 +221,7 @@ class LanguageParser(Parser):
         self.lambdaCounter += 1
 
     ################ empty ################
+
     @_('')
     def empty(self, p):
         pass
