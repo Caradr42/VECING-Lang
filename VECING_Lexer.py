@@ -25,7 +25,7 @@ class LanguageLexer(Lexer):
     RIGHT_BRAKET = r'\]'
     OP_COMP = r'\<\=|\>\=|\<|\>|\!\=|\='
     OP_MATH = r'add|sub|mult|power|div|sqrt|abs'
-    NULL = r'null|NULL|\(\)'
+    #NULL = r'null|NULL|\(\)'
     DEFINE = r'DEFINE|define|DEF|def'
     CONST = r'CONST|const'
     LAMBDA = r'lambda'
@@ -46,9 +46,15 @@ class LanguageLexer(Lexer):
         t.value = int(t.value)
         return t
 
+    #NULL
+    @_(r'null|NULL|\(\)')
+    def NULL(self, t):
+        t.value = None
+        return t
+
     # CONST_BOOL = r'#false|#true'
     @_(r'#false|#true')
-    def CTE_BOOL(self, t):
+    def CONST_BOOL(self, t):
         t.value = False if t.value == '#false' else True
         return t
 

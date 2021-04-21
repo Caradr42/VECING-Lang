@@ -4,26 +4,38 @@ varTable = 'varTable'
 
 
 class SymbolTable:
+    currentContext = None
+
     def __init__(self):
         self.dict = {}
-        self.context = None
+        self.child = None
+        self.parent = None
+        SymbolTable.currentContext = self
 
-    def addSymbol(self, name, symbolType):
-        if(self.context == None):
+    def addSymbol(self, name, symbolType, func=None):
+        if(self.child == None):
             if(symbolType == "func" or symbolType == "lambda"):
                 newTable = SymbolTable()
-                self.dict[name] = {"type": symbolType, varTable: newTable}
-                self.context = newTable
+                newTable.parent = self
+                self.child = newTable
+                self.dict[name] = {"type": symbolType, "function": func, varTable: newTable,}
             else:
                 self.dict[name] = {"type": symbolType}
         else:
-            self.context.addSymbol(name, symbolType)
+            self.child.addSymbol(name, symbolType)
+
+    def isSymbolInContext(self, symbol):
+        if ( symbol in list(self.dict.keys()) ):
+            return True
+        elif self.parent:
+            return self.parent.isSymbolInContext(symbol)
+        return False    
 
     def pop(self):
-        if(self.context != None and self.context.context == None):
-            self.context = None
-        else:
-            self.context.pop()
+        if (self.child == None):
+            return 
+        SymbolTable.currentContext = SymbolTable.currentContext.parent
+        SymbolTable.currentContext.child = None
 
     def getFullDict(self):
         temp = copy.copy(self)

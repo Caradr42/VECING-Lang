@@ -1,0 +1,67 @@
+#1 'PROGRAM'    'myProgram'             None
+#2 'DEFINE'     'generate_pixel_tree'   #9
+#9 'content'    #10                     #3          
+#3 'cond'       #4                      #8 
+#8 'list'       #12 	                None 
+#9 'IDs'        'X'                     #13
+        
+        (
+            (('DEFINE', ('
+            generate_pixel_tree2', (2, None))), None)
+            ,
+            (
+                (('DEFINE', ('
+                generate_pixel_tree3', (2, None))), None)
+                ,
+                (
+                    (('DEFINE', ('
+                    generate_pixel_tree4', (2, None))), None)
+                    ,
+                    (
+                        (('DEFINE', ('
+                        generate_pixel_tree5', (2, None))), None)
+                        ,
+                        (('DEFINE', ('
+                        generate_pixel_tree6', (2, None))), None)
+                    )
+                )
+            )
+            
+        )
+
+
+ (
+            (('DEFINE', ((PARAMS), ('
+            generate_pixel_tree2', (2, None)))), None)
+            ,
+            (
+                (('DEFINE', ('
+                generate_pixel_tree3', (2, None))), None)
+                ,
+                (
+                    (('DEFINE', ('
+                    generate_pixel_tree4', (2, None))), None)
+                    ,
+                    (
+                        (('DEFINE', ('
+                        generate_pixel_tree5', (2, None))), None)
+                        ,
+                        (('DEFINE', ('
+                        generate_pixel_tree6', (2, None))), None)
+                    )
+                )
+            )
+            
+        )
+        
+
+
+'list'          [1,2,3,5,6,7]               None        t1
+'def'           'generate_pixel_tree2'      t1          t2
+'list'          2                           None        t3
+'def'           'generate_pixel_tree3'      t3          t4
+'list'          t2                          t4          t5
+'list'          t5                          None        t6   
+'program'       'myProgram'                 t6          END
+
+

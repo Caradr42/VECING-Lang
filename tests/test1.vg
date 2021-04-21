@@ -3,14 +3,14 @@ myProgram
 
 (define generate_pixel_tree (position iter) 
     (cond (
-        [(> iter 1 )  
+        [(> iter 1 #true)  
             [
                 (pixel position [225, 225, 225])
                 (generate_pixel_tree (add position [-1, -1]) (sub iter 1 ))
                 ((lambda (x y) (lambda (z) (add x y z)) x) iter)
             ]
         ]
-        [else (pixel position [225, 225, 225])]
+        [else (pixel position "(225 225 225)" )]
     ))
 );
 

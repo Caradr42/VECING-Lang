@@ -8,7 +8,7 @@ def getRelativePath(relPath):
     return os.path.join(currDir, relPath)
 
 
-def parseFile(fileName, showTokens=False, showSymbols=False):
+def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=False):
     lexer = LanguageLexer()
     parser = LanguageParser()
 
@@ -29,6 +29,8 @@ def parseFile(fileName, showTokens=False, showSymbols=False):
         print("No errors found in file {}".format(fileName))
         if showSymbols:
             print('\n{}'.format(parser.symbols))
+        if showProgramTree:
+            print(parser.programTree)
     except Exception as e:
         print("File {} has error".format(fileName))
         print(e)
@@ -36,4 +38,4 @@ def parseFile(fileName, showTokens=False, showSymbols=False):
 
 
 print('\n')
-parseFile('tests/test1.vg', showTokens=True, showSymbols=True)
+parseFile('tests/test1.vg', showTokens=False, showSymbols=False, showProgramTree=True)
