@@ -51,6 +51,7 @@ languageFunctions = [
         "shape",
         "get"
     ]
+
 semanticTable = {
     "add":      ((tuple, tuple), (tuple)),   #("add", ((1, None), (2, None)))
     "sub":      ((tuple, tuple), (tuple)),
@@ -105,6 +106,7 @@ class LanguageParser(Parser):
         self.symbols = SymbolTable()
         self.lambdaCounter = 0
         self.programTree = ""
+        self.tCounter = 0
     
         #add all language functions to the symbols table
         for name in languageFunctions:
@@ -241,11 +243,11 @@ class LanguageParser(Parser):
     ################ defParam  ################
     @_('pushSymbol defParam')
     def defParam(self, p):
-        return (p[0], p[1])
+        return (('param', p[0]), p[1])
 
     @_('pushSymbol')
     def defParam(self, p):
-        return (p[0], None)
+        return ('param', p[0])
 
     ################ constNum ################
     @_('CONST_INT',
@@ -360,3 +362,89 @@ class LanguageParser(Parser):
         print(message)
         print(p)
         raise Exception(message)
+
+    def getCuads(self):
+        #tCounter = 0
+        cuads = []
+        self.cuadGenerator(self.programTree, cuads)
+        self.tCounter = 0
+        return cuads
+
+    def cuadGenerator(self, tree, cuads):
+        if type(tree) == tuple:
+            if tree[0] == 'PROGRAM':
+                programBody = tree[1][1]
+                programName = tree[1][0]
+                t = self.cuadGenerator(programBody, cuads)
+                cuads.append(('PROGRAM', programName, t, 'END'))
+                self.tCounter += 1
+                return self.tCounter
+
+            elif tree[0] == 'DEFINE':
+                functionBody = tree[1][1]
+                functionName = tree[1][0]
+
+                t = self.cuadGenerator(functionBody, cuads)
+                self.tCounter += 1
+                cuads.append(('DEF', functionName, t, self.tCounter))
+                return self.tCounter
+
+            elif tree[0] == 'RENDER':
+                renderBody = tree[1]
+
+                t = self.cuadGenerator(renderBody, cuads)
+                self.tCounter += 1
+                cuads.append(('RENDER', t, 'None', self.tCounter))
+                return self.tCounter
+
+            elif tree[0] == 'LAMBDA':
+                pass
+            elif tree[0] == 'params':
+                paramsBody = tree[1]
+
+                t = self.cuadGenerator(paramsBody, cuads)
+                self.tCounter += 1
+                cuads.append(('PARAMS', t, 'None', self.tCounter))
+                return self.tCounter
+
+            elif tree[0] == 'param':
+                paramName = tree[1]
+
+                self.tCounter += 1
+                cuads.append(('PARAM', paramName, 'None', self.tCounter))
+                return self.tCounter
+                
+            elif tree[0] == 'var':
+                varName = tree[1]
+
+                self.tCounter += 1
+                cuads.append(('VAR', varName, 'None', self.tCounter))
+                return self.tCounter
+            
+            elif self.symbols.isSymbolInContext(tree[0]):  #if the  instruction is a defined  
+                funcName = tree[0]
+                funcParams = tree[1]
+
+                t = self.cuadGenerator(funcParams, cuads)
+                self.tCounter += 1
+                cuads.append((funcName, t, 'None', self.tCounter))
+                return self.tCounter
+            else:
+                t1 = self.cuadGenerator(tree[0], cuads)
+                t2 = self.cuadGenerator(tree[1], cuads)
+
+                self.tCounter += 1
+                cuads.append(('list', t1, t2, self.tCounter))
+                return self.tCounter
+        elif tree == None: #for None or a constant
+            return 'None'
+        else: #for None or a constant
+            return tree
+        
+
+        
+        
+
+
+
+

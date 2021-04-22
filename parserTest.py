@@ -8,7 +8,7 @@ def getRelativePath(relPath):
     return os.path.join(currDir, relPath)
 
 
-def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=False):
+def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=False, showCuads=False):
     lexer = LanguageLexer()
     parser = LanguageParser()
 
@@ -28,9 +28,12 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
         print("Apropiado")
         print("No errors found in file {}".format(fileName))
         if showSymbols:
-            print('\n{}'.format(parser.symbols))
+            print('\n{}\n'.format(parser.symbols))
         if showProgramTree:
-            print(parser.programTree)
+            print(parser.programTree, '\n')
+        if showCuads:
+            cuads = parser.getCuads()
+            print('\n'.join('{}: {}'.format(k[0] + 1, k[1]) for k in enumerate(cuads)))
     except Exception as e:
         print("File {} has error".format(fileName))
         print(e)
@@ -38,4 +41,4 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
 
 
 print('\n')
-parseFile('tests/test1.vg', showTokens=False, showSymbols=False, showProgramTree=True)
+parseFile('tests/test2.vg', showTokens=False, showSymbols=False, showProgramTree=True, showCuads=True)
