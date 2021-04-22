@@ -2,8 +2,8 @@ import libs.sly as sly
 from libs.sly import Parser
 from VECING_Lexer import LanguageLexer
 from SymbolTable import SymbolTable
-
-
+import array 
+array.array
 languageFunctions = [
         "add",
         "sub",
@@ -21,9 +21,6 @@ languageFunctions = [
         "map",
         "apply",
         "cond",
-        "else",
-        "if",
-        "define"
         "lambda",
         "print",
         "car",
@@ -54,6 +51,53 @@ languageFunctions = [
         "shape",
         "get"
     ]
+semanticTable = {
+    "add":      ((tuple, tuple), (tuple)),   #("add", ((1, None), (2, None)))
+    "sub":      ((tuple, tuple), (tuple)),
+    "mult":     ((tuple, tuple), (tuple)),
+    "power":    ((tuple, tuple), (tuple)),
+    "div":      ((tuple, tuple), (tuple)),
+    "sqrt":     ((tuple), (tuple)),
+    "abs":      ((tuple), (tuple)),
+    "<=":       ((tuple, tuple), (bool)),
+    ">=":       ((tuple, tuple), (bool)),
+    "<":        ((tuple, tuple), (bool)),
+    ">":        ((tuple, tuple), (bool)),
+    "!=":       ((tuple, tuple), (bool)),
+    "=":        ((tuple, tuple), (bool)),
+    "map":      ((tuple, tuple), (tuple)),      
+    "apply":    ((tuple, tuple), (tuple)),    
+    "cond":     ((tuple), (None)),
+    "lambda":   ((tuple, tuple), (tuple)),
+    "print":    ((tuple), (None)),
+    "car":      ((tuple), (tuple)),
+    "cdr":      ((tuple), (tuple)),
+    "cons":     ((tuple, tuple), (tuple)),
+    "and":      ((tuple), (tuple)),
+    "or":       ((tuple), (tuple)),
+    "isEmpty":  ((tuple), (bool)),
+    "screen":   ((array.array, (array.array, tuple)), (None)),
+    "pixel":    ((array.array, array.array), (None)),
+    "pixels":   ((array.array, array.array), (None)),
+    "getPixels":((None), (None)),
+    "background":((array.array), (None)),
+    "clear":    ((None), (None)),    
+    "timeStep": ((None), (tuple)),
+    "deltaTime":((None), (tuple)),
+    "line":     ((array.array, (array.array, array.array)), (None)),
+    "curve":    ((array.array, (array.array, (array.array, array.array))), (None)),
+    "spline":   ((tuple), (None)),
+    "triangle": ((array.array, (array.array, (array.array, array.array))), (None)),
+    "ellipse":  ((array.array, (array.array, array.array)), (None)),
+    "isNumber": ((tuple), (bool)),
+    "isMatrix": ((tuple), (bool)),
+    "isVector": ((tuple), (bool)),
+    "isList":   ((tuple), (bool)),
+    "isFunc":   ((tuple), (bool)),
+    "isBool":   ((tuple), (bool)),
+    "shape":    ((array.array), (tuple)),
+    "get":      ((array.array), (tuple)) 
+}
 
 class LanguageParser(Parser):
 

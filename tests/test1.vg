@@ -10,7 +10,7 @@ myProgram
                 ((lambda (x y) (lambda (z) (add x y z)) x) iter)
             ]
         ]
-        [else (pixel position "(225 225 225)" )]
+        [#true (pixel position "(225 225 225)" )]
     ))
 );
 
