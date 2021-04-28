@@ -217,7 +217,7 @@ class LanguageParser(Parser):
 
     @_('j')
     def flist(self, p):
-        return p[0]
+        return (p[0], None)
 
     @_('listContainer', 'functionList', 'functionLambda')
     def j(self, p):
@@ -421,6 +421,52 @@ class LanguageParser(Parser):
                 cuads.append(('VAR', varName, 'None', self.tCounter))
                 return self.tCounter
             
+            elif tree[0] == 'cond':
+                conditionals = []
+                head = tree[1]
+
+                while(head != None):
+                    conditionals.append( (head[0][0], head[1][0][0]) )
+                    head = head[1][1]
+
+                #print('------------------COND------------------\n')
+                #print(conditionals)
+
+                startCond = len(cuads)
+                endOfCond = startCond + 1
+
+                def getEndLine():
+                    return endOfCond
+
+                
+                endsOfExpr = []
+                
+                for (expr , body) in conditionals:
+                    endOfExpr = endOfCond 
+
+
+                    conditionLine =  self.cuadGenerator(expr, cuads) 
+                    cuads.append(["gotoFalse", conditionLine, None, None])
+                    instructionLine =  self.cuadGenerator(body, cuads) 
+
+                    endOfCond = len(cuads) + 1
+                    endOfExpr = endOfCond + 1
+                    endsOfExpr.append(endOfExpr)
+
+                    cuads.append(["goto", instructionLine, getEndLine , None])
+                    endOfCond = len(cuads) + 1
+
+                endsCounter = 0
+                for i in range(startCond, endOfCond - 1):
+                    if cuads[i][0] == "goto":
+                        if callable(cuads[i][2]):
+                            cuads[i][2] = cuads[i][2]()
+                            cuads[i] = tuple(cuads[i])
+                    elif cuads[i][0] == "gotoFalse":
+                        cuads[i][2] = endsOfExpr[endsCounter]
+                        cuads[i] = tuple(cuads[i])
+                        endsCounter += 1
+                            
             elif self.symbols.isSymbolInContext(tree[0]):  #if the  instruction is a defined  
                 funcName = tree[0]
                 funcParams = tree[1]

@@ -1,0 +1,16 @@
+myProgram
+//this program does important stuff;
+
+(define myFunc1 (A B) (add A B));
+
+RENDER 
+
+(cond 
+    [
+    (myFunc1 1 2) (print 1)
+    (myFunc1 5 6) (print 2)
+    (myFunc1 9 10) (print 3)
+    ]
+)
+
+END
