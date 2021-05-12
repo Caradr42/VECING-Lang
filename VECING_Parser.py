@@ -373,46 +373,77 @@ class LanguageParser(Parser):
     def cuadGenerator(self, tree, cuads):
         if type(tree) == tuple:
             if tree[0] == 'PROGRAM':
+                #initial goto
+                cuads.append(['goto', None, None, None])
+
                 programBody = tree[1][1]
                 programName = tree[1][0]
-                t = self.cuadGenerator(programBody, cuads)
-                cuads.append(('PROGRAM', programName, t, 'END'))
+
+                definitions = []
+                head = programBody[0]
+
+                while(head != None):
+                    definitions.append( head[0] )
+                    head = head[1]
+
+                for define in definitions:
+                    self.cuadGenerator(define, cuads)
+                
+                #######
+                renderPosition = len(cuads)
+                cuads[0][1] = renderPosition + 1
+                cuads[0] = tuple(cuads[0])
+                #######
+                t = self.cuadGenerator(programBody[1], cuads)
+
                 self.tCounter += 1
+                cuads.append(('PROGRAM', programName, t, 'END'))
                 return self.tCounter
 
             elif tree[0] == 'DEFINE':
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
 
-                t = self.cuadGenerator(functionBody, cuads)
-                self.tCounter += 1
-                cuads.append(('DEF', functionName, t, self.tCounter))
-                return self.tCounter
+                t = self.cuadGenerator(functionBody[1][0], cuads)
+                cuads.append(('endfunc', t, 'None', "None"))
+                return None
 
             elif tree[0] == 'RENDER':
                 renderBody = tree[1]
 
-                t = self.cuadGenerator(renderBody, cuads)
-                self.tCounter += 1
-                cuads.append(('RENDER', t, 'None', self.tCounter))
-                return self.tCounter
+                calls = []
+                head = renderBody
+
+                while(head != None):
+                    calls.append( head[0] )
+                    head = head[1]
+
+                for call in calls:
+                    self.cuadGenerator(call[0], cuads) #if problems just remove "[0]"
+
+                #t = self.cuadGenerator(renderBody[0][0], cuads)
+
+                # self.tCounter += 1
+                # cuads.append(('RENDER', t, 'None', self.tCounter))
+                return None
 
             elif tree[0] == 'LAMBDA':
                 pass
             elif tree[0] == 'params':
-                paramsBody = tree[1]
+                pass
+                # paramsBody = tree[1]
 
-                t = self.cuadGenerator(paramsBody, cuads)
-                self.tCounter += 1
-                cuads.append(('PARAMS', t, 'None', self.tCounter))
-                return self.tCounter
+                # t = self.cuadGenerator(paramsBody, cuads)
+                # self.tCounter += 1
+                # cuads.append(('PARAMS', t, 'None', self.tCounter))
+                # return self.tCounter
 
-            elif tree[0] == 'param':
-                paramName = tree[1]
+            # elif tree[0] == 'param':
+            #     paramName = tree[1]
 
-                self.tCounter += 1
-                cuads.append(('PARAM', paramName, 'None', self.tCounter))
-                return self.tCounter
+            #     self.tCounter += 1
+            #     cuads.append(('PARAM', paramName, 'None', self.tCounter))
+            #     return self.tCounter
                 
             elif tree[0] == 'var':
                 varName = tree[1]
@@ -435,10 +466,6 @@ class LanguageParser(Parser):
                 startCond = len(cuads)
                 endOfCond = startCond + 1
 
-                def getEndLine():
-                    return endOfCond
-
-                
                 endsOfExpr = []
                 
                 for (expr , body) in conditionals:
@@ -447,21 +474,20 @@ class LanguageParser(Parser):
 
                     conditionLine =  self.cuadGenerator(expr, cuads) 
                     cuads.append(["gotoFalse", conditionLine, None, None])
-                    instructionLine =  self.cuadGenerator(body, cuads) 
+                    self.cuadGenerator(body, cuads) 
 
                     endOfCond = len(cuads) + 1
                     endOfExpr = endOfCond + 1
                     endsOfExpr.append(endOfExpr)
 
-                    cuads.append(["goto", instructionLine, getEndLine , None])
+                    cuads.append(["goto", None, "None", None])
                     endOfCond = len(cuads) + 1
 
                 endsCounter = 0
                 for i in range(startCond, endOfCond - 1):
                     if cuads[i][0] == "goto":
-                        if callable(cuads[i][2]):
-                            cuads[i][2] = cuads[i][2]()
-                            cuads[i] = tuple(cuads[i])
+                        cuads[i][1] = endOfCond
+                        cuads[i] = tuple(cuads[i])
                     elif cuads[i][0] == "gotoFalse":
                         cuads[i][2] = endsOfExpr[endsCounter]
                         cuads[i] = tuple(cuads[i])
@@ -471,9 +497,19 @@ class LanguageParser(Parser):
                 funcName = tree[0]
                 funcParams = tree[1]
 
+                
+                cuads.append(("era", funcName, 'None', 'None'))
+                
                 t = self.cuadGenerator(funcParams, cuads)
+
+                
+                cuads.append(("params", t, 'None', 'param1'))
+
                 self.tCounter += 1
-                cuads.append((funcName, t, 'None', self.tCounter))
+                cuads.append(("gosub", funcName, "None", self.tCounter))
+
+                # self.tCounter += 1
+                # cuads.append((funcName, t, 'None', self.tCounter))
                 return self.tCounter
             else:
                 t1 = self.cuadGenerator(tree[0], cuads)

@@ -41,4 +41,4 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
 
 
 print('\n')
-parseFile('tests/test2.vg', showTokens=False, showSymbols=False, showProgramTree=True, showCuads=True)
+parseFile('tests/test3.vg', showTokens=False, showSymbols=True, showProgramTree=True, showCuads=True)

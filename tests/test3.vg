@@ -2,6 +2,7 @@ myProgram
 //this program does important stuff;
 
 (define myFunc1 (A B) (add A B));
+(define myFunc2 (A B) (add A B));
 
 RENDER 
 
