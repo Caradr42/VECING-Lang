@@ -370,6 +370,11 @@ class LanguageParser(Parser):
         self.tCounter = 0
         return cuads
 
+    def tempName(self, index):
+        if index == None or index == 'None':
+            return index
+        return 't' + str(index)
+
     def cuadGenerator(self, tree, cuads):
         if type(tree) == tuple:
             if tree[0] == 'PROGRAM':
@@ -394,10 +399,10 @@ class LanguageParser(Parser):
                 cuads[0][1] = renderPosition + 1
                 cuads[0] = tuple(cuads[0])
                 #######
-                t = self.cuadGenerator(programBody[1], cuads)
+                self.cuadGenerator(programBody[1], cuads)
 
                 self.tCounter += 1
-                cuads.append(('PROGRAM', programName, t, 'END'))
+                cuads.append(('PROGRAM', programName, 'None', 'END'))
                 return self.tCounter
 
             elif tree[0] == 'DEFINE':
@@ -405,7 +410,7 @@ class LanguageParser(Parser):
                 functionName = tree[1][0]
 
                 t = self.cuadGenerator(functionBody[1][0], cuads)
-                cuads.append(('endfunc', t, 'None', "None"))
+                cuads.append(('endfunc', self.tempName(t), 'None', "None"))
                 return None
 
             elif tree[0] == 'RENDER':
@@ -420,36 +425,18 @@ class LanguageParser(Parser):
 
                 for call in calls:
                     self.cuadGenerator(call[0], cuads) #if problems just remove "[0]"
-
-                #t = self.cuadGenerator(renderBody[0][0], cuads)
-
-                # self.tCounter += 1
-                # cuads.append(('RENDER', t, 'None', self.tCounter))
                 return None
 
             elif tree[0] == 'LAMBDA':
                 pass
             elif tree[0] == 'params':
                 pass
-                # paramsBody = tree[1]
-
-                # t = self.cuadGenerator(paramsBody, cuads)
-                # self.tCounter += 1
-                # cuads.append(('PARAMS', t, 'None', self.tCounter))
-                # return self.tCounter
-
-            # elif tree[0] == 'param':
-            #     paramName = tree[1]
-
-            #     self.tCounter += 1
-            #     cuads.append(('PARAM', paramName, 'None', self.tCounter))
-            #     return self.tCounter
                 
             elif tree[0] == 'var':
                 varName = tree[1]
 
                 self.tCounter += 1
-                cuads.append(('VAR', varName, 'None', self.tCounter))
+                cuads.append(('VAR', varName, 'None', self.tempName(self.tCounter)))
                 return self.tCounter
             
             elif tree[0] == 'cond':
@@ -473,7 +460,7 @@ class LanguageParser(Parser):
 
 
                     conditionLine =  self.cuadGenerator(expr, cuads) 
-                    cuads.append(["gotoFalse", conditionLine, None, None])
+                    cuads.append(["gotoFalse", self.tempName(conditionLine), None, None])
                     self.cuadGenerator(body, cuads) 
 
                     endOfCond = len(cuads) + 1
@@ -502,11 +489,10 @@ class LanguageParser(Parser):
                 
                 t = self.cuadGenerator(funcParams, cuads)
 
-                
-                cuads.append(("params", t, 'None', 'param1'))
+                cuads.append(("params", self.tempName(t), 'None', 'param1'))
 
                 self.tCounter += 1
-                cuads.append(("gosub", funcName, "None", self.tCounter))
+                cuads.append(("gosub", funcName, "None", self.tempName(self.tCounter)))
 
                 # self.tCounter += 1
                 # cuads.append((funcName, t, 'None', self.tCounter))
@@ -516,11 +502,26 @@ class LanguageParser(Parser):
                 t2 = self.cuadGenerator(tree[1], cuads)
 
                 self.tCounter += 1
-                cuads.append(('list', t1, t2, self.tCounter))
+
+                t1Value = None
+                t2Value = None
+                if(type(t1) == tuple and t1[0] == 'const'):
+                    t1Value = t1[1]
+                else:
+                    t1Value = self.tempName(t1)
+                if(type(t2) == tuple and t1[0] == 'const'):
+                    t1Value = t2[1]
+                else:
+                    t2Value = self.tempName(t2)
+                
+                cuads.append(('list', t1Value, t2Value, self.tempName(self.tCounter)))
+
                 return self.tCounter
-        elif tree == None: #for None or a constant
+        elif tree == None or tree == 'None': #for None
             return 'None'
-        else: #for None or a constant
+        elif type(tree) == int or type(tree) == float or type(tree) == bool: #for a constant
+            return ('const', tree)
+        else: #for god knows what
             return tree
         
 
