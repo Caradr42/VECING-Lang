@@ -406,14 +406,29 @@ class LanguageParser(Parser):
                 return self.tCounter
 
             elif tree[0] == 'DEFINE':
+                self.tCounter = 0
+                functionBody = tree[1][1]
+                functionName = tree[1][0]
+                t = None
+                if(functionBody[0][0] == "params"):
+                    t = self.cuadGenerator(functionBody[1][0], cuads)
+                else:
+                    t = self.cuadGenerator(functionBody, cuads)
+                cuads.append(('endfunc', self.tempName(t), 'None', "None"))
+                return None
+
+            elif tree[0] == 'CONSTDEF':
+                self.tCounter = 0
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
 
-                t = self.cuadGenerator(functionBody[1][0], cuads)
+                t = self.cuadGenerator(functionBody, cuads)
+
                 cuads.append(('endfunc', self.tempName(t), 'None', "None"))
                 return None
 
             elif tree[0] == 'RENDER':
+                self.tCounter = 0
                 renderBody = tree[1]
 
                 calls = []

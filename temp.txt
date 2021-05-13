@@ -1,4 +1,61 @@
-1: ('goto', 16, None, None)
+SymbolTable(
+{'!=': {'function': None, 'type': 'func', 'varTable': {}},
+ '<': {'function': None, 'type': 'func', 'varTable': {}},
+ '<=': {'function': None, 'type': 'func', 'varTable': {}},
+ '=': {'function': None, 'type': 'func', 'varTable': {}},
+ '>': {'function': None, 'type': 'func', 'varTable': {}},
+ '>=': {'function': None, 'type': 'func', 'varTable': {}},
+ 'abs': {'function': None, 'type': 'func', 'varTable': {}},
+ 'add': {'function': None, 'type': 'func', 'varTable': {}},
+ 'and': {'function': None, 'type': 'func', 'varTable': {}},
+ 'apply': {'function': None, 'type': 'func', 'varTable': {}},
+ 'background': {'function': None, 'type': 'func', 'varTable': {}},
+ 'car': {'function': None, 'type': 'func', 'varTable': {}},
+ 'cdr': {'function': None, 'type': 'func', 'varTable': {}},
+ 'clear': {'function': None, 'type': 'func', 'varTable': {}},
+ 'cond': {'function': None, 'type': 'func', 'varTable': {}},
+ 'cons': {'function': None, 'type': 'func', 'varTable': {}},
+ 'curve': {'function': None, 'type': 'func', 'varTable': {}},
+ 'deltaTime': {'function': None, 'type': 'func', 'varTable': {}},
+ 'div': {'function': None, 'type': 'func', 'varTable': {}},
+ 'ellipse': {'function': None, 'type': 'func', 'varTable': {}},
+ 'get': {'function': None, 'type': 'func', 'varTable': {}},
+ 'getPixels': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isBool': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isEmpy': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isFunc': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isList': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isMatrix': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isNumber': {'function': None, 'type': 'func', 'varTable': {}},
+ 'isVector': {'function': None, 'type': 'func', 'varTable': {}},
+ 'lambda': {'function': None, 'type': 'func', 'varTable': {}},
+ 'line': {'function': None, 'type': 'func', 'varTable': {}},
+ 'map': {'function': None, 'type': 'func', 'varTable': {}},
+ 'mult': {'function': None, 'type': 'func', 'varTable': {}},
+ 'myConst1': {'type': 'symbol'},
+ 'myFunc1': {'function': None,
+             'type': 'func',
+             'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}},
+ 'myFunc2': {'function': None,
+             'type': 'func',
+             'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}},
+ 'or': {'function': None, 'type': 'func', 'varTable': {}},
+ 'pixel': {'function': None, 'type': 'func', 'varTable': {}},
+ 'pixels': {'function': None, 'type': 'func', 'varTable': {}},
+ 'power': {'function': None, 'type': 'func', 'varTable': {}},
+ 'print': {'function': None, 'type': 'func', 'varTable': {}},
+ 'screen': {'function': None, 'type': 'func', 'varTable': {}},
+ 'shape': {'function': None, 'type': 'func', 'varTable': {}},
+ 'spline': {'function': None, 'type': 'func', 'varTable': {}},
+ 'sqrt': {'function': None, 'type': 'func', 'varTable': {}},
+ 'sub': {'function': None, 'type': 'func', 'varTable': {}},
+ 'timeStep': {'function': None, 'type': 'func', 'varTable': {}},
+ 'triangle': {'function': None, 'type': 'func', 'varTable': {}}}
+)
+
+('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('CONSTDEF', ('myConst1', (1, None))), None))), ('RENDER', ((('cond', ((('myFunc1', ((1, None), (2, None))), None), ((('print', (1, None)), None), ((('myFunc1', ((5, None), (6, None))), None), ((('print', (2, None)), None), ((('myFunc1', ((9, None), (10, None))), None), ((('print', (3, None)), None), None))))))), None), None)))))
+
+1: ('goto', 18, None, None)
 2: ('era', 'add', 'None', 'None')
 3: ('VAR', 'A', 'None', 't1')
 4: ('VAR', 'B', 'None', 't2')
@@ -7,46 +64,48 @@
 7: ('gosub', 'add', 'None', 't4')
 8: ('endfunc', 't4', 'None', 'None')
 9: ('era', 'add', 'None', 'None')
-10: ('VAR', 'A', 'None', 't5')
-11: ('VAR', 'B', 'None', 't6')
-12: ('list', 't5', 't6', 't7')
-13: ('params', 't7', 'None', 'param1')
-14: ('gosub', 'add', 'None', 't8')
-15: ('endfunc', 't8', 'None', 'None')
-16: ('era', 'myFunc1', 'None', 'None')
-17: ('list', 1, 'None', 't9')
-18: ('list', 2, 'None', 't10')
-19: ('list', 't9', 't10', 't11')
-20: ('params', 't11', 'None', 'param1')
-21: ('gosub', 'myFunc1', 'None', 't12')
-22: ('gotoFalse', 't12', 28, None)
-23: ('era', 'print', 'None', 'None')
-24: ('list', 1, 'None', 't13')
-25: ('params', 't13', 'None', 'param1')
-26: ('gosub', 'print', 'None', 't14')
-27: ('goto', 52, 'None', None)
-28: ('era', 'myFunc1', 'None', 'None')
-29: ('list', 5, 'None', 't15')
-30: ('list', 6, 'None', 't16')
-31: ('list', 't15', 't16', 't17')
-32: ('params', 't17', 'None', 'param1')
-33: ('gosub', 'myFunc1', 'None', 't18')
-34: ('gotoFalse', 't18', 40, None)
-35: ('era', 'print', 'None', 'None')
-36: ('list', 2, 'None', 't19')
-37: ('params', 't19', 'None', 'param1')
-38: ('gosub', 'print', 'None', 't20')
-39: ('goto', 52, 'None', None)
-40: ('era', 'myFunc1', 'None', 'None')
-41: ('list', 9, 'None', 't21')
-42: ('list', 10, 'None', 't22')
-43: ('list', 't21', 't22', 't23')
-44: ('params', 't23', 'None', 'param1')
-45: ('gosub', 'myFunc1', 'None', 't24')
-46: ('gotoFalse', 't24', 52, None)
-47: ('era', 'print', 'None', 'None')
-48: ('list', 3, 'None', 't25')
-49: ('params', 't25', 'None', 'param1')
-50: ('gosub', 'print', 'None', 't26')
-51: ('goto', 52, 'None', None)
-52: ('PROGRAM', 'myProgram', 'None', 'END')
+10: ('VAR', 'A', 'None', 't1')
+11: ('VAR', 'B', 'None', 't2')
+12: ('list', 't1', 't2', 't3')
+13: ('params', 't3', 'None', 'param1')
+14: ('gosub', 'add', 'None', 't4')
+15: ('endfunc', 't4', 'None', 'None')
+16: ('list', 1, 'None', 't1')
+17: ('endfunc', 't1', 'None', 'None')
+18: ('era', 'myFunc1', 'None', 'None')
+19: ('list', 1, 'None', 't1')
+20: ('list', 2, 'None', 't2')
+21: ('list', 't1', 't2', 't3')
+22: ('params', 't3', 'None', 'param1')
+23: ('gosub', 'myFunc1', 'None', 't4')
+24: ('gotoFalse', 't4', 30, None)
+25: ('era', 'print', 'None', 'None')
+26: ('list', 1, 'None', 't5')
+27: ('params', 't5', 'None', 'param1')
+28: ('gosub', 'print', 'None', 't6')
+29: ('goto', 54, 'None', None)
+30: ('era', 'myFunc1', 'None', 'None')
+31: ('list', 5, 'None', 't7')
+32: ('list', 6, 'None', 't8')
+33: ('list', 't7', 't8', 't9')
+34: ('params', 't9', 'None', 'param1')
+35: ('gosub', 'myFunc1', 'None', 't10')
+36: ('gotoFalse', 't10', 42, None)
+37: ('era', 'print', 'None', 'None')
+38: ('list', 2, 'None', 't11')
+39: ('params', 't11', 'None', 'param1')
+40: ('gosub', 'print', 'None', 't12')
+41: ('goto', 54, 'None', None)
+42: ('era', 'myFunc1', 'None', 'None')
+43: ('list', 9, 'None', 't13')
+44: ('list', 10, 'None', 't14')
+45: ('list', 't13', 't14', 't15')
+46: ('params', 't15', 'None', 'param1')
+47: ('gosub', 'myFunc1', 'None', 't16')
+48: ('gotoFalse', 't16', 54, None)
+49: ('era', 'print', 'None', 'None')
+50: ('list', 3, 'None', 't17')
+51: ('params', 't17', 'None', 'param1')
+52: ('gosub', 'print', 'None', 't18')
+53: ('goto', 54, 'None', None)
+54: ('PROGRAM', 'myProgram', 'None', 'END')
