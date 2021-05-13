@@ -231,7 +231,7 @@ class LanguageParser(Parser):
         pass
 
     ################ constDef  ################
-    @_('CONST pushSymbol const')
+    @_('CONST pushFunction const')
     def constDef(self, p):
         return ('CONSTDEF', (p[1], p[2]))
 
@@ -412,13 +412,13 @@ class LanguageParser(Parser):
                 cuads.append(('PROGRAM', programName, 'None', 'END'))
                 return self.tCounter
 
-            elif tree[0] == 'DEFINE':
+            elif tree[0] == 'DEFINE' or tree[0] == 'CONSTDEF':
                 self.tCounter = 0
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
                 
                 t = None
-                if(functionBody[0][0] == "params"):
+                if(type(functionBody) == tuple and type(functionBody[0]) == tuple and functionBody[0][0] == "params"):
                     t = self.cuadGenerator(functionBody[1][0], cuads)
                 else:
                     t = self.cuadGenerator(functionBody, cuads)
@@ -426,21 +426,19 @@ class LanguageParser(Parser):
 
                 symbol = self.symbols.getFunctionSymbol(functionName)
                 if(symbol != None):
-                    print("INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
                     paramCount = len(list(symbol['varTable'].dict.keys()))
                     symbol["funcExtras"] = {"size": self.tCounter + paramCount, "params": paramCount }
-                    print(symbol)
                 return None
 
-            elif tree[0] == 'CONSTDEF':
-                self.tCounter = 0
-                functionBody = tree[1][1]
-                functionName = tree[1][0]
+            # elif tree[0] == 'CONSTDEF':
+            #     self.tCounter = 0
+            #     functionBody = tree[1][1]
+            #     functionName = tree[1][0]
 
-                t = self.cuadGenerator(functionBody, cuads)
+            #     t = self.cuadGenerator(functionBody, cuads)
 
-                cuads.append(('endfunc', self.tempName(t), 'None', "None"))
-                return None
+            #     cuads.append(('endfunc', self.tempName(t), 'None', "None"))
+            #     return None
 
             elif tree[0] == 'RENDER':
                 self.tCounter = 0

@@ -32,11 +32,13 @@ SymbolTable(
  'line': {'funcExtras': None, 'type': 'func', 'varTable': {}},
  'map': {'funcExtras': None, 'type': 'func', 'varTable': {}},
  'mult': {'funcExtras': None, 'type': 'func', 'varTable': {}},
- 'myConst1': {'type': 'symbol'},
- 'myFunc1': {'funcExtras': None,
+ 'myConst1': {'funcExtras': {'params': 0, 'size': 1},
+              'type': 'func',
+              'varTable': {}},
+ 'myFunc1': {'funcExtras': {'params': 2, 'size': 6},
              'type': 'func',
              'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}},
- 'myFunc2': {'funcExtras': None,
+ 'myFunc2': {'funcExtras': {'params': 2, 'size': 6},
              'type': 'func',
              'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}},
  'or': {'funcExtras': None, 'type': 'func', 'varTable': {}},
@@ -55,10 +57,6 @@ SymbolTable(
 
 ('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('CONSTDEF', ('myConst1', (1, None))), None))), ('RENDER', ((('cond', ((('myFunc1', ((1, None), (2, None))), None), ((('print', (1, None)), None), ((('myFunc1', ((5, None), (6, None))), None), ((('print', (2, None)), None), ((('myFunc1', ((9, None), (10, None))), None), ((('print', (3, None)), None), None))))))), None), None)))))
 
-INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-{'type': 'func', 'funcExtras': {'size': 6, 'params': 2}, 'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}}
-INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-{'type': 'func', 'funcExtras': {'size': 6, 'params': 2}, 'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}}
 1: ('goto', 18, None, None)
 2: ('era', 'add', 'None', 'None')
 3: ('VAR', 'A', 'None', 't1')
@@ -113,3 +111,4 @@ INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
 52: ('gosub', 'print', 'None', 't18')
 53: ('goto', 54, 'None', None)
 54: ('PROGRAM', 'myProgram', 'None', 'END')
+
