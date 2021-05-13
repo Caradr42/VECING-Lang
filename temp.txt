@@ -55,7 +55,7 @@ SymbolTable(
  'triangle': {'funcExtras': None, 'type': 'func', 'varTable': {}}}
 )
 
-('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('CONSTDEF', ('myConst1', (1, None))), None))), ('RENDER', ((('cond', ((('myFunc1', ((1, None), (2, None))), None), ((('print', (1, None)), None), ((('myFunc1', ((5, None), (6, None))), None), ((('print', (2, None)), None), ((('myFunc1', ((9, None), (10, None))), None), ((('print', (3, None)), None), None))))))), None), None)))))
+('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('CONSTDEF', ('myConst1', ([1, 2, 3, 4], None))), None))), ('RENDER', ((('cond', ((('myFunc1', ((1, None), (2, None))), None), ((('print', (1, None)), None), ((('myFunc1', ((5, None), (6, None))), None), ((('print', (2, None)), None), ((('myFunc1', ((9, None), (10, None))), None), ((('print', (3, None)), None), None))))))), None), None)))))
 
 1: ('goto', 18, None, None)
 2: ('era', 'add', 'None', 'None')
@@ -72,7 +72,7 @@ SymbolTable(
 13: ('params', 't3', 'None', 'param1')
 14: ('gosub', 'add', 'None', 't4')
 15: ('endfunc', 't4', 'None', 'None')
-16: ('list', 1, 'None', 't1')
+16: ('list', 't[1, 2, 3, 4]', 'None', 't1')
 17: ('endfunc', 't1', 'None', 'None')
 18: ('era', 'myFunc1', 'None', 'None')
 19: ('list', 1, 'None', 't1')
@@ -111,4 +111,3 @@ SymbolTable(
 52: ('gosub', 'print', 'None', 't18')
 53: ('goto', 54, 'None', None)
 54: ('PROGRAM', 'myProgram', 'None', 'END')
-
