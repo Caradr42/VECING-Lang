@@ -375,6 +375,13 @@ class LanguageParser(Parser):
             return index
         return 't' + str(index)
 
+    def flatten(head):
+        elements = []
+        while(head != None):
+            elements.append( head[0] )
+            head = head[1]
+        return elements
+
     def cuadGenerator(self, tree, cuads):
         if type(tree) == tuple:
             if tree[0] == 'PROGRAM':
@@ -409,12 +416,20 @@ class LanguageParser(Parser):
                 self.tCounter = 0
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
+                
                 t = None
                 if(functionBody[0][0] == "params"):
                     t = self.cuadGenerator(functionBody[1][0], cuads)
                 else:
                     t = self.cuadGenerator(functionBody, cuads)
                 cuads.append(('endfunc', self.tempName(t), 'None', "None"))
+
+                symbol = self.symbols.getFunctionSymbol(functionName)
+                if(symbol != None):
+                    print("INSIDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+                    paramCount = len(list(symbol['varTable'].dict.keys()))
+                    symbol["funcExtras"] = {"size": self.tCounter + paramCount, "params": paramCount }
+                    print(symbol)
                 return None
 
             elif tree[0] == 'CONSTDEF':

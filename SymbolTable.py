@@ -12,13 +12,13 @@ class SymbolTable:
         self.parent = None
         SymbolTable.currentContext = self
 
-    def addSymbol(self, name, symbolType, func=None):
+    def addSymbol(self, name, symbolType, funcExtras=None):
         if(self.child == None):
             if(symbolType == "func" or symbolType == "lambda"):
                 newTable = SymbolTable()
                 newTable.parent = self
                 self.child = newTable
-                self.dict[name] = {"type": symbolType, "function": func, varTable: newTable,}
+                self.dict[name] = {"type": symbolType, "funcExtras": funcExtras, varTable: newTable,}
             else:
                 self.dict[name] = {"type": symbolType}
         else:
@@ -30,6 +30,11 @@ class SymbolTable:
         elif self.parent:
             return self.parent.isSymbolInContext(symbol)
         return False    
+    
+    def getFunctionSymbol(self, symbol):
+        if ( symbol in list(self.dict.keys()) and self.dict[symbol]["type"] == "func"):
+            return self.dict[symbol]
+        return None
 
     def pop(self):
         if (self.child == None):
