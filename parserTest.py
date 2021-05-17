@@ -1,7 +1,6 @@
 import os
-from VECING_Parser import LanguageParser
-from VECING_Lexer import LanguageLexer
-
+from compiler.VECING_Parser import LanguageParser
+from compiler.VECING_Lexer import LanguageLexer
 
 def getRelativePath(relPath):
     currDir = os.path.dirname(__file__)
@@ -25,6 +24,8 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
 
     try:
         parser.parse(LanguageLexer().tokenize(data))
+        cuads = parser.getCuads()
+        
         print("Apropiado")
         print("No errors found in file {}".format(fileName))
         if showSymbols:
@@ -32,7 +33,6 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
         if showProgramTree:
             print(parser.programTree, '\n')
         if showCuads:
-            cuads = parser.getCuads()
             print('\n'.join('{}: {}'.format(k[0] + 1, k[1]) for k in enumerate(cuads)))
     except Exception as e:
         print("File {} has error".format(fileName))

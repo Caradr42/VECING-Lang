@@ -3,6 +3,7 @@ myProgram
 
 (define myFunc1 (A B) (add A B));
 (define myFunc2 (A B) (add A B));
+(CONST myConst1 "(1 2 3 4)");
 
 RENDER 
 
