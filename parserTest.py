@@ -26,7 +26,6 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
         parser.parse(LanguageLexer().tokenize(data))
         cuads = parser.getCuads()
         
-        print("Apropiado")
         print("No errors found in file {}".format(fileName))
         if showSymbols:
             print('\n{}\n'.format(parser.symbols))

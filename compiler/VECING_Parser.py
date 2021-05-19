@@ -464,6 +464,7 @@ class LanguageParser(Parser):
 
                 self.tCounter += 1
                 cuads.append(('PROGRAM', programName, 'None', 'END'))
+
                 return self.tCounter
 
             elif tree[0] == 'DEFINE' or tree[0] == 'CONSTDEF':
