@@ -48,7 +48,7 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
 
         output = open(path, 'w')
         for cuad in cuads:
-            output.write("{} {} {} {}\n".format(cuad[0], cuad[1], cuad[2], cuad[3]))
+            output.write("{} {} {} {}\r".format(cuad[0], cuad[1], cuad[2], cuad[3]))
 
     except Exception as e:
         print("File {} has error".format(fileName))
@@ -88,7 +88,6 @@ if __name__ == '__main__':
             flags[arg] = True
         
     print('\n')
-
+    
     parseFile(fileName, showTokens=flags["-t"], showSymbols=flags["-s"], showProgramTree=flags["-e"], showCuads=flags["-c"])
-    #print("output created")
 

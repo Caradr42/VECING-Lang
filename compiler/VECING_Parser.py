@@ -108,6 +108,7 @@ class LanguageParser(Parser):
         self.lambdaCounter = 0
         self.programTree = ""
         self.tCounter = 0
+        self.lCounter = 0
         
         #constants definfition variables
         self.constsCuads = []
@@ -117,6 +118,10 @@ class LanguageParser(Parser):
         for name in languageFunctions:
             self.symbols.addSymbol(name, "func")
             self.symbols.pop()
+        
+        self.tempAddress = self.addressSetterGenerator(consts.LIMITS['TEMPORAL_LIM_L'])
+        self.localAddress = self.addressSetterGenerator(consts.LIMITS['LOCAL_LIM_L'])
+
 
     tokens = LanguageLexer.tokens
     start = 'program'
@@ -412,19 +417,15 @@ class LanguageParser(Parser):
         self.tCounter = 0
         return cuads
 
-    def tempAddress(self, index):
-        if index == None or index == 'None':
+
+    def addressSetterGenerator(self, initialLimit):
+        def addressFunction(index):
+            if index == None or index == 'None':
+                return index
+                
+            index += initialLimit - 1
             return index
-            
-        index += consts.LIMITS['LOCAL_LIM_L'] - 1
-        return index
-        
-        # if varType == 'local':
-        #     pass
-        # elif varType == '':
-        #     if index == None or index == 'None':
-        #         return index
-        # return 't' + str(index)
+        return addressFunction
 
     def flatten(head):
         elements = []
@@ -465,24 +466,41 @@ class LanguageParser(Parser):
                 self.tCounter += 1
                 cuads.append(('PROGRAM', programName, 'None', 'END'))
 
-                return self.tCounter
+                return self.tempAddress(self.tCounter)
 
             elif tree[0] == 'DEFINE' or tree[0] == 'CONSTDEF':
                 self.tCounter = 0
+                self.lCounter = 0
+
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
+
+                paramsList = []
+                
                 
                 t = None
                 if(type(functionBody) == tuple and type(functionBody[0]) == tuple and functionBody[0][0] == "params"):
+                    functionsParams = functionBody[0][1]
+                    
+                    def treeTraverse(head):
+                        if head[0] == "param":
+                            paramsList.append(head[1])
+                            return
+                        
+                        treeTraverse(head[0])
+                        treeTraverse(head[1])
+                        
+                    treeTraverse(functionsParams)
+
                     t = self.cuadGenerator(functionBody[1][0], cuads)
                 else:
                     t = self.cuadGenerator(functionBody, cuads)
-                cuads.append(('endfunc', self.tempAddress(t), 'None', "None"))
+                cuads.append(('endfunc', t, 'None', "None"))
 
                 symbol = self.symbols.getFunctionSymbol(functionName)
                 if(symbol != None):
-                    paramCount = len(list(symbol['varTable'].dict.keys()))
-                    symbol["funcExtras"] = {"size": self.tCounter + paramCount, "params": paramCount }
+                    paramCount = len(paramsList)
+                    symbol["funcExtras"] = {"size": self.tCounter + paramCount, "params": paramsList }
                 return None
 
             # elif tree[0] == 'CONSTDEF':
@@ -497,6 +515,7 @@ class LanguageParser(Parser):
 
             elif tree[0] == 'RENDER':
                 self.tCounter = 0
+                self.lCounter = 0
                 renderBody = tree[1]
 
                 calls = []
@@ -518,9 +537,9 @@ class LanguageParser(Parser):
             elif tree[0] == 'var':
                 varName = tree[1]
 
-                self.tCounter += 1
-                cuads.append(('VAR', varName, 'None', self.tempAddress(self.tCounter)))
-                return self.tCounter
+                self.lCounter += 1
+                cuads.append(('VAR', varName, 'None', self.localAddress(self.lCounter)))
+                return self.localAddress(self.lCounter)
             
             elif tree[0] == 'cond':
                 conditionals = []
@@ -543,7 +562,7 @@ class LanguageParser(Parser):
 
 
                     conditionLine =  self.cuadGenerator(expr, cuads) 
-                    cuads.append(["gotoFalse", self.tempAddress(conditionLine), None, None])
+                    cuads.append(["gotoFalse", conditionLine, None, None])
                     self.cuadGenerator(body, cuads) 
 
                     endOfCond = len(cuads) + 1
@@ -572,14 +591,14 @@ class LanguageParser(Parser):
                 
                 t = self.cuadGenerator(funcParams, cuads)
 
-                cuads.append(("params", self.tempAddress(t), 'None', 'param1'))
+                cuads.append(("params", t, 'None', 'param1'))
 
                 self.tCounter += 1
                 cuads.append(("gosub", funcName, "None", self.tempAddress(self.tCounter)))
 
                 # self.tCounter += 1
                 # cuads.append((funcName, t, 'None', self.tCounter))
-                return self.tCounter
+                return self.tempAddress(self.tCounter)
             else:
                 t1 = self.cuadGenerator(tree[0], cuads)
                 t2 = self.cuadGenerator(tree[1], cuads)
@@ -591,16 +610,16 @@ class LanguageParser(Parser):
                 if(type(t1) == tuple and t1[0] == 'const'):
                     t1Value = t1[1]
                 else:
-                    t1Value = self.tempAddress(t1)
+                    t1Value = t1
 
                 if(type(t2) == tuple and t1[0] == 'const'):
                     t1Value = t2[1]
                 else:
-                    t2Value = self.tempAddress(t2)
+                    t2Value = t2
                 
                 cuads.append(('list', t1Value, t2Value, self.tempAddress(self.tCounter)))
 
-                return self.tCounter
+                return self.tempAddress(self.tCounter)
         elif tree == None or tree == 'None': #for None
             return 'None'
         elif type(tree) == int or type(tree) == float or type(tree) == bool: #for a constant

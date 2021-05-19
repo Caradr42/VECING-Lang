@@ -1,8 +1,8 @@
 initialAddress = 1000
-globalSize = 10000
-localSize = 20000
-temporalSize = 20000
-pointerSize = 20000
+globalSize = 9000
+localSize = 10000
+temporalSize = 50000
+pointerSize = 10000
 
 globalFirst = initialAddress
 localFirst = globalFirst + globalSize
@@ -19,4 +19,4 @@ LIMITS = {
             'TEMPORAL_LIM_R' :  temporalFirst + temporalSize - 1,
             'POINTERS_LIM_L' :  pointerFirst,
             'POINTERS_LIM_R' :  pointerFirst + pointerSize -  1
-        }
+        }   

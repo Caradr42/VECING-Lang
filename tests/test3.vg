@@ -1,8 +1,8 @@
 myProgram
 //this program does important stuff;
 
-(define myFunc1 (A B) (add A B));
-(define myFunc2 (A B) (add A B));
+(define myFunc1 (A B C) (add A B));
+(define myFunc2 (A) (add A B));
 (CONST myConst1 "(1 2 3 4)");
 
 RENDER 
