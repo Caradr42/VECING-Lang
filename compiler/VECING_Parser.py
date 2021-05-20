@@ -109,6 +109,7 @@ class LanguageParser(Parser):
         self.programTree = ""
         self.tCounter = 0
         self.lCounter = 0
+        self.currentFunction = ""
         
         #constants definfition variables
         self.constsCuads = []
@@ -471,12 +472,18 @@ class LanguageParser(Parser):
             elif tree[0] == 'DEFINE' or tree[0] == 'CONSTDEF':
                 self.tCounter = 0
                 self.lCounter = 0
-
+                paramsList = []
+                
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
 
-                paramsList = []
-                
+                symbol = self.symbols.getFunctionSymbol(functionName)
+
+                if(symbol != None):
+                    paramCount = len(paramsList)
+                    symbol["funcExtras"] = { "params": paramsList }
+
+                self.currentFunction = functionName
                 
                 t = None
                 if(type(functionBody) == tuple and type(functionBody[0]) == tuple and functionBody[0][0] == "params"):
@@ -497,10 +504,10 @@ class LanguageParser(Parser):
                     t = self.cuadGenerator(functionBody, cuads)
                 cuads.append(('endfunc', t, 'None', "None"))
 
-                symbol = self.symbols.getFunctionSymbol(functionName)
-                if(symbol != None):
-                    paramCount = len(paramsList)
-                    symbol["funcExtras"] = {"size": self.tCounter + paramCount, "params": paramsList }
+               
+                paramCount = len(paramsList)
+                symbol["funcExtras"]['size'] = self.tCounter + paramCount
+
                 return None
 
             # elif tree[0] == 'CONSTDEF':
@@ -538,8 +545,20 @@ class LanguageParser(Parser):
                 varName = tree[1]
 
                 self.lCounter += 1
-                cuads.append(('VAR', varName, 'None', self.localAddress(self.lCounter)))
-                return self.localAddress(self.lCounter)
+
+                #cuads.append(('VAR', varName, 'None', self.localAddress(self.lCounter)))
+
+                #buscar posicion de la variable en la lista de parametros de la funcion
+                #generar una direccionde memoria y devolverla
+                
+                
+                symbol = self.symbols.getFunctionSymbol(self.currentFunction)
+                
+                paramsList = symbol["funcExtras"]["params"]
+
+                position = paramsList.index(varName) + 1 #TODO: Check if symbols is not defines as param
+
+                return self.localAddress(position)
             
             elif tree[0] == 'cond':
                 conditionals = []
