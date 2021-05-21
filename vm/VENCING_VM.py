@@ -2,10 +2,10 @@ import sys
 sys.path.append('./libs/graphics')
 
 from graphics import *
-import Instructions
+from Instructions import instructions
 import re
 
-instructionPointer = 0
+instructionPointer = 1
 
 # def main():
 #     # win = GraphWin("Some window", 500, 500)
@@ -48,8 +48,15 @@ def parseQuads(quads):
 
 def executeQuads(quads):
     global instructionPointer
-    while instructionPointer < len(quads):
-        pass
+    while instructionPointer - 1 < len(quads):
+        quad = quads[instructionPointer - 1]
+        instructionName = quad[0]
+        nextLine = instructions[instructionName](quad)
+
+        if nextLine != None:
+            instructionPointer = nextLine
+        else:
+            instructionPointer += 1
 
 if __name__ == '__main__':
     
@@ -69,7 +76,5 @@ if __name__ == '__main__':
             flags[arg] = True
     
     quads = parseQuads(getQuadsFromFile(file))
-
     print(quads)
-    #executeQuads(quads)
-    
+    executeQuads(quads)
