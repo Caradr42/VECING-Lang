@@ -2,7 +2,7 @@ import sys
 sys.path.append('./libs/graphics')
 
 from graphics import *
-import Operations
+import Instructions
 import re
 
 instructionPointer = 0
@@ -69,7 +69,7 @@ if __name__ == '__main__':
             flags[arg] = True
     
     quads = parseQuads(getQuadsFromFile(file))
-    #executeQuads(quads)
-        
 
     print(quads)
+    #executeQuads(quads)
+    

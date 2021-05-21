@@ -5,53 +5,6 @@ from .SymbolTable import SymbolTable
 import consts
 import array 
 array.array
-languageFunctions = [
-        "add",
-        "sub",
-        "mult",
-        "power",
-        "div",
-        "sqrt",
-        "abs",
-        "<=",
-        ">=",
-        "<",
-        ">",
-        "!=",
-        "=",
-        "map",
-        "apply",
-        "cond",
-        "lambda",
-        "print",
-        "car",
-        "cdr",
-        "cons",
-        "and",
-        "or",
-        "isEmpy",
-        "screen",
-        "pixel",
-        "pixels",
-        "getPixels",
-        "background",
-        "clear",
-        "timeStep",
-        "deltaTime",
-        "line",
-        "curve",
-        "spline",
-        "triangle",
-        "ellipse",
-        "isNumber",
-        "isMatrix",
-        "isVector",
-        "isList",
-        "isFunc",
-        "isBool",
-        "shape",
-        "get"
-    ]
 
 semanticTable = {
     "add":      ((tuple, tuple), (tuple)),   #("add", ((1, None), (2, None)))
@@ -100,6 +53,8 @@ semanticTable = {
     "shape":    ((array.array), (tuple)),
     "get":      ((array.array), (tuple)) 
 }
+
+languageFunctions = list(semanticTable.keys())
 
 class LanguageParser(Parser):
 
@@ -488,7 +443,9 @@ class LanguageParser(Parser):
 
                 if(symbol != None):
                     paramCount = len(paramsList)
-                    symbol["funcExtras"] = { "params": paramsList }
+                    symbol["funcExtras"] = { "params": paramsList, "instructionPointer": len(cuads) + 1 }
+                else:
+                    pass #TODO: check this
 
                 self.currentFunction = functionName
                 
@@ -635,7 +592,9 @@ class LanguageParser(Parser):
                 cuads.append(("params", t, 'None', 'param1'))
 
                 self.tCounter += 1
-                cuads.append(("gosub", funcName, "None", self.tempAddress(self.tCounter)))
+
+                funcReference = funcName if funcName in languageFunctions else symbol["funcExtras"]["instructionPointer"]
+                cuads.append(("gosub", funcReference, "None", self.tempAddress(self.tCounter)))
 
                 # self.tCounter += 1
                 # cuads.append((funcName, t, 'None', self.tCounter))
