@@ -1,5 +1,9 @@
 ('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), (('param', 'B'), ('param', 'C')))), (('add', (('var', 'C'), ('var', 'B'))), None)))), (('DEFINE', 
-('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('CONSTDEF', ('myConst1', (1000, None))), None))), ('RENDER', ((('cond', ((('myFunc1', ((1000, None), (1001, None))), None), ((('print', (1000, None)), None), ((('myFunc1', ((1004, None), (1005, None))), None), ((('print', (1001, None)), None), ((('myFunc1', ((1006, None), (1007, None))), None), ((('print', (1002, None)), None), None))))))), None), None)))))
+('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), ('var', 'B'))), None)))), (('CONSTDEF', ('myConst1', (1000, None))), None))), ('RENDER', ((('cond', ((
+    
+    ('myFunc1', ((1000, None), (1001, None)))
+    
+    , None), ((('print', (1000, None)), None), ((('myFunc1', ((1004, None), (1005, None))), None), ((('print', (1001, None)), None), ((('myFunc1', ((1006, None), (1007, None))), None), ((('print', (1002, None)), None), None))))))), None), None)))))
 
 1: ('VECT', 4, 'None', 1000)
 2: ('CONST', '1.000000000', 'None', 1000)

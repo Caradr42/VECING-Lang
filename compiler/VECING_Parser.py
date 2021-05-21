@@ -612,8 +612,23 @@ class LanguageParser(Parser):
                 funcName = tree[0]
                 funcParams = tree[1]
 
-                
                 cuads.append(("era", funcName, 'None', 'None'))
+
+                def treeTraverse(head):
+                    if type(head[0]) != tuple:
+                        return 1
+                    return treeTraverse(head[0]) + treeTraverse(head[1])
+                    
+                        
+                paramsSize = treeTraverse(funcParams)
+                symbol = self.symbols.getFunctionSymbol(funcName)
+                
+                # TODO: Put funcExtras to language functions
+                if symbol["funcExtras"] != None:
+                    functionParamCount = len(symbol["funcExtras"]["params"])
+                    #TODO:  CHANGE IF USING LAMBDAS
+                    if paramsSize != functionParamCount:
+                        raise Exception("Invalid param count of {} for function {}, this function only accepts {} parameters".format(paramsSize, funcName, functionParamCount))
                 
                 t = self.cuadGenerator(funcParams, cuads)
 
