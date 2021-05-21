@@ -113,6 +113,7 @@ class LanguageParser(Parser):
         
         #constants definfition variables
         self.constsCuads = []
+        self.constValues = {}
         self.address = consts.LIMITS['GLOBAL_LIM_L']
     
         #add all language functions to the symbols table
@@ -260,24 +261,30 @@ class LanguageParser(Parser):
     def defParam(self, p):
         return ('param', p[0])
     
-    
-
     def constCuadGenerator(self, value):
         if type(value) == list or type(value) == tuple:
             initialListAddress = self.constArrayCuadGenerator(value)
             return initialListAddress
         else:
-            if value == None:
-                value = 0.0
-            elif type(value) == bool:
-                value = 1.0 if value else 0.0
-            elif type(value) == int:
-                value = float(value)
-            
-            if(self.address > consts.LIMITS['GLOBAL_LIM_R']):
-                raise Exception("MemoryError")
-            
-            self.constsCuads.append(('CONST', "{:.9f}".format(value), "None" , self.address))
+            if value in self.constValues.keys():
+                address = self.constValues[value]
+                return address
+            else:
+                
+                if value == None:
+                    value = 0.0
+                elif type(value) == bool:
+                    value = 1.0 if value else 0.0
+                elif type(value) == int:
+                    value = float(value)
+                
+                if(self.address > consts.LIMITS['GLOBAL_LIM_R']):
+                    raise Exception("MemoryError")
+                    
+                self.constValues[value] = self.address
+                
+                self.constsCuads.append(('CONST', "{:.9f}".format(value), "None" , self.address))
+                
         self.address += 1
         return self.address - 1
 
