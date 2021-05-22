@@ -51,7 +51,7 @@ def executeQuads(quads):
     while instructionPointer - 1 < len(quads):
         quad = quads[instructionPointer - 1]
         instructionName = quad[0]
-        nextLine = instructions[instructionName](quad)
+        nextLine = instructions[instructionName](quad, instructionPointer)
 
         if nextLine != None:
             instructionPointer = nextLine

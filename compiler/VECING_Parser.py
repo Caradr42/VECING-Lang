@@ -3,11 +3,11 @@ from libs.sly import Parser
 from .VECING_Lexer import LanguageLexer
 from .SymbolTable import SymbolTable
 import consts
-import array 
+import array
 array.array
 
 semanticTable = {
-    "add":      ((tuple, tuple), (tuple)),   #("add", ((1, None), (2, None)))
+    "add":      ((tuple, tuple), (tuple)),  # ("add", ((1, None), (2, None)))
     "sub":      ((tuple, tuple), (tuple)),
     "mult":     ((tuple, tuple), (tuple)),
     "power":    ((tuple, tuple), (tuple)),
@@ -20,8 +20,8 @@ semanticTable = {
     ">":        ((tuple, tuple), (bool)),
     "!=":       ((tuple, tuple), (bool)),
     "=":        ((tuple, tuple), (bool)),
-    "map":      ((tuple, tuple), (tuple)),      
-    "apply":    ((tuple, tuple), (tuple)),    
+    "map":      ((tuple, tuple), (tuple)),
+    "apply":    ((tuple, tuple), (tuple)),
     "cond":     ((tuple), (None)),
     "lambda":   ((tuple, tuple), (tuple)),
     "print":    ((tuple), (None)),
@@ -34,11 +34,11 @@ semanticTable = {
     "screen":   ((array.array, (array.array, tuple)), (None)),
     "pixel":    ((array.array, array.array), (None)),
     "pixels":   ((array.array, array.array), (None)),
-    "getPixels":((None), (None)),
-    "background":((array.array), (None)),
-    "clear":    ((None), (None)),    
+    "getPixels": ((None), (None)),
+    "background": ((array.array), (None)),
+    "clear":    ((None), (None)),
     "timeStep": ((None), (tuple)),
-    "deltaTime":((None), (tuple)),
+    "deltaTime": ((None), (tuple)),
     "line":     ((array.array, (array.array, array.array)), (None)),
     "curve":    ((array.array, (array.array, (array.array, array.array))), (None)),
     "spline":   ((tuple), (None)),
@@ -51,10 +51,11 @@ semanticTable = {
     "isFunc":   ((tuple), (bool)),
     "isBool":   ((tuple), (bool)),
     "shape":    ((array.array), (tuple)),
-    "get":      ((array.array), (tuple)) 
+    "get":      ((array.array), (tuple))
 }
 
 languageFunctions = list(semanticTable.keys())
+
 
 class LanguageParser(Parser):
 
@@ -64,21 +65,27 @@ class LanguageParser(Parser):
         self.programTree = ""
         self.tCounter = 0
         self.lCounter = 0
+        self.listCounter = 0
+
         self.currentFunction = ""
-        
-        #constants definfition variables
+
+        # constants definfition variables
         self.constsCuads = []
+        self.functionSizeCuads = []
         self.constValues = {}
         self.address = consts.LIMITS['GLOBAL_LIM_L']
-    
-        #add all language functions to the symbols table
+
+        # add all language functions to the symbols table
         for name in languageFunctions:
             self.symbols.addSymbol(name, "func")
             self.symbols.pop()
-        
-        self.tempAddress = self.addressSetterGenerator(consts.LIMITS['TEMPORAL_LIM_L'])
-        self.localAddress = self.addressSetterGenerator(consts.LIMITS['LOCAL_LIM_L'])
 
+        self.tempAddress = self.addressSetterGenerator(
+            consts.LIMITS['TEMPORAL_LIM_L'])
+        self.localAddress = self.addressSetterGenerator(
+            consts.LIMITS['LOCAL_LIM_L'])
+        self.listAddress = self.addressSetterGenerator(
+            consts.LIMITS['LIST_LIM_L'])
 
     tokens = LanguageLexer.tokens
     start = 'program'
@@ -90,7 +97,7 @@ class LanguageParser(Parser):
     # )
 
     def reduceVar(x):
-        if (type(x)==bool):
+        if (type(x) == bool):
             return 1 if x else 0
 
     ################ program ################
@@ -159,12 +166,13 @@ class LanguageParser(Parser):
         return p[1]
 
     ################ listContainer ################
-    @_( 'h',
+    @_('h',
         'i',
         'const',
         'structure')
     def listContainer(self, p):
         return p[0]
+
     @_('ID')
     def listContainer(self, p):
         return ('var', p[0])
@@ -205,7 +213,7 @@ class LanguageParser(Parser):
     ################ funcDef  ################
     @_('DEFINE pushFunction defParamContainer listContainer popFunction')
     def funcDef(self, p):
-        return ('DEFINE', (p[1], (("params", p[2]), p[3]) ))
+        return ('DEFINE', (p[1], (("params", p[2]), p[3])))
 
     ################ defParam  ################
     @_('pushSymbol defParam')
@@ -215,7 +223,7 @@ class LanguageParser(Parser):
     @_('pushSymbol')
     def defParam(self, p):
         return ('param', p[0])
-    
+
     def constCuadGenerator(self, value):
         if type(value) == list or type(value) == tuple:
             initialListAddress = self.constArrayCuadGenerator(value)
@@ -225,41 +233,42 @@ class LanguageParser(Parser):
                 address = self.constValues[value]
                 return address
             else:
-                
+
                 if value == None:
                     value = 0.0
                 elif type(value) == bool:
                     value = 1.0 if value else 0.0
                 elif type(value) == int:
                     value = float(value)
-                
+
                 if(self.address > consts.LIMITS['GLOBAL_LIM_R']):
                     raise Exception("MemoryError")
-                    
+
                 self.constValues[value] = self.address
-                
-                self.constsCuads.append(('CONST', "{:.9f}".format(value), "None" , self.address))
-                
+
+                self.constsCuads.append(
+                    ('CONST', "{:.9f}".format(value), "None", self.address))
+
         self.address += 1
         return self.address - 1
-
 
     def constArrayCuadGenerator(self, constList):
         initialAddress = self.address
         size = len(constList)
         if(size == 0):
             self.address += 1
-            self.constsCuads.append(('CONST', "{:.9f}".format(0.0), "None" , self.address - 1))
+            self.constsCuads.append(
+                ('CONST', "{:.9f}".format(0.0), "None", self.address - 1))
             return self.address - 1
 
-        self.constsCuads.append(('VECT', size, "None" , self.address))
-        
+        self.constsCuads.append(('VECT', size, "None", self.address))
+
         for e in constList:
             self.constCuadGenerator(e)
         return initialAddress
 
-
     ################ constNum ################
+
     @_('CONST_INT',
         'CONST_FLOAT',
         'CONST_BOOL')
@@ -281,7 +290,7 @@ class LanguageParser(Parser):
 
     @_('ID w')
     def vector(self, p):
-        return (('var', p[0]), p[1]) 
+        return (('var', p[0]), p[1])
 
     @_('COMMA vector')
     def w(self, p):
@@ -310,13 +319,14 @@ class LanguageParser(Parser):
         return None
 
     ################ functionList ################
-    @_( 'LANGUAGE_FUNC z',
+    @_('LANGUAGE_FUNC z',
         'ID z',
         'OP_COMP z',
         'OP_MATH z')
     def functionList(self, p):
         if(not self.symbols.isSymbolInContext(p[0])):
-            raise NameError('--SEMANTIC ERROR-- at line {}:\n\t{} not found in scope'.format(p.lineno, p[0]))
+            raise NameError(
+                '--SEMANTIC ERROR-- at line {}:\n\t{} not found in scope'.format(p.lineno, p[0]))
         return (p[0], p[1])
 
     @_('listContainer')
@@ -334,7 +344,7 @@ class LanguageParser(Parser):
     ################ functionLambda ################
     @_('pushLambda defParamContainer lambdaContent listContainer popFunction')
     def functionLambda(self, p):
-        return ('LAMBDA', (p[2], (("params", p[1]), p[3]) ))
+        return ('LAMBDA', (p[2], (("params", p[1]), p[3])))
 
     @_('')
     def lambdaContent(self, p):
@@ -380,12 +390,11 @@ class LanguageParser(Parser):
         self.tCounter = 0
         return cuads
 
-
     def addressSetterGenerator(self, initialLimit):
         def addressFunction(index):
             if index == None or index == 'None':
                 return index
-                
+
             index += initialLimit - 1
             return index
         return addressFunction
@@ -393,16 +402,26 @@ class LanguageParser(Parser):
     def flatten(head):
         elements = []
         while(head != None):
-            elements.append( head[0] )
+            elements.append(head[0])
             head = head[1]
         return elements
 
     def cuadGenerator(self, tree, cuads):
+        global semanticTable
+
         if type(tree) == tuple:
             if tree[0] == 'PROGRAM':
                 cuads += self.constsCuads
 
-                #initial goto
+                # Putting empty quads to replace later with function information
+                functionsCuadsIndex = len(cuads)
+                functionsCount = len(list(self.symbols.dict.keys())) - \
+                    len(list(semanticTable.keys()))
+
+                emptyQuads = map(lambda _: (), list(range(functionsCount)))
+                cuads += emptyQuads
+
+                # initial goto
                 cuads.append(['goto', None, None, None])
                 mainGotoPos = len(cuads) - 1
 
@@ -413,18 +432,24 @@ class LanguageParser(Parser):
                 head = programBody[0]
 
                 while(head != None):
-                    definitions.append( head[0] )
+                    definitions.append(head[0])
                     head = head[1]
 
                 for define in definitions:
                     self.cuadGenerator(define, cuads)
-                
+
                 #######
                 renderPosition = len(cuads)
                 cuads[mainGotoPos][1] = renderPosition + 1
                 cuads[mainGotoPos] = tuple(cuads[mainGotoPos])
                 #######
                 self.cuadGenerator(programBody[1], cuads)
+
+                for i in range(functionsCuadsIndex, functionsCuadsIndex + functionsCount):
+                    cuads[i] = self.functionSizeCuads[i - functionsCuadsIndex]
+
+                # cuads = cuads[0:functionsCuadsIndex - 1] + self.functionSizeCuads + \
+                #     cuads[functionsCuadsIndex + functionsCount - 1:]
 
                 self.tCounter += 1
                 cuads.append(('PROGRAM', programName, 'None', 'END'))
@@ -434,33 +459,35 @@ class LanguageParser(Parser):
             elif tree[0] == 'DEFINE' or tree[0] == 'CONSTDEF':
                 self.tCounter = 0
                 self.lCounter = 0
+                self.listCounter = 0
                 paramsList = []
-                
+
                 functionBody = tree[1][1]
                 functionName = tree[1][0]
 
                 symbol = self.symbols.getFunctionSymbol(functionName)
 
                 if(symbol != None):
-                    paramCount = len(paramsList)
-                    symbol["funcExtras"] = { "params": paramsList, "instructionPointer": len(cuads) + 1 }
+                    #paramCount = len(paramsList)
+                    symbol["funcExtras"] = {
+                        "params": paramsList, "instructionPointer": len(cuads) + 1}
                 else:
-                    pass #TODO: check this
+                    pass  # TODO: check this
 
                 self.currentFunction = functionName
-                
+
                 t = None
                 if(type(functionBody) == tuple and type(functionBody[0]) == tuple and functionBody[0][0] == "params"):
                     functionsParams = functionBody[0][1]
-                    
+
                     def treeTraverse(head):
                         if head[0] == "param":
                             paramsList.append(head[1])
                             return
-                        
+
                         treeTraverse(head[0])
                         treeTraverse(head[1])
-                        
+
                     treeTraverse(functionsParams)
 
                     t = self.cuadGenerator(functionBody[1][0], cuads)
@@ -468,10 +495,11 @@ class LanguageParser(Parser):
                     t = self.cuadGenerator(functionBody, cuads)
                 cuads.append(('endfunc', t, 'None', "None"))
 
-               
                 paramCount = len(paramsList)
                 symbol["funcExtras"]['size'] = self.tCounter + paramCount
 
+                self.functionSizeCuads.append(
+                    ('funcSize', symbol["funcExtras"]["instructionPointer"], paramCount, "None"))
                 return None
 
             # elif tree[0] == 'CONSTDEF':
@@ -487,24 +515,26 @@ class LanguageParser(Parser):
             elif tree[0] == 'RENDER':
                 self.tCounter = 0
                 self.lCounter = 0
+                self.listCounter = 0
                 renderBody = tree[1]
 
                 calls = []
                 head = renderBody
 
                 while(head != None):
-                    calls.append( head[0] )
+                    calls.append(head[0])
                     head = head[1]
 
                 for call in calls:
-                    self.cuadGenerator(call[0], cuads) #if problems just remove "[0]"
+                    # if problems just remove "[0]"
+                    self.cuadGenerator(call[0], cuads)
                 return None
 
             elif tree[0] == 'LAMBDA':
                 pass
             elif tree[0] == 'params':
                 pass
-                
+
             elif tree[0] == 'var':
                 varName = tree[1]
 
@@ -512,41 +542,40 @@ class LanguageParser(Parser):
 
                 #cuads.append(('VAR', varName, 'None', self.localAddress(self.lCounter)))
 
-                #buscar posicion de la variable en la lista de parametros de la funcion
-                #generar una direccionde memoria y devolverla
-                
-                
+                # buscar posicion de la variable en la lista de parametros de la funcion
+                # generar una direccionde memoria y devolverla
+
                 symbol = self.symbols.getFunctionSymbol(self.currentFunction)
-                
+
                 paramsList = symbol["funcExtras"]["params"]
 
-                position = paramsList.index(varName) + 1 #TODO: Check if symbols is not defines as param
+                # TODO: Check if symbols is not defines as param
+                position = paramsList.index(varName) + 1
 
                 return self.localAddress(position)
-            
+
             elif tree[0] == 'cond':
                 conditionals = []
                 head = tree[1]
 
                 while(head != None):
-                    conditionals.append( (head[0][0], head[1][0][0]) )
+                    conditionals.append((head[0][0], head[1][0][0]))
                     head = head[1][1]
 
-                #print('------------------COND------------------\n')
-                #print(conditionals)
+                # print('------------------COND------------------\n')
+                # print(conditionals)
 
                 startCond = len(cuads)
                 endOfCond = startCond + 1
 
                 endsOfExpr = []
-                
-                for (expr , body) in conditionals:
-                    endOfExpr = endOfCond 
 
+                for (expr, body) in conditionals:
+                    endOfExpr = endOfCond
 
-                    conditionLine =  self.cuadGenerator(expr, cuads) 
+                    conditionLine = self.cuadGenerator(expr, cuads)
                     cuads.append(["gotoFalse", conditionLine, None, None])
-                    self.cuadGenerator(body, cuads) 
+                    self.cuadGenerator(body, cuads)
 
                     endOfCond = len(cuads) + 1
                     endOfExpr = endOfCond + 1
@@ -564,8 +593,9 @@ class LanguageParser(Parser):
                         cuads[i][2] = endsOfExpr[endsCounter]
                         cuads[i] = tuple(cuads[i])
                         endsCounter += 1
-                            
-            elif self.symbols.isSymbolInContext(tree[0]):  #if the  instruction is a defined  
+
+            # if the  instruction is a defined
+            elif self.symbols.isSymbolInContext(tree[0]):
                 funcName = tree[0]
                 funcParams = tree[1]
 
@@ -575,26 +605,28 @@ class LanguageParser(Parser):
                     if type(head[0]) != tuple:
                         return 1
                     return treeTraverse(head[0]) + treeTraverse(head[1])
-                    
-                        
+
                 paramsSize = treeTraverse(funcParams)
                 symbol = self.symbols.getFunctionSymbol(funcName)
-                
+
                 # TODO: Put funcExtras to language functions
                 if symbol["funcExtras"] != None:
                     functionParamCount = len(symbol["funcExtras"]["params"])
-                    #TODO:  CHANGE IF USING LAMBDAS
+                    # TODO:  CHANGE IF USING LAMBDAS
                     if paramsSize != functionParamCount:
-                        raise Exception("Invalid param count of {} for function {}, this function only accepts {} parameters".format(paramsSize, funcName, functionParamCount))
-                
+                        raise Exception("Invalid param count of {} for function {}, this function only accepts {} parameters".format(
+                            paramsSize, funcName, functionParamCount))
+
                 t = self.cuadGenerator(funcParams, cuads)
 
                 cuads.append(("params", t, 'None', 'param1'))
 
                 self.tCounter += 1
 
-                funcReference = funcName if funcName in languageFunctions else symbol["funcExtras"]["instructionPointer"]
-                cuads.append(("gosub", funcReference, "None", self.tempAddress(self.tCounter)))
+                funcReference = funcName if funcName in languageFunctions else symbol[
+                    "funcExtras"]["instructionPointer"]
+                cuads.append(("gosub", funcReference, "None",
+                              self.tempAddress(self.tCounter)))
 
                 # self.tCounter += 1
                 # cuads.append((funcName, t, 'None', self.tCounter))
@@ -603,7 +635,7 @@ class LanguageParser(Parser):
                 t1 = self.cuadGenerator(tree[0], cuads)
                 t2 = self.cuadGenerator(tree[1], cuads)
 
-                self.tCounter += 1
+                self.listCounter += 1
 
                 t1Value = None
                 t2Value = None
@@ -616,21 +648,14 @@ class LanguageParser(Parser):
                     t1Value = t2[1]
                 else:
                     t2Value = t2
-                
-                cuads.append(('list', t1Value, t2Value, self.tempAddress(self.tCounter)))
 
-                return self.tempAddress(self.tCounter)
-        elif tree == None or tree == 'None': #for None
+                cuads.append(('list', t1Value, t2Value,
+                              self.listAddress(self.listCounter)))
+
+                return self.listAddress(self.listCounter)
+        elif tree == None or tree == 'None':  # for None
             return 'None'
-        elif type(tree) == int or type(tree) == float or type(tree) == bool: #for a constant
+        elif type(tree) == int or type(tree) == float or type(tree) == bool:  # for a constant
             return ('const', tree)
-        else: #for god knows what
+        else:  # for god knows what
             return tree
-        
-
-        
-        
-
-
-
-
