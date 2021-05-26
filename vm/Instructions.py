@@ -65,28 +65,51 @@ def gosub(quad, instructionPointer):
     returnAddress = quad[3]
     isUserDefinedFunction = type(funcName) == int
 
-    memoryManager.pushContext()
-    memoryManager.pushReturnPointers(returnAddress, instructionPointer)
+    
 
     if isUserDefinedFunction:
+        memoryManager.pushContext()
+        memoryManager.pushReturnPointers(returnAddress, instructionPointer)
         # push params to context
         paramCount = memoryManager.getFunctionParamsCount(funcName)
-        paramsList = memoryManager.popParams(paramCount).reverse()
+        paramsList = memoryManager.popParams(paramCount)
+        paramsList.reverse()
 
-        #print(paramsList)
+        print(paramCount)
 
         for i in range(0, paramCount):
             memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i , paramsList[i])
 
         return funcName
     else:
-        paramCount = len(semanticTable[funcName][0])
-        paramsList = memoryManager.popParams(paramCount).reverse()
+        #memoryManager.pushReturnPointers(returnAddress, instructionPointer)
 
-        returnValue = langFunctions[funcName](memoryManager, paramsList)
+        paramCount = len(semanticTable[funcName][0])
+        paramsList = memoryManager.popParams(paramCount)
+        paramsList.reverse()
+
+        
+
+        pythonParamsList = []
+        for e in paramsList:
+            pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
+        print("parameters python list: ", pythonParamsList)
+        
+        returnList = None
+        returnValue = langFunctions[funcName](memoryManager, pythonParamsList)
         if returnValue is not None:
-            memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list front the language function to a pointer list in memory
-        backFromFunction(returnValue)
+            returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list front the language function to a pointer list in memory
+        #backFromFunction(returnValue)
+
+        #(returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()
+        # Get list from pointer
+        #pythonList = memoryManager.getPythonlistFromPointer(returnValue)
+        #memoryManager.popContext()
+        # Store list in memory
+        #newAddress = memoryManager.pythonlistToPointerList(pythonList)
+        memoryManager.setValue(returnAddress, returnList)
+
+        return instructionPointer + 1
 
 def lista(quad, instructionPointer):
     left = quad[1]
@@ -99,6 +122,7 @@ def lista(quad, instructionPointer):
 def params(quad, instructionPointer):
     head = quad[1]
     paramsList = flattenList(head)
+
     # push params to params stack
     memoryManager.pushParams(paramsList)
 
@@ -114,14 +138,15 @@ def flattenList(headAddress):
 
 
 def flattenListRecursive(headAddress, listArray):
+    #memoryManager.pointerIsList(headAddress)
     (left, right) = memoryManager.getListPair(headAddress)
 
     listArray.append(left)
 
-    if type(right) == float:
+    if type(right) == float or not memoryManager.pointerIsList(right):
         listArray.append(right)
     else:
-        flattenListRecursive(left, listArray)
+        flattenListRecursive(right, listArray)
 
 #=======================================================================
 

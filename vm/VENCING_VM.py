@@ -82,14 +82,6 @@ if __name__ == '__main__':
             flags[arg] = True
 
     quads = parseQuads(getQuadsFromFile(file))
-    print(quads)
+  
     executeQuads(quads)
-
-
-##
-file = readFile("../test3.o")
-for i in range(2, len(sys.argv)):
-    arg = sys.argv[i]
-    if arg in list(flags.keys()):
-        flags[arg] = True
 

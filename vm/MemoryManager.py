@@ -36,13 +36,16 @@ class MemoryManager():
             isListAddress = (address > consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (
                 address > consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
             if isListAddress:
+                print("is list")
                 (left, right) = self.getListPair(address)
                 return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(right))
             else:
                 address = self.getValue(address)
+                print("not a list")
                 return (self.getPythonlistFromPointer(address), None)
 
         elif type(address) == float:
+            print("value")
             return address
         else:
             raise Exception("This is not posible")
@@ -99,6 +102,12 @@ class MemoryManager():
             memorySegment = self.memory["temporalList"]
 
         return memorySegment
+    
+    def pointerIsList(self, address):
+        return (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
+
+    def pointerIsConstant(self, address):
+        return address < consts.INITIAL_ADDRESS
 
     def setValue(self, address, value):
         memorySegment = self.getMemorySegment(address)
@@ -116,6 +125,10 @@ class MemoryManager():
 
         try:
             memory = memorySegment[address]
+            if self.pointerIsConstant(memory):
+                memorySegment = self.getMemorySegment(memory)
+                return memorySegment[memory]
+
             return memory
         except:
             raise Exception(
@@ -182,12 +195,13 @@ class MemoryManager():
     def popParams(self, size):
         paramsList = []
         try:
-            for _ in range(size - 1):
+            for _ in range(size):
                 paramsList.append(self.params.pop())
             self.stackMemorySpace += size
         except:
             raise Exception("Invalid stack call")
-        print(paramsList)
+            
+        print("Function Parameters:", paramsList)
         return paramsList
 
     def pushParams(self, paramsList):
