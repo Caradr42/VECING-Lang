@@ -1,4 +1,7 @@
 import MemoryManager
+import languageFunctions
+import consts
+
 memoryManager = MemoryManager()
 
 instructions = {
@@ -12,19 +15,27 @@ instructions = {
     "list": lista,
     "endfunc": endfunc,
     "PROGRAM": PROGRAM,
+    "funcSize": funcSize
 }
 
 langFunctions = {
-    "add": lambda x, y: x + y
+    "add": languageFunctions.add,
+    "sub": languageFunctions.sub
 }
 
+semanticTable = consts.semanticTable
 
 def backFromFunction(returnValue):
     (returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()
+    # Get list from pointer
+    pythonList = memoryManager.getPythonlistFromPointer(returnValue)
     memoryManager.popContext()
-    memoryManager.setValue(returnAddress, returnValue)
+    # Store list in memory
+    newAddress = memoryManager.pythonlistToPointerList(pythonList)
 
-    return originalInstructionPointer
+    memoryManager.setValue(returnAddress, newAddress)
+
+    return originalInstructionPointer + 1
 
 
 # INSTRUCTIONS DEFINITIONS =========
@@ -38,6 +49,10 @@ def CONST(quad, instructionPointer):
     address = quad[3]
     memoryManager.setValue(address, value)
 
+def funcSize(quad, instructionPointer):
+    functionPointer = quad[1]
+    functionParamsCount = quad[2]
+    memoryManager.addFunction(functionPointer, functionParamsCount)
 
 def goto(quad, instructionPointer):
     instructionPointer = quad[1]
@@ -67,15 +82,28 @@ def endfunc(quad, instructionPointer):
 def gosub(quad, instructionPointer):
     funcName = quad[1]
     returnAddress = quad[3]
+    isUserDefinedFunction = type(funcName) == int
 
-    if type(funcName) == int:
-        memoryManager.pushContext()
-        memoryManager.pushReturnPointers(returnAddress, instructionPointer)
+    memoryManager.pushContext()
+    memoryManager.pushReturnPointers(returnAddress, instructionPointer)
+
+    if isUserDefinedFunction:
         # push params to context
+        paramsCount = memoryManager.getFunctionParamsCount(funcName)
+        paramsList = memoryManager.popParams(paramCount).reverse()
+
+        for i in range(0, paramsCount):
+            memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i ,paramsList[i])
+
         return funcName
     else:
-        pass
+        paramCount = len(semanticTable[funcName][0])
+        paramsList = memoryManager.popParams(paramCount).reverse()
 
+        returnValue = langFunctions[funcName](memoryManager, paramsList)
+        if returnValue is not None:
+            memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list front the language function to a pointer list in memory
+        backFromFunction(returnValue)
 
 def lista(quad, instructionPointer):
     left = quad[1]
@@ -89,6 +117,7 @@ def params(quad, instructionPointer):
     head = quad[1]
     paramsList = flattenList(head)
     # push params to params stack
+    memoryManager.pushParams(paramsList)
 
 
 def PROGRAM(quad, instructionPointer):
