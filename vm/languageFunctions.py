@@ -15,7 +15,7 @@ def add(memoryManager, paramsList):
 
     result = []
     for i in range(lenghtA):
-        result.append(addPair(A[i], B[i])
+        result.append(addPair(A[i], B[i]))
     return result
     
 
@@ -35,5 +35,5 @@ def sub(memoryManager, paramsList):
 
     result = []
     for i in range(lenghtA):
-        result.append(addPair(A[i], B[i])
+        result.append(addPair(A[i], B[i]))
     return result

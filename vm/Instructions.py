@@ -1,27 +1,8 @@
-import MemoryManager
+from MemoryManager import MemoryManager
 import languageFunctions
 import consts
 
 memoryManager = MemoryManager()
-
-instructions = {
-    "VECT": VECT,
-    "CONST": CONST,
-    "goto": goto,
-    "gosub": gosub,
-    "gotoFalse": gotoFalse,
-    "era": era,
-    "params": params,
-    "list": lista,
-    "endfunc": endfunc,
-    "PROGRAM": PROGRAM,
-    "funcSize": funcSize
-}
-
-langFunctions = {
-    "add": languageFunctions.add,
-    "sub": languageFunctions.sub
-}
 
 semanticTable = consts.semanticTable
 
@@ -89,11 +70,13 @@ def gosub(quad, instructionPointer):
 
     if isUserDefinedFunction:
         # push params to context
-        paramsCount = memoryManager.getFunctionParamsCount(funcName)
+        paramCount = memoryManager.getFunctionParamsCount(funcName)
         paramsList = memoryManager.popParams(paramCount).reverse()
 
-        for i in range(0, paramsCount):
-            memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i ,paramsList[i])
+        #print(paramsList)
+
+        for i in range(0, paramCount):
+            memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i , paramsList[i])
 
         return funcName
     else:
@@ -140,6 +123,26 @@ def flattenListRecursive(headAddress, listArray):
     else:
         flattenListRecursive(left, listArray)
 
+#=======================================================================
+
+instructions = {
+    "VECT": VECT,
+    "CONST": CONST,
+    "goto": goto,
+    "gosub": gosub,
+    "gotoFalse": gotoFalse,
+    "era": era,
+    "params": params,
+    "list": lista,
+    "endfunc": endfunc,
+    "PROGRAM": PROGRAM,
+    "funcSize": funcSize
+}
+
+langFunctions = {
+    "add": languageFunctions.add,
+    "sub": languageFunctions.sub
+}
 
 """
 list 1000 None 70000   (1000, None)

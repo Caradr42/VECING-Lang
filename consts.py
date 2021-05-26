@@ -1,3 +1,5 @@
+import array
+
 INITIAL_ADDRESS = 1000
 
 GLOBAL_SIZE = 9000

@@ -1,17 +1,19 @@
 import sys
-sys.path.append('./libs/graphics')
-
-from graphics import *
+sys.path.append('../libs/graphics')
 from Instructions import instructions
 import re
+from graphics import *
+
+
 
 instructionPointer = 1
 
 # def main():
 #     # win = GraphWin("Some window", 500, 500)
-#     # win.setBackground(color_rgb(255, 0, 0)) 
+#     # win.setBackground(color_rgb(255, 0, 0))
 #     # win.getMouse()
 #     # win.close()
+
 
 def readFile(fileName):
     regex = r'.*\.o$'
@@ -25,6 +27,7 @@ def readFile(fileName):
         raise Exception('File {} not found'.format(fileName))
     return file
 
+
 def getQuadsFromFile(file):
     lines = file.readlines()
     file.close()
@@ -32,8 +35,9 @@ def getQuadsFromFile(file):
     quads = list(map(lambda string: string.split(' '), lines))
     return quads
 
+
 def parseQuads(quads):
-    floatRegex  = r'-?\d*\.\d*'
+    floatRegex = r'-?\d*\.\d*'
     addressRegex = r'\d*'
 
     for q in range(0, len(quads)):
@@ -45,6 +49,7 @@ def parseQuads(quads):
             elif re.fullmatch(addressRegex, quads[q][i]):
                 quads[q][i] = int(quads[q][i])
     return quads
+
 
 def executeQuads(quads):
     global instructionPointer
@@ -58,8 +63,9 @@ def executeQuads(quads):
         else:
             instructionPointer += 1
 
+
 if __name__ == '__main__':
-    
+
     flags = {
         "-v": False
     }
@@ -74,7 +80,16 @@ if __name__ == '__main__':
         arg = sys.argv[i]
         if arg in list(flags.keys()):
             flags[arg] = True
-    
+
     quads = parseQuads(getQuadsFromFile(file))
     print(quads)
     executeQuads(quads)
+
+
+##
+file = readFile("../test3.o")
+for i in range(2, len(sys.argv)):
+    arg = sys.argv[i]
+    if arg in list(flags.keys()):
+        flags[arg] = True
+

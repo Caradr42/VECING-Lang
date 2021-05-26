@@ -1,6 +1,10 @@
-from consts import LIMITS
+import sys
+sys.path.append('../')
+
+import consts
 import pprint
-import Stack
+from Stack import Stack
+
 
 
 class MemoryManager():
@@ -13,7 +17,7 @@ class MemoryManager():
             "temporalList": {}
         }
 
-        self.stackMemorySpace = LIMITS["STACK_SIZE"]
+        self.stackMemorySpace = consts.LIMITS["STACK_SIZE"]
         self.localsStack = Stack()
         self.temporalsStack = Stack()
         self.listsStack = Stack()
@@ -28,49 +32,50 @@ class MemoryManager():
         return "MemoryManager(\n{}\n)".format(pprint.pformat(self.memory))
 
     def getPythonlistFromPointer(self, address):
-        if type(value) == int:
-            isListAddress = (value > consts.LIMITS["LIST_LIM_L"] and value < consts.LIMITS["LIST_LIM_R"]) or (value > consts.LIMITS["TEMPORAL_LIST_LIM_L"] and value < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
+        if type(address) == int:
+            isListAddress = (address > consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (
+                address > consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
             if isListAddress:
-                (left, right) = getListPair(address) 
-                return (getPythonlistFromPointer(left), getPythonlistFromPointer(right))
+                (left, right) = self.getListPair(address)
+                return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(right))
             else:
-                value = getValue(address)
-                return (getPythonlistFromPointer(value), None)   
+                address = self.getValue(address)
+                return (self.getPythonlistFromPointer(address), None)
 
-        else if type(address) == float:
+        elif type(address) == float:
             return address
         else:
             raise Exception("This is not posible")
-            
+
     def pythonlistToPointerList(self, pythonList):
         left = None
         right = None
-        
+
         if type(pythonList[0]) == tuple:
-            left = pythonlistToPointerList(pythonList[0])
+            left = self.pythonlistToPointerList(pythonList[0])
         else:
             left = pythonList[0]
 
         if type(pythonList[1]) == tuple:
-            right = pythonlistToPointerList(pythonList[1])
+            right = self.pythonlistToPointerList(pythonList[1])
         else:
             right = pythonList[1]
-        return setTemporalListPair(left, right)
-        
+        return self.setTemporalListPair(left, right)
 
     def stackMemoryCheck(self, message):
         if self.stackMemorySpace <= 0:
             raise Exception(message)
 
-    def addFunction(functionInstructionPointer, functionParamQty):
+    def addFunction(self, functionInstructionPointer, functionParamQty):
         self.functionsTable[functionInstructionPointer] = functionParamQty
 
-    def getFunctionParamsCount(functionInstructionPointer):
+    def getFunctionParamsCount(self, functionInstructionPointer):
         try:
             paramCount = self.functionsTable[functionInstructionPointer]
             return paramCount
         except:
-            raise Exception("Tried to access non registered function in memory") 
+            raise Exception(
+                "Tried to access non registered function in memory")
 
     def getContextSize(self):
         return len(list(self.memory["local"].keys())) + len(list(self.memory["temporal"].keys())) + len(list(self.memory["list"].keys()))
@@ -78,19 +83,19 @@ class MemoryManager():
     def getMemorySegment(self, address):
         memorySegment = None
 
-        if address >= LIMITS["GLOBAL_LIM_L"] and address < LIMITS["GLOBAL_LIM_R"]:
+        if address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]:
             memorySegment = self.memory["global"]
 
-        elif address >= LIMITS["LOCAL_LIM_L"] and address < LIMITS["LOCAL_LIM_R"]:
+        elif address >= consts.LIMITS["LOCAL_LIM_L"] and address < consts.LIMITS["LOCAL_LIM_R"]:
             memorySegment = self.memory["local"]
 
-        elif address >= LIMITS["TEMPORAL_LIM_L"] and address < LIMITS["TEMPORAL_LIM_R"]:
+        elif address >= consts.LIMITS["TEMPORAL_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIM_R"]:
             memorySegment = self.memory["temporal"]
 
-        elif address >= LIMITS["LIST_LIM_L"] and address < LIMITS["LIST_LIM_R"]:
+        elif address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]:
             memorySegment = self.memory["list"]
 
-        elif address >= LIMITS["TEMPORAL_LIST_LIM_L"] and address < LIMITS["TEMPORAL_LIST_LIM_R"]:
+        elif address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"]:
             memorySegment = self.memory["temporalList"]
 
         return memorySegment
@@ -117,10 +122,11 @@ class MemoryManager():
                 "Tried to access non existing memory at address {}".format(address))
 
     def setTemporalListPair(self, left, right):
-        address = len(self.memory["temporalList"].keys()) + consts.LIMITS["TEMPORAL_LIST_LIM_L"]
-        setListPair(address, left, right)
+        address = len(self.memory["temporalList"].keys()) + \
+            consts.LIMITS["TEMPORAL_LIST_LIM_L"]
+        self.setListPair(address, left, right)
         return address
-    
+
     def setListPair(self, address, left, right):
         self.setValue(address, left)
         self.setValue(address + 1, right)
@@ -136,7 +142,6 @@ class MemoryManager():
             self.memory["temporal"] = self.temporalsStack.pop()
             self.memory["list"] = self.listsStack.pop()
             self.memory["temporalList"] = self.temporalListsStack.pop()
-
 
             contextSize = self.getContextSize()
 
@@ -155,7 +160,6 @@ class MemoryManager():
         self.temporalsStack.push(self.memory["temporal"])
         self.listsStack.push(self.memory["list"])
         self.temporalListsStack.push(self.memory["temporalList"])
-
 
         self.memory["local"] = {}
         self.memory["temporal"] = {}
@@ -183,6 +187,7 @@ class MemoryManager():
             self.stackMemorySpace += size
         except:
             raise Exception("Invalid stack call")
+        print(paramsList)
         return paramsList
 
     def pushParams(self, paramsList):
