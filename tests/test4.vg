@@ -2,15 +2,15 @@ myProgram
 //this program does important stuff;
 
 (define myFunc1 (A B) (sub B A));
-(define myFunc2 (A B) (myFunc1 A B));
+(define myFunc2 (A B) (myFunc1 B A));
 (CONST myConst1 "(1 2 3 4)");
 
 RENDER 
 
 (cond 
     [
-    (myFunc1 1 1) (print 1)
-    (myFunc1 9 10) (print 3)
+    (myFunc2 1 1) (print 1)
+    (myFunc2 9 10) (print 3)
     ]
 )
 
