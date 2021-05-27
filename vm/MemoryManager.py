@@ -42,7 +42,8 @@ class MemoryManager():
             else:
                 address = self.getValue(address)
                 print("not a list")
-                return (self.getPythonlistFromPointer(address), None)
+                return self.getPythonlistFromPointer(address)
+                #return (self.getPythonlistFromPointer(address), None)
 
         elif address is None or type(address) == float:
             print("value")
@@ -50,19 +51,21 @@ class MemoryManager():
         else:
             raise Exception("This is not posible")
 
-    def pythonlistToPointerList(self, pythonList):
+    def pythonlistToPointerList(self, pythonList): # [1.0, 2.0]
         left = None
         right = None
+        if type(pythonList) == tuple:
+            if type(pythonList[0]) == tuple:
+                left = self.pythonlistToPointerList(pythonList[0])
+            else:
+                left = pythonList[0]
 
-        if type(pythonList[0]) == tuple:
-            left = self.pythonlistToPointerList(pythonList[0])
+            if type(pythonList[1]) == tuple:
+                right = self.pythonlistToPointerList(pythonList[1])
+            else:
+                right = pythonList[1]
         else:
-            left = pythonList[0]
-
-        if type(pythonList[1]) == tuple:
-            right = self.pythonlistToPointerList(pythonList[1])
-        else:
-            right = pythonList[1]
+            return pythonList
         return self.setTemporalListPair(left, right)
 
     def stackMemoryCheck(self, message):
@@ -132,10 +135,15 @@ class MemoryManager():
             memory = memorySegment[address]
             print("Retuned getValue: ", memory)
             #check if address is pointer and points to a constant
+
             if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):
                 memorySegment = self.getMemorySegment(memory)
                 returnValue =  memorySegment[memory]
                 return returnValue
+            # Check if adress is a pointer, yet not a list pointer, and its value is a list pointer
+            # elif address is not None and type(address) != float and not self.pointerIsList(address) and  self.pointerIsList(memory):
+            #     return returnValue
+                
 
             return memory
         except:

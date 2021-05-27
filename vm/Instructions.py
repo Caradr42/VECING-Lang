@@ -89,17 +89,29 @@ def gosub(quad, instructionPointer):
     
 
     if isUserDefinedFunction:
-        memoryManager.pushContext()
-        memoryManager.pushReturnPointers(returnAddress, instructionPointer)
-        # push params to context
+        # Get local lists to python list from parent function
         paramCount = memoryManager.getFunctionParamsCount(funcName)
         paramsList = memoryManager.popParams(paramCount)
         paramsList.reverse()
+        print("user Func paramsList: ", paramsList)
 
-        print(paramCount)
+        pythonParamsList = []
+        for e in paramsList:
+            pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
+        print("user Func pythonParamsList: ", pythonParamsList)
+
+        memoryManager.pushContext()
+        memoryManager.pushReturnPointers(returnAddress, instructionPointer)
+        
+        #convert python list back to memory in child function
+        memoryParamsList = []
+        for e in pythonParamsList:
+            memoryParamsList.append(memoryManager.pythonlistToPointerList(e))
+
+        print("user Func memoryParamsList: ", memoryParamsList)
 
         for i in range(0, paramCount):
-            memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i , paramsList[i])
+            memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i , memoryParamsList[i])
 
         return funcName
     else:
@@ -108,8 +120,6 @@ def gosub(quad, instructionPointer):
         paramCount = len(semanticTable[funcName][0])
         paramsList = memoryManager.popParams(paramCount)
         paramsList.reverse()
-
-        
 
         pythonParamsList = []
         for e in paramsList:
