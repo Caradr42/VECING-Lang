@@ -44,7 +44,7 @@ class MemoryManager():
                 print("not a list")
                 return (self.getPythonlistFromPointer(address), None)
 
-        elif type(address) == float:
+        elif address is None or type(address) == float:
             print("value")
             return address
         else:
@@ -104,10 +104,14 @@ class MemoryManager():
         return memorySegment
     
     def pointerIsList(self, address):
+        if address is None or type(address) == float:
+            raise Exception("Tried to access non pointer as pointer")
         return (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
 
     def pointerIsConstant(self, address):
-        return address < consts.INITIAL_ADDRESS
+        if address is None or type(address) == float:
+            raise Exception("Tried to access non pointer as pointer")
+        return address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]
 
     def setValue(self, address, value):
         memorySegment = self.getMemorySegment(address)
@@ -124,10 +128,14 @@ class MemoryManager():
                 "Invalid access to memmory address at {}".format(address))
 
         try:
+            print(self.memory)
             memory = memorySegment[address]
-            if self.pointerIsConstant(memory):
+            print("Retuned getValue: ", memory)
+            #check if address is pointer and points to a constant
+            if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):
                 memorySegment = self.getMemorySegment(memory)
-                return memorySegment[memory]
+                returnValue =  memorySegment[memory]
+                return returnValue
 
             return memory
         except:

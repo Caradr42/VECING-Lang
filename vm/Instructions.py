@@ -41,11 +41,32 @@ def goto(quad, instructionPointer):
 
 
 def gotoFalse(quad, instructionPointer):
-    value = memoryManager.getValue(quad[1])
-    condition = False if value == 0.0 else True
+    address = memoryManager.getValue(quad[1])
+    condition = True
 
+    print("goto cond address: ", address)
+
+    if address == None:
+        condition = False
+    elif type(address) == float:
+        condition = False if address == 0.0 else True
+    elif memoryManager.pointerIsList(address):
+        #address = memoryManager.getValue(address)
+        lista = memoryManager.getPythonlistFromPointer(address)
+        print("flatenned goto cond list: ", lista)
+
+        condition = False
+        for e in lista:
+            if type(e) == tuple:
+                raise Exception("cannot evaluate trutness of nested list")
+            if e != 0.0 and e != None:
+                condition = True
+                break
+    
     if(not condition):
+        print("jumped :)")
         return quad[2]
+    print("did not jump :<")
 
 
 def era(quad, instructionPointer):
@@ -133,17 +154,20 @@ def PROGRAM(quad, instructionPointer):
 
 def flattenList(headAddress):
     listArray = []
+    print("flatenning: ", headAddress)
     flattenListRecursive(headAddress, listArray)
+    #print("getListPair in flattening list: ", listArray)
+    if listArray[-1] == None:
+        listArray = listArray[0:-1]
     return listArray
 
 
 def flattenListRecursive(headAddress, listArray):
     #memoryManager.pointerIsList(headAddress)
     (left, right) = memoryManager.getListPair(headAddress)
-
+    
     listArray.append(left)
-
-    if type(right) == float or not memoryManager.pointerIsList(right):
+    if right == None or type(right) == float or not memoryManager.pointerIsList(right):
         listArray.append(right)
     else:
         flattenListRecursive(right, listArray)
@@ -166,7 +190,8 @@ instructions = {
 
 langFunctions = {
     "add": languageFunctions.add,
-    "sub": languageFunctions.sub
+    "sub": languageFunctions.sub,
+    "print": languageFunctions.printList
 }
 
 """
