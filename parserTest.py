@@ -1,4 +1,5 @@
 import os
+import traceback
 from compiler.VECING_Parser import LanguageParser
 from compiler.VECING_Lexer import LanguageLexer
 
@@ -36,6 +37,7 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
     except Exception as e:
         print("File {} has error".format(fileName))
         print(e)
+        traceback.print_exc()
     print('\n')
 
 

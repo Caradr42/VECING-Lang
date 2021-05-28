@@ -1,0 +1,14 @@
+myProgram
+//this program does important stuff;
+
+(define myFunc2 (A B C) (sub B A));
+
+RENDER 
+
+(cond 
+    [
+    (myFunc2 (9 1) (1 10) (2 3)) (print 3)
+    ]
+)
+
+END

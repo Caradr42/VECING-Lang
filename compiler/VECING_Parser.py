@@ -4,6 +4,7 @@ from .VECING_Lexer import LanguageLexer
 from .SymbolTable import SymbolTable
 import consts
 import array
+import sys
 array.array
 
 semanticTable = consts.semanticTable
@@ -555,12 +556,15 @@ class LanguageParser(Parser):
 
                 cuads.append(("era", funcName, 'None', 'None'))
 
-                def treeTraverse(head):
-                    if type(head[0]) != tuple:
-                        return 1
-                    return treeTraverse(head[0]) + treeTraverse(head[1])
+                # try:
+                #def treeTraverse(head):
+                    # if type(head[0]) != tuple:
+                    #     return 1
+                    # return treeTraverse(head[0]) + treeTraverse(head[1])
 
-                paramsSize = treeTraverse(funcParams)
+                #def treeTraverse(head):
+
+                paramsSize = len(funcParams)
                 symbol = self.symbols.getFunctionSymbol(funcName)
 
                 # TODO: Put funcExtras to language functions
@@ -574,6 +578,11 @@ class LanguageParser(Parser):
                 t = self.cuadGenerator(funcParams, cuads)
 
                 cuads.append(("params", t, 'None', 'param1'))
+                # except:
+                #     e = sys.exc_info()[2]
+                    
+                #     print(cuads)
+                #     raise Exception("error in params of function call")
 
                 self.tCounter += 1
 

@@ -1,6 +1,7 @@
 import os
 import sys
 import re
+import traceback
 from compiler.VECING_Parser import LanguageParser
 from compiler.VECING_Lexer import LanguageLexer
 
@@ -25,16 +26,22 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
             print(e)
 
     try:
-        parser.parse(LanguageLexer().tokenize(data))
-        cuads = parser.getCuads()
-
-        print("No errors found in file {}".format(fileName))
+        lexed = LanguageLexer().tokenize(data)
+        print("lexed")
         if showSymbols:
             print('\n{}\n'.format(parser.symbols))
+
+        parser.parse(lexed)
+        print("parsed")
         if showProgramTree:
             print(parser.programTree, '\n')
+            
+        cuads = parser.getCuads()
+        print("cuads generated")
         if showCuads:
             print('\n'.join('{}: {}'.format(k[0] + 1, k[1]) for k in enumerate(cuads)))
+            
+        print("No errors found in file {}".format(fileName))
 
         regex = r'(.*[\\\/])*'
 
@@ -53,6 +60,7 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
     except Exception as e:
         print("File {} has error".format(fileName))
         print(e)
+        traceback.print_exc()
     print('\n')
 
 if __name__ == '__main__':

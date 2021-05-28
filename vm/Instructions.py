@@ -41,10 +41,12 @@ def goto(quad, instructionPointer):
 
 
 def gotoFalse(quad, instructionPointer):
+    print("goto cond address: ", quad[1])
+    
     address = memoryManager.getValue(quad[1])
     condition = True
 
-    print("goto cond address: ", address)
+    print("goto cond value: ", address)
 
     if address == None:
         condition = False
@@ -97,7 +99,9 @@ def gosub(quad, instructionPointer):
 
         pythonParamsList = []
         for e in paramsList:
+            print("converting param address", e, " to list")
             pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
+        
         print("user Func pythonParamsList: ", pythonParamsList)
 
         memoryManager.pushContext()
