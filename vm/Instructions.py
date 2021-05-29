@@ -287,12 +287,25 @@ instructions = {
 
 langFunctions = {
     "print": languageFunctions.printList,
+    #Math operations
     "add": languageFunctions.add,
     "sub": languageFunctions.sub,
     "power": languageFunctions.power,
     "mult": languageFunctions.mult,
     "div": languageFunctions.div,
     "sqrt": languageFunctions.sqrt,
-    "abs": languageFunctions.absop
+    "abs": languageFunctions.absop,
+    #Logical operators 
+    "and": languageFunctions.andOp,
+    'or': languageFunctions.orOp,
+    'not': languageFunctions.notOp,
+    #Relational operators
+    '>=': languageFunctions.biggerequal,
+    '<=': languageFunctions.lessrequal,
+    '>': languageFunctions.bigger,
+    '<': languageFunctions.less,
+    '!=': languageFunctions.notqueal,
+    '==': languageFunctions.equal
 }
+
 

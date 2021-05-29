@@ -79,7 +79,7 @@ def flattenPythonList(pythonList):
         elems.append(tuple(flattenHelper(tupleList)))
     return elems
     
-
+#Math operations
 add = binaryFunctionGenerator(operator.add, 'add')
 sub = binaryFunctionGenerator(operator.sub, 'subtract')
 power = binaryFunctionGenerator(operator.pow, 'get power of')
@@ -89,61 +89,20 @@ div = binaryFunctionGenerator(operator.truediv, 'divide')
 sqrt = unaryFunctionGenerator(math.sqrt, 'get square root of')
 absop = unaryFunctionGenerator(operator.abs, 'get absolute value of')
 
-# def add(memoryManager, paramsList):
-#     def addPair(a , b):
-#         if a is None or b is None:
-#             return None
-#         if type(a) is not float or type(b) is not float:
-#             raise Exception("Cannot add anidated lists")
-#         return a + b
+#Logical operators 
+andOp = binaryFunctionGenerator(lambda x, y: 1.0 if x != 0.0 and y != 0.0 else 0.0, 'evaluate >= of')
+orOp = binaryFunctionGenerator(lambda x, y: 1.0 if x != 0.0 or y != 0.0 else 0.0, 'evaluate <= of')
 
-#     A = paramsList[0]
-#     B = paramsList[1]
+notOp = unaryFunctionGenerator(lambda x: 1.0 if x == 0.0 else 0.0, 'cannot evaluate NOT of')
 
-#     if type(A) != type(B):
-#         raise Exception("Cannot add elements of different types")
-    
-#     if type(A) == float:
-#         return addPair(A, B)
+#Relational operators
+biggerequal = binaryFunctionGenerator(lambda x, y: 1.0 if x >= y else 0.0, 'evaluate >= of')
+lessrequal = binaryFunctionGenerator(lambda x, y: 1.0 if x <= y else 0.0, 'evaluate <= of')
+bigger = binaryFunctionGenerator(lambda x, y: 1.0 if x > y else 0.0, 'evaluate >= of')
+less = binaryFunctionGenerator(lambda x, y: 1.0 if x < y else 0.0, 'evaluate < of')
+notqueal = binaryFunctionGenerator(lambda x, y: 1.0 if x != y else 0.0, 'evaluate != of')
+equal = binaryFunctionGenerator(lambda x, y: 1.0 if x == y else 0.0, 'evaluate == of')
 
-#     lenghtA = len(A)
-#     lengthB = len(B)
-#     if lenghtA != lengthB:
-#         raise Exception("cannot add list of different dimensions: {} <> {}".format(lenghtA, lengthB))
-
-#     result = []
-#     for i in range(lenghtA):
-#         result.append(addPair(A[i], B[i]))
-#     return result
-    
-
-# def sub(memoryManager, paramsList):
-#     def subPair(a , b):
-#         if a is None or b is None:
-#             return None
-#         if type(a) is not float or type(b) is not float:
-#             raise Exception("Cannot subtract anidated lists")
-#         return a - b
-
-#     A = paramsList[0]
-#     B = paramsList[1]
-
-#     if type(A) != type(B):
-#         raise Exception("Cannot add elements of different types")
-    
-#     if type(A) == float:
-#         return subPair(A, B)
-
-#     lenghtA = len(A)
-#     lengthB = len(B)
-#     if lenghtA != lengthB:
-#         raise Exception("cannot subtract lists of different dimensions: {} <> {}".format(lenghtA, lengthB))
-
-#     result = []
-
-#     for i in range(lenghtA):
-#         result.append(subPair(A[i], B[i]))
-#     return result
 
 def printList(memoryManager, paramsList):
     A = paramsList[0]
