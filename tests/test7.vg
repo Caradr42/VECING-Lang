@@ -1,15 +1,10 @@
 myProgram
-//this program does important stuff;
+//Printing compound expression;
 
 (define myFunc1 (A B C) (sub (add A C) (div B A)));
 
 
 RENDER 
-
-(cond 
-    [
-    (myFunc1 (9 1 7) (1 10 11) (3 4 5)) (print 10)
-    ]
-)
+(print (myFunc1 (9 1 7) (1 10 11) (3 4 5)))
 
 END

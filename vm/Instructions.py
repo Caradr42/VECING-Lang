@@ -169,6 +169,8 @@ def gosub(quad, instructionPointer):
             pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
         
         print("lang Func pythonParamsList: ", pythonParamsList)
+
+        memoryManager.pushContext()
         
         returnList = None
         flattenedParams = languageFunctions.flattenPythonList(pythonParamsList)
@@ -177,6 +179,8 @@ def gosub(quad, instructionPointer):
         print("Returned valued after lang function", returnValue)
         returnValue = memoryManager.flatListToFunctionalList(returnValue)
         print("Returned valued after list conversion", returnValue)
+
+        memoryManager.popContext()
 
         if returnValue is not None:
             returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list from the language function to a pointer list in memory
