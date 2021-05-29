@@ -1,0 +1,16 @@
+myProgram
+//Deep recursion;
+
+(define myFunc1 (A B) 
+    (cond 
+        [
+            (sub A B) (print (myFunc1 (sub A B) B))
+        ]
+    )
+);
+
+
+RENDER 
+(print (myFunc1 100 10))
+
+END

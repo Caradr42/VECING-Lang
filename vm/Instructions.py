@@ -47,8 +47,8 @@ def goto(quad, instructionPointer):
 #(10, None)  => [10]
 #((11, None), ((-5.0, None), ((10, None), None))) => [11, -5, 10]
 def flattenPythonList(pythonList):
-    if pythonList == None or len(pythonList) == 0:
-        return None
+    if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
+        return [None]
 
     flattenedList = []
     
@@ -94,12 +94,13 @@ def gotoFalse(quad, instructionPointer):
         print("goto list as flattened pythonList", lista)
 
         condition = False
-        for e in lista:
-            if type(e) == tuple:
-                raise Exception("cannot evaluate truthness of nested list")
-            if e != 0.0 and e != None:
-                condition = True
-                break
+        if not(lista == None or (len(lista) == 1 and lista[0] == None)):
+            for e in lista:
+                if type(e) == tuple:
+                    raise Exception("cannot evaluate truthness of nested list")
+                if e != 0.0 and e != None:
+                    condition = True
+                    break
     
     if(not condition):
         #print("jumped :)")
@@ -111,6 +112,10 @@ def era(quad, instructionPointer):
     funcName = quad[1]
     print("Executing: {}".format(funcName))
 
+def assign(quad, instructionPointer):
+    value = quad[1]
+    address = quad[3]
+    memoryManager.setValue(address, value)
 
 def endfunc(quad, instructionPointer):
     tempReturnAddress = quad[1]
@@ -272,7 +277,8 @@ instructions = {
     "list": lista,
     "endfunc": endfunc,
     "PROGRAM": PROGRAM,
-    "funcSize": funcSize
+    "funcSize": funcSize,
+    "assign": assign
 }
 
 langFunctions = {

@@ -29,7 +29,7 @@ Traceback (most recent call last):
     executeQuads(quads)
   File "VENCING_VM.py", line 59, in executeQuads
     nextLine = instructions[instructionName](quad, instructionPointer)
-  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 222, in params
+  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 227, in params
     (left, right) = memoryManager.getListPair(e)
   File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 214, in getListPair
     left = self.getValue(address)

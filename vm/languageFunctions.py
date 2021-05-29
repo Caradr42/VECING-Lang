@@ -56,6 +56,9 @@ def unaryFunctionGenerator(op, operationName):
 
 
 def flattenPythonList(pythonList):
+    if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
+        return [None]
+
     def flattenHelper(lista):
         left = lista[0]
         right = lista[1]
@@ -148,7 +151,7 @@ def printList(memoryManager, paramsList):
     A = paramsList[0]
     
     if type(A) is not tuple:
-        print(A)
+        print("> ", A)
     else:
         print("> ", end =" ")
         for e in A:

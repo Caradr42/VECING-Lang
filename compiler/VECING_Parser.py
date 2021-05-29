@@ -449,6 +449,11 @@ class LanguageParser(Parser):
                     t = self.cuadGenerator(functionBody[1][0], cuads)
                 else:
                     t = self.cuadGenerator(functionBody, cuads)
+                if t == None:
+                    t = self.tempAddress(self.tCounter)
+                    cuads.append(('assign', 'None', 'None', t))
+                    self.tCounter += 1
+
                 cuads.append(('endfunc', t, 'None', "None"))
 
                 paramCount = len(paramsList)

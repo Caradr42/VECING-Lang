@@ -1,5 +1,6 @@
 #!/bin/bash
 echo running tests...
+python run.py tests/test8.vg -e &> tests/output/test8_output.txt
 python run.py tests/test7.vg -e &> tests/output/test7_output.txt
 python run.py tests/test6.vg -e &> tests/output/test6_output.txt
 python run.py tests/test5.vg -e &> tests/output/test5_output.txt
