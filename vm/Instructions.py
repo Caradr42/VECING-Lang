@@ -46,7 +46,7 @@ def gotoFalse(quad, instructionPointer):
     address = memoryManager.getValue(quad[1])
     condition = True
 
-    #print("goto cond value: ", address)
+    print("goto cond value: ", address)
 
     if address == None:
         condition = False
@@ -60,7 +60,7 @@ def gotoFalse(quad, instructionPointer):
         condition = False
         for e in lista:
             if type(e) == tuple:
-                raise Exception("cannot evaluate trutness of nested list")
+                raise Exception("cannot evaluate truthness of nested list")
             if e != 0.0 and e != None:
                 condition = True
                 break
@@ -139,8 +139,11 @@ def gosub(quad, instructionPointer):
         returnValue = langFunctions[funcName](memoryManager, flattenedParams)
 
         print("Returned valued after lang function", returnValue)
+        returnValue = memoryManager.flatListToFunctionalList(returnValue)
+        print("Returned valued after list conversion", returnValue)
+
         if returnValue is not None:
-            returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list front the language function to a pointer list in memory
+            returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list from the language function to a pointer list in memory
             print("lang Func memoryParamsList: ", returnList)
         #backFromFunction(returnValue)
 
@@ -171,9 +174,26 @@ def params(quad, instructionPointer):
 
     paramsList = flattenList(head)
     print("function params ", paramsList)
-    # push params to params stack
-    memoryManager.pushParams(paramsList)
 
+    newParamsList = []
+    for e in paramsList:
+        condition = True
+        if memoryManager.pointerIsList(e):
+            (left, right) = memoryManager.getListPair(e)
+
+            if memoryManager.addressIsTemp(left):
+                if right == None:
+                    condition = False
+                    newParamsList.append(memoryManager.getValue(left))
+                else:
+                    raise Exception("This should not happen, when obtaining parameters from a temp pointer")
+                
+        if condition:
+            newParamsList.append(e)
+    
+    print("new function params ", newParamsList)
+    # push params to params stack
+    memoryManager.pushParams(newParamsList)
 
 def PROGRAM(quad, instructionPointer):
     pass

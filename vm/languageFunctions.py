@@ -87,6 +87,7 @@ div = binaryFunctionGenerator(operator.truediv, 'divide')
 
 sqrt = unaryFunctionGenerator(math.sqrt, 'get square root of')
 absop = unaryFunctionGenerator(operator.abs, 'get absolute value of')
+
 # def add(memoryManager, paramsList):
 #     def addPair(a , b):
 #         if a is None or b is None:

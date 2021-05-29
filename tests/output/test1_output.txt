@@ -12,9 +12,27 @@ No errors found in file tests/test1.vg
 test1.vg
 
 
+Executing: generate_pixel_tree
+Current Memory:  {'global': {1000: 1.0, 1001: 225.0, 1002: -1.0, 1003: 2.0, 1004: 4.0, 1005: 16.0}, 'local': {}, 'list': {70000: 1004, 70001: None, 70002: 70000, 70003: None, 70004: 'vect', 70005: 70002, 70006: 0, 70007: 70004, 70008: 'vect', 70009: 70006, 70010: 70008, 70011: None, 70012: 'struct', 70013: 70010, 70014: 1005, 70015: None, 70016: 70014, 70017: None, 70018: 70012, 70019: 70016}, 'temporal': {}, 'temporalList': {}}
+function params  [70012, 70014]
 Traceback (most recent call last):
-  File "VENCING_VM.py", line 3, in <module>
-    from Instructions import instructions
-  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 226, in <module>
-    "abs": languageFunctions.absop
-AttributeError: module 'languageFunctions' has no attribute 'absop'
+  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 189, in getValue
+    if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):
+  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 167, in pointerIsConstant
+    return address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]
+TypeError: '>=' not supported between instances of 'str' and 'int'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "VENCING_VM.py", line 86, in <module>
+    executeQuads(quads)
+  File "VENCING_VM.py", line 59, in executeQuads
+    nextLine = instructions[instructionName](quad, instructionPointer)
+  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 182, in params
+    (left, right) = memoryManager.getListPair(e)
+  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 214, in getListPair
+    left = self.getValue(address)
+  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 200, in getValue
+    raise Exception(
+Exception: Tried to access non existing memory at address 70012

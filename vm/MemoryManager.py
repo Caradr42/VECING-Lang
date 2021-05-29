@@ -35,20 +35,32 @@ class MemoryManager():
         if type(address) == int:
             isListAddress = (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (
                 address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
-
+ 
+            if self.addressIsTemp(address):
+                address = self.getValue(address)
+                return self.getPythonlistFromPointer(address)
+            
             if isListAddress:
                 #print("is list")
                 (left, right) = self.getListPair(address)
+
+                # if self.pointerIsTemp(left):
+                #     left = self.getValue(left)
+                # if self.pointerIsTemp(right):
+                #     right = self.getValue(right)
+
                 return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(right))
 
             #TODO: FIX this ##########################################################################################
             elif self.pointerIsConstant(address):
                 address = self.getValue(address)
-                #print("not a list")
+                
                 return (self.getPythonlistFromPointer(address), None)
             else:
                 address = self.getValue(address)
-                #print("not a list")
+                # if self.pointerIsTemp(address):
+                #     address = self.getValue(address)
+                
                 return self.getPythonlistFromPointer(address)
                 #return (self.getPythonlistFromPointer(address), None)
 
@@ -58,7 +70,22 @@ class MemoryManager():
         else:
             raise Exception("This is not posible")
 
-    def pythonlistToPointerList(self, pythonList): # [1.0]
+    #(1,2,3) => ((1, None), ((2, None), ((3, None), None)))
+    def flatListToFunctionalList(self, flatList):
+        if len(flatList) == 0:
+            return flatList
+        if len(flatList) == 1:
+            return (flatList[0], None)
+            
+        flatList.reverse()
+        funcList = ((flatList[0], None), None)
+        
+        for e in flatList[1:]:
+            funcList = ((e, None), funcList)
+        return funcList
+
+    def pythonlistToPointerList(self, pythonList): # [((1.0, None), None)]
+        print("PLtPL: ", pythonList)
         left = None
         right = None
 
@@ -127,6 +154,12 @@ class MemoryManager():
         if address is None or type(address) == float:
             raise Exception("Tried to access non pointer as pointer")
         return (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
+
+    def addressIsTemp(self, address):
+        # if address is None or type(address) == float:
+        #     raise Exception("Tried to access non pointer as pointer")
+        return address >= consts.LIMITS["TEMPORAL_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIM_R"]
+
 
     def pointerIsConstant(self, address):
         if address is None or type(address) == float:
