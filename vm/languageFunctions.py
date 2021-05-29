@@ -67,8 +67,6 @@ def flattenPythonList(pythonList):
             return [left]
 
         if not(type(left[0]) == float and left[1] == None):
-            print(lista)
-            print(left)
             raise Exception("Cannot flatten list of depth grater than 1")
 
         if right is None:

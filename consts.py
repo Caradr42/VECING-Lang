@@ -1,5 +1,7 @@
 import array
 
+DEBUG_MODE = False
+
 INITIAL_ADDRESS = 1000
 
 GLOBAL_SIZE = 9000

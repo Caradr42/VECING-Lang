@@ -1,6 +1,10 @@
 from MemoryManager import MemoryManager
 import languageFunctions
 import consts
+from utils import Debugger
+
+debug = Debugger(consts.DEBUG_MODE)
+
 
 memoryManager = MemoryManager()
 
@@ -8,18 +12,18 @@ semanticTable = consts.semanticTable
 
 def backFromFunction(returnValue):
     (returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()
-    print("Back fF poped returnAddress: ", returnAddress)
+    debug.print("Back fF poped returnAddress: ", returnAddress)
     # Get list from pointer
     pythonList = memoryManager.getPythonlistFromPointer(returnValue)
-    print("Back fF python list: ", pythonList)
+    debug.print("Back fF python list: ", pythonList)
     memoryManager.popContext()
     # Store list in memory
-    print("Back fF memory before to PointerList: ", memoryManager.memory)
+    debug.print("Back fF memory before to PointerList: ", memoryManager.memory)
     newAddress = memoryManager.pythonlistToPointerList(pythonList)
-    print("Back fF newAddress: ", newAddress)
-    print("Back fF memory before set: ", memoryManager.memory)
+    debug.print("Back fF newAddress: ", newAddress)
+    debug.print("Back fF memory before set: ", memoryManager.memory)
     memoryManager.setValue(returnAddress, newAddress)
-    print("Back fF memory after set: ", memoryManager.memory)
+    debug.print("Back fF memory after set: ", memoryManager.memory)
 
     return originalInstructionPointer + 1
 
@@ -74,12 +78,12 @@ def flattenPythonList(pythonList):
     return flattenedList
 
 def gotoFalse(quad, instructionPointer):
-    #print("goto cond address: ", quad[1])
+    #debug.print("goto cond address: ", quad[1])
     
     address = memoryManager.getValue(quad[1])
     condition = True
 
-    print("goto cond value: ", address)
+    debug.print("goto cond value: ", address)
 
     if address == None:
         condition = False
@@ -88,10 +92,10 @@ def gotoFalse(quad, instructionPointer):
     elif memoryManager.pointerIsList(address):
         #address = memoryManager.getValue(address)
         lista = memoryManager.getPythonlistFromPointer(address)
-        #print("flatenned goto cond list: ", lista)
-        print("goto list as pythonList", lista)
+        #debug.print("flatenned goto cond list: ", lista)
+        debug.print("goto list as pythonList", lista)
         lista = flattenPythonList(lista)
-        print("goto list as flattened pythonList", lista)
+        debug.print("goto list as flattened pythonList", lista)
 
         condition = False
         if not(lista == None or (len(lista) == 1 and lista[0] == None)):
@@ -103,14 +107,14 @@ def gotoFalse(quad, instructionPointer):
                     break
     
     if(not condition):
-        #print("jumped :)")
+        #debug.print("jumped :)")
         return quad[2]
-    #print("did not jump :<")
+    #debug.print("did not jump :<")
 
 
 def era(quad, instructionPointer):
     funcName = quad[1]
-    print("Executing: {}".format(funcName))
+    debug.print("Executing: {}".format(funcName))
 
 def assign(quad, instructionPointer):
     value = quad[1]
@@ -119,9 +123,9 @@ def assign(quad, instructionPointer):
 
 def endfunc(quad, instructionPointer):
     tempReturnAddress = quad[1]
-    print("Temp return address after function", tempReturnAddress)
+    debug.print("Temp return address after function", tempReturnAddress)
     returnValue = memoryManager.getValue(tempReturnAddress)
-    print("Returned valued after function", returnValue)
+    debug.print("Returned valued after function", returnValue)
     return backFromFunction(returnValue)
 
 
@@ -135,14 +139,14 @@ def gosub(quad, instructionPointer):
         paramCount = memoryManager.getFunctionParamsCount(funcName)
         paramsList = memoryManager.popParams(paramCount)
         paramsList.reverse()
-        print("user Func paramsList: ", paramsList)
+        debug.print("user Func paramsList: ", paramsList)
 
         pythonParamsList = []
         for e in paramsList:
-            #print("converting param address", e, " to list")
+            #debug.print("converting param address", e, " to list")
             pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
         
-        print("user Func pythonParamsList: ", pythonParamsList)
+        debug.print("user Func pythonParamsList: ", pythonParamsList)
 
         memoryManager.pushContext()
         memoryManager.pushReturnPointers(returnAddress, instructionPointer)
@@ -152,12 +156,12 @@ def gosub(quad, instructionPointer):
         for e in pythonParamsList:
             memoryParamsList.append(memoryManager.pythonlistToPointerList(e))
 
-        print("user Func memoryParamsList: ", memoryParamsList)
+        debug.print("user Func memoryParamsList: ", memoryParamsList)
 
         for i in range(0, paramCount):
             memoryManager.setValue(consts.LIMITS["LOCAL_LIM_L"] + i , memoryParamsList[i])
 
-        print("Memory after gosub : ", memoryManager.memory)
+        debug.print("Memory after gosub : ", memoryManager.memory)
 
         return funcName
     else:
@@ -167,13 +171,13 @@ def gosub(quad, instructionPointer):
         paramsList = memoryManager.popParams(paramCount)
         paramsList.reverse()
 
-        print("lang Func paramsList: ", paramsList)
+        debug.print("lang Func paramsList: ", paramsList)
 
         pythonParamsList = []
         for e in paramsList:
             pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
         
-        print("lang Func pythonParamsList: ", pythonParamsList)
+        debug.print("lang Func pythonParamsList: ", pythonParamsList)
 
         memoryManager.pushContext()
         
@@ -181,15 +185,15 @@ def gosub(quad, instructionPointer):
         flattenedParams = languageFunctions.flattenPythonList(pythonParamsList)
         returnValue = langFunctions[funcName](memoryManager, flattenedParams)
 
-        print("Returned valued after lang function", returnValue)
+        debug.print("Returned valued after lang function", returnValue)
         returnValue = memoryManager.flatListToFunctionalList(returnValue)
-        print("Returned valued after list conversion", returnValue)
+        debug.print("Returned valued after list conversion", returnValue)
 
         memoryManager.popContext()
 
         if returnValue is not None:
             returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list from the language function to a pointer list in memory
-            print("lang Func memoryReturnList: ", returnList)
+            debug.print("lang Func memoryReturnList: ", returnList)
         #backFromFunction(returnValue)
 
         #(returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()
@@ -200,7 +204,7 @@ def gosub(quad, instructionPointer):
         #newAddress = memoryManager.pythonlistToPointerList(pythonList)
         memoryManager.setValue(returnAddress, returnList)
 
-        print("Memory after gosub : ", memoryManager.memory)
+        debug.print("Memory after gosub : ", memoryManager.memory)
 
         return instructionPointer + 1
 
@@ -215,10 +219,10 @@ def lista(quad, instructionPointer):
 def params(quad, instructionPointer):
     head = quad[1]
 
-    print("Current Memory: ", memoryManager.memory)
+    debug.print("Current Memory: ", memoryManager.memory)
 
     paramsList = flattenList(head)
-    print("function params ", paramsList)
+    debug.print("function params ", paramsList)
 
     newParamsList = []
     for e in paramsList:
@@ -236,7 +240,7 @@ def params(quad, instructionPointer):
         if condition:
             newParamsList.append(e)
     
-    print("new function params ", newParamsList)
+    debug.print("new function params ", newParamsList)
     # push params to params stack
     memoryManager.pushParams(newParamsList)
 
@@ -246,9 +250,9 @@ def PROGRAM(quad, instructionPointer):
 
 def flattenList(headAddress):
     listArray = []
-    #print("flatenning: ", headAddress)
+    #debug.print("flatenning: ", headAddress)
     flattenListRecursive(headAddress, listArray)
-    #print("getListPair in flattening list: ", listArray)
+    #debug.print("getListPair in flattening list: ", listArray)
     if listArray[-1] == None:
         listArray = listArray[0:-1]
     return listArray

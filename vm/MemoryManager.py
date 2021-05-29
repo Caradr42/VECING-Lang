@@ -4,7 +4,9 @@ sys.path.append('../')
 import consts
 import pprint
 from Stack import Stack
+from utils import Debugger
 
+debug = Debugger(consts.DEBUG_MODE)
 
 
 class MemoryManager():
@@ -41,7 +43,7 @@ class MemoryManager():
                 return self.getPythonlistFromPointer(address)
             
             if isListAddress:
-                #print("is list")
+                #debug.print("is list")
                 (left, right) = self.getListPair(address)
 
                 # if self.pointerIsTemp(left):
@@ -65,7 +67,7 @@ class MemoryManager():
                 #return (self.getPythonlistFromPointer(address), None)
 
         elif address is None or type(address) == float:
-            #print("value")
+            #debug.print("value")
             return address
         else:
             raise Exception("This is not posible")
@@ -85,7 +87,7 @@ class MemoryManager():
         return funcList
 
     def pythonlistToPointerList(self, pythonList): # [((1.0, None), None)]
-        print("PLtPL: ", pythonList)
+        debug.print("PLtPL: ", pythonList)
         left = None
         right = None
 
@@ -181,9 +183,9 @@ class MemoryManager():
                 "Invalid access to memmory address at {}".format(address))
 
         try:
-       #     print(self.memory)
+       #     debug.print(self.memory)
             memory = memorySegment[address]
-            #print("Retuned getValue: ", memory)
+            #debug.print("Retuned getValue: ", memory)
             #check if address is pointer and points to a constant
 
             if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):
@@ -267,7 +269,7 @@ class MemoryManager():
         except:
             raise Exception("Invalid stack call")
             
-        #print("Function Parameters:", paramsList)
+        #debug.print("Function Parameters:", paramsList)
         return paramsList
 
     def pushParams(self, paramsList):

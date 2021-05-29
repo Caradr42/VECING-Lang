@@ -4,8 +4,6 @@ from Instructions import instructions
 import re
 from graphics import *
 
-
-
 instructionPointer = 1
 
 # def main():
