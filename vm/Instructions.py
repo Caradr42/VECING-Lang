@@ -216,18 +216,13 @@ instructions = {
 }
 
 langFunctions = {
+    "print": languageFunctions.printList,
     "add": languageFunctions.add,
     "sub": languageFunctions.sub,
-    "print": languageFunctions.printList
+    "power": languageFunctions.power,
+    "mult": languageFunctions.mult,
+    "div": languageFunctions.div,
+    "sqrt": languageFunctions.sqrt,
+    "abs": languageFunctions.absop
 }
 
-"""
-list 1000 None 70000   (1000, None)
-list 1001 None 70001   (1001, None)
-list 70000 70001 70002 ((1000, None), (((1000, None), None), (1001, None)))
-
-1000, 70000, 1001
-params 70002 None param1
-
-
-"""

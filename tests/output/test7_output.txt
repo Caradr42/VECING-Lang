@@ -6,10 +6,10 @@ WARNING: 5 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), (('var', 'B'), None))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('sub', (('var', 'A'), (('var', 'B'), None))), None)))), None)), ('RENDER', ((('myFunc2', ((('myFunc1', ((1000, None), ((1000, None), None))), None), ((1001, None), None))), None), None))))) 
+('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), (('param', 'B'), ('param', 'C')))), (('sub', ((('add', (('var', 'A'), (('var', 'C'), None))), None), ((('div', (('var', 'B'), (('var', 'A'), None))), None), None))), None)))), None), ('RENDER', ((('cond', (((('myFunc1', (((1000, None), ((1001, None), ((1002, None), None))), (((1001, None), ((1003, None), ((1004, None), None))), (((1005, None), ((1006, None), ((1007, None), None))), None)))), None), ((('print', ((1003, None), None)), None), None)), None)), None), None))))) 
 
-No errors found in file tests/test2.vg
-test2.vg
+No errors found in file tests/test7.vg
+test7.vg
 
 
 Traceback (most recent call last):
