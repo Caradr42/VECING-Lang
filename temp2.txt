@@ -1,5 +1,5 @@
 (py3.6) C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang>python run.py tests/test5.vg
-WARNING: C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py:159: Rule 'comment' defined, but not used
+WARNING: C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py:160: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
 WARNING: 33 shift/reduce conflicts
@@ -7,218 +7,39 @@ WARNING: 5 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-lexed
-parsed
-cuads generated
-No errors found in file tests/test5.vg
-test5.vg
+File tests/test5.vg has error
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "compile.py", line 37, in parseFile
+    cuads = parser.getCuads()
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py", line 345, in getCuads     
+    self.cuadGenerator(self.programTree, cuads)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py", line 402, in cuadGenerator    self.cuadGenerator(programBody[1], cuads)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py", line 486, in cuadGenerator    self.cuadGenerator(call[0], cuads)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py", line 518, in cuadGenerator    conditionals.append((head[0][0][0], head[0][1][0][0]))
+TypeError: 'NoneType' object is not subscriptable
 
 
 Executing: myFunc1
-flatenning:  70002
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  70000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  70001
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  1000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  70000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  1000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  1000
-Function Parameters: [1.0, 1.0]
+Current Memory:  {'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {}, 'temporalList': {}}
+function params  [70000, 1.0, 1.0, 1.0]
 user Func paramsList:  [1.0, 1.0]
-converting param address 1.0  to list
-value
-converting param address 1.0  to list
-value
 user Func pythonParamsList:  [1.0, 1.0]
 user Func memoryParamsList:  [1.0, 1.0]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {}, 'temporal': {}, 'temporalList': {}}
 Executing: sub
-flatenning:  70000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  10001
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  10000
-Function Parameters: [10000, 10001]
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  1.0
-not a list
-value
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  1.0
-not a list
-value
-parameters python list:  [1.0, 1.0]
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  0.0
-value
-goto cond address:  20000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  0.0
-goto cond value:  0.0
-jumped :)
-Executing: myFunc2
-flatenning:  70016
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  70009
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  70015
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  70010
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  70009
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  70004
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  1000
-Function Parameters: [1.0, 70004]
-user Func paramsList:  [70004, 1.0]
-converting param address 70004  to list
-is list
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  1004
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0}, 'temporalList': {}}
-Retuned getValue:  1000
-value
-value
-converting param address 1.0  to list
-value
-user Func pythonParamsList:  [(9.0, 1.0), 1.0]
-user Func memoryParamsList:  [120000, 1.0]
-Executing: myFunc1
-flatenning:  70000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 120000, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 
-'temporalList': {120000: 9.0, 120001: 1.0}}
-Retuned getValue:  10001
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 120000, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 
-'temporalList': {120000: 9.0, 120001: 1.0}}
-Retuned getValue:  10000
-Function Parameters: [10000, 10001]
-user Func paramsList:  [10001, 10000]
-converting param address 10001  to list
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 120000, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 
-'temporalList': {120000: 9.0, 120001: 1.0}}
-Retuned getValue:  1.0
-not a list
-value
-converting param address 10000  to list
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 120000, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 
-'temporalList': {120000: 9.0, 120001: 1.0}}
-Retuned getValue:  120000
-not a list
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 120000, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 
-'temporalList': {120000: 9.0, 120001: 1.0}}
-Retuned getValue:  9.0
-not a list
-value
-user Func pythonParamsList:  [1.0, 9.0]
-user Func memoryParamsList:  [1.0, 9.0]
-Executing: sub
-flatenning:  70000
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 9.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  10001
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 9.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  10000
-Function Parameters: [10000, 10001]
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 9.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  9.0
-not a list
-value
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 9.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
-Retuned getValue:  1.0
-not a list
-value
-parameters python list:  [9.0, 1.0]
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 9.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {20000: 8.0}, 'temporalList': {}}
-Retuned getValue:  8.0
-value
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 120000, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {20000: 8.0}, 'temporalList': {120000: 9.0, 120001: 1.0}}
-Retuned getValue:  8.0
-value
-goto cond address:  20002
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 70015}, 'temporal': {20000: 0.0, 20002: 8.0}, 'temporalList': {}}
-Retuned getValue:  8.0
-goto cond value:  8.0
-did not jump :<
-Executing: print
-flatenning:  70017
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 1002, 70018: None}, 'temporal': {20000: 0.0, 20002: 8.0}, 'temporalList': {}}
-Retuned getValue:  1002
-{'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {}, 'list': {70000: 1000, 70001: 1000, 70002: 70000, 70003: 70001, 70004: 1004, 70005: 1000, 70006: 1002, 70007: 70006, 70008: 70005, 70009: 70004, 70010: 1000, 70011: 1005, 70012: 1002, 70013: 70012, 70014: 70011, 70015: 70010, 70016: 70009, 70017: 1002, 70018: None}, 'temporal': {20000: 0.0, 20002: 8.0}, 'temporalList': {}}
-Retuned getValue:  None
-Function Parameters: [3.0]
-value
-parameters python list:  [3.0]
-3.0
-
-
-    
-    ('myFunc1', ((1000, None), (1000, None))), None), ((('print', (1000, None)), None), ((
-    
-    ('myFunc2', 
-    
-    (
-        (
-            (1004, None), 
-            (
-                (1000, None), 
-                (
-                    (1002, None), None
-                )
-            )
-        ), 
-        ((1000, None), ((1005, None), ((1002, None), None)))
-    )
-
-///////
-('PROGRAM', 
-    ('myProgram', 
-        (
-            (
-                ('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('sub', (('var', 'B'), ('var', 'A'))), None)))), 
-                (
-                    ('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('myFunc1', (('var', 'B'), ('var', 'A'))), None)))), 
-                    (
-                        ('CONSTDEF', ('myConst1', (1000, None))
-                        ), None
-                    )
-                )
-            ), 
-            ('RENDER', 
-                (
-                    (
-                        ('cond', (
-                            (('myFunc1', ((1000, None), (1000, None))), None), ((('print', (1000, None)), None), ((('myFunc2', (((1004, None), ((1000, None), ((1002, None), None))), ((1000, None), ((1005, None), ((1002, None), None))))), None), ((('print', (1002, None)), None), None))))), None), None)))))
-
-((1 3 4) (3 4 5))
-
-((1 3 4) (3 (4 5)))
-
-( ((1 none), ((3 none), ((4 none) none))), )
-
-( ((1 none), ((3 none), ((4 none) none))), )
-
-
-
-(((((1 none), ((3 none), ((4 none)))), (3 none)), lodel4y5))
-((1 3 4) 3 (4 5))
-
-
-
-('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc2', (('params', (('param', 'A'), (('param', 'B'), ('param', 'C')))), (('sub', (('var', 'B'), ('var', 'A'))), None)))), None), ('RENDER', ((('cond', ((
-    
-    ('myFunc2', 
-        (
-            ((1000, None), (((1001, None), None), None)), 
-            (
-                ((1001, None), (((1002, None), None), None)), 
-                ((1003, None), (((1004, None), None), None))
-            )
-        )
-    )
-    
-    
-    , None), (((('print', (1004, None)), None), None), None))), None), None))))) 
+Current Memory:  {'global': {1000: 1.0, 1001: 2.0, 1002: 3.0, 1003: 4.0, 1004: 9.0, 1005: 10.0}, 'local': {10000: 1.0, 10001: 1.0}, 'list': {70000: 10001, 70001: 10000}, 'temporal': {}, 'temporalList': {}}
+function params  [10001, 10000]
+lang Func paramsList:  [10001, 10000]
+lang Func pythonParamsList:  [(1.0, None), (1.0, None)]
+Returned valued after lang function [0.0]
+Traceback (most recent call last):
+  File "VENCING_VM.py", line 86, in <module>
+    executeQuads(quads)
+  File "VENCING_VM.py", line 59, in executeQuads
+    nextLine = instructions[instructionName](quad, instructionPointer)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\Instructions.py", line 143, in gosub
+    returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list front the language function to a pointer list in memory
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\MemoryManager.py", line 63, in pythonlistToPointerList
+    if type(pythonList[1]) == tuple or type(pythonList[1]) == list:
+IndexError: list index out of range

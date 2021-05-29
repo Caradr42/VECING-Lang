@@ -1,3 +1,26 @@
+def flattenPythonList(pythonList):
+    def flattenHelper(lista):
+        left = lista[0]
+        right = lista[1]
+
+        if type(left) == float:
+            return [left]
+
+        if not(type(left[0]) == float and left[1] == None):
+            print(lista)
+            print(left)
+            raise Exception("Cannot flatten params list of depth grater than 1")
+
+        if right is None:
+            return [left[0]] 
+
+        return [left[0]] + flattenHelper(right)
+    
+    elems = []
+    for tupleList in pythonList:
+        elems.append(tuple(flattenHelper(tupleList)))
+    return elems
+    
 
 def add(memoryManager, paramsList):
     def addPair(a , b):
@@ -50,7 +73,7 @@ def sub(memoryManager, paramsList):
         raise Exception("cannot subtract lists of different dimensions: {} <> {}".format(lenghtA, lengthB))
 
     result = []
-    
+
     for i in range(lenghtA):
         result.append(subPair(A[i], B[i]))
     return result

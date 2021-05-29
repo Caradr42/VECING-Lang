@@ -33,34 +33,50 @@ class MemoryManager():
 
     def getPythonlistFromPointer(self, address):
         if type(address) == int:
-            isListAddress = (address > consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (
-                address > consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
+            isListAddress = (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (
+                address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
+
             if isListAddress:
-                print("is list")
+                #print("is list")
                 (left, right) = self.getListPair(address)
                 return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(right))
+
+            #TODO: FIX this ##########################################################################################
+            elif self.pointerIsConstant(address):
+                address = self.getValue(address)
+                #print("not a list")
+                return (self.getPythonlistFromPointer(address), None)
             else:
                 address = self.getValue(address)
-                print("not a list")
+                #print("not a list")
                 return self.getPythonlistFromPointer(address)
                 #return (self.getPythonlistFromPointer(address), None)
 
         elif address is None or type(address) == float:
-            print("value")
+            #print("value")
             return address
         else:
             raise Exception("This is not posible")
 
-    def pythonlistToPointerList(self, pythonList): # [1.0, 2.0]
+    def pythonlistToPointerList(self, pythonList): # [1.0]
         left = None
         right = None
-        if type(pythonList) == tuple:
-            if type(pythonList[0]) == tuple:
+
+        if type(pythonList) == tuple or type(pythonList) == list:
+            # Functional lists always have two elements or be None
+            if len(pythonList) == 0:
+                return None
+            if len(pythonList) == 1 and pythonList[0] == None:
+                return None
+            if len(pythonList) == 1 and type(pythonList[0]) == float:
+                pythonList.append(None)
+            
+            if type(pythonList[0]) == tuple or type(pythonList[0]) == list:
                 left = self.pythonlistToPointerList(pythonList[0])
             else:
                 left = pythonList[0]
 
-            if type(pythonList[1]) == tuple:
+            if type(pythonList[1]) == tuple or type(pythonList[1]) == list:
                 right = self.pythonlistToPointerList(pythonList[1])
             else:
                 right = pythonList[1]
@@ -89,15 +105,16 @@ class MemoryManager():
     def getMemorySegment(self, address):
         memorySegment = None
 
-        if address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]:
+        if address >= consts.LIMITS["GLOBAL_LIM_L"] and address <= consts.LIMITS["GLOBAL_LIM_R"]:
             memorySegment = self.memory["global"]
 
-        elif address >= consts.LIMITS["LOCAL_LIM_L"] and address < consts.LIMITS["LOCAL_LIM_R"]:
+        elif address >= consts.LIMITS["LOCAL_LIM_L"] and address <= consts.LIMITS["LOCAL_LIM_R"]:
             memorySegment = self.memory["local"]
 
-        elif address >= consts.LIMITS["TEMPORAL_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIM_R"]:
+        elif address >= consts.LIMITS["TEMPORAL_LIM_L"] and address <= consts.LIMITS["TEMPORAL_LIM_R"]:
             memorySegment = self.memory["temporal"]
 
+        # Since a list requires two adjacent address spaces in memory, the right limit is not inclusive
         elif address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]:
             memorySegment = self.memory["list"]
 
@@ -131,9 +148,9 @@ class MemoryManager():
                 "Invalid access to memmory address at {}".format(address))
 
         try:
-            print(self.memory)
+       #     print(self.memory)
             memory = memorySegment[address]
-            print("Retuned getValue: ", memory)
+            #print("Retuned getValue: ", memory)
             #check if address is pointer and points to a constant
 
             if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):
@@ -217,7 +234,7 @@ class MemoryManager():
         except:
             raise Exception("Invalid stack call")
             
-        print("Function Parameters:", paramsList)
+        #print("Function Parameters:", paramsList)
         return paramsList
 
     def pushParams(self, paramsList):

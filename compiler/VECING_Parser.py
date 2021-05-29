@@ -36,11 +36,12 @@ class LanguageParser(Parser):
             self.symbols.pop()
 
         self.tempAddress = self.addressSetterGenerator(
-            consts.LIMITS['TEMPORAL_LIM_L'])
+            consts.LIMITS['TEMPORAL_LIM_L'], offset=1)
         self.localAddress = self.addressSetterGenerator(
-            consts.LIMITS['LOCAL_LIM_L'])
+            consts.LIMITS['LOCAL_LIM_L'], offset=1)
+        # listCounter increments by two each time
         self.listAddress = self.addressSetterGenerator(
-            consts.LIMITS['LIST_LIM_L'])
+            consts.LIMITS['LIST_LIM_L'], offset=2)
 
     tokens = LanguageLexer.tokens
     start = 'program'
@@ -284,13 +285,13 @@ class LanguageParser(Parser):
                 '--SEMANTIC ERROR-- at line {}:\n\t{} not found in scope'.format(p.lineno, p[0]))
         return (p[0], p[1])
 
-    @_('listContainer')
-    def z(self, p):
-        return p[0]
-
     @_('listContainer z')
     def z(self, p):
         return (p[0], p[1])
+
+    @_('listContainer')
+    def z(self, p):
+        return (p[0], None)
 
     # @_('empty')
     # def z(self, p):
@@ -345,12 +346,12 @@ class LanguageParser(Parser):
         self.tCounter = 0
         return cuads
 
-    def addressSetterGenerator(self, initialLimit):
+    def addressSetterGenerator(self, initialLimit, offset=1):
         def addressFunction(index):
             if index == None or index == 'None':
                 return index
 
-            index += initialLimit - 1
+            index += initialLimit - offset
             return index
         return addressFunction
 
@@ -514,8 +515,8 @@ class LanguageParser(Parser):
                 head = tree[1]
 
                 while(head != None):
-                    conditionals.append((head[0][0], head[1][0][0]))
-                    head = head[1][1]
+                    conditionals.append((head[0][0][0], head[0][1][0][0]))
+                    head = head[0][1][1]
 
                 # print('------------------COND------------------\n')
                 # print(conditionals)
@@ -557,14 +558,12 @@ class LanguageParser(Parser):
                 cuads.append(("era", funcName, 'None', 'None'))
 
                 # try:
-                #def treeTraverse(head):
-                    # if type(head[0]) != tuple:
-                    #     return 1
-                    # return treeTraverse(head[0]) + treeTraverse(head[1])
+                def paramCount(head):
+                    if head == None:
+                        return 0
+                    return paramCount(head[1]) + 1
 
-                #def treeTraverse(head):
-
-                paramsSize = len(funcParams)
+                paramsSize = paramCount(funcParams)
                 symbol = self.symbols.getFunctionSymbol(funcName)
 
                 # TODO: Put funcExtras to language functions
@@ -598,7 +597,7 @@ class LanguageParser(Parser):
                 t1 = self.cuadGenerator(tree[0], cuads)
                 t2 = self.cuadGenerator(tree[1], cuads)
 
-                self.listCounter += 1
+                self.listCounter += 2
 
                 t1Value = None
                 t2Value = None

@@ -55,8 +55,8 @@ Rule 51    functionList -> OP_MATH z
 Rule 52    functionList -> OP_COMP z
 Rule 53    functionList -> ID z
 Rule 54    functionList -> LANGUAGE_FUNC z
-Rule 55    z -> listContainer z
-Rule 56    z -> listContainer
+Rule 55    z -> listContainer
+Rule 56    z -> listContainer z
 Rule 57    functionLambda -> pushLambda defParamContainer lambdaContent listContainer popFunction
 Rule 58    lambdaContent -> <empty>
 Rule 59    pushFunction -> ID
@@ -127,7 +127,7 @@ vector               : 45 47
 w                    : 41 42 43
 x                    : 46 50
 y                    : 47 48
-z                    : 51 52 53 54 55
+z                    : 51 52 53 54 56
 
 
 state 0
@@ -948,8 +948,8 @@ state 48
     (53) functionList -> ID . z
     (44) w -> . empty
     (45) w -> . COMMA vector
-    (55) z -> . listContainer z
-    (56) z -> . listContainer
+    (55) z -> . listContainer
+    (56) z -> . listContainer z
     (63) empty -> .
     (18) listContainer -> . ID
     (19) listContainer -> . structure
@@ -1115,8 +1115,8 @@ state 53
 state 54
 
     (51) functionList -> OP_MATH . z
-    (55) z -> . listContainer z
-    (56) z -> . listContainer
+    (55) z -> . listContainer
+    (56) z -> . listContainer z
     (18) listContainer -> . ID
     (19) listContainer -> . structure
     (20) listContainer -> . const
@@ -1151,8 +1151,8 @@ state 54
 state 55
 
     (52) functionList -> OP_COMP . z
-    (55) z -> . listContainer z
-    (56) z -> . listContainer
+    (55) z -> . listContainer
+    (56) z -> . listContainer z
     (18) listContainer -> . ID
     (19) listContainer -> . structure
     (20) listContainer -> . const
@@ -1187,8 +1187,8 @@ state 55
 state 56
 
     (54) functionList -> LANGUAGE_FUNC . z
-    (55) z -> . listContainer z
-    (56) z -> . listContainer
+    (55) z -> . listContainer
+    (56) z -> . listContainer z
     (18) listContainer -> . ID
     (19) listContainer -> . structure
     (20) listContainer -> . const
@@ -1257,8 +1257,8 @@ state 60
 
     (53) functionList -> ID . z
     (18) listContainer -> ID .
-    (55) z -> . listContainer z
-    (56) z -> . listContainer
+    (55) z -> . listContainer
+    (56) z -> . listContainer z
     (18) listContainer -> . ID
     (19) listContainer -> . structure
     (20) listContainer -> . const
@@ -1611,10 +1611,10 @@ state 81
 
 state 82
 
-    (55) z -> listContainer . z
-    (56) z -> listContainer .
-    (55) z -> . listContainer z
-    (56) z -> . listContainer
+    (55) z -> listContainer .
+    (56) z -> listContainer . z
+    (55) z -> . listContainer
+    (56) z -> . listContainer z
     (18) listContainer -> . ID
     (19) listContainer -> . structure
     (20) listContainer -> . const
@@ -1637,12 +1637,12 @@ state 82
   ! shift/reduce conflict for CONST_BOOL resolved as shift
   ! shift/reduce conflict for CONST_FLOAT resolved as shift
   ! shift/reduce conflict for CONST_INT resolved as shift
-    OP_MATH         reduce using rule 56 (z -> listContainer .)
-    OP_COMP         reduce using rule 56 (z -> listContainer .)
-    LANGUAGE_FUNC   reduce using rule 56 (z -> listContainer .)
-    LAMBDA          reduce using rule 56 (z -> listContainer .)
-    RIGHT_BRAKET    reduce using rule 56 (z -> listContainer .)
-    RIGHT_PARENTHESIS reduce using rule 56 (z -> listContainer .)
+    OP_MATH         reduce using rule 55 (z -> listContainer .)
+    OP_COMP         reduce using rule 55 (z -> listContainer .)
+    LANGUAGE_FUNC   reduce using rule 55 (z -> listContainer .)
+    LAMBDA          reduce using rule 55 (z -> listContainer .)
+    RIGHT_BRAKET    reduce using rule 55 (z -> listContainer .)
+    RIGHT_PARENTHESIS reduce using rule 55 (z -> listContainer .)
     ID              shift and go to state 22
     LEFT_BRAKET     shift and go to state 27
     NULL            shift and go to state 28
@@ -1846,21 +1846,21 @@ state 97
 
 state 98
 
-    (55) z -> listContainer z .
-    OP_MATH         reduce using rule 55 (z -> listContainer z .)
-    OP_COMP         reduce using rule 55 (z -> listContainer z .)
-    ID              reduce using rule 55 (z -> listContainer z .)
-    LANGUAGE_FUNC   reduce using rule 55 (z -> listContainer z .)
-    LAMBDA          reduce using rule 55 (z -> listContainer z .)
-    LEFT_BRAKET     reduce using rule 55 (z -> listContainer z .)
-    NULL            reduce using rule 55 (z -> listContainer z .)
-    CONST_LIST      reduce using rule 55 (z -> listContainer z .)
-    LEFT_PARENTHESIS reduce using rule 55 (z -> listContainer z .)
-    CONST_BOOL      reduce using rule 55 (z -> listContainer z .)
-    CONST_FLOAT     reduce using rule 55 (z -> listContainer z .)
-    CONST_INT       reduce using rule 55 (z -> listContainer z .)
-    RIGHT_BRAKET    reduce using rule 55 (z -> listContainer z .)
-    RIGHT_PARENTHESIS reduce using rule 55 (z -> listContainer z .)
+    (56) z -> listContainer z .
+    OP_MATH         reduce using rule 56 (z -> listContainer z .)
+    OP_COMP         reduce using rule 56 (z -> listContainer z .)
+    ID              reduce using rule 56 (z -> listContainer z .)
+    LANGUAGE_FUNC   reduce using rule 56 (z -> listContainer z .)
+    LAMBDA          reduce using rule 56 (z -> listContainer z .)
+    LEFT_BRAKET     reduce using rule 56 (z -> listContainer z .)
+    NULL            reduce using rule 56 (z -> listContainer z .)
+    CONST_LIST      reduce using rule 56 (z -> listContainer z .)
+    LEFT_PARENTHESIS reduce using rule 56 (z -> listContainer z .)
+    CONST_BOOL      reduce using rule 56 (z -> listContainer z .)
+    CONST_FLOAT     reduce using rule 56 (z -> listContainer z .)
+    CONST_INT       reduce using rule 56 (z -> listContainer z .)
+    RIGHT_BRAKET    reduce using rule 56 (z -> listContainer z .)
+    RIGHT_PARENTHESIS reduce using rule 56 (z -> listContainer z .)
 
 
 state 99
