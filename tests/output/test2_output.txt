@@ -1,0 +1,42 @@
+
+
+('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), (('var', 'B'), None))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('sub', (('var', 'A'), (('var', 'B'), None))), None)))), None)), ('RENDER', ((('myFunc2', ((('myFunc1', ((1000, None), ((1000, None), None))), None), ((1001, None), None))), None), None))))) 
+
+No errors found in file tests/test2.vg
+test2.vg
+
+
+Executing: myFunc2
+Executing: myFunc1
+Current Memory:  {'global': {1000: 4.0, 1001: 16.0}, 'local': {}, 'list': {70000: 1000, 70001: None, 70002: 1000, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004}, 'temporal': {}, 'temporalList': {}}
+function params  [70000, 70002]
+user Func paramsList:  [70000, 70002]
+user Func pythonParamsList:  [(4.0, None), (4.0, None)]
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 4.0, 1001: 16.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 4.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: add
+Current Memory:  {'global': {1000: 4.0, 1001: 16.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {}, 'temporalList': {120000: 4.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 10001]
+lang Func paramsList:  [10000, 10001]
+lang Func pythonParamsList:  [(4.0, None), (4.0, None)]
+Returned valued after lang function [8.0]
+lang Func memoryParamsList:  120004
+Memory after gosub :  {'global': {1000: 4.0, 1001: 16.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {20000: 120004}, 'temporalList': {120000: 4.0, 120001: None, 120002: 4.0, 120003: None, 120004: 8.0, 120005: None}}
+Temp return address after function 20000
+Returned valued after function 120004
+Current Memory:  {'global': {1000: 4.0, 1001: 16.0}, 'local': {}, 'list': {70000: 1000, 70001: None, 70002: 1000, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 20000, 70009: None, 70010: 1001, 70011: None, 70012: 70010, 70013: None, 70014: 70008, 70015: 70012}, 'temporal': {20000: 120000}, 'temporalList': {120000: 8.0, 120001: None}}
+function params  [70008, 70010]
+user Func paramsList:  [70008, 70010]
+user Func pythonParamsList:  [((8.0, None), None), (16.0, None)]
+user Func memoryParamsList:  [120002, 120004]
+Memory after gosub :  {'global': {1000: 4.0, 1001: 16.0}, 'local': {10000: 120002, 10001: 120004}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 8.0, 120001: None, 120002: 120000, 120003: None, 120004: 16.0, 120005: None}}
+Executing: sub
+Current Memory:  {'global': {1000: 4.0, 1001: 16.0}, 'local': {10000: 120002, 10001: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {}, 'temporalList': {120000: 8.0, 120001: None, 120002: 120000, 120003: None, 120004: 16.0, 120005: None}}
+function params  [10000, 10001]
+lang Func paramsList:  [10000, 10001]
+lang Func pythonParamsList:  [((8.0, None), None), (16.0, None)]
+Returned valued after lang function [-8.0]
+lang Func memoryParamsList:  120006
+Memory after gosub :  {'global': {1000: 4.0, 1001: 16.0}, 'local': {10000: 120002, 10001: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {20000: 120006}, 'temporalList': {120000: 8.0, 120001: None, 120002: 120000, 120003: None, 120004: 16.0, 120005: None, 120006: -8.0, 120007: None}}
+Temp return address after function 20000
+Returned valued after function 120006

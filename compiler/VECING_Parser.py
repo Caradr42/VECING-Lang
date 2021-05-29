@@ -512,11 +512,11 @@ class LanguageParser(Parser):
 
             elif tree[0] == 'cond':
                 conditionals = []
-                head = tree[1]
+                head = tree[1][0]
 
                 while(head != None):
-                    conditionals.append((head[0][0][0], head[0][1][0][0]))
-                    head = head[0][1][1]
+                    conditionals.append((head[0][0], head[1][0][0]))
+                    head = head[1][1]
 
                 # print('------------------COND------------------\n')
                 # print(conditionals)

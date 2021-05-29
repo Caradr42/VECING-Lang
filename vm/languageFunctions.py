@@ -84,6 +84,7 @@ def printList(memoryManager, paramsList):
     if type(A) is not tuple:
         print(A)
     else:
+        print("> ", end =" ")
         for e in A:
             print(e, end =" ")
         print("")
