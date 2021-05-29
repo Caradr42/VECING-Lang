@@ -66,7 +66,7 @@ def flattenPythonList(pythonList):
         if not(type(left[0]) == float and left[1] == None):
             print(lista)
             print(left)
-            raise Exception("Cannot flatten params list of depth grater than 1")
+            raise Exception("Cannot flatten list of depth grater than 1")
 
         if right is None:
             return [left[0]] 

@@ -8,13 +8,18 @@ semanticTable = consts.semanticTable
 
 def backFromFunction(returnValue):
     (returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()
+    print("Back fF poped returnAddress: ", returnAddress)
     # Get list from pointer
     pythonList = memoryManager.getPythonlistFromPointer(returnValue)
+    print("Back fF python list: ", pythonList)
     memoryManager.popContext()
     # Store list in memory
+    print("Back fF memory before to PointerList: ", memoryManager.memory)
     newAddress = memoryManager.pythonlistToPointerList(pythonList)
-
+    print("Back fF newAddress: ", newAddress)
+    print("Back fF memory before set: ", memoryManager.memory)
     memoryManager.setValue(returnAddress, newAddress)
+    print("Back fF memory after set: ", memoryManager.memory)
 
     return originalInstructionPointer + 1
 
@@ -39,6 +44,34 @@ def goto(quad, instructionPointer):
     instructionPointer = quad[1]
     return instructionPointer
 
+#(10, None)  => [10]
+#((11, None), ((-5.0, None), ((10, None), None))) => [11, -5, 10]
+def flattenPythonList(pythonList):
+    if pythonList == None or len(pythonList) == 0:
+        return None
+
+    flattenedList = []
+    
+    def helper(pythonList):
+        
+        if type(pythonList[0]) == tuple:
+            if type(pythonList[1]) == tuple:
+                helper(pythonList[1])
+            elif pythonList[1] != None:
+                raise Exception("Invalid right side of tuple at flattenPythonList")
+                
+            if type(pythonList[0][0]) == float:
+                helper(pythonList[0])
+            else:
+                raise Exception("can not flatten list of depth grater than 1")
+            
+        elif type(pythonList[0]) == float and pythonList[1] == None:
+            flattenedList.append(pythonList[0])
+        else:
+            raise Exception("Invalid list at flattenPythonList")
+
+    helper(pythonList)
+    return flattenedList
 
 def gotoFalse(quad, instructionPointer):
     #print("goto cond address: ", quad[1])
@@ -56,6 +89,9 @@ def gotoFalse(quad, instructionPointer):
         #address = memoryManager.getValue(address)
         lista = memoryManager.getPythonlistFromPointer(address)
         #print("flatenned goto cond list: ", lista)
+        print("goto list as pythonList", lista)
+        lista = flattenPythonList(lista)
+        print("goto list as flattened pythonList", lista)
 
         condition = False
         for e in lista:
@@ -144,7 +180,7 @@ def gosub(quad, instructionPointer):
 
         if returnValue is not None:
             returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list from the language function to a pointer list in memory
-            print("lang Func memoryParamsList: ", returnList)
+            print("lang Func memoryReturnList: ", returnList)
         #backFromFunction(returnValue)
 
         #(returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()

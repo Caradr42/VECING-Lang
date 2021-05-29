@@ -72,7 +72,7 @@ class MemoryManager():
 
     #(1,2,3) => ((1, None), ((2, None), ((3, None), None)))
     def flatListToFunctionalList(self, flatList):
-        if len(flatList) == 0:
+        if flatList == None or len(flatList) == 0:
             return flatList
         if len(flatList) == 1:
             return (flatList[0], None)
