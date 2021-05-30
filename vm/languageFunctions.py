@@ -56,7 +56,9 @@ def unaryFunctionGenerator(op, operationName):
 
 
 def flattenPythonList(pythonList):
-    if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
+    if len(pythonList) == 0:
+        return []
+    if pythonList == None or (len(pythonList) == 1 and pythonList[0] == None):
         return [None]
 
     def flattenHelper(lista):

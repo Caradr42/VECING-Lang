@@ -1,4 +1,4 @@
-WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:160: Rule 'comment' defined, but not used
+WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
 WARNING: 33 shift/reduce conflicts
@@ -26,7 +26,7 @@ Traceback (most recent call last):
     executeQuads(quads)
   File "VENCING_VM.py", line 57, in executeQuads
     nextLine = instructions[instructionName](quad, instructionPointer)
-  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 231, in params
+  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 243, in params
     (left, right) = memoryManager.getListPair(e)
   File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 216, in getListPair
     left = self.getValue(address)

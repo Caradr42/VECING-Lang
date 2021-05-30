@@ -31,29 +31,29 @@ LIMITS = {
 }
 
 semanticTable = {
-    "add":      ((tuple, tuple), (tuple,)),  # ("add", ((1, None), (2, None)))
-    "sub":      ((tuple, tuple), (tuple,)),
-    "mult":     ((tuple, tuple), (tuple,)),
-    "power":    ((tuple, tuple), (tuple,)),
-    "div":      ((tuple, tuple), (tuple,)),
-    "sqrt":     ((tuple,), (tuple,)),
-    "abs":      ((tuple,), (tuple,)),
-    "<=":       ((tuple, tuple), (bool,)),
-    ">=":       ((tuple, tuple), (bool,)),
-    "<":        ((tuple, tuple), (bool,)),
-    ">":        ((tuple, tuple), (bool,)),
-    "!=":       ((tuple, tuple), (bool,)),
-    "=":        ((tuple, tuple), (bool,)),
+    "add":      ((tuple, tuple), (tuple,)), # ("add", ((1, None), (2, None)))
+    "sub":      ((tuple, tuple), (tuple,)), #
+    "mult":     ((tuple, tuple), (tuple,)), #
+    "power":    ((tuple, tuple), (tuple,)), #
+    "div":      ((tuple, tuple), (tuple,)), #
+    "sqrt":     ((tuple,), (tuple,)),       #
+    "abs":      ((tuple,), (tuple,)),       #
+    "<=":       ((tuple, tuple), (bool,)),  #
+    ">=":       ((tuple, tuple), (bool,)),  #
+    "<":        ((tuple, tuple), (bool,)),  #
+    ">":        ((tuple, tuple), (bool,)),  #
+    "!=":       ((tuple, tuple), (bool,)),  #
+    "=":        ((tuple, tuple), (bool,)),  #
     "map":      ((tuple, tuple), (tuple,)),
     "apply":    ((tuple, tuple), (tuple,)),
     "cond":     ((tuple,), (None,)),
-    "lambda":   ((tuple, tuple), (tuple,)),
-    "print":    ((tuple,), (None,)),
+    "print":    ((tuple,), (None,)),        #
     "car":      ((tuple,), (tuple,)),
     "cdr":      ((tuple,), (tuple,)),
     "cons":     ((tuple, tuple), (tuple,)),
-    "and":      ((tuple,), (tuple,)),
-    "or":       ((tuple,), (tuple,)),
+    "and":      ((tuple, tuple), (tuple,)), #
+    "or":       ((tuple, tuple), (tuple,)), #
+    "not":      ((tuple,), (tuple,)),       #
     "isEmpty":  ((tuple,), (bool,)),
     "screen":   ((array.array, (array.array, tuple)), (None,)),
     "pixel":    ((array.array, array.array), (None,)),

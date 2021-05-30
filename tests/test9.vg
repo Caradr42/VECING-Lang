@@ -1,0 +1,19 @@
+myProgram
+//Testing math, logical and relational functions;
+
+(define myFunc1 (A B) (and B (or 1 A)));
+(CONST myConst1 0);
+(CONST myConst2 1);
+
+RENDER 
+(print (not (myFunc1 100 10)))
+(print (add (sub (sqrt 25) (abs -10))  (power (mult 7.6 3 ) (div 4 2) )  ))
+(print (< (>= (sqrt 31) (power 9 5)) (> 1 (!= 3 3))))
+(print (and (= 0 1) (!= 0 1)))
+(print (<= (power 42 2) (mult 174 8)))
+(print (and (!= 0 1) 1.0))
+(print (and (!= 0 1) #true))
+(print (and (!= 0 1) #false))
+(print (and (!= 0 1) (myConst1)))
+(print (and (!= 0 1) (myConst2)))
+END

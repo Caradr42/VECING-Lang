@@ -123,9 +123,21 @@ def assign(quad, instructionPointer):
 
 def endfunc(quad, instructionPointer):
     tempReturnAddress = quad[1]
+
     debug.print("Temp return address after function", tempReturnAddress)
+    debug.print("meomry at endFunc: ", memoryManager.memory)
+    debug.print("pointer to return of func at endFunc: ", tempReturnAddress)
     returnValue = memoryManager.getValue(tempReturnAddress)
+    if type(returnValue) == float:
+        #returnValue = [returnValue]
+        debug.print("Returned valued after function", returnValue)
+        return backFromFunction(tempReturnAddress)
+
     debug.print("Returned valued after function", returnValue)
+
+    # returnValue = memoryManager.flatListToFunctionalList(returnValue)
+    # debug.print("Returned valued after list conversion", returnValue)
+    
     return backFromFunction(returnValue)
 
 
@@ -249,6 +261,8 @@ def PROGRAM(quad, instructionPointer):
 
 
 def flattenList(headAddress):
+    if headAddress == None:
+        return []
     listArray = []
     #debug.print("flatenning: ", headAddress)
     flattenListRecursive(headAddress, listArray)
@@ -305,7 +319,7 @@ langFunctions = {
     '>': languageFunctions.bigger,
     '<': languageFunctions.less,
     '!=': languageFunctions.notqueal,
-    '==': languageFunctions.equal
+    '=': languageFunctions.equal
 }
 
 

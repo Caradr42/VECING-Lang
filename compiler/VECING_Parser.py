@@ -131,6 +131,9 @@ class LanguageParser(Parser):
 
     @_('ID')
     def listContainer(self, p):
+        symbol = self.symbols.getFunctionSymbol(p[0])
+        if symbol is not None:
+            return (p[0], None)
         return ('var', p[0])
 
     @_('LEFT_BRAKET flist RIGHT_BRAKET')
@@ -162,7 +165,7 @@ class LanguageParser(Parser):
         pass
 
     ################ constDef  ################
-    @_('CONST pushFunction const')
+    @_('CONST pushFunction const popFunction')
     def constDef(self, p):
         return ('CONSTDEF', (p[1], p[2]))
 
@@ -320,6 +323,13 @@ class LanguageParser(Parser):
     @_('')
     def popFunction(self, p):
         self.symbols.pop()
+
+    # @_('ID')
+    # def checkSymbolInContext(self, p):
+    #     if not self.symbols.isSymbolInContext(p[0]):
+    #         raise Exception('')
+    #     return p[0]
+
 
     @_('LAMBDA')
     def pushLambda(self, p):
@@ -510,7 +520,10 @@ class LanguageParser(Parser):
 
                 paramsList = symbol["funcExtras"]["params"]
 
-                # TODO: Check if symbols is not defines as param
+                if varName not in paramsList:
+                    raise Exception('--SEMANTIC ERROR--:\n\t{} not found in scope'.format(varName))
+
+
                 position = paramsList.index(varName) + 1
 
                 return self.localAddress(position)
@@ -560,6 +573,7 @@ class LanguageParser(Parser):
                 funcName = tree[0]
                 funcParams = tree[1]
 
+                #self.currentFunction = funcName
                 cuads.append(("era", funcName, 'None', 'None'))
 
                 # try:

@@ -40,6 +40,8 @@ SymbolTable(
  'line': {'funcExtras': None, 'type': 'func', 'varTable': {}},
  'map': {'funcExtras': None, 'type': 'func', 'varTable': {}},
  'mult': {'funcExtras': None, 'type': 'func', 'varTable': {}},
+ 'myConst1': {'funcExtras': None, 'type': 'func', 'varTable': {}},
+ 'myConst2': {'funcExtras': None, 'type': 'func', 'varTable': {}},
  'myFunc1': {'funcExtras': None,
              'type': 'func',
              'varTable': {'A': {'type': 'symbol'}, 'B': {'type': 'symbol'}}},
@@ -58,19 +60,19 @@ SymbolTable(
  'triangle': {'funcExtras': None, 'type': 'func', 'varTable': {}}}
 )
 
-('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('cond', (((('sub', (('var', 'A'), (('var', 'B'), None))), None), ((('print', ((('myFunc1', ((('sub', (('var', 'A'), (('var', 'B'), None))), None), (('var', 'B'), None))), None), None)), None), None)), None)), None)))), None), ('RENDER', ((('print', ((('myFunc1', ((1000, None), ((1001, None), None))), None), None)), None), None))))) 
+('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('and', (('var', 'B'), ((('or', ((1000, None), (('var', 'A'), None))), None), None))), None)))), (('CONSTDEF', ('myConst1', (1001, None))), (('CONSTDEF', ('myConst2', (1000, None))), None))), ('RENDER', ((('print', ((('not', ((('myFunc1', ((1002, None), ((1003, None), None))), None), None)), None), None)), None), ((('print', ((('add', ((('sub', ((('sqrt', ((1004, None), None)), None), ((('abs', ((1005, None), None)), None), None))), None), ((('power', ((('mult', ((1006, None), ((1007, None), None))), None), ((('div', ((1008, None), ((1009, None), None))), None), None))), None), None))), None), None)), None), ((('print', ((('<', ((('>=', ((('sqrt', ((1010, None), None)), None), ((('power', ((1011, None), ((1012, None), None))), None), None))), None), ((('>', ((1000, None), ((('!=', ((1007, None), ((1007, None), None))), None), None))), None), None))), None), None)), None), ((('print', ((('and', ((('=', ((1001, None), ((1000, None), None))), None), ((('!=', ((1001, None), ((1000, None), None))), None), None))), None), None)), None), ((('print', ((('<=', ((('power', ((1013, None), ((1009, None), None))), None), ((('mult', ((1014, None), ((1015, None), None))), None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1001, None), ((1000, None), None))), None), ((1000, None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1001, None), ((1000, None), None))), None), ((1000, None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1001, None), ((1000, None), None))), None), ((1001, None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1001, None), ((1000, None), None))), None), ((('myConst1', None), None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1001, None), ((1000, None), None))), None), ((('myConst2', None), None), None))), None), None)), None), None)))))))))))))) 
 
-No errors found in file tests/test8.vg
-test8.vg
+No errors found in file tests/test9.vg
+test9.vg
 
 
->  None
->  None
->  None
->  None
->  None
->  None
->  None
->  None
->  None
->  None
+>  0.0 
+>  514.8399999999999 
+>  1.0 
+>  0.0 
+>  0.0 
+>  1.0 
+>  1.0 
+>  0.0 
+>  0.0 
+>  1.0 

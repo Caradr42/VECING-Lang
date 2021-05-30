@@ -27,16 +27,18 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
 
     try:
         lexed = LanguageLexer().tokenize(data)
+        parser.parse(lexed)
+        
         if showSymbols:
             print('\n{}\n'.format(parser.symbols))
-
-        parser.parse(lexed)
         if showProgramTree:
             print(parser.programTree, '\n')
             
         cuads = parser.getCuads()
         if showCuads:
             print('\n'.join('{}: {}'.format(k[0] + 1, k[1]) for k in enumerate(cuads)))
+
+       
             
         print("No errors found in file {}".format(fileName))
 
