@@ -1,6 +1,6 @@
 import array
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 INITIAL_ADDRESS = 1000
 

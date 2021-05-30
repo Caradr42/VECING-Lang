@@ -1,10 +1,15 @@
 myProgram
 //Testing math, logical and relational functions;
 
+
 (CONST myConst1 0);
 (CONST myConst2 1);
+(CONST myConst3 "(0 0 1 1)");
+(CONST myConst4 "(0 1 1 0)");
 
 (define myFunc1 (A B) (and B (or 1 A)));
+(define myFunc2 (A B) (and B (or A myConst4)));
+
 
 RENDER 
 (print (not (myFunc1 100 10)))
@@ -17,4 +22,5 @@ RENDER
 (print (and (!= 0 1) #false))
 (print (and (!= 0 1) (myConst1)))
 (print (and (!= 0 1) (myConst2)))
+(print (myFunc2 (myConst3) (1 0 0 1)))
 END
