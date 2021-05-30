@@ -1,13 +1,11 @@
 WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
-WARNING: 33 shift/reduce conflicts
-WARNING: 5 reduce/reduce conflicts
+WARNING: 24 shift/reduce conflicts
+WARNING: 31 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-((1000, None), ((1000, None), ((1001, None), ((1001, None), None))))
-((1000, None), ((1001, None), ((1001, None), ((1000, None), None))))
 ('PROGRAM', ('myProgram', ((('CONSTDEF', ('myConst1', (1000, None))), (('CONSTDEF', ('myConst2', (1001, None))), (('CONSTDEF', ('myConst3', (((1000, None), ((1000, None), ((1001, None), ((1001, None), None)))), None))), (('CONSTDEF', ('myConst4', (((1000, None), ((1001, None), ((1001, None), ((1000, None), None)))), None))), (('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('and', (('var', 'B'), ((('or', ((1001, None), (('var', 'A'), None))), None), None))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('and', (('var', 'B'), ((('or', (('var', 'A'), (('myConst4', None), None))), None), None))), None)))), None)))))), ('RENDER', ((('print', ((('not', ((('myFunc1', ((1002, None), ((1003, None), None))), None), None)), None), None)), None), ((('print', ((('add', ((('sub', ((('sqrt', ((1004, None), None)), None), ((('abs', ((1005, None), None)), None), None))), None), ((('power', ((('mult', ((1006, None), ((1007, None), None))), None), ((('div', ((1008, None), ((1009, None), None))), None), None))), None), None))), None), None)), None), ((('print', ((('<', ((('>=', ((('sqrt', ((1010, None), None)), None), ((('power', ((1011, None), ((1012, None), None))), None), None))), None), ((('>', ((1001, None), ((('!=', ((1007, None), ((1007, None), None))), None), None))), None), None))), None), None)), None), ((('print', ((('and', ((('=', ((1000, None), ((1001, None), None))), None), ((('!=', ((1000, None), ((1001, None), None))), None), None))), None), None)), None), ((('print', ((('<=', ((('power', ((1013, None), ((1009, None), None))), None), ((('mult', ((1014, None), ((1015, None), None))), None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1000, None), ((1001, None), None))), None), ((1001, None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1000, None), ((1001, None), None))), None), ((1001, None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1000, None), ((1001, None), None))), None), ((1000, None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1000, None), ((1001, None), None))), None), ((('myConst1', None), None), None))), None), None)), None), ((('print', ((('and', ((('!=', ((1000, None), ((1001, None), None))), None), ((('myConst2', None), None), None))), None), None)), None), ((('print', ((('myFunc2', ((('myConst3', None), None), (((1001, None), ((1000, None), ((1000, None), ((1001, None), None)))), None))), None), None)), None), None))))))))))))))) 
 
 No errors found in file tests/test9.vg

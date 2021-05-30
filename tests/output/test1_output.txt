@@ -1,36 +1,14 @@
 WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
-WARNING: 33 shift/reduce conflicts
-WARNING: 5 reduce/reduce conflicts
+WARNING: 24 shift/reduce conflicts
+WARNING: 31 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-((1001, None), ((1001, None), ((1001, None), None)))
-('PROGRAM', ('myProgram', ((('DEFINE', ('generate_pixel_tree', (('params', (('param', 'position'), ('param', 'iter'))), (('cond', ((((('>', (('var', 'iter'), ((1000, None), ((1000, None), None)))), None), (((('pixel', (('var', 'position'), (('struct', (('vect', (225, ('vect', (225, ('vect', ((1001, None), None)))))), None)), None))), None), ((('generate_pixel_tree', ((('add', (('var', 'position'), (('struct', (('vect', (-1, ('vect', ((1002, None), None)))), None)), None))), None), ((('sub', (('var', 'iter'), ((1000, None), None))), None), None))), None), (((('LAMBDA', ('0', (('params', (('param', 'x'), ('param', 'y'))), (('LAMBDA', ('1', (('params', ('param', 'z')), (('add', (('var', 'x'), (('var', 'y'), (('var', 'z'), None)))), None)))), None)))), (('var', 'x'), None)), (('var', 'iter'), None)), None))), None)), (((1000, None), ((('pixel', (('var', 'position'), ((((1001, None), ((1001, None), ((1001, None), None))), None), None))), None), None)), None)), None)), None)))), (('DEFINE', ('generate_pixel_tree2', (('params', (('param', 'position'), ('param', 'iter'))), (1003, None)))), None)), ('RENDER', ((('generate_pixel_tree', (('struct', (('vect', (0, ('vect', ((1004, None), None)))), None)), ((1005, None), None))), None), None))))) 
+('PROGRAM', ('myProgram', ((('DEFINE', ('generate_pixel_tree', (('params', (('param', 'position'), ('param', 'iter'))), (('cond', ((((('>', (('var', 'iter'), ((1000, None), ((1000, None), None)))), None), (((('pixel', (('var', 'position'), (((1001, None), ((1001, None), ((1001, None), None))), None))), None), ((('generate_pixel_tree', ((('add', (('var', 'position'), (((1002, None), ((1002, None), None)), None))), None), ((('sub', (('var', 'iter'), ((1000, None), None))), None), None))), None), (((('LAMBDA', ('0', (('params', (('param', 'x'), ('param', 'y'))), (('LAMBDA', ('1', (('params', ('param', 'z')), (('add', (('var', 'x'), (('var', 'y'), (('var', 'z'), None)))), None)))), None)))), (('var', 'x'), None)), (('var', 'iter'), None)), None))), None)), (((1000, None), ((('pixel', (('var', 'position'), ((((1001, None), ((1001, None), ((1001, None), None))), None), None))), None), None)), None)), None)), None)))), (('DEFINE', ('generate_pixel_tree2', (('params', (('param', 'position'), ('param', 'iter'))), (1003, None)))), None)), ('RENDER', ((('generate_pixel_tree', (((1005, None), ((1004, None), None)), ((1006, None), None))), None), None))))) 
 
 No errors found in file tests/test1.vg
 test1.vg
 
 
-Traceback (most recent call last):
-  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 191, in getValue
-    if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):
-  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 169, in pointerIsConstant
-    return address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]
-TypeError: '>=' not supported between instances of 'str' and 'int'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "VENCING_VM.py", line 84, in <module>
-    executeQuads(quads)
-  File "VENCING_VM.py", line 57, in executeQuads
-    nextLine = instructions[instructionName](quad, instructionPointer)
-  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 243, in params
-    (left, right) = memoryManager.getListPair(e)
-  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 216, in getListPair
-    left = self.getValue(address)
-  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 202, in getValue
-    raise Exception(
-Exception: Tried to access non existing memory at address 70012

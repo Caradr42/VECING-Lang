@@ -217,7 +217,7 @@ class LanguageParser(Parser):
             newConstList.append(self.constCuadGenerator(const))
 
         functionalList = self.flatListToFunctionalList(newConstList)
-        print(functionalList)
+        #print(functionalList)
         return functionalList
     
     def flatListToFunctionalList(self, flatList):
@@ -247,16 +247,25 @@ class LanguageParser(Parser):
         'NULL')
     def const(self, p):
         return (self.constCuadGenerator(p[0]), None)
+    
+    @_('structure')
+    def const(self, p):
+        print(p[0])
+        #return (self.constStructCuadGenerator(p[0]), None)
+        return
 
     ################ vector ################
-    @_('constNum w',
-        'listContainer w')
+    @_('constNum w')
     def vector(self, p):
-        return ('vect', (p[0], p[1]))
+        return ((self.constCuadGenerator(p[0]), None), p[1])
+
+    # @_('constNum')
+    # def vector(self, p):
+    #     return (self.constCuadGenerator(p[0]), None)
 
     @_('ID w')
     def vector(self, p):
-        return (('var', p[0]), p[1])
+        return (p[0], p[1])
 
     @_('COMMA vector')
     def w(self, p):
@@ -266,23 +275,30 @@ class LanguageParser(Parser):
     def w(self, p):
         return None
 
-    ################ structure ################
-    @_('LEFT_BRAKET x RIGHT_BRAKET')
+    ################ structure ################ [[],[]]
+    @_('LEFT_BRAKET x RIGHT_BRAKET', 'LEFT_BRAKET zz RIGHT_BRAKET')
     def structure(self, p):
         return p[1]
 
-    @_('structure y',
-        'vector y')
+    @_('structure y')
     def x(self, p):
-        return ('struct', (p[0], p[1]))
+        return (p[0], p[1])
+
+    @_('structure')
+    def x(self, p):
+        return (p[0], None)
+
+    @_('vector')
+    def zz(self, p):
+        return p[0]
 
     @_('COMMA x')
     def y(self, p):
         return p[1]
 
-    @_('empty')
-    def y(self, p):
-        return None
+    # @_('empty')
+    # def y(self, p):
+    #     return None
 
     ################ functionList ################
     @_('LANGUAGE_FUNC z',

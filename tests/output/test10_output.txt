@@ -1,16 +1,27 @@
 WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
-WARNING: 33 shift/reduce conflicts
-WARNING: 5 reduce/reduce conflicts
+WARNING: 24 shift/reduce conflicts
+WARNING: 31 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-((1000, None), ((1001, None), ((1000, None), ((1001, None), None))))
-('PROGRAM', ('myProgram', ((('CONSTDEF', ('myConst1', (((1000, None), ((1001, None), ((1000, None), ((1001, None), None)))), None))), None), ('RENDER', ((('print', ((('and', ((('myConst1', None), None), (((1000, None), ((1000, None), ((1001, None), ((1001, None), None)))), None))), None), None)), None), None))))) 
+(((1001, None), ((1000, None), None)), (((1003, None), ((1002, None), None)), None))
+('PROGRAM', ('myProgram', ((('CONSTDEF', ('myConst1', None)), None), ('RENDER', ((('print', ((('and', ((('myConst1', None), None), (((1001, None), ((1001, None), ((1004, None), ((1004, None), None)))), None))), None), None)), None), None))))) 
 
 No errors found in file tests/test10.vg
 test10.vg
 
 
->  1.0 0.0 0.0 0.0 
+Traceback (most recent call last):
+  File "VENCING_VM.py", line 84, in <module>
+    executeQuads(quads)
+  File "VENCING_VM.py", line 57, in executeQuads
+    nextLine = instructions[instructionName](quad, instructionPointer)
+  File "D:\Code\Repos\school\VECING-Lang\vm\Instructions.py", line 130, in endfunc
+    returnValue = memoryManager.getValue(tempReturnAddress)
+  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 180, in getValue
+    memorySegment = self.getMemorySegment(address)
+  File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 137, in getMemorySegment
+    if address >= consts.LIMITS["GLOBAL_LIM_L"] and address <= consts.LIMITS["GLOBAL_LIM_R"]:
+TypeError: '>=' not supported between instances of 'NoneType' and 'int'
