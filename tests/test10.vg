@@ -2,8 +2,8 @@ myProgram
 //Testing use of constant lists;
 
 //(CONST myConst1 "(1 0 1 0)");
-(CONST myConst1  [[1, 2], [3, 4]]);
+(CONST myConst1  [1,0,0,1]);
 
 RENDER 
-(print (and (myConst1) (1 1 0 0)))
+(print (or (myConst1) (1 1 0 0)))
 END

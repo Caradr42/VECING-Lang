@@ -251,17 +251,12 @@ class LanguageParser(Parser):
     @_('structure')
     def const(self, p):
         print(p[0])
-        #return (self.constStructCuadGenerator(p[0]), None)
-        return
+        return (p[0], None)
 
     ################ vector ################
     @_('constNum w')
     def vector(self, p):
         return ((self.constCuadGenerator(p[0]), None), p[1])
-
-    # @_('constNum')
-    # def vector(self, p):
-    #     return (self.constCuadGenerator(p[0]), None)
 
     @_('ID w')
     def vector(self, p):
@@ -295,10 +290,6 @@ class LanguageParser(Parser):
     @_('COMMA x')
     def y(self, p):
         return p[1]
-
-    # @_('empty')
-    # def y(self, p):
-    #     return None
 
     ################ functionList ################
     @_('LANGUAGE_FUNC z',
@@ -482,6 +473,7 @@ class LanguageParser(Parser):
                     t = self.cuadGenerator(functionBody[1][0], cuads)
                 else:
                     t = self.cuadGenerator(functionBody, cuads)
+
                 if t == None:
                     t = self.tempAddress(self.tCounter)
                     cuads.append(('assign', 'None', 'None', t))
@@ -590,6 +582,8 @@ class LanguageParser(Parser):
                         cuads[i][2] = endsOfExpr[endsCounter]
                         cuads[i] = tuple(cuads[i])
                         endsCounter += 1
+                
+                #return t
 
             # if the  instruction is a defined
             elif self.symbols.isSymbolInContext(tree[0]):

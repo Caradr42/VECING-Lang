@@ -1,0 +1,61 @@
+WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
+WARNING: There is 1 unused rule
+WARNING: Symbol 'comment' is unreachable
+WARNING: 24 shift/reduce conflicts
+WARNING: 31 reduce/reduce conflicts
+Parser debugging for LanguageParser written to parser.out
+Traceback (most recent call last):
+  File "compile.py", line 37, in parseFile
+    cuads = parser.getCuads()
+  File "D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py", line 369, in getCuads
+    self.cuadGenerator(self.programTree, cuads)
+  File "D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py", line 419, in cuadGenerator
+    self.cuadGenerator(define, cuads)
+  File "D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py", line 473, in cuadGenerator
+    t = self.cuadGenerator(functionBody[1][0], cuads)
+  File "D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py", line 550, in cuadGenerator
+    conditionals.append((head[0][0], head[1][0][0]))
+TypeError: 'NoneType' object is not subscriptable
+
+
+((1000, None), ((1001, None), ((1001, None), ((1000, None), None))))
+('PROGRAM', ('myProgram', ((('CONSTDEF', ('myConst1', (((1000, None), ((1001, None), ((1001, None), ((1000, None), None)))), None))), (('DEFINE', 
+
+('factorial', (('params', ('param', 'n')), (
+  ('cond', 
+    (
+      (
+        (
+          (
+            ('=', (('var', 'n'), ((1001, None), None))), None
+          ), 
+          (
+            (1000, None), 
+            None
+          )
+        ), 
+        (
+          (
+            (('=', (('var', 'n'), ((1000, None), None))), None), 
+            ((1000, None), None)
+          ), 
+          (
+            (((1000, None), None), ((('mult', (('var', 'n'), ((
+  
+            ('factorial', ((('sub', (('var', 'n'), ((1000, None), None))), None), None)), None), None))), None), None)), 
+            None
+          )
+            
+            
+            )), None)), None)))), None)), ('RENDER', ((('print', ((('factorial', (((1002, None), None), None)), None), None)), None), None))))) 
+
+File tests/factorial.vg has error
+'NoneType' object is not subscriptable
+
+
+Traceback (most recent call last):
+  File "VENCING_VM.py", line 75, in <module>
+    file = readFile(fileName)
+  File "VENCING_VM.py", line 21, in readFile
+    raise Exception("File does not exist")
+Exception: File does not exist
