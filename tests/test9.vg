@@ -4,7 +4,7 @@ myProgram
 
 (CONST myConst1 0);
 (CONST myConst2 1);
-(CONST mConst3 "(0 0 1 1)");
+(CONST myConst3 "(0 0 1 1)");
 (CONST myConst4 "(0 1 1 0)");
 
 (define myFunc1 (A B) (and B (or 1 A)));

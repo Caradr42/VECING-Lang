@@ -1,4 +1,4 @@
-WARNING: D:\Code\Repos\school\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
+WARNING: C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
 WARNING: 24 shift/reduce conflicts

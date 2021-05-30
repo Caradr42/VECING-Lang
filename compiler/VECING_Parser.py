@@ -546,6 +546,7 @@ class LanguageParser(Parser):
             elif tree[0] == 'cond':
                 conditionals = []
                 head = tree[1][0]
+                CONDRESULT = 'CONDRESULT'
 
                 while(head != None):
                     conditionals.append((head[0][0], head[1][0][0]))
@@ -559,31 +560,62 @@ class LanguageParser(Parser):
 
                 endsOfExpr = []
 
+                # Returns last return address where something was stored
+                def getLastStoredAddress():
+                    #cuadsIndex = len(cuads) - 1
+                    for i in range(len(cuads) - 1, -1, -1):
+                        returnValue = cuads[i][3]
+                        isAddress = type(returnValue) == int
+                        if isAddress:
+                            return returnValue
+                    return None
+
                 for (expr, body) in conditionals:
                     endOfExpr = endOfCond
 
                     conditionLine = self.cuadGenerator(expr, cuads)
                     cuads.append(["gotoFalse", conditionLine, None, None])
-                    self.cuadGenerator(body, cuads)
-
+                    t = self.cuadGenerator(body, cuads)
+                    
+                    cuads.append(["assign", getLastStoredAddress(), "None", CONDRESULT])
+                    
                     endOfCond = len(cuads) + 1
                     endOfExpr = endOfCond + 1
                     endsOfExpr.append(endOfExpr)
 
                     cuads.append(["goto", None, "None", None])
                     endOfCond = len(cuads) + 1
+                
+                # endsOfExpr[-1] += 1
+                
+                self.tCounter += 1
+                condReturnAddress = self.tempAddress(self.tCounter)
+
+                cuads.append(["assign", None, "None", condReturnAddress])
+                endOfCond = len(cuads) + 1
 
                 endsCounter = 0
                 for i in range(startCond, endOfCond - 1):
                     if cuads[i][0] == "goto":
                         cuads[i][1] = endOfCond
                         cuads[i] = tuple(cuads[i])
-                    elif cuads[i][0] == "gotoFalse":
+                    if cuads[i][0] == "gotoFalse":
                         cuads[i][2] = endsOfExpr[endsCounter]
                         cuads[i] = tuple(cuads[i])
                         endsCounter += 1
+                    elif cuads[i][0] == "assign":
+                        if cuads[i][3] == CONDRESULT:
+                            cuads[i][3] = condReturnAddress
+                        cuads[i] = tuple(cuads[i])
                 
-                #return t
+                #isTemporal = (condReturnAddress >= consts.LIMITS["TEMPORAL_LIM_L"] and condReturnAddress <= consts.LIMITS["TEMPORAL_LIM_R"] )
+                # if(not isTemporal):
+                    
+                #     cuads.append(["assign", condReturnAddress, "None", self.tempAddress(self.tCounter)])
+                    
+                #     return self.tempAddress(self.tCounter)
+                # else:
+                return condReturnAddress
 
             # if the  instruction is a defined
             elif self.symbols.isSymbolInContext(tree[0]):

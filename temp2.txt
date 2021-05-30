@@ -1,66 +1,201 @@
-[2]
-('struct', 
+#test3
+
+('cond', 
   (
-    (1000, None), 
+    (
+      (
+        ('myFunc1', ((1000, None), ((1000, None), None))), 
+        None
+      ),
+      (
+        (('print', ((1000, None), None)), None),
+        ((('myFunc2', ((1004, None), ((1005, None), None))), None), ((('print', ((1001, None), None)), None), ((('myFunc1', ((1006, None), ((1007, None), None))), None), ((('print', ((1002, None), None)), None), None))))
+      )
+    ), 
     None
   )
 )
 
-[2, 3]
-('struct', 
-  (
-    (1000, None),
-    (
-      (1001, None),
-      None
-    )
-  )
-)
 
-[2, 3, 4]
-('struct', 
-  (
-    (1000, None),
-    (
-      (1001, None),
-      (
-        (1003, None),
-        None
-      )
-    )
-  )
-)
+#factorial
 
-[[2, 3], [4, 5]]
-('struct', 
+('cond', 
   (
     (
-      (1000, None),
       (
-        (1001, None),
-        None
-      )
-    ),
-    (
-      (
-        (1000, None),
         (
-          (1001, None),
+          ('=', (('var', 'n'), ((1001, None), None))), 
+          None
+        ), 
+        (
+          (1000, None), 
           None
         )
-      ),
-      None
-    )    
-  )
-)
-
-[[1]]
-('struct', 
-  (
-    ( 
-      (1000, None),
-      None
-    ),
+      ), 
+      (
+        (
+          (
+            ('=', (('var', 'n'), ((1000, None), None))), 
+            None
+          ), 
+          (
+            (1000, None), 
+            None
+          )
+        ), 
+        (
+          (((1000, None), None), ((('mult', (('var', 'n'), ((('factorial', ((('sub', (('var', 'n'), ((1000, None), None))), None), None)), None), None))), None), None)), 
+          None
+        )
+          
+      
+      )
+    ), 
     None
   )
 )
+
+CONST 1.000000000 None 1000
+CONST 0.000000000 None 1001
+CONST 4.000000000 None 1002
+funcSize 7 0 None
+funcSize 17 1 None
+goto 57 None None
+list 1000 None 70000
+list 1001 None 70002
+list 1001 None 70004
+list 1000 None 70006
+list 70006 None 70008
+list 70004 70008 70010
+list 70002 70010 70012
+list 70000 70012 70014
+list 70014 None 70016
+endfunc 70016 None None
+        era = None None
+        list 1001 None 70000
+        list 70000 None 70002
+        list 10000 70002 70004            
+        params 70004 None param1
+        gosub = None 20000
+        gotoFalse 20000 26 None
+        list 1000 None 70006
+        assign 70006 None 
+    goto 55 None None
+        era = None None
+        list 1000 None 70008
+        list 70008 None 70010
+        list 10000 70010 70012
+        params 70012 None param1
+        gosub = None 20001
+        gotoFalse 20001 35 None
+        list 1000 None 70014
+        assign 70014 None 20004
+    goto 55 None None
+        list 1000 None 70016
+        gotoFalse 70016 55 None
+        era mult None None
+        era factorial None None
+        era sub None None
+        list 1000 None 70018
+        list 70018 None 70020
+        list 10000 70020 70022
+        params 70022 None param1
+        gosub sub None 20002
+        list 20002 None 70024
+        list 70024 None 70026
+        params 70026 None param1
+        gosub 17 None 20003
+        list 20003 None 70028
+        list 70028 None 70030
+        list 10000 70030 70032
+        params 70032 None param1
+        gosub mult None 20004
+        assign 20004 None 20004
+        goto 59 None None
+        assign None None 20004
+    endfunc 20004 None None
+era print None None
+era factorial None None
+list 1002 None 70000
+list 70000 None 70002
+list 70002 None 70004
+params 70004 None param1
+gosub 17 None 20000
+list 20000 None 70006
+list 70006 None 70008
+params 70008 None param1
+gosub print None 20001
+PROGRAM myProgram None END
+
+////////////////////factorial
+CONST 1.000000000 None 1000
+CONST 0.000000000 None 1001
+CONST 4.000000000 None 1002
+funcSize 7 0 None
+funcSize 17 1 None
+goto 57 None None
+list 1000 None 70000
+list 1001 None 70002
+list 1001 None 70004
+list 1000 None 70006
+list 70006 None 70008
+list 70004 70008 70010
+list 70002 70010 70012
+list 70000 70012 70014
+list 70014 None 70016
+endfunc 70016 None None
+        era = None None
+        list 1001 None 70000
+        list 70000 None 70002
+        list 10000 70002 70004            
+        params 70004 None param1
+        gosub = None 20000
+        gotoFalse 20000 26 None
+        list 1000 None 70006
+        assign 70006 None 
+    goto 55 None None
+        era = None None
+        list 1000 None 70008
+        list 70008 None 70010
+        list 10000 70010 70012
+        params 70012 None param1
+        gosub = None 20001
+        gotoFalse 20001 35 None
+        list 1000 None 70014
+        assign 70014 None 20004
+    goto 55 None None
+        list 1000 None 70016
+        gotoFalse 70016 55 None
+        era mult None None
+        era factorial None None
+        era sub None None
+        list 1000 None 70018
+        list 70018 None 70020
+        list 10000 70020 70022
+        params 70022 None param1
+        gosub sub None 20002
+        list 20002 None 70024
+        list 70024 None 70026
+        params 70026 None param1
+        gosub 17 None 20003
+        list 20003 None 70028
+        list 70028 None 70030
+        list 10000 70030 70032
+        params 70032 None param1
+        gosub mult None 20004
+        assign 20004 None 20004
+        goto 59 None None
+        assign None None 20004
+    endfunc 20004 None None
+era print None None
+era factorial None None
+list 1002 None 70000
+list 70000 None 70002
+list 70002 None 70004
+params 70004 None param1
+gosub 17 None 20000
+list 20000 None 70006
+list 70006 None 70008
+params 70008 None param1
+gosub print None 20001
+PROGRAM myProgram None END
