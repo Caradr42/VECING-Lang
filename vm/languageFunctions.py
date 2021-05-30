@@ -105,14 +105,94 @@ less = binaryFunctionGenerator(lambda x, y: 1.0 if x < y else 0.0, 'evaluate < o
 notqueal = binaryFunctionGenerator(lambda x, y: 1.0 if x != y else 0.0, 'evaluate != of')
 equal = binaryFunctionGenerator(lambda x, y: 1.0 if x == y else 0.0, 'evaluate == of')
 
+#list Access
+
+def validateList(pythonList):
+    return type(pythonList) == tuple or type(pythonList) == list
+
+def isList(memoryManager, paramsList):
+    return float(validateList(paramsList[0]))
+
+#true if list of format (1.2, None)
+def single(memoryManager, paramsList):
+    A = paramsList[0]
+    if type(A) == float:
+        return [1.0]
+    if type(A[0]) == float and A[1] == None:
+        return [1.0]
+    return [0.0]
+
+def car(memoryManager, paramsList):
+    A = paramsList[0]
+    if not validateList(A):
+        raise Exception('Tried to get car of non-list element')
+    return A[0]
+
+def cdr(memoryManager, paramsList):
+    A = paramsList[0]
+    if not validateList(A):
+        raise Exception('Tried to get cdr of non-list element')
+    if len(A) == 1:
+        raise Exception('Tried to apply cdr in single element list')
+    return A[1]
+    
+def empty(memoryManager, paramsList):
+    A = paramsList[0]
+    if validateList(A) and A[0] == None:
+        return 1.0
+    return len(A) == 0
+
+def elemCount(memoryManager, paramsList):
+    head = paramsList[0]
+    size = 0
+    
+    if not validateList(head):
+        raise Exception('Tried to get element count of non-list')
+    
+    def countHelper(head):
+        if (validateList(head)):
+            if head == None:
+                return
+            if single(head):
+                size += 1
+            else:
+                countHelper(head[0])
+                countHelper(head[1])
+    countHelper(head)
+    return [size]
+
+def lenght(memoryManager, paramsList):
+    head = paramsList[0]
+    size = 0
+
+    if not validateList(head):
+        raise Exception('Tried to get lenght of non-list')
+    if single(head):
+        return [1.0]
+
+    def lenHelper(head):
+        if (validateList(head)):
+            if head == None:
+                return
+            if single(head):
+                size += 1
+            else:
+                size += 1
+                if(head[1] != None):
+                    lenHelper(head[1])
+    lenHelper(head)
+    return [size]
+
 
 def printList(memoryManager, paramsList):
     A = paramsList[0]
     
     if type(A) is not tuple:
         print("> ", A)
+        return A
     else:
         print("> ", end =" ")
         for e in A:
             print(e, end =" ")
         print("")
+        return A

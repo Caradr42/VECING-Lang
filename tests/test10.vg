@@ -6,4 +6,5 @@ myProgram
 
 RENDER 
 (print (or (myConst1) (1 1 0 0)))
+(print (or [1,0,0,1] (1 1 0 0)))
 END

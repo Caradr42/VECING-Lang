@@ -18,6 +18,4 @@ RENDER
 (print (fibonacci 4))
 (print (fibonacci 7))
 (print (fibonacci 9))
-(print (fibonacci 13))
-(print (fibonacci 19))
 END

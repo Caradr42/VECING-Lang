@@ -319,7 +319,15 @@ langFunctions = {
     '>': languageFunctions.bigger,
     '<': languageFunctions.less,
     '!=': languageFunctions.notqueal,
-    '=': languageFunctions.equal
+    '=': languageFunctions.equal,
+    #List Access
+    'isList': languageFunctions.isList,
+    'single': languageFunctions.single,
+    'car': languageFunctions.car,
+    'cdr': languageFunctions.cdr,
+    'empty': languageFunctions.empty,
+    'elemCount': languageFunctions.elemCount,
+    'lenght': languageFunctions.lenght,
 }
 
 

@@ -6,7 +6,7 @@ WARNING: 31 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-('PROGRAM', ('fibonacciTest', ((('DEFINE', ('fibonacci', (('params', ('param', 'x')), (('cond', (((('=', (('var', 'x'), ((1000, None), None))), None), (((1000, None), None), ((('=', (('var', 'x'), ((1001, None), None))), None), (((1001, None), None), (((1001, None), None), ((('add', ((('fibonacci', ((('sub', (('var', 'x'), ((1001, None), None))), None), None)), None), ((('fibonacci', ((('sub', (('var', 'x'), ((1002, None), None))), None), None)), None), None))), None), None)))))), None)), None)))), None), ('RENDER', ((('print', ((('fibonacci', ((1000, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1001, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1003, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1004, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1005, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1006, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1007, None), None)), None), None)), None), None))))))))))) 
+('PROGRAM', ('fibonacciTest', ((('DEFINE', ('fibonacci', (('params', ('param', 'x')), (('cond', (((('=', (('var', 'x'), ((1000, None), None))), None), (((1000, None), None), ((('=', (('var', 'x'), ((1001, None), None))), None), (((1001, None), None), (((1001, None), None), ((('add', ((('fibonacci', ((('sub', (('var', 'x'), ((1001, None), None))), None), None)), None), ((('fibonacci', ((('sub', (('var', 'x'), ((1002, None), None))), None), None)), None), None))), None), None)))))), None)), None)))), None), ('RENDER', ((('print', ((('fibonacci', ((1000, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1001, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1003, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1004, None), None)), None), None)), None), ((('print', ((('fibonacci', ((1005, None), None)), None), None)), None), None))))))))) 
 
 No errors found in file tests/fibonacci.vg
 fibonacci.vg
@@ -17,5 +17,3 @@ fibonacci.vg
 >  3.0 
 >  13.0 
 >  34.0 
->  233.0 
->  4181.0 
