@@ -6,12 +6,16 @@ WARNING: 5 reduce/reduce conflicts
 Parser debugging for LanguageParser written to parser.out
 
 
-('PROGRAM', ('myProgram', ((('DEFINE', ('generate_pixel_tree', (('params', (('param', 'position'), ('param', 'iter'))), (('cond', ((((('>', (('var', 'iter'), ((1000, None), ((1000, None), None)))), None), (((('pixel', (('var', 'position'), (('struct', (('vect', (225, ('vect', (225, ('vect', ((1001, None), None)))))), None)), None))), None), ((('generate_pixel_tree', ((('add', (('var', 'position'), (('struct', (('vect', (-1, ('vect', ((1002, None), None)))), None)), None))), None), ((('sub', (('var', 'iter'), ((1000, None), None))), None), None))), None), (((('LAMBDA', ('0', (('params', (('param', 'x'), ('param', 'y'))), (('LAMBDA', ('1', (('params', ('param', 'z')), (('add', (('var', 'x'), (('var', 'y'), (('var', 'z'), None)))), None)))), None)))), (('var', 'x'), None)), (('var', 'iter'), None)), None))), None)), (((1000, None), ((('pixel', (('var', 'position'), ((1003, None), None))), None), None)), None)), None)), None)))), (('DEFINE', ('generate_pixel_tree2', (('params', (('param', 'position'), ('param', 'iter'))), (1003, None)))), None)), ('RENDER', ((('generate_pixel_tree', (('struct', (('vect', (0, ('vect', ((1004, None), None)))), None)), ((1005, None), None))), None), None))))) 
+((1001, None), ((1001, None), ((1001, None), None)))
+('PROGRAM', ('myProgram', ((('DEFINE', ('generate_pixel_tree', (('params', (('param', 'position'), ('param', 'iter'))), (('cond', ((((('>', (('var', 'iter'), ((1000, None), ((1000, None), None)))), None), (((('pixel', (('var', 'position'), (('struct', (('vect', (225, ('vect', (225, ('vect', ((1001, None), None)))))), None)), None))), None), ((('generate_pixel_tree', ((('add', (('var', 'position'), (('struct', (('vect', (-1, ('vect', ((1002, None), None)))), None)), None))), None), ((('sub', (('var', 'iter'), ((1000, None), None))), None), None))), None), (((('LAMBDA', ('0', (('params', (('param', 'x'), ('param', 'y'))), (('LAMBDA', ('1', (('params', ('param', 'z')), (('add', (('var', 'x'), (('var', 'y'), (('var', 'z'), None)))), None)))), None)))), (('var', 'x'), None)), (('var', 'iter'), None)), None))), None)), (((1000, None), ((('pixel', (('var', 'position'), ((((1001, None), ((1001, None), ((1001, None), None))), None), None))), None), None)), None)), None)), None)))), (('DEFINE', ('generate_pixel_tree2', (('params', (('param', 'position'), ('param', 'iter'))), (1003, None)))), None)), ('RENDER', ((('generate_pixel_tree', (('struct', (('vect', (0, ('vect', ((1004, None), None)))), None)), ((1005, None), None))), None), None))))) 
 
 No errors found in file tests/test1.vg
 test1.vg
 
 
+Executing: generate_pixel_tree
+Current Memory:  {'global': {1000: 1.0, 1001: 225.0, 1002: -1.0, 1003: 2.0, 1004: 4.0, 1005: 16.0}, 'local': {}, 'list': {70000: 1004, 70001: None, 70002: 70000, 70003: None, 70004: 'vect', 70005: 70002, 70006: 0, 70007: 70004, 70008: 'vect', 70009: 70006, 70010: 70008, 70011: None, 70012: 'struct', 70013: 70010, 70014: 1005, 70015: None, 70016: 70014, 70017: None, 70018: 70012, 70019: 70016}, 'temporal': {}, 'temporalList': {}}
+function params  [70012, 70014]
 Traceback (most recent call last):
   File "D:\Code\Repos\school\VECING-Lang\vm\MemoryManager.py", line 191, in getValue
     if not (memory is None or type(memory) == float) and self.pointerIsConstant(memory):

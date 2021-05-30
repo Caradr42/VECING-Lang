@@ -185,8 +185,8 @@ class LanguageParser(Parser):
 
     def constCuadGenerator(self, value):
         if type(value) == list or type(value) == tuple:
-            initialListAddress = self.constArrayCuadGenerator(value)
-            return initialListAddress
+            pythonList = self.constArrayCuadGenerator(value)
+            return pythonList
         else:
             if value in self.constValues.keys():
                 address = self.constValues[value]
@@ -212,19 +212,26 @@ class LanguageParser(Parser):
         return self.address - 1
 
     def constArrayCuadGenerator(self, constList):
-        initialAddress = self.address
-        size = len(constList)
-        if(size == 0):
-            self.address += 1
-            self.constsCuads.append(
-                ('CONST', "{:.9f}".format(0.0), "None", self.address - 1))
-            return self.address - 1
+        newConstList = []
+        for const in constList:
+            newConstList.append(self.constCuadGenerator(const))
 
-        self.constsCuads.append(('VECT', size, "None", self.address))
-
-        for e in constList:
-            self.constCuadGenerator(e)
-        return initialAddress
+        functionalList = self.flatListToFunctionalList(newConstList)
+        print(functionalList)
+        return functionalList
+    
+    def flatListToFunctionalList(self, flatList):
+        if flatList == None or len(flatList) == 0:
+            return flatList
+        if len(flatList) == 1:
+            return (flatList[0], None)
+            
+        flatList.reverse()
+        funcList = ((flatList[0], None), None)
+        
+        for e in flatList[1:]:
+            funcList = ((e, None), funcList)
+        return funcList
 
     ################ constNum ################
 

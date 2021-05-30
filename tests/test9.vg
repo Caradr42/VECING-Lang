@@ -1,9 +1,10 @@
 myProgram
 //Testing math, logical and relational functions;
 
-(define myFunc1 (A B) (and B (or 1 A)));
 (CONST myConst1 0);
 (CONST myConst2 1);
+
+(define myFunc1 (A B) (and B (or 1 A)));
 
 RENDER 
 (print (not (myFunc1 100 10)))
