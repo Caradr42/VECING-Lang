@@ -1,0 +1,23 @@
+fibonacciTest
+
+//Recursive function to calculate fibonacci of x;
+(define fibonacci (x)
+    (cond
+        [
+            (= x 0) (0)
+            (= x 1) (1)
+            (#true) (add (fibonacci (sub x 1)) (fibonacci (sub x 2)))
+        ]
+    )
+);
+
+
+RENDER
+(print (fibonacci 0))
+(print (fibonacci 1))
+(print (fibonacci 4))
+(print (fibonacci 7))
+(print (fibonacci 9))
+(print (fibonacci 13))
+(print (fibonacci 19))
+END
