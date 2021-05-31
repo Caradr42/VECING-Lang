@@ -119,14 +119,17 @@ def era(quad, instructionPointer):
 def assign(quad, instructionPointer):
     value = quad[1]
     address = quad[3]
+
+    debug.print("assigned: ", value, " to ", address)
     memoryManager.setValue(address, value)
 
 def endfunc(quad, instructionPointer):
     tempReturnAddress = quad[1]
 
+    debug.print("endFunc: ")    
     debug.print("Temp return address after function", tempReturnAddress)
     debug.print("meomry at endFunc: ", memoryManager.memory)
-    debug.print("pointer to return of func at endFunc: ", tempReturnAddress)
+    debug.print("pointer to return result of func at endFunc: ", tempReturnAddress)
     returnValue = memoryManager.getValue(tempReturnAddress)
     if type(returnValue) == float:
         #returnValue = [returnValue]
@@ -145,6 +148,8 @@ def gosub(quad, instructionPointer):
     funcName = quad[1]
     returnAddress = quad[3]
     isUserDefinedFunction = type(funcName) == int
+
+    debug.print("gosub: ", funcName)
 
     if isUserDefinedFunction:
         # Get local lists to python list from parent function

@@ -1,6 +1,6 @@
 myProgram
 //Testing use of constant lists;
-
+(CONST myConst [1,3,4,5,6]);
 
 RENDER 
 (print (1 2))
@@ -10,6 +10,13 @@ RENDER
 (print (append 2 (append (append (1 (4 5) 3) [[8, 9], [11, 12]]) (append 2 3))))
 (print (append (1 (4 5) 3) [[8, 9], [11, 12]]))
 (print (append ((2)) [[8]]))
+(print (car myConst))
+(print (car ((1 2 3) 4)))
+(print (cdr myConst))
+(print (single myConst))
+(print (isList myConst))
+(print (empty myConst))
+(print (elemCount myConst))
+(print (lenght myConst))
+
 END
-
-

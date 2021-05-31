@@ -1,6 +1,10 @@
 import operator
 import math
 
+def handleEmpty(paramsList, operationName='handle'):
+    if len(paramsList) == 0 or paramsList == None or paramsList[0] == None:
+        raise Exception("cannot {} empty list".format(operationName))
+
 def binaryFunctionGenerator(op, operationName):
     def binaryFunction(memoryManager, paramsList):
         def binaryOperation(a , b):
@@ -9,7 +13,8 @@ def binaryFunctionGenerator(op, operationName):
             if type(a) is not float or type(b) is not float:
                 raise Exception("Cannot {} anidated lists".format(operationName))
             return op(a, b)
-
+        
+        handleEmpty(paramsList, operationName)
         A = paramsList[0]
         B = paramsList[1]
 
@@ -40,6 +45,7 @@ def unaryFunctionGenerator(op, operationName):
                 raise Exception("Cannot {} anidated list".format(operationName))
             return op(a)
 
+        handleEmpty(paramsList, operationName)
         A = paramsList[0]
         
         if type(A) == float:
@@ -53,8 +59,6 @@ def unaryFunctionGenerator(op, operationName):
         return result
 
     return unaryFunction
-
-
 
 def flattenPythonList(pythonList):
     if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
@@ -135,9 +139,11 @@ def validateList(pythonList):
     return type(pythonList) == tuple or type(pythonList) == list
 
 def isList(memoryManager, paramsList):
+    handleEmpty(paramsList, "check if list of")
     return float(validateList(paramsList[0]))
 
 def append(memoryManager, paramsList):
+    handleEmpty(paramsList, "append lists of")
     A = paramsList[0]
     B = paramsList[1]
     if type(A) == float:
@@ -150,6 +156,7 @@ def append(memoryManager, paramsList):
 
 #true if list of format (1.2, None)
 def single(memoryManager, paramsList):
+    handleEmpty(paramsList, "check if single value of")
     A = paramsList[0]
     if type(A) == float:
         return [1.0]
@@ -158,12 +165,14 @@ def single(memoryManager, paramsList):
     return [0.0]
 
 def car(memoryManager, paramsList):
+    handleEmpty(paramsList, "car")
     A = paramsList[0]
     if not validateList(A):
         raise Exception('Tried to get car of non-list element')
     return A[0]
 
 def cdr(memoryManager, paramsList):
+    handleEmpty(paramsList, "cdr")
     A = paramsList[0]
     if not validateList(A):
         raise Exception('Tried to get cdr of non-list element')
@@ -172,12 +181,15 @@ def cdr(memoryManager, paramsList):
     return A[1]
     
 def empty(memoryManager, paramsList):
+    if len(paramsList) == 0:
+        return 1.0
     A = paramsList[0]
     if validateList(A) and A[0] == None:
         return 1.0
     return len(A) == 0
 
 def elemCount(memoryManager, paramsList):
+    handleEmpty(paramsList, "count elements of")
     head = paramsList[0]
     size = 0
     
@@ -197,6 +209,7 @@ def elemCount(memoryManager, paramsList):
     return [size]
 
 def lenght(memoryManager, paramsList):
+    handleEmpty(paramsList, "cannot get length of")
     head = paramsList[0]
     size = 0
 
@@ -220,6 +233,10 @@ def lenght(memoryManager, paramsList):
 
 
 def printList(memoryManager, paramsList):
+    if len(paramsList) == 0 or paramsList == None or paramsList[0] == None:
+        print(paramsList)
+        return paramsList
+
     A = paramsList[0]
     
     if type(A) is not tuple:

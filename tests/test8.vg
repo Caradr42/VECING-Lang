@@ -4,7 +4,8 @@ myProgram
 (define myFunc1 (A B) 
     (cond 
         [
-            (sub A B) (print (myFunc1 (sub A B) B))
+            (sub A B) (0)
+            (myFunc1 (sub A B) B) (print (sub A B))
         ]
     )
 );
