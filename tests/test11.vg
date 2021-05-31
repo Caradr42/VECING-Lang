@@ -15,7 +15,9 @@ RENDER
 (print (cdr myConst))
 (print (single myConst))
 (print (isList myConst))
+(print (isList 1))
 (print (empty myConst))
+(print (empty (cdr (1))))
 (print (elemCount myConst))
 (print (lenght myConst))
 

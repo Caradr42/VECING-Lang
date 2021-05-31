@@ -154,14 +154,14 @@ def append(memoryManager, paramsList):
     B =list(B)
     return A + B
 
-#true if list of format (1.2, None)
+#true if list of format (1.2,)
 def single(memoryManager, paramsList):
     handleEmpty(paramsList, "check if single value of")
     A = paramsList[0]
     if type(A) == float:
         return [1.0]
-    if type(A[0]) == float and A[1] == None:
-        return [1.0]
+    # if len(A) == 1 and type(A[0]) == float:
+    #     return [1.0]
     return [0.0]
 
 def car(memoryManager, paramsList):
@@ -170,7 +170,6 @@ def car(memoryManager, paramsList):
     A = paramsList[0]
     if not validateList(A):
         raise Exception('Tried to get car of non-list element')
-    print("result car: ", [A[0]])
     return [A[0]]
 
 def cdr(memoryManager, paramsList):
@@ -180,8 +179,8 @@ def cdr(memoryManager, paramsList):
     if not validateList(A):
         raise Exception('Tried to get cdr of non-list element')
     if len(A) == 1:
-        raise Exception('Tried to apply cdr in single element list')
-    print("result cdr: ", [A[1:]])
+        return []
+        #raise Exception('Tried to apply cdr in single element list')
     return [A[1:]]
     
 def empty(memoryManager, paramsList):
@@ -195,45 +194,36 @@ def empty(memoryManager, paramsList):
 def elemCount(memoryManager, paramsList):
     handleEmpty(paramsList, "count elements of")
     head = paramsList[0]
-    size = 0
     
     if not validateList(head):
         raise Exception('Tried to get element count of non-list')
     
     def countHelper(head):
-        if (validateList(head)):
-            if head == None:
-                return
-            if single(None, head):
-                size += 1
-            else:
-                countHelper(head[0])
-                countHelper(head[1])
-    countHelper(head)
-    return [size]
+        if head == None:
+            return 0
+
+        if type(head) == float:
+            return 1
+        elif (validateList(head)):
+            acum = 0
+            for e in head:
+                acum += countHelper(e)
+            return acum
+        return 0
+
+    size = countHelper(head)
+    return [float(size)]
 
 def lenght(memoryManager, paramsList):
     handleEmpty(paramsList, "cannot get length of")
     head = paramsList[0]
-    size = 0
 
     if not validateList(head):
         raise Exception('Tried to get lenght of non-list')
-    if single(head):
-        return [1.0]
+    # if type(head) == float:
+    #     return [1.0]
 
-    def lenHelper(head):
-        if (validateList(head)):
-            if head == None:
-                return
-            if single(head):
-                size += 1
-            else:
-                size += 1
-                if(head[1] != None):
-                    lenHelper(head[1])
-    lenHelper(head)
-    return [size]
+    return [float(len(head))]
 
 
 def printList(memoryManager, paramsList):
