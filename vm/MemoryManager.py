@@ -72,18 +72,45 @@ class MemoryManager():
         else:
             raise Exception("This is not posible")
 
-    #(1,2,3) => ((1, None), ((2, None), ((3, None), None)))
+    #(1,2,3) => ((1, None), ((2, None), ((3, None), None)))'
+    #((1,),2,3) => ((1, None), ((2, None), ((3, None), None)))
+
+    #[(2.0,), (8.0,)] => ((((2.0, None), None), None), (((8.0, None), None), None))
+
+
+    #[(8.0,), (2.0,)]
     def flatListToFunctionalList(self, flatList):
+        if type(flatList) == float:
+            return (flatList, None)
+
         if flatList == None or len(flatList) == 0:
             return flatList
         if len(flatList) == 1:
             return (flatList[0], None)
-            
+        if type(flatList) == tuple:
+            flatList = list(flatList)
         flatList.reverse()
-        funcList = ((flatList[0], None), None)
         
+        inside = flatList[0]
+        if type(inside) == tuple and len(inside) == 1:
+            inside = (self.flatListToFunctionalList(inside[0]), None)
+            funcList = (inside, None)
+        elif type(inside) == tuple:
+            funcList = (self.flatListToFunctionalList(inside), None)
+        elif type(inside) == float:
+            funcList = (self.flatListToFunctionalList(inside), None)
+        else:
+            funcList = self.flatListToFunctionalList(inside)
+
         for e in flatList[1:]:
-            funcList = ((e, None), funcList)
+            temp = e
+            if type(e) == tuple and len(e) == 1:
+                temp = ((self.flatListToFunctionalList(e[0]), None), None)
+                funcList = (temp, funcList)
+            elif type(e) == tuple:
+                funcList = (self.flatListToFunctionalList(temp), funcList)
+            else:
+                funcList = (self.flatListToFunctionalList(temp), funcList)
         return funcList
 
     def pythonlistToPointerList(self, pythonList): # [((1.0, None), None)]
@@ -98,7 +125,8 @@ class MemoryManager():
             if len(pythonList) == 1 and pythonList[0] == None:
                 return None
             if len(pythonList) == 1 and type(pythonList[0]) == float:
-                pythonList.append(None)
+                #pythonList.append(None)
+                pythonList = (pythonList[0], None)
             
             if type(pythonList[0]) == tuple or type(pythonList[0]) == list:
                 left = self.pythonlistToPointerList(pythonList[0])

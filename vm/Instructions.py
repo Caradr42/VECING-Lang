@@ -195,7 +195,8 @@ def gosub(quad, instructionPointer):
         
         returnList = None
         flattenedParams = languageFunctions.flattenPythonList(pythonParamsList)
-        returnValue = langFunctions[funcName](memoryManager, flattenedParams)
+        debug.print("lang Func pythonParamsList after flatten: ", flattenedParams)
+        returnValue = list(langFunctions[funcName](memoryManager, flattenedParams))
 
         debug.print("Returned valued after lang function", returnValue)
         returnValue = memoryManager.flatListToFunctionalList(returnValue)
@@ -321,6 +322,7 @@ langFunctions = {
     '!=': languageFunctions.notqueal,
     '=': languageFunctions.equal,
     #List Access
+    'append': languageFunctions.append,
     'isList': languageFunctions.isList,
     'single': languageFunctions.single,
     'car': languageFunctions.car,

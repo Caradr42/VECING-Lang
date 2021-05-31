@@ -55,30 +55,54 @@ def unaryFunctionGenerator(op, operationName):
     return unaryFunction
 
 
+
 def flattenPythonList(pythonList):
-    if len(pythonList) == 0:
+    if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
         return []
-    if pythonList == None or (len(pythonList) == 1 and pythonList[0] == None):
-        return [None]
 
     def flattenHelper(lista):
-        left = lista[0]
-        right = lista[1]
+        if type(lista) is not tuple:
+            raise Exception("not handled")
 
-        if type(left) == float:
-            return [left]
+        izq = lista[0]
+        der = lista[1]
+        
+        if type(izq) is float: #no need to check right because constants always have None right
+            return izq 
+        
+        if type(izq[0]) is float: #check left depth
+            izqResult = izq[0]
+        else:
+            izqResult = flattenHelper(izq)
 
-        if not(type(left[0]) == float and left[1] == None):
-            raise Exception("Cannot flatten list of depth grater than 1")
+            if type(izq[0][0]) is float and der is None and izq[1] is None:
+                return (izqResult, )
 
-        if right is None:
-            return [left[0]] 
+        if der is None:
+            return izqResult
 
-        return [left[0]] + flattenHelper(right)
-    
+        temp = []
+        if  der[1] is not None:
+            temp.append(izqResult)
+            derResult = flattenHelper(der)
+            temp = temp + list(derResult)
+        else:
+            temp.append(izqResult)
+            derResult = flattenHelper(der)
+            temp.append(derResult)
+        return tuple(temp)
+        
     elems = []
     for tupleList in pythonList:
-        elems.append(tuple(flattenHelper(tupleList)))
+        if type(tupleList) == float:
+            return elems.append(tupleList)
+    
+        temp = flattenHelper(tupleList)
+        if type(temp) is float:
+            temp = (temp,)
+        elif len(temp) == 1:
+            temp = (temp, )
+        elems.append(temp)
     return elems
     
 #Math operations
@@ -112,6 +136,17 @@ def validateList(pythonList):
 
 def isList(memoryManager, paramsList):
     return float(validateList(paramsList[0]))
+
+def append(memoryManager, paramsList):
+    A = paramsList[0]
+    B = paramsList[1]
+    if type(A) == float:
+        A = [A]
+    if type(B) == float:
+        B = [B]
+    A =list(A)
+    B =list(B)
+    return A + B
 
 #true if list of format (1.2, None)
 def single(memoryManager, paramsList):
@@ -191,8 +226,8 @@ def printList(memoryManager, paramsList):
         print("> ", A)
         return A
     else:
-        print("> ", end =" ")
+        print("> (", end =" ")
         for e in A:
             print(e, end =" ")
-        print("")
+        print(")")
         return A

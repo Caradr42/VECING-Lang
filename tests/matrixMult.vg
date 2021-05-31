@@ -1,8 +1,9 @@
 matrixMult
 //Testing matrix operations;
-(define (A B)
-    ()
-);
+
+
+(define (A B) (matmult A B));
+
 
 RENDER
 

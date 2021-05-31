@@ -1,6 +1,6 @@
 import array
 
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 INITIAL_ADDRESS = 1000
 
@@ -31,6 +31,7 @@ LIMITS = {
 }
 
 semanticTable = {
+    "cond":     ((tuple,), (tuple,)),       #
     "add":      ((tuple, tuple), (tuple,)), # ("add", ((1, None), (2, None)))
     "sub":      ((tuple, tuple), (tuple,)), #
     "mult":     ((tuple, tuple), (tuple,)), #
@@ -46,15 +47,17 @@ semanticTable = {
     "=":        ((tuple, tuple), (bool,)),  #
     "map":      ((tuple, tuple), (tuple,)),
     "apply":    ((tuple, tuple), (tuple,)),
-    "cond":     ((tuple,), (None,)),
     "print":    ((tuple,), (None,)),        #
-    "car":      ((tuple,), (tuple,)),
-    "cdr":      ((tuple,), (tuple,)),
-    "cons":     ((tuple, tuple), (tuple,)),
+    "car":      ((tuple,), (tuple,)),       #
+    "cdr":      ((tuple,), (tuple,)),       #
+    "append":   ((tuple, tuple), (tuple,)),
     "and":      ((tuple, tuple), (tuple,)), #
     "or":       ((tuple, tuple), (tuple,)), #
     "not":      ((tuple,), (tuple,)),       #
-    "isEmpty":  ((tuple,), (bool,)),
+    "empty":    ((tuple,), (bool,)),        #
+    "single":   ((tuple,), (bool,)),        #
+    "elemCount":((tuple,), (tuple,)),       #
+    "lenght":   ((tuple,), (tuple,)),       #
     "screen":   ((array.array, (array.array, tuple)), (None,)),
     "pixel":    ((array.array, array.array), (None,)),
     "pixels":   ((array.array, array.array), (None,)),
@@ -71,7 +74,7 @@ semanticTable = {
     "isNumber": ((tuple,), (bool,)),
     "isMatrix": ((tuple,), (bool,)),
     "isVector": ((tuple,), (bool,)),
-    "isList":   ((tuple,), (bool,)),
+    "isList":   ((tuple,), (bool,)),        #
     "isFunc":   ((tuple,), (bool,)),
     "isBool":   ((tuple,), (bool,)),
     "shape":    ((array.array,), (tuple,)),

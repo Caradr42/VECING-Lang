@@ -1,0 +1,15 @@
+myProgram
+//Testing use of constant lists;
+
+
+RENDER 
+(print (1 2))
+(print (1 (2)))
+(print (append (1 2) (3 4)))
+(print (append 2 3))
+(print (append 2 (append (append (1 (4 5) 3) [[8, 9], [11, 12]]) (append 2 3))))
+(print (append (1 (4 5) 3) [[8, 9], [11, 12]]))
+(print (append ((2)) [[8]]))
+END
+
+
