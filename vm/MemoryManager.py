@@ -32,6 +32,11 @@ class MemoryManager():
 
     def __str__(self):
         return "MemoryManager(\n{}\n)".format(pprint.pformat(self.memory))
+    
+    def reduceTempPointer(self, address):
+        if address is not None and self.addressIsTemp(address):
+            return self.getValue(address)
+        return address
 
     def getPythonlistFromPointer(self, address):
         if type(address) == int:
@@ -43,15 +48,39 @@ class MemoryManager():
                 return self.getPythonlistFromPointer(address)
             
             if isListAddress:
-                #debug.print("is list")
+                debug.print("is list: ", address)
+                
                 (left, right) = self.getListPair(address)
+                left = self.reduceTempPointer(left)
+                right = self.reduceTempPointer(right)
 
+                newRight = right
+                
+                if right is not None and self.pointerIsList(right):
+                    (rightleft, rightright) = self.getListPair(right)
+                    rightleft = self.reduceTempPointer(rightleft)
+                    rightright = self.reduceTempPointer(rightright)
+
+                    if rightleft is not None and self.pointerIsList(rightleft):
+                        (rightleftleft, rightleftright) = self.getListPair(rightleft)
+                        rightleftleft = self.reduceTempPointer(rightleftleft)
+                        rightleftright = self.reduceTempPointer(rightleftright)
+
+                        if rightleftleft is None and rightleftright is None and rightright is not None:
+                            newRight = rightright
+                        if rightleftleft is None and rightleftright is None:
+                            return (self.getPythonlistFromPointer(left), None)
+                
+                # if left is None and right is not None:
+                #     return self.getPythonlistFromPointer(right)
+                # elif left is None:
+                #     return None
                 # if self.pointerIsTemp(left):
                 #     left = self.getValue(left)
                 # if self.pointerIsTemp(right):
                 #     right = self.getValue(right)
 
-                return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(right))
+                return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(newRight))
 
             #TODO: FIX this ##########################################################################################
             elif self.pointerIsConstant(address):
@@ -161,6 +190,8 @@ class MemoryManager():
 
     def getMemorySegment(self, address):
         memorySegment = None
+        if not self.isAddress(address):
+            raise Exception("cannot get memory segment from not an address: ", address)
 
         if address >= consts.LIMITS["GLOBAL_LIM_L"] and address <= consts.LIMITS["GLOBAL_LIM_R"]:
             memorySegment = self.memory["global"]
@@ -179,22 +210,25 @@ class MemoryManager():
             memorySegment = self.memory["temporalList"]
 
         return memorySegment
+
+    def isAddress(self, address):
+        return type(address) == int
     
     def pointerIsList(self, address):
         if address is None or type(address) == float:
             raise Exception("Tried to access non pointer as pointer")
-        return (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
+        return self.isAddress(address) and ((address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"]))
 
     def addressIsTemp(self, address):
         # if address is None or type(address) == float:
         #     raise Exception("Tried to access non pointer as pointer")
-        return address >= consts.LIMITS["TEMPORAL_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIM_R"]
+        return self.isAddress(address) and address >= consts.LIMITS["TEMPORAL_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIM_R"]
 
 
     def pointerIsConstant(self, address):
         if address is None or type(address) == float:
             raise Exception("Tried to access non pointer as pointer")
-        return address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]
+        return self.isAddress(address) and address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]
 
     def setValue(self, address, value):
         memorySegment = self.getMemorySegment(address)

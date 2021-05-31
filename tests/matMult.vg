@@ -1,0 +1,41 @@
+myProgram
+//Manual matrix multiplication;
+(CONST mat1 [[1,2,3], [4,5,6], [7,8,9]]);
+(CONST mat2 [[10, 11, 12], [13, 14, 15], [16, 17, 18]]);
+
+(define cdrMult (list qty)
+    (cond
+        [   
+            (= qty 0) ((list))
+            (= qty 1) (cdr list)
+            (#true) (cdrMult (cdr list) (sub qty 1))
+        ]
+    )
+);
+
+(define getElement (mat index)
+    (car (cdrMult mat index))
+);
+
+(define getColumn (mat rowsQty colIndex) 
+    (cond
+        [
+            (= rowsQty 0) (cdr 1)
+            (#true) ( (getElement (getElement mat 0) colIndex) (getColumn (cdr mat) (sub rowsQty 1) colIndex) )
+        ]
+    )
+);
+
+RENDER 
+(print (cdrMult mat2 0))
+(print (cdrMult mat2 2))
+(print (cdrMult mat1 1))
+
+
+(print (getElement mat2 0))
+(print (getElement mat2 1))
+(print (getElement mat2 2))
+
+(print (getColumn mat2 (lenght mat2) 1))
+(print (getColumn mat2 (lenght mat1) 2))
+END

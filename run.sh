@@ -1,5 +1,6 @@
 #!/bin/bash
 echo running tests...
+python run.py tests/matMult.vg -e &> tests/output/matMult_output.txt &
 python run.py tests/factorial.vg -e &> tests/output/factorial_output.txt &
 python run.py tests/fibonacci.vg -e &> tests/output/fibonacci_output.txt &
 python run.py tests/test11.vg -e &> tests/output/test11_output.txt &

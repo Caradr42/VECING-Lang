@@ -14,11 +14,17 @@ RENDER
 (print (car ((1 2 3) 4)))
 (print (cdr myConst))
 (print (single myConst))
+(print (single 1))
+(print (single (1)))
 (print (isList myConst))
 (print (isList 1))
+(print (isList (1)))
 (print (empty myConst))
 (print (empty (cdr (1))))
 (print (elemCount myConst))
+(print (elemCount (3 (1 2 (3)) 4)))
 (print (lenght myConst))
+(print (lenght (3 (1 2 (3)) 4)))
+(print (1 2 3 (cdr 1)))
 
 END

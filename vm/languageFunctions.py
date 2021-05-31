@@ -1,8 +1,11 @@
 import operator
 import math
 
+def isEmptyList(paramsList):
+    return  paramsList == None or len(paramsList) == 0 or (len(paramsList) == 1 and paramsList[0] == None)
+
 def handleEmpty(paramsList, operationName='handle'):
-    if len(paramsList) == 0 or paramsList == None or paramsList[0] == None:
+    if isEmptyList(paramsList):
         raise Exception("cannot {} empty list".format(operationName))
 
 def binaryFunctionGenerator(op, operationName):
@@ -60,8 +63,9 @@ def unaryFunctionGenerator(op, operationName):
 
     return unaryFunction
 
+[((((16.0, None), ((17.0, None), ((18.0, None), None))), None), None)]
 def flattenPythonList(pythonList):
-    if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
+    if isEmptyList(pythonList):
         return []
 
     def flattenHelper(lista):
@@ -81,6 +85,8 @@ def flattenPythonList(pythonList):
 
             if type(izq[0][0]) is float and der is None and izq[1] is None:
                 return (izqResult, )
+            # if der is None and izq[1] is None:
+            #     return (izqResult, )
 
         if der is None:
             return izqResult
@@ -139,8 +145,12 @@ def validateList(pythonList):
     return type(pythonList) == tuple or type(pythonList) == list
 
 def isList(memoryManager, paramsList):
-    handleEmpty(paramsList, "check if list of")
-    return [float(validateList(paramsList[0]))]
+    if isEmptyList(paramsList):
+        return [1.0]
+    A = paramsList[0]
+    if validateList(A):
+        return [0.0] if len(A) <= 1  else [1.0]
+    return [0.0]
 
 def append(memoryManager, paramsList):
     handleEmpty(paramsList, "append lists of")
@@ -156,12 +166,13 @@ def append(memoryManager, paramsList):
 
 #true if list of format (1.2,)
 def single(memoryManager, paramsList):
-    handleEmpty(paramsList, "check if single value of")
+    if isEmptyList(paramsList):
+        return [0.0]
     A = paramsList[0]
     if type(A) == float:
         return [1.0]
-    # if len(A) == 1 and type(A[0]) == float:
-    #     return [1.0]
+    if len(A) == 1 and type(A[0]) == float:
+        return [1.0]
     return [0.0]
 
 def car(memoryManager, paramsList):
@@ -180,11 +191,14 @@ def cdr(memoryManager, paramsList):
         raise Exception('Tried to get cdr of non-list element')
     if len(A) == 1:
         return []
+    if len(A) == 2:
+        print("ssssssssssssssss")
+        return [(A[-1],)]
         #raise Exception('Tried to apply cdr in single element list')
     return [A[1:]]
     
 def empty(memoryManager, paramsList):
-    if len(paramsList) == 0:
+    if isEmptyList(paramsList):
         return [1.0]
     A = paramsList[0]
     if validateList(A) and A[0] == None:
@@ -227,7 +241,7 @@ def lenght(memoryManager, paramsList):
 
 
 def printList(memoryManager, paramsList):
-    if len(paramsList) == 0 or paramsList == None or paramsList[0] == None:
+    if isEmptyList(paramsList):
         print(paramsList)
         return paramsList
 
