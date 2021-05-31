@@ -85,7 +85,7 @@ class MemoryManager():
 
         if flatList == None or len(flatList) == 0:
             return flatList
-        if len(flatList) == 1:
+        if len(flatList) == 1 and type(flatList[0]) == float:
             return (flatList[0], None)
         if type(flatList) == tuple:
             flatList = list(flatList)

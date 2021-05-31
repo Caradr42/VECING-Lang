@@ -140,7 +140,7 @@ def validateList(pythonList):
 
 def isList(memoryManager, paramsList):
     handleEmpty(paramsList, "check if list of")
-    return float(validateList(paramsList[0]))
+    return [float(validateList(paramsList[0]))]
 
 def append(memoryManager, paramsList):
     handleEmpty(paramsList, "append lists of")
@@ -166,27 +166,31 @@ def single(memoryManager, paramsList):
 
 def car(memoryManager, paramsList):
     handleEmpty(paramsList, "car")
+    #print("paramsList car: ", paramsList)
     A = paramsList[0]
     if not validateList(A):
         raise Exception('Tried to get car of non-list element')
-    return A[0]
+    print("result car: ", [A[0]])
+    return [A[0]]
 
 def cdr(memoryManager, paramsList):
     handleEmpty(paramsList, "cdr")
+    #print("paramsList cdr: ", paramsList)
     A = paramsList[0]
     if not validateList(A):
         raise Exception('Tried to get cdr of non-list element')
     if len(A) == 1:
         raise Exception('Tried to apply cdr in single element list')
-    return A[1]
+    print("result cdr: ", [A[1:]])
+    return [A[1:]]
     
 def empty(memoryManager, paramsList):
     if len(paramsList) == 0:
-        return 1.0
+        return [1.0]
     A = paramsList[0]
     if validateList(A) and A[0] == None:
-        return 1.0
-    return len(A) == 0
+        return [1.0]
+    return [float(len(A) == 0)]
 
 def elemCount(memoryManager, paramsList):
     handleEmpty(paramsList, "count elements of")
@@ -200,7 +204,7 @@ def elemCount(memoryManager, paramsList):
         if (validateList(head)):
             if head == None:
                 return
-            if single(head):
+            if single(None, head):
                 size += 1
             else:
                 countHelper(head[0])
