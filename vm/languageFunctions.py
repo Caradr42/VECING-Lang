@@ -63,7 +63,9 @@ def unaryFunctionGenerator(op, operationName):
 
     return unaryFunction
 
-[((((16.0, None), ((17.0, None), ((18.0, None), None))), None), None)]
+#[(((16.0, None), ((17.0, None), ((18.0, None), None))), None)]
+#[((16.0, 17.0, 18.0),)]
+
 def flattenPythonList(pythonList):
     if isEmptyList(pythonList):
         return []
@@ -83,10 +85,10 @@ def flattenPythonList(pythonList):
         else:
             izqResult = flattenHelper(izq)
 
-            if type(izq[0][0]) is float and der is None and izq[1] is None:
-                return (izqResult, )
-            # if der is None and izq[1] is None:
+            # if type(izq[0][0]) is float and der is None and izq[1] is None:
             #     return (izqResult, )
+            if der is None and izq[1] is None:
+                return (izqResult, )
 
         if der is None:
             return izqResult
@@ -106,12 +108,17 @@ def flattenPythonList(pythonList):
     for tupleList in pythonList:
         if type(tupleList) == float:
             return elems.append(tupleList)
-    
-        temp = flattenHelper(tupleList)
+        # elif type(tupleList[0]) is tuple and type(tupleList[0][0]) is tuple and tupleList[1] is None:
+        #     temp = (flattenHelper(tupleList), )
+        else:
+            temp = flattenHelper(tupleList)
+
         if type(temp) is float:
             temp = (temp,)
         elif len(temp) == 1:
             temp = (temp, )
+        # elif  type(temp[0]) is tuple and type(temp[0][0]) is tuple and temp[1] is None:
+        #     temp (temp, )
         elems.append(temp)
     return elems
     
@@ -185,15 +192,13 @@ def car(memoryManager, paramsList):
 
 def cdr(memoryManager, paramsList):
     handleEmpty(paramsList, "cdr")
+    #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     #print("paramsList cdr: ", paramsList)
     A = paramsList[0]
     if not validateList(A):
         raise Exception('Tried to get cdr of non-list element')
     if len(A) == 1:
         return []
-    if len(A) == 2:
-        print("ssssssssssssssss")
-        return [(A[-1],)]
         #raise Exception('Tried to apply cdr in single element list')
     return [A[1:]]
     
@@ -247,12 +252,14 @@ def printList(memoryManager, paramsList):
 
     A = paramsList[0]
     
-    if type(A) is not tuple:
-        print("> ", A)
-        return A
-    else:
-        print("> (", end =" ")
-        for e in A:
-            print(e, end =" ")
-        print(")")
-        return A
+    print("> ", A)
+    return A
+    # if type(A) is not tuple:
+    #     print("> ", A)
+    #     return A
+    # else:
+    #     print(">", end =" ")
+    #     for e in A:
+    #         print(e, end =" ")
+    #     print("")
+    #     return A

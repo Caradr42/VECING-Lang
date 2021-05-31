@@ -101,13 +101,11 @@ class MemoryManager():
         else:
             raise Exception("This is not posible")
 
-    #(1,2,3) => ((1, None), ((2, None), ((3, None), None)))'
-    #((1,),2,3) => ((1, None), ((2, None), ((3, None), None)))
+    # [((16.0, 17.0, 18.0),)] ->  (((16.0, None), ((17.0, None), ((18.0, None), None))), None)
+    #                             ((((16.0, None), ((17.0, None), ((18.0, None), None))), None), None)
 
-    #[(2.0,), (8.0,)] => ((((2.0, None), None), None), (((8.0, None), None), None))
-
-
-    #[(8.0,), (2.0,)]
+    # [((13.0, 14.0, 15.0), (16.0, 17.0, 18.0))] -> 
+    #         ((((13.0, None), ((14.0, None), ((15.0, None), None))), (((16.0, None), ((17.0, None), ((18.0, None), None))), None)), None)
     def flatListToFunctionalList(self, flatList):
         if type(flatList) == float:
             return (flatList, None)
@@ -123,7 +121,9 @@ class MemoryManager():
         inside = flatList[0]
         if type(inside) == tuple and len(inside) == 1:
             inside = (self.flatListToFunctionalList(inside[0]), None)
-            funcList = (inside, None)
+            #funcList = (inside, None)
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            funcList = inside
         elif type(inside) == tuple:
             funcList = (self.flatListToFunctionalList(inside), None)
         elif type(inside) == float:
