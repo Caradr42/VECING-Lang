@@ -29,12 +29,15 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
         lexed = LanguageLexer().tokenize(data)
         parser.parse(lexed)
         
-        if showSymbols:
-            print('\n{}\n'.format(parser.symbols))
+        
         if showProgramTree:
             print(parser.programTree, '\n')
             
         cuads = parser.getCuads()
+        
+        if showSymbols:
+            print('\n{}\n'.format(parser.symbols))
+
         if showCuads:
             print('\n'.join('{}: {}'.format(k[0] + 1, k[1]) for k in enumerate(cuads)))
 

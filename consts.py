@@ -58,25 +58,25 @@ semanticTable = {
     "single":   ((tuple,), (bool,)),        #
     "elemCount":((tuple,), (tuple,)),       #
     "lenght":   ((tuple,), (tuple,)),       #
-    "screen":   ((array.array, (array.array, tuple)), (None,)),
-    "pixel":    ((array.array, array.array), (None,)),
-    "pixels":   ((array.array, array.array), (None,)),
+    "screen":   ((tuple, (tuple, tuple)), (None,)),
+    "pixel":    ((tuple, tuple), (None,)),
+    "pixels":   ((tuple, tuple), (None,)),
     "getPixels": ((None,), (None,)),
-    "background": ((array.array,), (None,)),
+    "background": ((tuple,), (None,)),
     "clear":    ((None,), (None,)),
     "timeStep": ((None,), (tuple,)),
     "deltaTime": ((None,), (tuple,)),
-    "line":     ((array.array, (array.array, array.array)), (None,)),
-    "curve":    ((array.array, (array.array, (array.array, array.array))), (None,)),
+    "line":     ((tuple, (tuple, tuple)), (None,)),
+    "curve":    ((tuple, (tuple, (tuple, tuple))), (None,)),
     "spline":   ((tuple,), (None,)),
-    "triangle": ((array.array, (array.array, (array.array, array.array))), (None,)),
-    "ellipse":  ((array.array, (array.array, array.array)), (None,)),
-    "isNumber": ((tuple,), (bool,)),
-    "isMatrix": ((tuple,), (bool,)),
-    "isVector": ((tuple,), (bool,)),
-    "isList":   ((tuple,), (bool,)),        #
-    "isFunc":   ((tuple,), (bool,)),
-    "isBool":   ((tuple,), (bool,)),
-    "shape":    ((array.array,), (tuple,)),
-    "get":      ((array.array,), (tuple,))
+    "triangle": ((tuple, (tuple, (tuple, tuple))), (None,)),
+    "ellipse":  ((tuple, (tuple, tuple)), (None,)),
+    "isNumber": ((tuple,), (tuple,)),
+    "isMatrix": ((tuple,), (tuple,)),
+    "isVector": ((tuple,), (tuple,)),
+    "isList":   ((tuple,), (tuple,)),       #
+    "isFunc":   ((tuple,), (tuple,)),
+    "isBool":   ((tuple,), (tuple,)),
+    "shape":    ((tuple,), (tuple,)),
+    "get":      ((tuple,), (tuple,))
 }

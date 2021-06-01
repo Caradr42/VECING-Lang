@@ -243,8 +243,8 @@ class LanguageParser(Parser):
 
     ################ const ################
     @_('constNum',
-        'CONST_LIST',
-        'NULL')
+        'CONST_LIST')
+        #'NULL')
     def const(self, p):
         return (self.constCuadGenerator(p[0]), None)
     
@@ -337,13 +337,6 @@ class LanguageParser(Parser):
     @_('')
     def popFunction(self, p):
         self.symbols.pop()
-
-    # @_('ID')
-    # def checkSymbolInContext(self, p):
-    #     if not self.symbols.isSymbolInContext(p[0]):
-    #         raise Exception('')
-    #     return p[0]
-
 
     @_('LAMBDA')
     def pushLambda(self, p):

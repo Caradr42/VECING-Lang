@@ -199,6 +199,8 @@ def cdr(memoryManager, paramsList):
         raise Exception('Tried to get cdr of non-list element')
     if len(A) == 1:
         return []
+    # if len(A) == 1:
+    #     return [(A[1:],])
         #raise Exception('Tried to apply cdr in single element list')
     return [A[1:]]
     

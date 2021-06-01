@@ -31,7 +31,7 @@ class LanguageLexer(Lexer):
     LAMBDA = r'lambda'
     RENDER = r'RENDER|render'
     END = r'END|end'
-    LANGUAGE_FUNC = r'cond|else|map|apply'
+    LANGUAGE_FUNC = r'cond'
 
     #CONST_FLOAT = r'(\-)?[0-9]+\.[0-9]+'
     # do not pay attention to IDE not recognizing the decorators

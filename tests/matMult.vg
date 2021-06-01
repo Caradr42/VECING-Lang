@@ -3,6 +3,7 @@ myProgram
 (CONST mat1 [[1,2,3], [4,5,6], [7,8,9]]);
 (CONST mat2 [[10, 11, 12], [13, 14, 15], [16, 17, 18]]);
 
+//retur right side of list after element qty (satarts at 0);
 (define cdrMult (list qty)
     (cond
         [   
@@ -13,17 +14,55 @@ myProgram
     )
 );
 
-(define getElement (mat index)
-    (car (cdrMult mat index))
+(define helper (mat index) 
+    (cond 
+        [ 
+            (empty (cdrMult mat index)) (print 1000) 
+            (#true) (cdrMult mat index) 
+        ]
+    )
 );
 
+
+//return element index of list (satarts at 0);
+(define getElement (mat index)
+    (cond
+        [
+            (= index (sub (lenght mat) 1)) (cdrMult mat index)
+            (#true) (car (helper mat index))
+        ]
+    )
+);
+
+
+(define getElement2 (mat index)
+    (cond
+        [
+            (= index (sub (lenght mat) 1)) (cdrMult mat index)
+            (#true) (car (cdrMult mat index))
+        ]
+    )
+);
+
+//returns column of matrix at colIndex;
 (define getColumn (mat rowsQty colIndex) 
     (cond
         [
-            (= rowsQty 0) (cdr 1)
+            (= rowsQty 1) (getElement mat colIndex)
             (#true) ( (getElement (getElement mat 0) colIndex) (getColumn (cdr mat) (sub rowsQty 1) colIndex) )
         ]
     )
+);
+
+
+(define getC (mat colIndex rowsQty rowIndex)
+    (cond
+        [
+            (= rowsQty (add rowIndex 1)) (getElement (getElement mat rowIndex) colIndex)
+            (#true) ((getElement (getElement mat rowIndex) colIndex) (getC mat colIndex rowsQty (add rowIndex 1)))
+        ]
+    )
+
 );
 
 RENDER 
@@ -31,11 +70,12 @@ RENDER
 (print (cdrMult mat2 2))
 (print (cdrMult mat1 1))
 
-
 (print (getElement mat2 0))
 (print (getElement mat2 1))
 (print (getElement mat2 2))
 
 (print (getColumn mat2 (lenght mat2) 1))
 (print (getColumn mat2 (lenght mat1) 2))
+
+(print (getC mat2  1 (lenght mat2) 0))
 END

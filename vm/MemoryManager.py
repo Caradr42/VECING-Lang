@@ -106,6 +106,11 @@ class MemoryManager():
 
     # [((13.0, 14.0, 15.0), (16.0, 17.0, 18.0))] -> 
     #         ((((13.0, None), ((14.0, None), ((15.0, None), None))), (((16.0, None), ((17.0, None), ((18.0, None), None))), None)), None)
+    
+    # [(10.0, 11.0, 12.0)]
+    # (((10.0, None), ((11.0, None), ((12.0, None), None))), None)
+    # ((10.0, None), ((11.0, None), ((12.0, None), None)))
+    
     def flatListToFunctionalList(self, flatList):
         if type(flatList) == float:
             return (flatList, None)
@@ -119,13 +124,12 @@ class MemoryManager():
         flatList.reverse()
         
         inside = flatList[0]
-        if type(inside) == tuple and len(inside) == 1:
-            inside = (self.flatListToFunctionalList(inside[0]), None)
-            #funcList = (inside, None)
-            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-            funcList = inside
+        if type(inside) == tuple and len(inside) == 1 and type(inside[0]) == tuple:
+            funcList = (self.flatListToFunctionalList(inside[0]), None)
+        elif type(inside) == tuple and len(inside) == 1:
+            funcList = (self.flatListToFunctionalList(inside[0]), None)
         elif type(inside) == tuple:
-            funcList = (self.flatListToFunctionalList(inside), None)
+            funcList = self.flatListToFunctionalList(inside)
         elif type(inside) == float:
             funcList = (self.flatListToFunctionalList(inside), None)
         else:
