@@ -14,7 +14,7 @@ def binaryFunctionGenerator(op, operationName):
             if a is None or b is None:
                 return None
             if type(a) is not float or type(b) is not float:
-                raise Exception("Cannot {} anidated lists".format(operationName))
+                raise Exception("Cannot {} nested lists".format(operationName))
             return op(a, b)
         
         handleEmpty(paramsList, operationName)
@@ -22,18 +22,18 @@ def binaryFunctionGenerator(op, operationName):
         B = paramsList[1]
 
         if type(A) != type(B):
-            raise Exception("Cannot {} elements of different types".format(operationName))
+            raise Exception("Cannot {} elements of different shapes".format(operationName))
         
         if type(A) == float:
             return binaryOperation(A, B)
 
-        lenghtA = len(A)
+        lengthA = len(A)
         lengthB = len(B)
-        if lenghtA != lengthB:
-            raise Exception("cannot {} list of different dimensions: {} <> {}".format(operationName, lenghtA, lengthB))
+        if lengthA != lengthB:
+            raise Exception("cannot {} list of different dimensions: {} <> {}".format(operationName, lengthA, lengthB))
 
         result = []
-        for i in range(lenghtA):
+        for i in range(lengthA):
             result.append(binaryOperation(A[i], B[i]))
         return result
 
@@ -45,7 +45,7 @@ def unaryFunctionGenerator(op, operationName):
             if a is None:
                 return None
             if type(a) is not float:
-                raise Exception("Cannot {} anidated list".format(operationName))
+                raise Exception("Cannot {} nested list".format(operationName))
             return op(a)
 
         handleEmpty(paramsList, operationName)
@@ -54,10 +54,10 @@ def unaryFunctionGenerator(op, operationName):
         if type(A) == float:
             return unaryOperation(A)
 
-        lenghtA = len(A)
+        lengthA = len(A)
 
         result = []
-        for i in range(lenghtA):
+        for i in range(lengthA):
             result.append(unaryOperation(A[i]))
         return result
 
@@ -72,7 +72,7 @@ def flattenPythonList(pythonList):
 
     def flattenHelper(lista):
         if type(lista) is not tuple:
-            raise Exception("not handled")
+            raise Exception("Error in parameter list representation")
 
         izq = lista[0]
         der = lista[1]
@@ -235,12 +235,12 @@ def elemCount(memoryManager, paramsList):
     size = countHelper(head)
     return [float(size)]
 
-def lenght(memoryManager, paramsList):
+def length(memoryManager, paramsList):
     handleEmpty(paramsList, "cannot get length of")
     head = paramsList[0]
 
     if not validateList(head):
-        raise Exception('Tried to get lenght of non-list')
+        raise Exception('Tried to get length  of non-list')
     # if type(head) == float:
     #     return [1.0]
 

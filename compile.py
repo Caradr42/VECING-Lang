@@ -90,7 +90,7 @@ if __name__ == '__main__':
     try:
         file = open(fileName, 'r')
     except:
-        raise Exception('File {} not found'.format(fileName))
+        raise Exception('Can not open file {}'.format(fileName))
 
     for i in range(2, len(sys.argv)):
         arg = sys.argv[i]

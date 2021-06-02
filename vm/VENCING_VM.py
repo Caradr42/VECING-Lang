@@ -22,7 +22,7 @@ def readFile(fileName):
     try:
         file = open(fileName, 'r')
     except:
-        raise Exception('File {} not found'.format(fileName))
+        raise Exception('Can not open file {}'.format(fileName))
     return file
 
 

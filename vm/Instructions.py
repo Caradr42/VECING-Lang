@@ -67,7 +67,7 @@ def flattenPythonList(pythonList):
             if type(pythonList[0][0]) == float:
                 helper(pythonList[0])
             else:
-                raise Exception("can not flatten list of depth grater than 1")
+                raise Exception("language function does not accept list of depth greater than 1")
             
         elif type(pythonList[0]) == float and pythonList[1] == None:
             flattenedList.append(pythonList[0])
@@ -253,7 +253,7 @@ def params(quad, instructionPointer):
                     condition = False
                     newParamsList.append(memoryManager.getValue(left))
                 else:
-                    raise Exception("This should not happen, when obtaining parameters from a temp pointer")
+                    raise Exception("Error in parameters list in memory representation")
                 
         if condition:
             newParamsList.append(e)
@@ -334,7 +334,7 @@ langFunctions = {
     'cdr': languageFunctions.cdr,
     'empty': languageFunctions.empty,
     'elemCount': languageFunctions.elemCount,
-    'lenght': languageFunctions.lenght,
+    'length': languageFunctions.length,
 }
 
 

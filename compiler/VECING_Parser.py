@@ -475,7 +475,7 @@ class LanguageParser(Parser):
                 cuads.append(('endfunc', t, 'None', "None"))
 
                 paramCount = len(paramsList)
-                symbol["funcExtras"]['size'] = self.tCounter + paramCount
+                symbol["funcExtras"]['size'] = self.tCounter + self.listCounter + paramCount
 
                 self.functionSizeCuads.append(
                     ('funcSize', symbol["funcExtras"]["instructionPointer"], paramCount, "None"))
@@ -632,7 +632,7 @@ class LanguageParser(Parser):
                     functionParamCount = len(symbol["funcExtras"]["params"])
                     # TODO:  CHANGE IF USING LAMBDAS
                     if paramsSize != functionParamCount:
-                        raise Exception("Invalid param count of {} for function {}, this function only accepts {} parameters".format(
+                        raise Exception("--SEMANTIC ERROR--:\n\tInvalid param count of {} for function {}, this function only accepts {} parameters".format(
                             paramsSize, funcName, functionParamCount))
 
                 t = self.cuadGenerator(funcParams, cuads)

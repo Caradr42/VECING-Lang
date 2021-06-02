@@ -5,7 +5,7 @@ import re
 
 class LanguageLexer(Lexer):
     tokens = {'COMMENT', 'SEM_COL', 'COMMA', 'LEFT_PARENTHESIS', 'RIGHT_PARENTHESIS',
-              'LEFT_BRAKET', 'RIGHT_BRAKET', 'OP_COMP', 'OP_MATH', 'NULL', 'DEFINE', 'CONST', 'LAMBDA', 'RENDER', 'END',
+              'LEFT_BRAKET', 'RIGHT_BRAKET', 'OP_COMP', 'OP_MATH', 'DEFINE', 'CONST', 'LAMBDA', 'RENDER', 'END', #'NULL',
               'LANGUAGE_FUNC', 'ID', 'CONST_INT', 'CONST_FLOAT', 'CONST_BOOL', 'CONST_LIST'}
     # characters to ignore
     ignore = ' \t'

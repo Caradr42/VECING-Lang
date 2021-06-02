@@ -65,10 +65,6 @@ Rule 61    popFunction -> <empty>
 Rule 62    pushLambda -> LAMBDA
 Rule 63    empty -> <empty>
 
-Unused terminals:
-
-    NULL
-
 Terminals, with rules where they appear:
 
 COMMA                : 44 50
@@ -85,7 +81,6 @@ LAMBDA               : 62
 LANGUAGE_FUNC        : 54
 LEFT_BRAKET          : 9 16 23 45 46
 LEFT_PARENTHESIS     : 10 17 24
-NULL                 : 
 OP_COMP              : 52
 OP_MATH              : 51
 RENDER               : 4

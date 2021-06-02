@@ -28,7 +28,7 @@ myProgram
 (define getElement (mat index)
     (cond
         [
-            (= index (sub (lenght mat) 1)) (cdrMult mat index)
+            (= index (sub (length mat) 1)) (cdrMult mat index)
             (#true) (car (helper mat index))
         ]
     )
@@ -38,7 +38,7 @@ myProgram
 (define getElement2 (mat index)
     (cond
         [
-            (= index (sub (lenght mat) 1)) (cdrMult mat index)
+            (= index (sub (length mat) 1)) (cdrMult mat index)
             (#true) (car (cdrMult mat index))
         ]
     )
@@ -74,8 +74,8 @@ RENDER
 (print (getElement mat2 1))
 (print (getElement mat2 2))
 
-(print (getColumn mat2 (lenght mat2) 1))
-(print (getColumn mat2 (lenght mat1) 2))
+(print (getColumn mat2 (length mat2) 1))
+(print (getColumn mat2 (length mat1) 2))
 
-(print (getC mat2  1 (lenght mat2) 0))
+(print (getC mat2  1 (length mat2) 0))
 END

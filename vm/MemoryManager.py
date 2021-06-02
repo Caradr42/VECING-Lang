@@ -101,11 +101,6 @@ class MemoryManager():
         else:
             raise Exception("This is not posible")
 
-    # [((16.0, 17.0, 18.0),)] ->  (((16.0, None), ((17.0, None), ((18.0, None), None))), None)
-    #                             ((((16.0, None), ((17.0, None), ((18.0, None), None))), None), None)
-
-    # [((13.0, 14.0, 15.0), (16.0, 17.0, 18.0))] -> 
-    #         ((((13.0, None), ((14.0, None), ((15.0, None), None))), (((16.0, None), ((17.0, None), ((18.0, None), None))), None)), None)
     
     # [(10.0, 11.0, 12.0)]
     # (((10.0, None), ((11.0, None), ((12.0, None), None))), None)
@@ -186,8 +181,7 @@ class MemoryManager():
             paramCount = self.functionsTable[functionInstructionPointer]
             return paramCount
         except:
-            raise Exception(
-                "Tried to access non registered function in memory")
+            raise Exception("Tried to access non registered function in memory")
 
     def getContextSize(self):
         return len(list(self.memory["local"].keys())) + len(list(self.memory["temporal"].keys())) + len(list(self.memory["list"].keys()))
@@ -246,7 +240,7 @@ class MemoryManager():
         memorySegment = self.getMemorySegment(address)
         if memorySegment == None:
             raise Exception(
-                "Invalid access to memmory address at {}".format(address))
+                "Invalid access to memory  address at {}".format(address))
 
         try:
        #     debug.print(self.memory)
@@ -295,13 +289,13 @@ class MemoryManager():
             self.stackMemorySpace += contextSize
 
         except:
-            raise Exception("Invalid context change, alredy at global context")
+            raise Exception("Invalid context change, already  at global context")
 
     def pushContext(self):
         contextSize = self.getContextSize()
 
         self.stackMemorySpace -= contextSize
-        self.stackMemoryCheck("Memory limit excedeed, Stack Overflow")
+        self.stackMemoryCheck("Memory limit exceeded, Stack Overflow")
 
         self.localsStack.push(self.memory["local"])
         self.temporalsStack.push(self.memory["temporal"])
@@ -323,7 +317,7 @@ class MemoryManager():
 
     def pushReturnPointers(self, address, instructionPointer):
         self.stackMemorySpace -= 2
-        self.stackMemoryCheck("Memory limit excedeed, Stack Overflow")
+        self.stackMemoryCheck("Memory limit exceeded, Stack Overflow")
         return self.returnPointers.push((address, instructionPointer))
 
     def popParams(self, size):
@@ -340,7 +334,7 @@ class MemoryManager():
 
     def pushParams(self, paramsList):
         self.stackMemorySpace -= len(paramsList)
-        self.stackMemoryCheck("Memory limit excedeed, Stack Overflow")
+        self.stackMemoryCheck("Memory limit exceeded, Stack Overflow")
 
         for param in paramsList:
             self.params.push(param)

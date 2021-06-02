@@ -11,11 +11,12 @@ LIST_SIZE = 50000
 TEMPORAL_LIST_SIZE = 50000
 STACK_SIZE = 50000
 
-GLOBAL_FIRST = INITIAL_ADDRESS
-LOCAL_FIRST = GLOBAL_FIRST + GLOBAL_SIZE
-TEMPORAL_FIRST = LOCAL_FIRST + LOCAL_SIZE
-LIST_FIRST = TEMPORAL_FIRST + TEMPORAL_SIZE
-TEMPORAL_LIST_FIRST = LIST_FIRST + LIST_SIZE
+GLOBAL_FIRST = INITIAL_ADDRESS                  #1 000
+LOCAL_FIRST = GLOBAL_FIRST + GLOBAL_SIZE        #10 000
+TEMPORAL_FIRST = LOCAL_FIRST + LOCAL_SIZE       #20 000
+LIST_FIRST = TEMPORAL_FIRST + TEMPORAL_SIZE     #70 000
+TEMPORAL_LIST_FIRST = LIST_FIRST + LIST_SIZE    #120 000
+
 LIMITS = {
     'GLOBAL_LIM_L':     GLOBAL_FIRST,
     'GLOBAL_LIM_R':     GLOBAL_FIRST + GLOBAL_SIZE - 1,
@@ -39,25 +40,25 @@ semanticTable = {
     "div":      ((tuple, tuple), (tuple,)), #
     "sqrt":     ((tuple,), (tuple,)),       #
     "abs":      ((tuple,), (tuple,)),       #
-    "<=":       ((tuple, tuple), (bool,)),  #
-    ">=":       ((tuple, tuple), (bool,)),  #
-    "<":        ((tuple, tuple), (bool,)),  #
-    ">":        ((tuple, tuple), (bool,)),  #
-    "!=":       ((tuple, tuple), (bool,)),  #
-    "=":        ((tuple, tuple), (bool,)),  #
+    "<=":       ((tuple, tuple), (tuple,)),  #
+    ">=":       ((tuple, tuple), (tuple,)),  #
+    "<":        ((tuple, tuple), (tuple,)),  #
+    ">":        ((tuple, tuple), (tuple,)),  #
+    "!=":       ((tuple, tuple), (tuple,)),  #
+    "=":        ((tuple, tuple), (tuple,)),  #
     "map":      ((tuple, tuple), (tuple,)),
     "apply":    ((tuple, tuple), (tuple,)),
-    "print":    ((tuple,), (None,)),        #
+    "print":    ((tuple,), (tuple,)),        #
     "car":      ((tuple,), (tuple,)),       #
     "cdr":      ((tuple,), (tuple,)),       #
     "append":   ((tuple, tuple), (tuple,)),
     "and":      ((tuple, tuple), (tuple,)), #
     "or":       ((tuple, tuple), (tuple,)), #
     "not":      ((tuple,), (tuple,)),       #
-    "empty":    ((tuple,), (bool,)),        #
-    "single":   ((tuple,), (bool,)),        #
+    "empty":    ((tuple,), (tuple,)),        #
+    "single":   ((tuple,), (tuple,)),        #
     "elemCount":((tuple,), (tuple,)),       #
-    "lenght":   ((tuple,), (tuple,)),       #
+    "length":   ((tuple,), (tuple,)),       #
     "screen":   ((tuple, (tuple, tuple)), (None,)),
     "pixel":    ((tuple, tuple), (None,)),
     "pixels":   ((tuple, tuple), (None,)),
