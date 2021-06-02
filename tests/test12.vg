@@ -1,0 +1,43 @@
+myProgram
+//Testing use of constant lists;
+
+(DEFINE rule (col row)
+    (cond
+        [
+            (xor (getpixel (sub col 1) row) (or (getpixel col row) (getpixel (add col 1) row) ))  (empty (pixel col (add row 1)))
+            (#true) (print 100)
+        ]
+    )
+);
+
+(define forrow (j i)
+    (cond
+        [
+            (= j -1) (1)
+            (rule j i) ( (forrow (print (sub j 1)) i))
+        ]
+    )
+); 
+
+(define formatrix (i h l)
+    (cond
+        [
+            (= i h) (1)
+            (forrow i (sub l 1)) (formatrix (add 1 i) h l)
+        ]
+    )
+);
+
+
+RENDER
+(createwindow (5 5) (0 0 0) 32)
+(setbgcolor (0 0 255))
+(clear)
+(setdrawcolor (255 0 0))
+(pixel 2 0)
+//(forrow 4 0);
+(formatrix 0 5 5)
+
+(stopRender)
+
+END

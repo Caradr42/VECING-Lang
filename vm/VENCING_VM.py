@@ -101,6 +101,9 @@ def executeQuads(quads):
         else:
             instructionPointer += 1
 
+# def setInstructionPointer(value):
+#     global instructionPointer
+#     instructionPointer = value
 
 if __name__ == '__main__':
     """ Gets a name of a file, obtains the quads from the file, and executes them.

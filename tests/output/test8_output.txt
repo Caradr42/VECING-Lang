@@ -11,4 +11,64 @@ No errors found in file tests/test8.vg
 test8.vg
 
 
+Executing: print
+Executing: myFunc1
+Current Memory:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {}, 'list': {70000: 1001, 70001: None, 70002: 1002, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004}, 'temporal': {}, 'temporalList': {}}
+function params  [70000, 70002]
+new function params  [70000, 70002]
+gosub:  6
+user Func paramsList:  [70000, 70002]
+is list:  70000
+is list:  70002
+user Func pythonParamsList:  [(100.0, None), (10.0, None)]
+PLtPL:  (100.0, None)
+PLtPL:  (10.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 100.0, 120001: None, 120002: 10.0, 120003: None}}
+Executing: sub
+Current Memory:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {}, 'temporalList': {120000: 100.0, 120001: None, 120002: 10.0, 120003: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  sub
+lang Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+lang Func pythonParamsList:  [(100.0, None), (10.0, None)]
+lang Func pythonParamsList after flatten:  [(100.0,), (10.0,)]
+Returned valued after lang function [90.0]
+Returned valued after list conversion (90.0, None)
+PLtPL:  (90.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {20000: 120004}, 'temporalList': {120000: 100.0, 120001: None, 120002: 10.0, 120003: None, 120004: 90.0, 120005: None}}
+goto cond value:  120004
+is list:  120004
+goto list as pythonList (90.0, None)
+goto list as flattened pythonList [90.0]
+assigned:  70004  to  20005
+endFunc: 
+Temp return address after function 20005
+meomry at endFunc:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70004: 1000, 70005: None}, 'temporal': {20000: 120004, 20005: 70004}, 'temporalList': {120000: 100.0, 120001: None, 120002: 10.0, 120003: None, 120004: 90.0, 120005: None}}
+pointer to return result of func at endFunc:  20005
+Returned valued after function 70004
+Back fF poped returnAddress:  20000
+is list:  70004
+Back fF python list:  (0.0, None)
+Back fF memory before to PointerList:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {}, 'list': {70000: 1001, 70001: None, 70002: 1002, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004}, 'temporal': {}, 'temporalList': {}}
+PLtPL:  (0.0, None)
+Back fF newAddress:  120000
+Back fF memory before set:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {}, 'list': {70000: 1001, 70001: None, 70002: 1002, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None}}
+Back fF memory after set:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {}, 'list': {70000: 1001, 70001: None, 70002: 1002, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004}, 'temporal': {20000: 120000}, 'temporalList': {120000: 0.0, 120001: None}}
+Current Memory:  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {}, 'list': {70000: 1001, 70001: None, 70002: 1002, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 20000, 70009: None, 70010: 70008, 70011: None}, 'temporal': {20000: 120000}, 'temporalList': {120000: 0.0, 120001: None}}
+function params  [70008]
+new function params  [120000]
+gosub:  print
+lang Func paramsList:  [120000]
+is list:  120000
+lang Func pythonParamsList:  [(0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,)]
 >  (0.0,)
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120002
+Memory after gosub :  {'global': {1000: 0.0, 1001: 100.0, 1002: 10.0}, 'local': {}, 'list': {70000: 1001, 70001: None, 70002: 1002, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 20000, 70009: None, 70010: 70008, 70011: None}, 'temporal': {20000: 120000, 20001: 120002}, 'temporalList': {120000: 0.0, 120001: None, 120002: 0.0, 120003: None}}

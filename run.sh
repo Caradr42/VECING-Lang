@@ -8,6 +8,7 @@ echo running tests...
 python run.py tests/matMult.vg -e &> tests/output/matMult_output.txt &
 python run.py tests/factorial.vg -e &> tests/output/factorial_output.txt &
 python run.py tests/fibonacci.vg -e &> tests/output/fibonacci_output.txt &
+python run.py tests/test12.vg -e &> tests/output/test12_output.txt &
 python run.py tests/test11.vg -e &> tests/output/test11_output.txt &
 python run.py tests/test10.vg -e &> tests/output/test10_output.txt &
 python run.py tests/test9.vg -e &> tests/output/test9_output.txt &

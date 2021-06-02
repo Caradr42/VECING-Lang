@@ -1,5 +1,6 @@
 from MemoryManager import MemoryManager
 import languageFunctions
+import graphicsFunctions
 import consts
 from utils import Debugger
 
@@ -305,8 +306,12 @@ def gosub(quad, instructionPointer):
         return funcName
     else:
         #memoryManager.pushReturnPointers(returnAddress, instructionPointer)
+        semanticTableParams = semanticTable[funcName][0]
+        if len(semanticTableParams) == 1 and semanticTableParams[0] == None:
+            paramCount = 0
+        else:
+            paramCount = len(semanticTableParams)
 
-        paramCount = len(semanticTable[funcName][0])
         paramsList = memoryManager.popParams(paramCount)
         paramsList.reverse()
 
@@ -465,6 +470,7 @@ langFunctions = {
     #Logical operators 
     "and": languageFunctions.andOp,
     'or': languageFunctions.orOp,
+    'xor': languageFunctions.xorOp,
     'not': languageFunctions.notOp,
     #Relational operators
     '>=': languageFunctions.biggerequal,
@@ -482,6 +488,16 @@ langFunctions = {
     'empty': languageFunctions.empty,
     'elemCount': languageFunctions.elemCount,
     'length': languageFunctions.length,
+    #graphics functions
+    #'restart': graphicsFunctions.restart
+    "setbgcolor":   graphicsFunctions.setbgcolor,
+    "setdrawcolor": graphicsFunctions.setdrawcolor,
+    "clear":        graphicsFunctions.clear,
+    "pixel":        graphicsFunctions.pixel,
+    "getpixel":     graphicsFunctions.getpixel,
+    "createwindow": graphicsFunctions.createwindow,
+    "stopRender":   graphicsFunctions.stopRender,
+    "pause":        graphicsFunctions.pause,
 }
 
 

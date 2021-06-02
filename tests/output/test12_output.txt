@@ -1,0 +1,1034 @@
+WARNING: C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py:199: Rule 'comment' defined, but not used
+WARNING: There is 1 unused rule
+WARNING: Symbol 'comment' is unreachable
+WARNING: 21 shift/reduce conflicts
+WARNING: 29 reduce/reduce conflicts
+
+
+('PROGRAM', ('myProgram', ((('DEFINE', ('rule', (('params', (('param', 'col'), ('param', 'row'))), (('cond', (((('xor', ((('getpixel', ((('sub', (('var', 'col'), ((1000, None), None))), None), (('var', 'row'), None))), None), ((('or', ((('getpixel', (('var', 'col'), (('var', 'row'), None))), None), ((('getpixel', ((('add', (('var', 'col'), ((1000, None), None))), None), (('var', 'row'), None))), None), None))), None), None))), None), ((('empty', ((('pixel', (('var', 'col'), ((('add', (('var', 'row'), ((1000, None), None))), None), None))), None), None)), None), (((1000, None), None), ((('print', ((1001, None), None)), None), None)))), None)), None)))), (('DEFINE', ('forrow', (('params', (('param', 'j'), ('param', 'i'))), (('cond', (((('=', (('var', 'j'), ((1002, None), None))), None), (((1000, None), None), ((('rule', (('var', 'j'), (('var', 'i'), None))), None), (((('forrow', ((('print', ((('sub', (('var', 'j'), ((1000, None), None))), None), None)), None), (('var', 'i'), None))), None), None), None)))), None)), None)))), (('DEFINE', ('formatrix', (('params', (('param', 'i'), (('param', 'h'), ('param', 'l')))), (('cond', (((('=', (('var', 'i'), (('var', 'h'), None))), None), (((1000, None), None), ((('forrow', (('var', 'i'), ((('sub', (('var', 'l'), ((1000, None), None))), None), None))), None), ((('formatrix', ((('add', ((1000, None), (('var', 'i'), None))), None), (('var', 'h'), (('var', 'l'), None)))), None), None)))), None)), None)))), None))), ('RENDER', ((('createwindow', (((1003, None), ((1003, None), None)), (((1004, None), ((1004, None), ((1004, None), None))), ((1005, None), None)))), None), ((('setbgcolor', (((1004, None), ((1004, None), ((1006, None), None))), None)), None), ((('clear', None), None), ((('setdrawcolor', (((1006, None), ((1004, None), ((1004, None), None))), None)), None), ((('pixel', ((1007, None), ((1004, None), None))), None), ((('formatrix', ((1004, None), ((1003, None), ((1003, None), None)))), None), ((('stopRender', None), None), None))))))))))) 
+
+No errors found in file tests/test12.vg
+test12.vg
+
+
+Executing: createwindow
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024}, 'temporal': {}, 'temporalList': {}}
+function params  [70006, 70018, 70020]
+new function params  [70006, 70018, 70020]
+gosub:  createwindow
+lang Func paramsList:  [70006, 70018, 70020]
+is list:  70006
+is list:  70000
+is list:  70004
+is list:  70002
+is list:  70018
+is list:  70008
+is list:  70016
+is list:  70010
+is list:  70014
+is list:  70012
+is list:  70020
+lang Func pythonParamsList:  [((5.0, None), ((5.0, None), None)), ((0.0, None), ((0.0, None), ((0.0, None), None))), (32.0, None)]
+lang Func pythonParamsList after flatten:  [(5.0, 5.0), (0.0, 0.0, 0.0), (32.0,)]
+Returned valued after lang function []
+Returned valued after list conversion []
+PLtPL:  []
+lang Func memoryReturnList:  None
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024}, 'temporal': {20000: None}, 'temporalList': {}}
+Executing: setbgcolor
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None}, 'temporal': {20000: None}, 'temporalList': {}}
+function params  [70038]
+new function params  [70038]
+gosub:  setbgcolor
+lang Func paramsList:  [70038]
+is list:  70038
+is list:  70028
+is list:  70036
+is list:  70030
+is list:  70034
+is list:  70032
+lang Func pythonParamsList:  [((0.0, None), ((0.0, None), ((255.0, None), None)))]
+lang Func pythonParamsList after flatten:  [(0.0, 0.0, 255.0)]
+Returned valued after lang function []
+Returned valued after list conversion []
+PLtPL:  []
+lang Func memoryReturnList:  None
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None}, 'temporal': {20000: None, 20001: None}, 'temporalList': {}}
+Executing: clear
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None}, 'temporal': {20000: None, 20001: None}, 'temporalList': {}}
+function params  []
+new function params  []
+gosub:  clear
+lang Func paramsList:  []
+lang Func pythonParamsList:  []
+lang Func pythonParamsList after flatten:  []
+Returned valued after lang function []
+Returned valued after list conversion []
+PLtPL:  []
+lang Func memoryReturnList:  None
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None}, 'temporal': {20000: None, 20001: None, 20002: None}, 'temporalList': {}}
+Executing: setdrawcolor
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None, 70042: 1006, 70043: None, 70044: 1004, 70045: None, 70046: 1004, 70047: None, 70048: 70046, 70049: None, 70050: 70044, 70051: 70048, 70052: 70042, 70053: 70050, 70054: 70052, 70055: None}, 'temporal': {20000: None, 20001: None, 20002: None}, 'temporalList': {}}
+function params  [70052]
+new function params  [70052]
+gosub:  setdrawcolor
+lang Func paramsList:  [70052]
+is list:  70052
+is list:  70042
+is list:  70050
+is list:  70044
+is list:  70048
+is list:  70046
+lang Func pythonParamsList:  [((255.0, None), ((0.0, None), ((0.0, None), None)))]
+lang Func pythonParamsList after flatten:  [(255.0, 0.0, 0.0)]
+Returned valued after lang function []
+Returned valued after list conversion []
+PLtPL:  []
+lang Func memoryReturnList:  None
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None, 70042: 1006, 70043: None, 70044: 1004, 70045: None, 70046: 1004, 70047: None, 70048: 70046, 70049: None, 70050: 70044, 70051: 70048, 70052: 70042, 70053: 70050, 70054: 70052, 70055: None}, 'temporal': {20000: None, 20001: None, 20002: None, 20003: None}, 'temporalList': {}}
+Executing: pixel
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None, 70042: 1006, 70043: None, 70044: 1004, 70045: None, 70046: 1004, 70047: None, 70048: 70046, 70049: None, 70050: 70044, 70051: 70048, 70052: 70042, 70053: 70050, 70054: 70052, 70055: None, 70056: 1007, 70057: None, 70058: 1004, 70059: None, 70060: 70058, 70061: None, 70062: 70056, 70063: 70060}, 'temporal': {20000: None, 20001: None, 20002: None, 20003: None}, 'temporalList': {}}
+function params  [70056, 70058]
+new function params  [70056, 70058]
+gosub:  pixel
+lang Func paramsList:  [70056, 70058]
+is list:  70056
+is list:  70058
+lang Func pythonParamsList:  [(2.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(2.0,), (0.0,)]
+Returned valued after lang function []
+Returned valued after list conversion []
+PLtPL:  []
+lang Func memoryReturnList:  None
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None, 70042: 1006, 70043: None, 70044: 1004, 70045: None, 70046: 1004, 70047: None, 70048: 70046, 70049: None, 70050: 70044, 70051: 70048, 70052: 70042, 70053: 70050, 70054: 70052, 70055: None, 70056: 1007, 70057: None, 70058: 1004, 70059: None, 70060: 70058, 70061: None, 70062: 70056, 70063: 70060}, 'temporal': {20000: None, 20001: None, 20002: None, 20003: None, 20004: None}, 'temporalList': {}}
+Executing: formatrix
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {}, 'list': {70000: 1003, 70001: None, 70002: 1003, 70003: None, 70004: 70002, 70005: None, 70006: 70000, 70007: 70004, 70008: 1004, 70009: None, 70010: 1004, 70011: None, 70012: 1004, 70013: None, 70014: 70012, 70015: None, 70016: 70010, 70017: 70014, 70018: 70008, 70019: 70016, 70020: 1005, 70021: None, 70022: 70020, 70023: None, 70024: 70018, 70025: 70022, 70026: 70006, 70027: 70024, 70028: 1004, 70029: None, 70030: 1004, 70031: None, 70032: 1006, 70033: None, 70034: 70032, 70035: None, 70036: 70030, 70037: 70034, 70038: 70028, 70039: 70036, 70040: 70038, 70041: None, 70042: 1006, 70043: None, 70044: 1004, 70045: None, 70046: 1004, 70047: None, 70048: 70046, 70049: None, 70050: 70044, 70051: 70048, 70052: 70042, 70053: 70050, 70054: 70052, 70055: None, 70056: 1007, 70057: None, 70058: 1004, 70059: None, 70060: 70058, 70061: None, 70062: 70056, 70063: 70060, 70064: 1004, 70065: None, 70066: 1003, 70067: None, 70068: 1003, 70069: None, 70070: 70068, 70071: None, 70072: 70066, 70073: 70070, 70074: 70064, 70075: 70072}, 'temporal': {20000: None, 20001: None, 20002: None, 20003: None, 20004: None}, 'temporalList': {}}
+function params  [70064, 70066, 70068]
+new function params  [70064, 70066, 70068]
+gosub:  125
+user Func paramsList:  [70064, 70066, 70068]
+is list:  70064
+is list:  70066
+is list:  70068
+user Func pythonParamsList:  [(0.0, None), (5.0, None), (5.0, None)]
+PLtPL:  (0.0, None)
+PLtPL:  (5.0, None)
+PLtPL:  (5.0, None)
+user Func memoryParamsList:  [120000, 120002, 120004]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  =
+lang Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+lang Func pythonParamsList:  [(0.0, None), (5.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (5.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120006
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {20000: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None}}
+goto cond value:  120006
+is list:  120006
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+Executing: forrow
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008}, 'temporal': {20000: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None}}
+function params  [10002, 70006]
+new function params  [10002, 70006]
+gosub:  sub
+lang Func paramsList:  [10002, 70006]
+is list:  120004
+is list:  70006
+lang Func pythonParamsList:  [(5.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(5.0,), (1.0,)]
+Returned valued after lang function [4.0]
+Returned valued after list conversion (4.0, None)
+PLtPL:  (4.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None}}
+function params  [10000, 70012]
+new function params  [10000, 120008]
+gosub:  87
+user Func paramsList:  [10000, 120008]
+is list:  120000
+is list:  120008
+user Func pythonParamsList:  [(0.0, None), (4.0, None)]
+PLtPL:  (0.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  =
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(0.0, None), (-1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (-1.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+goto cond value:  120004
+is list:  120004
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+Executing: rule
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  13
+user Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+user Func pythonParamsList:  [(0.0, None), (4.0, None)]
+PLtPL:  (0.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: xor
+Executing: getpixel
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  sub
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(0.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (1.0,)]
+Returned valued after lang function [-1.0]
+Returned valued after list conversion (-1.0, None)
+PLtPL:  (-1.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None}}
+function params  [70006, 10001]
+new function params  [120004, 10001]
+gosub:  getpixel
+lang Func paramsList:  [120004, 10001]
+is list:  120004
+is list:  120002
+lang Func pythonParamsList:  [(-1.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(-1.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120006
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None}}
+Executing: or
+Executing: getpixel
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  getpixel
+lang Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+lang Func pythonParamsList:  [(0.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None}}
+Executing: getpixel
+Executing: add
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None}}
+function params  [10000, 70020]
+new function params  [10000, 70020]
+gosub:  add
+lang Func paramsList:  [10000, 70020]
+is list:  120000
+is list:  70020
+lang Func pythonParamsList:  [(0.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (1.0,)]
+Returned valued after lang function [1.0]
+Returned valued after list conversion (1.0, None)
+PLtPL:  (1.0, None)
+lang Func memoryReturnList:  120010
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None}}
+function params  [70026, 10001]
+new function params  [120010, 10001]
+gosub:  getpixel
+lang Func paramsList:  [120010, 10001]
+is list:  120010
+is list:  120002
+lang Func pythonParamsList:  [(1.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120012
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None}}
+function params  [70018, 70032]
+new function params  [120008, 120012]
+gosub:  or
+lang Func paramsList:  [120008, 120012]
+is list:  120008
+is list:  120012
+lang Func pythonParamsList:  [(0.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (0.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120014
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None}}
+function params  [70012, 70038]
+new function params  [120006, 120014]
+gosub:  xor
+lang Func paramsList:  [120006, 120014]
+is list:  120006
+is list:  120014
+lang Func pythonParamsList:  [(0.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (0.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120016
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None}}
+goto cond value:  120016
+is list:  120016
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+goto cond value:  1.0
+Executing: print
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None}}
+function params  [70062]
+new function params  [70062]
+gosub:  print
+lang Func paramsList:  [70062]
+is list:  70062
+lang Func pythonParamsList:  [(100.0, None)]
+lang Func pythonParamsList after flatten:  [(100.0,)]
+>  (100.0,)
+Returned valued after lang function [100.0]
+Returned valued after list conversion (100.0, None)
+PLtPL:  (100.0, None)
+lang Func memoryReturnList:  120018
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016, 20010: 120018}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None, 120018: 100.0, 120019: None}}
+assigned:  20010  to  20011
+endFunc: 
+Temp return address after function 20011
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016, 20010: 120018, 20011: 20010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None, 120018: 100.0, 120019: None}}
+pointer to return result of func at endFunc:  20011
+Returned valued after function 20010
+Back fF poped returnAddress:  20001
+is list:  120018
+Back fF python list:  (100.0, None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+PLtPL:  (100.0, None)
+Back fF newAddress:  120006
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+goto cond value:  120006
+is list:  120006
+goto list as pythonList (100.0, None)
+goto list as flattened pythonList [100.0]
+Executing: forrow
+Executing: print
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+function params  [10000, 70012]
+new function params  [10000, 70012]
+gosub:  sub
+lang Func paramsList:  [10000, 70012]
+is list:  120000
+is list:  70012
+lang Func pythonParamsList:  [(0.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (1.0,)]
+Returned valued after lang function [-1.0]
+Returned valued after list conversion (-1.0, None)
+PLtPL:  (-1.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None}}
+function params  [70018]
+new function params  [120008]
+gosub:  print
+lang Func paramsList:  [120008]
+is list:  120008
+lang Func pythonParamsList:  [(-1.0, None)]
+lang Func pythonParamsList after flatten:  [(-1.0,)]
+>  (-1.0,)
+Returned valued after lang function [-1.0]
+Returned valued after list conversion (-1.0, None)
+PLtPL:  (-1.0, None)
+lang Func memoryReturnList:  120010
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None}}
+function params  [70022, 10001]
+new function params  [120010, 10001]
+gosub:  87
+user Func paramsList:  [120010, 10001]
+is list:  120010
+is list:  120002
+user Func pythonParamsList:  [(-1.0, None), (4.0, None)]
+PLtPL:  (-1.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  =
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(-1.0, None), (-1.0, None)]
+lang Func pythonParamsList after flatten:  [(-1.0,), (-1.0,)]
+Returned valued after lang function [1.0]
+Returned valued after list conversion (1.0, None)
+PLtPL:  (1.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 1.0, 120005: None}}
+goto cond value:  120004
+is list:  120004
+goto list as pythonList (1.0, None)
+goto list as flattened pythonList [1.0]
+assigned:  70006  to  20005
+endFunc: 
+Temp return address after function 20005
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 1000, 70007: None}, 'temporal': {20000: 120004, 20005: 70006}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 1.0, 120005: None}}
+pointer to return result of func at endFunc:  20005
+Returned valued after function 70006
+Back fF poped returnAddress:  20004
+is list:  70006
+Back fF python list:  (1.0, None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None}}
+PLtPL:  (1.0, None)
+Back fF newAddress:  120012
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None, 120012: 1.0, 120013: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None, 120012: 1.0, 120013: None}}
+assigned:  70028  to  20005
+endFunc: 
+Temp return address after function 20005
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024, 70028: 20004, 70029: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 70028}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None, 120012: 1.0, 120013: None}}
+pointer to return result of func at endFunc:  20005
+Returned valued after function 70028
+Back fF poped returnAddress:  20002
+is list:  70028
+is list:  120012
+Back fF python list:  ((1.0, None), None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None}}
+PLtPL:  ((1.0, None), None)
+PLtPL:  (1.0, None)
+Back fF newAddress:  120012
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008, 20002: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None}}
+goto cond value:  120012
+is list:  120012
+is list:  120010
+goto list as pythonList ((1.0, None), None)
+goto list as flattened pythonList [1.0]
+Executing: formatrix
+Executing: add
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 1000, 70019: None, 70020: 10000, 70021: None, 70022: 70018, 70023: 70020}, 'temporal': {20000: 120006, 20001: 120008, 20002: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None}}
+function params  [70018, 10000]
+new function params  [70018, 10000]
+gosub:  add
+lang Func paramsList:  [70018, 10000]
+is list:  70018
+is list:  120000
+lang Func pythonParamsList:  [(1.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (0.0,)]
+Returned valued after lang function [1.0]
+Returned valued after list conversion (1.0, None)
+PLtPL:  (1.0, None)
+lang Func memoryReturnList:  120014
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 1000, 70019: None, 70020: 10000, 70021: None, 70022: 70018, 70023: 70020}, 'temporal': {20000: 120006, 20001: 120008, 20002: 120012, 20003: 120014}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None, 120014: 1.0, 120015: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 1000, 70019: None, 70020: 10000, 70021: None, 70022: 70018, 70023: 70020, 70024: 20003, 70025: None, 70026: 10002, 70027: None, 70028: 10001, 70029: 70026, 70030: 70024, 70031: 70028}, 'temporal': {20000: 120006, 20001: 120008, 20002: 120012, 20003: 120014}, 'temporalList': {120000: 0.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None, 120014: 1.0, 120015: None}}
+function params  [70024, 10001, 10002]
+new function params  [120014, 10001, 10002]
+gosub:  125
+user Func paramsList:  [120014, 10001, 10002]
+is list:  120014
+is list:  120002
+is list:  120004
+user Func pythonParamsList:  [(1.0, None), (5.0, None), (5.0, None)]
+PLtPL:  (1.0, None)
+PLtPL:  (5.0, None)
+PLtPL:  (5.0, None)
+user Func memoryParamsList:  [120000, 120002, 120004]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  =
+lang Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+lang Func pythonParamsList:  [(1.0, None), (5.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (5.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120006
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000}, 'temporal': {20000: 120006}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None}}
+goto cond value:  120006
+is list:  120006
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+Executing: forrow
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008}, 'temporal': {20000: 120006}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None}}
+function params  [10002, 70006]
+new function params  [10002, 70006]
+gosub:  sub
+lang Func paramsList:  [10002, 70006]
+is list:  120004
+is list:  70006
+lang Func pythonParamsList:  [(5.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(5.0,), (1.0,)]
+Returned valued after lang function [4.0]
+Returned valued after list conversion (4.0, None)
+PLtPL:  (4.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None}}
+function params  [10000, 70012]
+new function params  [10000, 120008]
+gosub:  87
+user Func paramsList:  [10000, 120008]
+is list:  120000
+is list:  120008
+user Func pythonParamsList:  [(1.0, None), (4.0, None)]
+PLtPL:  (1.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  =
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(1.0, None), (-1.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (-1.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+goto cond value:  120004
+is list:  120004
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+Executing: rule
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  13
+user Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+user Func pythonParamsList:  [(1.0, None), (4.0, None)]
+PLtPL:  (1.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: xor
+Executing: getpixel
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  sub
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(1.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (1.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+function params  [70006, 10001]
+new function params  [120004, 10001]
+gosub:  getpixel
+lang Func paramsList:  [120004, 10001]
+is list:  120004
+is list:  120002
+lang Func pythonParamsList:  [(0.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120006
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None}}
+Executing: or
+Executing: getpixel
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  getpixel
+lang Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+lang Func pythonParamsList:  [(1.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None}}
+Executing: getpixel
+Executing: add
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None}}
+function params  [10000, 70020]
+new function params  [10000, 70020]
+gosub:  add
+lang Func paramsList:  [10000, 70020]
+is list:  120000
+is list:  70020
+lang Func pythonParamsList:  [(1.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (1.0,)]
+Returned valued after lang function [2.0]
+Returned valued after list conversion (2.0, None)
+PLtPL:  (2.0, None)
+lang Func memoryReturnList:  120010
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None}}
+function params  [70026, 10001]
+new function params  [120010, 10001]
+gosub:  getpixel
+lang Func paramsList:  [120010, 10001]
+is list:  120010
+is list:  120002
+lang Func pythonParamsList:  [(2.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(2.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120012
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None}}
+function params  [70018, 70032]
+new function params  [120008, 120012]
+gosub:  or
+lang Func paramsList:  [120008, 120012]
+is list:  120008
+is list:  120012
+lang Func pythonParamsList:  [(0.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (0.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120014
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None}}
+function params  [70012, 70038]
+new function params  [120006, 120014]
+gosub:  xor
+lang Func paramsList:  [120006, 120014]
+is list:  120006
+is list:  120014
+lang Func pythonParamsList:  [(0.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (0.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120016
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None}}
+goto cond value:  120016
+is list:  120016
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+goto cond value:  1.0
+Executing: print
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None}}
+function params  [70062]
+new function params  [70062]
+gosub:  print
+lang Func paramsList:  [70062]
+is list:  70062
+lang Func pythonParamsList:  [(100.0, None)]
+lang Func pythonParamsList after flatten:  [(100.0,)]
+>  (100.0,)
+Returned valued after lang function [100.0]
+Returned valued after list conversion (100.0, None)
+PLtPL:  (100.0, None)
+lang Func memoryReturnList:  120018
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016, 20010: 120018}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None, 120018: 100.0, 120019: None}}
+assigned:  20010  to  20011
+endFunc: 
+Temp return address after function 20011
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016, 20010: 120018, 20011: 20010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 2.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None, 120018: 100.0, 120019: None}}
+pointer to return result of func at endFunc:  20011
+Returned valued after function 20010
+Back fF poped returnAddress:  20001
+is list:  120018
+Back fF python list:  (100.0, None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+PLtPL:  (100.0, None)
+Back fF newAddress:  120006
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+goto cond value:  120006
+is list:  120006
+goto list as pythonList (100.0, None)
+goto list as flattened pythonList [100.0]
+Executing: forrow
+Executing: print
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+function params  [10000, 70012]
+new function params  [10000, 70012]
+gosub:  sub
+lang Func paramsList:  [10000, 70012]
+is list:  120000
+is list:  70012
+lang Func pythonParamsList:  [(1.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (1.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None}}
+function params  [70018]
+new function params  [120008]
+gosub:  print
+lang Func paramsList:  [120008]
+is list:  120008
+lang Func pythonParamsList:  [(0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,)]
+>  (0.0,)
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120010
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None, 120010: 0.0, 120011: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None, 120010: 0.0, 120011: None}}
+function params  [70022, 10001]
+new function params  [120010, 10001]
+gosub:  87
+user Func paramsList:  [120010, 10001]
+is list:  120010
+is list:  120002
+user Func pythonParamsList:  [(0.0, None), (4.0, None)]
+PLtPL:  (0.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  =
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(0.0, None), (-1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (-1.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+goto cond value:  120004
+is list:  120004
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+Executing: rule
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  13
+user Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+user Func pythonParamsList:  [(0.0, None), (4.0, None)]
+PLtPL:  (0.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: xor
+Executing: getpixel
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  sub
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(0.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (1.0,)]
+Returned valued after lang function [-1.0]
+Returned valued after list conversion (-1.0, None)
+PLtPL:  (-1.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None}}
+function params  [70006, 10001]
+new function params  [120004, 10001]
+gosub:  getpixel
+lang Func paramsList:  [120004, 10001]
+is list:  120004
+is list:  120002
+lang Func pythonParamsList:  [(-1.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(-1.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120006
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None}}
+Executing: or
+Executing: getpixel
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None}}
+function params  [10000, 10001]
+new function params  [10000, 10001]
+gosub:  getpixel
+lang Func paramsList:  [10000, 10001]
+is list:  120000
+is list:  120002
+lang Func pythonParamsList:  [(0.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None}}
+Executing: getpixel
+Executing: add
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None}}
+function params  [10000, 70020]
+new function params  [10000, 70020]
+gosub:  add
+lang Func paramsList:  [10000, 70020]
+is list:  120000
+is list:  70020
+lang Func pythonParamsList:  [(0.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (1.0,)]
+Returned valued after lang function [1.0]
+Returned valued after list conversion (1.0, None)
+PLtPL:  (1.0, None)
+lang Func memoryReturnList:  120010
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None}}
+function params  [70026, 10001]
+new function params  [120010, 10001]
+gosub:  getpixel
+lang Func paramsList:  [120010, 10001]
+is list:  120010
+is list:  120002
+lang Func pythonParamsList:  [(1.0, None), (4.0, None)]
+lang Func pythonParamsList after flatten:  [(1.0,), (4.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120012
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None}}
+function params  [70018, 70032]
+new function params  [120008, 120012]
+gosub:  or
+lang Func paramsList:  [120008, 120012]
+is list:  120008
+is list:  120012
+lang Func pythonParamsList:  [(0.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (0.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120014
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None}}
+function params  [70012, 70038]
+new function params  [120006, 120014]
+gosub:  xor
+lang Func paramsList:  [120006, 120014]
+is list:  120006
+is list:  120014
+lang Func pythonParamsList:  [(0.0, None), (0.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (0.0,)]
+Returned valued after lang function [0.0]
+Returned valued after list conversion (0.0, None)
+PLtPL:  (0.0, None)
+lang Func memoryReturnList:  120016
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None}}
+goto cond value:  120016
+is list:  120016
+goto list as pythonList (0.0, None)
+goto list as flattened pythonList [0.0]
+goto cond value:  1.0
+Executing: print
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None}}
+function params  [70062]
+new function params  [70062]
+gosub:  print
+lang Func paramsList:  [70062]
+is list:  70062
+lang Func pythonParamsList:  [(100.0, None)]
+lang Func pythonParamsList after flatten:  [(100.0,)]
+>  (100.0,)
+Returned valued after lang function [100.0]
+Returned valued after list conversion (100.0, None)
+PLtPL:  (100.0, None)
+lang Func memoryReturnList:  120018
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016, 20010: 120018}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None, 120018: 100.0, 120019: None}}
+assigned:  20010  to  20011
+endFunc: 
+Temp return address after function 20011
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1000, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 20000, 70007: None, 70008: 10001, 70009: None, 70010: 70006, 70011: 70008, 70012: 20001, 70013: None, 70014: 10001, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 1000, 70021: None, 70022: 70020, 70023: None, 70024: 10000, 70025: 70022, 70026: 20003, 70027: None, 70028: 10001, 70029: None, 70030: 70026, 70031: 70028, 70032: 20004, 70033: None, 70034: 70032, 70035: None, 70036: 70018, 70037: 70034, 70038: 20005, 70039: None, 70040: 70038, 70041: None, 70042: 70012, 70043: 70040, 70060: 1000, 70061: None, 70062: 1001, 70063: None, 70064: 70062, 70065: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 120014, 20006: 120016, 20010: 120018, 20011: 20010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: -1.0, 120005: None, 120006: 0.0, 120007: None, 120008: 0.0, 120009: None, 120010: 1.0, 120011: None, 120012: 0.0, 120013: None, 120014: 0.0, 120015: None, 120016: 0.0, 120017: None, 120018: 100.0, 120019: None}}
+pointer to return result of func at endFunc:  20011
+Returned valued after function 20010
+Back fF poped returnAddress:  20001
+is list:  120018
+Back fF python list:  (100.0, None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None}}
+PLtPL:  (100.0, None)
+Back fF newAddress:  120006
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+goto cond value:  120006
+is list:  120006
+goto list as pythonList (100.0, None)
+goto list as flattened pythonList [100.0]
+Executing: forrow
+Executing: print
+Executing: sub
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None}}
+function params  [10000, 70012]
+new function params  [10000, 70012]
+gosub:  sub
+lang Func paramsList:  [10000, 70012]
+is list:  120000
+is list:  70012
+lang Func pythonParamsList:  [(0.0, None), (1.0, None)]
+lang Func pythonParamsList after flatten:  [(0.0,), (1.0,)]
+Returned valued after lang function [-1.0]
+Returned valued after list conversion (-1.0, None)
+PLtPL:  (-1.0, None)
+lang Func memoryReturnList:  120008
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None}}
+function params  [70018]
+new function params  [120008]
+gosub:  print
+lang Func paramsList:  [120008]
+is list:  120008
+lang Func pythonParamsList:  [(-1.0, None)]
+lang Func pythonParamsList after flatten:  [(-1.0,)]
+>  (-1.0,)
+Returned valued after lang function [-1.0]
+Returned valued after list conversion (-1.0, None)
+PLtPL:  (-1.0, None)
+lang Func memoryReturnList:  120010
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None}}
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None}}
+function params  [70022, 10001]
+new function params  [120010, 10001]
+gosub:  87
+user Func paramsList:  [120010, 10001]
+is list:  120010
+is list:  120002
+user Func pythonParamsList:  [(-1.0, None), (4.0, None)]
+PLtPL:  (-1.0, None)
+PLtPL:  (4.0, None)
+user Func memoryParamsList:  [120000, 120002]
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {}, 'temporal': {}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None}}
+Executing: =
+Current Memory:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None}}
+function params  [10000, 70000]
+new function params  [10000, 70000]
+gosub:  =
+lang Func paramsList:  [10000, 70000]
+is list:  120000
+is list:  70000
+lang Func pythonParamsList:  [(-1.0, None), (-1.0, None)]
+lang Func pythonParamsList after flatten:  [(-1.0,), (-1.0,)]
+Returned valued after lang function [1.0]
+Returned valued after list conversion (1.0, None)
+PLtPL:  (1.0, None)
+lang Func memoryReturnList:  120004
+Memory after gosub :  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002}, 'temporal': {20000: 120004}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 1.0, 120005: None}}
+goto cond value:  120004
+is list:  120004
+goto list as pythonList (1.0, None)
+goto list as flattened pythonList [1.0]
+assigned:  70006  to  20005
+endFunc: 
+Temp return address after function 20005
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70006: 1000, 70007: None}, 'temporal': {20000: 120004, 20005: 70006}, 'temporalList': {120000: -1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 1.0, 120005: None}}
+pointer to return result of func at endFunc:  20005
+Returned valued after function 70006
+Back fF poped returnAddress:  20004
+is list:  70006
+Back fF python list:  (1.0, None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None}}
+PLtPL:  (1.0, None)
+Back fF newAddress:  120012
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None, 120012: 1.0, 120013: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None, 120012: 1.0, 120013: None}}
+assigned:  70028  to  20005
+endFunc: 
+Temp return address after function 20005
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024, 70028: 20004, 70029: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120012, 20005: 70028}, 'temporalList': {120000: 0.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: -1.0, 120009: None, 120010: -1.0, 120011: None, 120012: 1.0, 120013: None}}
+pointer to return result of func at endFunc:  20005
+Returned valued after function 70028
+Back fF poped returnAddress:  20004
+is list:  70028
+is list:  120012
+Back fF python list:  ((1.0, None), None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None, 120010: 0.0, 120011: None}}
+PLtPL:  ((1.0, None), None)
+PLtPL:  (1.0, None)
+Back fF newAddress:  120014
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None, 120010: 0.0, 120011: None, 120012: 1.0, 120013: None, 120014: 120012, 120015: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120014}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None, 120010: 0.0, 120011: None, 120012: 1.0, 120013: None, 120014: 120012, 120015: None}}
+assigned:  70028  to  20005
+endFunc: 
+Temp return address after function 20005
+meomry at endFunc:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002}, 'list': {70000: 1002, 70001: None, 70002: 70000, 70003: None, 70004: 10000, 70005: 70002, 70008: 10001, 70009: None, 70010: 10000, 70011: 70008, 70012: 1000, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014, 70018: 20002, 70019: None, 70020: 70018, 70021: None, 70022: 20003, 70023: None, 70024: 10001, 70025: None, 70026: 70022, 70027: 70024, 70028: 20004, 70029: None}, 'temporal': {20000: 120004, 20001: 120006, 20002: 120008, 20003: 120010, 20004: 120014, 20005: 70028}, 'temporalList': {120000: 1.0, 120001: None, 120002: 4.0, 120003: None, 120004: 0.0, 120005: None, 120006: 100.0, 120007: None, 120008: 0.0, 120009: None, 120010: 0.0, 120011: None, 120012: 1.0, 120013: None, 120014: 120012, 120015: None}}
+pointer to return result of func at endFunc:  20005
+Returned valued after function 70028
+Back fF poped returnAddress:  20002
+is list:  70028
+is list:  120014
+is list:  120012
+Back fF python list:  (((1.0, None), None), None)
+Back fF memory before to PointerList:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None}}
+PLtPL:  (((1.0, None), None), None)
+PLtPL:  ((1.0, None), None)
+PLtPL:  (1.0, None)
+Back fF newAddress:  120014
+Back fF memory before set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None, 120014: 120012, 120015: None}}
+Back fF memory after set:  {'global': {1000: 1.0, 1001: 100.0, 1002: -1.0, 1003: 5.0, 1004: 0.0, 1005: 32.0, 1006: 255.0, 1007: 2.0}, 'local': {10000: 120000, 10001: 120002, 10002: 120004}, 'list': {70000: 10001, 70001: None, 70002: 10000, 70003: 70000, 70006: 1000, 70007: None, 70008: 70006, 70009: None, 70010: 10002, 70011: 70008, 70012: 20001, 70013: None, 70014: 70012, 70015: None, 70016: 10000, 70017: 70014}, 'temporal': {20000: 120006, 20001: 120008, 20002: 120014}, 'temporalList': {120000: 1.0, 120001: None, 120002: 5.0, 120003: None, 120004: 5.0, 120005: None, 120006: 0.0, 120007: None, 120008: 4.0, 120009: None, 120010: 1.0, 120011: None, 120012: 120010, 120013: None, 120014: 120012, 120015: None}}
+goto cond value:  120014
+is list:  120014
+is list:  120012
+is list:  120010
+goto list as pythonList (((1.0, None), None), None)
+Traceback (most recent call last):
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\VENCING_VM.py", line 130, in <module>
+    executeQuads(quads)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\VENCING_VM.py", line 97, in executeQuads
+    nextLine = instructions[instructionName](quad, instructionPointer)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\Instructions.py", line 161, in gotoFalse
+    lista = flattenPythonList(lista)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\Instructions.py", line 126, in flattenPythonList
+    helper(pythonList)
+  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\Instructions.py", line 119, in helper
+    raise Exception("language function does not accept list of depth greater than 1")
+Exception: language function does not accept list of depth greater than 1

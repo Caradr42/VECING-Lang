@@ -170,6 +170,7 @@ absop = unaryFunctionGenerator(operator.abs, 'get absolute value of')
 #Logical operators 
 andOp = binaryFunctionGenerator(lambda x, y: 1.0 if x != 0.0 and y != 0.0 else 0.0, 'evaluate logical AND of')
 orOp = binaryFunctionGenerator(lambda x, y: 1.0 if x != 0.0 or y != 0.0 else 0.0, 'evaluate logical OR of')
+xorOp = binaryFunctionGenerator(lambda x, y: 1.0 if (bool(x) and not bool(y)) or (not bool(x) and bool(y)) else 0.0, 'evaluate logical OR of')
 
 notOp = unaryFunctionGenerator(lambda x: 1.0 if x == 0.0 else 0.0, 'cannot evaluate logical NOT of')
 

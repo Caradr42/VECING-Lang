@@ -5,7 +5,7 @@
 """
 import array
 
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 INITIAL_ADDRESS = 1000
 
@@ -59,17 +59,15 @@ semanticTable = {
     "append":   ((tuple, tuple), (tuple,)),
     "and":      ((tuple, tuple), (tuple,)), #
     "or":       ((tuple, tuple), (tuple,)), #
+    "xor":      ((tuple, tuple), (tuple,)), #
     "not":      ((tuple,), (tuple,)),       #
     "empty":    ((tuple,), (tuple,)),        #
     "single":   ((tuple,), (tuple,)),        #
     "elemCount":((tuple,), (tuple,)),       #
     "length":   ((tuple,), (tuple,)),       #
     "screen":   ((tuple, (tuple, tuple)), (None,)),
-    "pixel":    ((tuple, tuple), (None,)),
     "pixels":   ((tuple, tuple), (None,)),
     "getPixels": ((None,), (None,)),
-    "background": ((tuple,), (None,)),
-    "clear":    ((None,), (None,)),
     "timeStep": ((None,), (tuple,)),
     "deltaTime": ((None,), (tuple,)),
     "line":     ((tuple, (tuple, tuple)), (None,)),
@@ -84,5 +82,14 @@ semanticTable = {
     "isFunc":   ((tuple,), (tuple,)),
     "isBool":   ((tuple,), (tuple,)),
     "shape":    ((tuple,), (tuple,)),
-    "get":      ((tuple,), (tuple,))
+    "get":      ((tuple,), (tuple,)),
+    #new graphics
+    "setbgcolor":   ((tuple,), (None,)),
+    "setdrawcolor": ((tuple,), (None,)),
+    "clear":        ((None,), (None,)),
+    "pixel":        ((tuple, tuple), (None,)),
+    "getpixel":     ((tuple, tuple), (None,)),
+    "createwindow": ((tuple, tuple, tuple), (None,)),
+    "stopRender":   ((None,), (None,)),
+    "pause":        ((None,), (None,)),
 }

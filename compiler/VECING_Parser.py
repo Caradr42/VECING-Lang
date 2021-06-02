@@ -345,9 +345,9 @@ class LanguageParser(Parser):
         'OP_COMP z',
         'OP_MATH z')
     def functionList(self, p):
-        if(not self.symbols.isSymbolInContext(p[0])):
-            raise NameError(
-                '--SEMANTIC ERROR-- at line {}:\n\t{} not found in scope'.format(p.lineno, p[0]))
+        # if(not self.symbols.isSymbolInContext(p[0])):
+        #     raise NameError(
+        #         '--SEMANTIC ERROR-- at line {}:\n\t{} not found in scope'.format(p.lineno, p[0]))
         return (p[0], p[1])
 
     @_('listContainer z')
