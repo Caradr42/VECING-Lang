@@ -13,6 +13,52 @@ languageFunctions = list(semanticTable.keys())
 
 
 class LanguageParser(Parser):
+    """ This Class is in charge of the parsing and thus grammatical analisis of VECING-Lang code.
+        The 
+
+        The beggining of the class consists of functions for all the grammatical rules of this 
+        language. At the end of parsing the code, a program tree is generated containing important 
+        keywords for the quadruples generation while having a functional language structure.
+        This class is used by the copiler.py and ParserTest.py files
+
+
+    constants
+    ----------
+    semanticTable: The table from wich the seantic checks to language functions are 
+        compared to
+    languageFunctions: a list of all language functions names
+    tokens: The list of recognized tokesn as imported from the Lexer
+    start: the name of the starting grammar rule for the formal grammar
+    
+    attributes
+    ---------
+    symbols: the simbols table created from the class SymbolTabe. Ii is used for semantic 
+        cheking
+    lambdaCounter: the number of lambda functions created in the code
+    programTree: the resulting tree after parsing the code
+    tCounter: the current index for the temporal addresses
+    lCounter: the current index for the local variables addresses
+    listCounter: the current index for the list addresses
+    currentFunction: the name or address of the function meant to be executing at some point 
+        in the quadruples
+    constsCuads: the quadruples for the CONST instruction generated during parsing 
+    functionSizeCuads: the quadruples for the functionSize instruction generated at the beginnig 
+        of quadruple generation 
+    constValues: the actual values of the declared constants paired to their address
+    address: the initial address for all variable addresses
+
+    methods
+    -------
+    #the grammar rules are not listed here else this would be to long yet not useful
+    #consult the docs
+    constCuadGenerator(value) 
+    constArrayCuadGenerator(constList)
+    flatListToFunctionalList(flatList)
+    error(p)
+    getCuads()
+    addressSetterGenerator(initialLimit, offset=1)
+    cuadGenerator(tree, cuads)
+    """
 
     def __init__(self):
         self.symbols = SymbolTable()
@@ -45,16 +91,6 @@ class LanguageParser(Parser):
 
     tokens = LanguageLexer.tokens
     start = 'program'
-    debugfile = 'parser.out'
-
-    # precedence = (
-    #     ('right', 'DEFINE'),
-    #     ('right', 'RENDER')
-    # )
-
-    def reduceVar(x):
-        if (type(x) == bool):
-            return 1 if x else 0
 
     ################ program ################
     @_('ID a render')
@@ -184,6 +220,18 @@ class LanguageParser(Parser):
         return ('param', p[0])
 
     def constCuadGenerator(self, value):
+        """ Generates all the quads needed for a constant
+            which can be a boolean value, numeric value, or
+            a structured value like a list.
+
+        parameters
+        ----------
+        value: the python value from which create quads
+
+        returns
+        -------
+        the address counter that is increaed with every constant declared
+        """
         if type(value) == list or type(value) == tuple:
             pythonList = self.constArrayCuadGenerator(value)
             return pythonList
@@ -357,6 +405,28 @@ class LanguageParser(Parser):
         raise Exception(message)
 
     def getCuads(self):
+        """ At the beginning it identifies the first element of the tree head, 
+            which is the keyword PROGRAM and generates some quadruples (quads) used 
+            for constant definition and the main goto that goes to render. Since the 
+            starting goto does not know yet to which line it must jump, the generate quads 
+            function must first make several recursive calls to process all the program 
+            tree elements, and only after it generates the needed quads it calculates 
+            the line to where the main goto must jump. This same principle is applied for 
+            other instructions that require jumps in code, including function definition. 
+            In an abstract way, the programm tree works as a proto quadruples list as it 
+            includes instructions in the left side, and a right side with the data it 
+            operates on to. Other more keywords in the program are DEFINE, CONSTDEF, 
+            RENDER, LAMBDA, params, var, and cond; all of them are identified by the 
+            recursive function, this way each call knows what to do with its given piece of 
+            the program tree, and how to execute following recursive calls and what to do 
+            before and after them.
+            Used by compile.py and ParserTest.py
+
+        returns
+        -------
+        cuads: all the cuads generated after executing the recursive process of cuadGenerator
+                with the programTree.
+        """
         #tCounter = 0
         cuads = []
         self.cuadGenerator(self.programTree, cuads)
@@ -372,12 +442,12 @@ class LanguageParser(Parser):
             return index
         return addressFunction
 
-    def flatten(head):
-        elements = []
-        while(head != None):
-            elements.append(head[0])
-            head = head[1]
-        return elements
+    # def flatten(head):
+    #     elements = []
+    #     while(head != None):
+    #         elements.append(head[0])
+    #         head = head[1]
+    #     return elements
 
     def cuadGenerator(self, tree, cuads):
         global semanticTable

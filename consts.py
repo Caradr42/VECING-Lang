@@ -1,3 +1,8 @@
+""" This file serves as a common import for constants.
+    This includes the limits for the virtual memory addresses, and 
+    stack size. And also this includes the semanticTable used by both the
+    parser and virtual machine for semantic cheking of the language functions
+"""
 import array
 
 DEBUG_MODE = False

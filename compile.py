@@ -5,16 +5,37 @@ import traceback
 from compiler.VECING_Parser import LanguageParser
 from compiler.VECING_Lexer import LanguageLexer
 
-def getRelativePath(relPath):
+def getAbsolutePath(relPath):
+    """ Concatenes the relative path with the current
+        file directory to get the absolute path of the file.
+
+    parameters
+    ----------
+    relPath: the name of the file
+
+    returns
+    -------
+    The absolute file path
+    """
     currDir = os.path.dirname(__file__)
     return os.path.join(currDir, relPath)
 
 
 def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=False, showCuads=False):
+    """ Gets a fileName from where it generates intermediate code and writes it in a .o file
+
+    parameters
+    ----------
+    fileName: the name of the file with extension .vg where the program is
+    showTokens: boolean flag that states if the tokens gotten in the compilation must be print
+    showSymbols: boolean flag that states if the symbols gotten in the compilation must be print
+    showProgramTree: boolean flag that states if the ProgramTree gotten in the compilation must be print
+    showCuads: boolean flag that states if the quads gotten in the compilation must be print
+    """
     lexer = LanguageLexer()
     parser = LanguageParser()
 
-    with open(getRelativePath(fileName), 'r') as file:
+    with open(getAbsolutePath(fileName), 'r') as file:
         data = file.read()
     lexerData = lexer.tokenize(data)
 
@@ -66,7 +87,11 @@ def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=Fal
     print('\n')
 
 if __name__ == '__main__':
-      
+    """ Gets a name of a file along some optional flags for printing
+        information generated during the compilation process.
+        This section also checks for any errors in the given fileName.
+        This section of the code is used can be used manually in the terminal.
+    """  
     flags = {
         "-v": False,
         "-t": False,

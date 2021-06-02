@@ -3,16 +3,28 @@ import traceback
 from compiler.VECING_Parser import LanguageParser
 from compiler.VECING_Lexer import LanguageLexer
 
-def getRelativePath(relPath):
+def getAbsolutePath(relPath):
     currDir = os.path.dirname(__file__)
     return os.path.join(currDir, relPath)
 
 
 def parseFile(fileName, showTokens=False, showSymbols=False, showProgramTree=False, showCuads=False):
+    """ receives a fileName and then passes its contents to the parser for a 
+        quick test. The function also accepts multiple options for debugging 
+        so that the Parser prints them.
+
+        parameters
+        ----------
+        fileName:
+        showTokens:
+        showSymbols:
+        showProgramTree:
+        showCuads:
+    """
     lexer = LanguageLexer()
     parser = LanguageParser()
 
-    with open(getRelativePath(fileName), 'r') as file:
+    with open(getAbsolutePath(fileName), 'r') as file:
         data = file.read()
     lexerData = lexer.tokenize(data)
 

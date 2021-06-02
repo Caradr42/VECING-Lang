@@ -1,9 +1,8 @@
-WARNING: C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py:163: Rule 'comment' defined, but not used
+WARNING: C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Parser.py:199: Rule 'comment' defined, but not used
 WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
 WARNING: 21 shift/reduce conflicts
 WARNING: 29 reduce/reduce conflicts
-Parser debugging for LanguageParser written to parser.out
 
 
 ('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc2', (('params', (('param', 'A'), (('param', 'B'), ('param', 'C')))), (('sub', (('var', 'B'), (('var', 'A'), None))), None)))), None), ('RENDER', ((('cond', (((('myFunc2', (((1000, None), ((1001, None), None)), (((1001, None), ((1002, None), None)), (((1003, None), ((1004, None), None)), None)))), None), ((('print', ((1004, None), None)), None), None)), None)), None), None))))) 

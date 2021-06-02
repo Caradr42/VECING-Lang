@@ -1,4 +1,9 @@
 #!/bin/bash
+# This shell script compiles and run each test of the VECING-Lang in a background process
+# and prints the output of each test and its errorstd (if any) in a txt file.
+# It waits for all the tests to finish before ending its own execution.
+#
+
 echo running tests...
 python run.py tests/matMult.vg -e &> tests/output/matMult_output.txt &
 python run.py tests/factorial.vg -e &> tests/output/factorial_output.txt &
