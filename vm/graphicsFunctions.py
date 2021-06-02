@@ -21,7 +21,19 @@ def inBounds(position):
 
 ########################
 
+
 def setbgcolor(memoryManager, paramsList):
+    """sets the background color of the window to be used in the next clear call
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     global _window
     global _bgcolor
 
@@ -31,6 +43,17 @@ def setbgcolor(memoryManager, paramsList):
     return []
 
 def setdrawcolor(memoryManager, paramsList):
+    """sets the drawing color of the window to be used in the next pixel call
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     global _window
     global _drawcolor
 
@@ -39,6 +62,17 @@ def setdrawcolor(memoryManager, paramsList):
     return []
 
 def clear(memoryManager, paramsList):
+    """resets the background to the backgroun color of the window
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     global _window
     global _drawcolor
     global _pixelMatrix
@@ -52,6 +86,17 @@ def clear(memoryManager, paramsList):
     return []
     
 def pixel(memoryManager, paramsList):
+    """sets a single pixel by coloring it with the draw color
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     global _window
     global _drawcolor
     global _scaleFactor
@@ -88,6 +133,17 @@ def pixel(memoryManager, paramsList):
     return []
 
 def getpixel(memoryManager, paramsList):
+    """returns if a pixel at position [(x,), (y,)] had been set
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    [0.0] if the pixel is not set, else [1.0]
+    """
     global _window
     global _drawcolor
     global _scaleFactor
@@ -114,6 +170,17 @@ def getpixel(memoryManager, paramsList):
         return [0.0]
 
 def createwindow(memoryManager, paramsList):
+    """create a new graphics window with agiven resolution, bg color and scale
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     global _window
     global _drawcolor
     global _scaleFactor
@@ -147,28 +214,41 @@ def createwindow(memoryManager, paramsList):
     
     
 def stopRender(memoryManager, paramsList):
+    """waits for the drawing function calls to finish and closes the window 
+        on click from the user
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     _window.getMouse()
     time.sleep(0.2)
     _window.close()
     return []
 
 def pause(memoryManager, paramsList):
+    """waits for the drawing function calls to finish and continues execution 
+        on click from the user
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    empty list.
+    """
     _window.getMouse()
     time.sleep(0.2)
     # if paramsList is not None and len(paramsList) is not 0:
     #     return paramsList[0]
     return []
-
-# def restart(memoryManager, paramsList):
-#     global instructionPointer
-#     print(instructionPointer)
-#     instructionPointer = 0
-#     return []
-
-# createwindow(None, [(41.0, 22.0), (0.0, 0.0, 0.0), 32])
-# setdrawcolor(None, [(255.0, 0.0, 0.0)])
-
-#setbgcolor(None, [(0.0, 255.0, 0.0)])
 
 
 # pixel(None, [(20.0, 0.0)])
@@ -186,5 +266,4 @@ def pause(memoryManager, paramsList):
 #             pixel(None, [(j, i + 1)])
     
     
-
 # stopRender(None, None)

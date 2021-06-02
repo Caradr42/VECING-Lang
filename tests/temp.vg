@@ -1,0 +1,14 @@
+myProgram
+//this program does important stuff;
+
+(define myFunc1 (A B) (sub B A));
+(define myFunc2 (A B) (add A B));
+(CONST myConst1 "(1 2 3 4)");
+
+RENDER 
+(print (xor 1 0))
+(print (xor 1 1))
+(print (xor 0 1))
+(print (xor 0 0))
+(print (xor (3 3) (10.2 0)))
+END

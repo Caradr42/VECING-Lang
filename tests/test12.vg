@@ -19,24 +19,38 @@ myProgram
     )
 ); 
 
+
 (define formatrix (i h l)
     (cond
         [
             (= i h) (1)
-            (forrow i (sub l 1)) (formatrix (add 1 i) h l)
+            (cdr (forrow i (sub l 1))) (formatrix (add 1 i) h l)
         ]
     )
 );
 
 
 RENDER
-(createwindow (5 5) (0 0 0) 32)
+(createwindow (11 11) (0 0 0) 32)
 (setbgcolor (0 0 255))
 (clear)
 (setdrawcolor (255 0 0))
-(pixel 2 0)
+
+(pixel 5 0)
+
 //(forrow 4 0);
-(formatrix 0 5 5)
+//(formatrix 0 10 10);
+
+(forrow 10 0)
+(forrow 10 1)
+(forrow 10 2)
+(forrow 10 3)
+(forrow 10 4)
+(forrow 10 5)
+(forrow 10 6)
+(forrow 10 7)
+(forrow 10 8)
+(forrow 10 9)
 
 (stopRender)
 

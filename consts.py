@@ -5,7 +5,7 @@
 """
 import array
 
-DEBUG_MODE = True
+DEBUG_MODE = False
 
 INITIAL_ADDRESS = 1000
 
@@ -56,7 +56,7 @@ semanticTable = {
     "print":    ((tuple,), (tuple,)),        #
     "car":      ((tuple,), (tuple,)),       #
     "cdr":      ((tuple,), (tuple,)),       #
-    "append":   ((tuple, tuple), (tuple,)),
+    "append":   ((tuple, tuple), (tuple,)), #
     "and":      ((tuple, tuple), (tuple,)), #
     "or":       ((tuple, tuple), (tuple,)), #
     "xor":      ((tuple, tuple), (tuple,)), #
@@ -65,24 +65,7 @@ semanticTable = {
     "single":   ((tuple,), (tuple,)),        #
     "elemCount":((tuple,), (tuple,)),       #
     "length":   ((tuple,), (tuple,)),       #
-    "screen":   ((tuple, (tuple, tuple)), (None,)),
-    "pixels":   ((tuple, tuple), (None,)),
-    "getPixels": ((None,), (None,)),
-    "timeStep": ((None,), (tuple,)),
-    "deltaTime": ((None,), (tuple,)),
-    "line":     ((tuple, (tuple, tuple)), (None,)),
-    "curve":    ((tuple, (tuple, (tuple, tuple))), (None,)),
-    "spline":   ((tuple,), (None,)),
-    "triangle": ((tuple, (tuple, (tuple, tuple))), (None,)),
-    "ellipse":  ((tuple, (tuple, tuple)), (None,)),
-    "isNumber": ((tuple,), (tuple,)),
-    "isMatrix": ((tuple,), (tuple,)),
-    "isVector": ((tuple,), (tuple,)),
     "isList":   ((tuple,), (tuple,)),       #
-    "isFunc":   ((tuple,), (tuple,)),
-    "isBool":   ((tuple,), (tuple,)),
-    "shape":    ((tuple,), (tuple,)),
-    "get":      ((tuple,), (tuple,)),
     #new graphics
     "setbgcolor":   ((tuple,), (None,)),
     "setdrawcolor": ((tuple,), (None,)),
