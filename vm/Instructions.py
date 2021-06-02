@@ -35,22 +35,70 @@ def VECT(quad, instructionPointer):
 
 
 def CONST(quad, instructionPointer):
+    """ Instruction to add a const to v memory
+    This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads. 
+    """
     value = quad[1]
     address = quad[3]
     memoryManager.setValue(address, value)
 
 def funcSize(quad, instructionPointer):
+    """ Instruction to add a function to the functionsTable in the MemoryManager
+    This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads. 
+    """
     functionPointer = quad[1]
     functionParamsCount = quad[2]
     memoryManager.addFunction(functionPointer, functionParamsCount)
 
 def goto(quad, instructionPointer):
+    """ Instruction to make a jump during code execution
+    This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads. 
+
+    returns
+    -------
+    instructionPointer: the quad number to which the VM will jump next 
+    """
     instructionPointer = quad[1]
     return instructionPointer
 
 #(10, None)  => [10]
 #((11, None), ((-5.0, None), ((10, None), None))) => [11, -5, 10]
 def flattenPythonList(pythonList):
+    """ receives a list of the form:
+            [((10.0, None), ((11.0, None), ((12.0, None), None)))]
+        and returns a normal python list with its contents 
+    This function is used by Instructions.py
+
+    parameters
+    ----------
+    pythonList: a list of the form:
+        ((10.0, None), ((11.0, None), ((12.0, None), None)))
+
+    returns
+    -------
+    flattenedList: a normal python list
+    """
     if pythonList == None or len(pythonList) == 0 or (len(pythonList) == 1 and pythonList[0] == None):
         return [None]
 
@@ -78,6 +126,21 @@ def flattenPythonList(pythonList):
     return flattenedList
 
 def gotoFalse(quad, instructionPointer):
+    """ Instruction to make a jump during code execution if the value stored in the quad 
+        parameter 1 is equal to 0.0 and thus False
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads. 
+
+    returns
+    -------
+    instructionPointer: the quad number to which the VM will jump next 
+    """
     #debug.print("goto cond address: ", quad[1])
     
     address = memoryManager.getValue(quad[1])
@@ -113,10 +176,34 @@ def gotoFalse(quad, instructionPointer):
 
 
 def era(quad, instructionPointer):
+    """ Function that gets executed by the VM whenever a quad with the era
+        instruction appears. The quads informs that a function call has started,
+        and the name of instruction pointer of the function is saved.
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads.
+    """
     funcName = quad[1]
     debug.print("Executing: {}".format(funcName))
 
 def assign(quad, instructionPointer):
+    """ Function that gets executed by the VM whenever a quad with the assign
+        instruction appears. It simply tells the VM to put the value that the quad has in its
+        second element, to the virtual address in the fourth element of the quad.
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads.
+    """
     value = quad[1]
     address = quad[3]
 
@@ -124,6 +211,21 @@ def assign(quad, instructionPointer):
     memoryManager.setValue(address, value)
 
 def endfunc(quad, instructionPointer):
+    """ Instruction to make a jump at the end of a function execution, back to the 
+        original quad the function was called from
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads. 
+
+    returns
+    -------
+    instructionPointer: the quad number to which the VM will jump next 
+    """
     tempReturnAddress = quad[1]
 
     debug.print("endFunc: ")    
@@ -145,6 +247,26 @@ def endfunc(quad, instructionPointer):
 
 
 def gosub(quad, instructionPointer):
+    """ Instruction to make a jump to the beginning of a function if the quad got
+        an instruction pointer, else if it has a lang function name it executes it using 
+        the langFunctions dictionary wich stores the functions imported form 
+        languageFunctions.py
+        This instruction also manages all the process of getting the params from the stack and saving
+        them in the local context of the function, and then proceeds to create a new context.
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads. 
+
+    returns
+    -------
+    instructionPointer: the quad number to which the VM will jump next, in this case
+        the pointer to function geting executed
+    """
     funcName = quad[1]
     returnAddress = quad[3]
     isUserDefinedFunction = type(funcName) == int
@@ -227,6 +349,18 @@ def gosub(quad, instructionPointer):
         return instructionPointer + 1
 
 def lista(quad, instructionPointer):
+    """ Function that gets executed by the VM whenever a quad with the list
+        instruction appears. It tells to the memory manager to save in memory
+        both given elements.
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads.
+    """
     left = quad[1]
     right = quad[2]
     address = quad[3]
@@ -235,6 +369,19 @@ def lista(quad, instructionPointer):
 
 
 def params(quad, instructionPointer):
+    """ Function that gets executed by the VM whenever a quad with the params
+        instruction appears. It gets the parameters from the specified virtual
+        address in the quads and pushes those parameters indivdually into a stack
+        in the VM.
+        This function is executed by the VM in VENCING_VM.py by using the instructions 
+        dictionary wich contains all the intructions functions paired to their name.  
+
+    parameters
+    ----------
+    quad: a python list with the four elements of the quad being executed
+    instructionPointer: an integer with the corresponding instructionPointer of the quad 
+        in the list of quads.
+    """
     head = quad[1]
 
     debug.print("Current Memory: ", memoryManager.memory)

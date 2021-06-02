@@ -6,14 +6,20 @@ from graphics import *
 
 instructionPointer = 1
 
-# def main():
-#     # win = GraphWin("Some window", 500, 500)
-#     # win.setBackground(color_rgb(255, 0, 0))
-#     # win.getMouse()
-#     # win.close()
-
 
 def readFile(fileName):
+    """ Checks if the given fileName has the required extension of the intermediate code
+        and opens the file, else it raises an error. It is only used in this same file when
+        it gets called from the command line.
+
+    parameters
+    ----------
+    fileName: the name of the file to open
+
+    returns
+    -------
+    file: The opened file
+    """
     regex = r'.*\.o$'
     if not re.match(regex, fileName):
         raise Exception("Invalid extension")
@@ -27,6 +33,17 @@ def readFile(fileName):
 
 
 def getQuadsFromFile(file):
+    """ Gets the content of a file that must containt quads. It is only used in this same file when
+        it gets called from the command line.
+
+    parameters
+    ----------
+    file: An opened file with content
+
+    returns
+    -------
+    quads: The formatted quads gotten from the file
+    """
     lines = file.readlines()
     file.close()
     lines = list(map(lambda string: string[0:-1], lines))
@@ -35,6 +52,20 @@ def getQuadsFromFile(file):
 
 
 def parseQuads(quads):
+    """ Modifies the quads to provide an easy use later on, it casts evert float value to a 
+        real float instead of having a string that appears to be a float, and also casts every virtual address
+        number to an integer value. It is only used in this same file when
+        it gets called from the command line.
+
+    parameters
+    ----------
+    quads: the quads before being modified
+
+    returns
+    -------
+    quads: the quads after being modified
+
+    """
     floatRegex = r'-?\d*\.\d*'
     addressRegex = r'\d*'
 
@@ -50,6 +81,15 @@ def parseQuads(quads):
 
 
 def executeQuads(quads):
+    """ Each iteration of the while a quad is obtained from the quads parameter
+        and executed used the instruction dictionary of functions. It also updates
+        the instructionPointer if needed. It is only used in this same file when
+        it gets called from the command line.
+
+    parameters
+    ----------
+    quads: a list of all the quads to execute
+    """
     global instructionPointer
     while instructionPointer - 1 < len(quads):
         quad = quads[instructionPointer - 1]
@@ -63,6 +103,9 @@ def executeQuads(quads):
 
 
 if __name__ == '__main__':
+    """ Gets a name of a file, obtains the quads from the file, and executes them.
+    This section of the code can be called from the command line and is not used anywhere else.
+    """
 
     flags = {
         "-v": False

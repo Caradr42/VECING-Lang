@@ -1,3 +1,21 @@
+""" This class is an implementation of a lifo stack, it uses a deque to reduce
+    time complexity of pop and push methods. The MemoryManager has several
+    instances of this class.
+
+    attributes
+    ----------
+    elems: a deque that stores all the elements on the stack
+
+    methods
+    -------
+    push(elem)
+    pop()
+    size()
+    isEmpty()
+    top()
+    clear()
+    """
+
 # stack (lifo)
 from collections import deque
 class Stack():

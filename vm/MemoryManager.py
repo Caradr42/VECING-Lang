@@ -8,8 +8,54 @@ from utils import Debugger
 
 debug = Debugger(consts.DEBUG_MODE)
 
-
 class MemoryManager():
+    """ This Class is in charge of managing all the structures necessary for virtual 
+        memory storage and administration. It also contains the methods necessary to 
+        access and edit the memory in various ways while keeping track of the current 
+        context and memory usage 
+
+    attributes
+    ----------
+    memory: the dictionary of dictinaries that stores the virtual memory separated in 
+        multiple memory segments
+    stackMemorySpace: tha amount of space available for the stacks, it acounts for 
+       all the stacks
+    localsStack: The stack for storing the context for the local segment of the memory
+    temporalsStack: The stack for storing the context for the temporal segment of the memory
+    listsStack: The stack for storing the context for the list segment of the memory
+    temporalListsStack: The stack for storing the context for the temporallist segment of the memory
+    params: the satch for storing function parameters
+    returnPointers: The stack for storing an adress where to store the return of a function, and a 
+        function pointer to retunr to at the end of a user function execution.
+    functionsTable: a dictionary to store the number of parameters each user function receives
+
+    methods
+    -------
+    reduceTempPointer(address)
+    getPythonlistFromPointer(address)
+    flatListToFunctionalList(flatList)
+    pythonlistToPointerList(pythonList)
+    stackMemoryCheck(message)
+    addFunction(functionInstructionPointer, functionParamQty)
+    getFunctionParamsCount(functionInstructionPointer)
+    getContextSize()
+    getMemorySegment(address)
+    isAddress(address)
+    pointerIsList(address)
+    addressIsTemp(address)
+    pointerIsConstant(address)
+    setValue(address, value)
+    getValue(address)
+    setTemporalListPair(left, right)
+    setListPair(address, left, right)
+    getListPair(address)
+    popContext()
+    pushContext()
+    popReturnPointers()
+    pushReturnPointers(address, instructionPointer)
+    popParams(size)
+    pushParams(paramsList)
+    """
     def __init__(self):
         self.memory = {
             'global': {},
@@ -34,11 +80,34 @@ class MemoryManager():
         return "MemoryManager(\n{}\n)".format(pprint.pformat(self.memory))
     
     def reduceTempPointer(self, address):
+        """ return the pointer at the end of a temp pointer chain
+
+        parameters
+        ----------
+        address: the adress from were to get the value
+
+        returns
+        -------
+        address: The value from pointer at the end of a temp pointer chain
+        """
         if address is not None and self.addressIsTemp(address):
             return self.getValue(address)
         return address
 
     def getPythonlistFromPointer(self, address):
+        """ obtains the values stored in a list from virtual memory and constructs a 
+            python list from it 
+            used by instructions.py
+
+        parameters
+        ----------
+        address: the adress from were to obtain the values from v memory
+
+        returns
+        -------
+        a funtional list made form nested python touples of the form:
+             ((10.0, None), ((11.0, None), ((12.0, None), None)))
+        """
         if type(address) == int:
             isListAddress = (address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (
                 address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"])
@@ -107,6 +176,19 @@ class MemoryManager():
     # ((10.0, None), ((11.0, None), ((12.0, None), None)))
     
     def flatListToFunctionalList(self, flatList):
+        """Receives a list of regular python touples and converts each of them to lists of the 
+            same form as returned by getPythonlistFromPointer()
+            used by instructions.py
+
+        parameters
+        ----------
+        flatList: a list of regular python touples
+
+        returns
+        -------
+        a funtional list made form nested python touples of the form:
+             ((10.0, None), ((11.0, None), ((12.0, None), None)))
+        """
         if type(flatList) == float:
             return (flatList, None)
 
@@ -141,7 +223,22 @@ class MemoryManager():
                 funcList = (self.flatListToFunctionalList(temp), funcList)
         return funcList
 
-    def pythonlistToPointerList(self, pythonList): # [((1.0, None), None)]
+    
+    def pythonlistToPointerList(self, pythonList): # [((1.0, None), None)] 
+        """Does the oposite as getPythonlistFromPointer(); receives a list of the form:
+            [((10.0, None), ((11.0, None), ((12.0, None), None)))]
+            and stores it in v memory apropiately, returning the list pointer to it
+            used by instructions.py
+
+        parameters
+        ----------
+        pythonList: a list of the form:
+            ((10.0, None), ((11.0, None), ((12.0, None), None)))
+
+        returns
+        -------
+        the list pointer to the stored list
+        """
         debug.print("PLtPL: ", pythonList)
         left = None
         right = None
@@ -174,9 +271,31 @@ class MemoryManager():
             raise Exception(message)
 
     def addFunction(self, functionInstructionPointer, functionParamQty):
+        """Adds a function to the functionsTable using its function Instruction Pointer
+            as key, and the number of parameters as value.
+            used by instructions.py
+
+        parameters
+        ----------
+        functionInstructionPointer: the function Instruction Pointer of the function to add
+        functionParamQty: the number of parameters as value of the function to add
+        """
         self.functionsTable[functionInstructionPointer] = functionParamQty
 
     def getFunctionParamsCount(self, functionInstructionPointer):
+        """returns the number of parameters of a registered function by using its function 
+            Instruction Pointer
+            used by instructions.py
+
+        parameters
+        ----------
+        functionInstructionPointer: the function Instruction Pointer of the function we want 
+            the number of parameters from
+
+        returns
+        -------
+        the number of parameters of a registered function
+        """
         try:
             paramCount = self.functionsTable[functionInstructionPointer]
             return paramCount
@@ -213,22 +332,63 @@ class MemoryManager():
         return type(address) == int
     
     def pointerIsList(self, address):
+        """returns true if the pointer address belong to the list segment, may rise an
+            exception if not sent an address
+            used in instructions.py
+
+        parameters
+        ----------
+        address: the pointer address to check
+
+        returns
+        -------
+        Boolean True if the pointer address belong to the list segment
+        """
+
         if address is None or type(address) == float:
             raise Exception("Tried to access non pointer as pointer")
         return self.isAddress(address) and ((address >= consts.LIMITS["LIST_LIM_L"] and address < consts.LIMITS["LIST_LIM_R"]) or (address >= consts.LIMITS["TEMPORAL_LIST_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIST_LIM_R"]))
 
     def addressIsTemp(self, address):
-        # if address is None or type(address) == float:
-        #     raise Exception("Tried to access non pointer as pointer")
+        """returns true if the pointer address belong to the temp segment.
+            used in instructions.py
+
+        parameters
+        ----------
+        address: the pointer address to check
+
+        returns
+        -------
+        Boolean True if the pointer address belong to the temp segment
+        """
         return self.isAddress(address) and address >= consts.LIMITS["TEMPORAL_LIM_L"] and address < consts.LIMITS["TEMPORAL_LIM_R"]
 
 
     def pointerIsConstant(self, address):
+        """returns true if the pointer address belong to the global segment. may rise an
+            exception if not sent an address
+            used in instructions.py
+
+        parameters
+        ----------
+        address: the pointer address to check
+
+        returns
+        ------
+        boolean True if the pointer address belong to the global segment
+        """
         if address is None or type(address) == float:
             raise Exception("Tried to access non pointer as pointer")
         return self.isAddress(address) and address >= consts.LIMITS["GLOBAL_LIM_L"] and address < consts.LIMITS["GLOBAL_LIM_R"]
 
     def setValue(self, address, value):
+        """sets some addresses value in the v memory
+
+        parameters
+        ----------
+        address: the address were to store tha value
+        value: the value to store
+        """
         memorySegment = self.getMemorySegment(address)
         if memorySegment == None:
             raise Exception(
@@ -237,6 +397,17 @@ class MemoryManager():
         memorySegment[address] = value
 
     def getValue(self, address):
+        """returns the stored value of an address
+            used in instructions.py
+
+        parameters
+        ----------
+        address: the address from were the value is wanted
+
+        returns
+        ------
+        the stored value of the address
+        """
         memorySegment = self.getMemorySegment(address)
         if memorySegment == None:
             raise Exception(
@@ -269,15 +440,42 @@ class MemoryManager():
         return address
 
     def setListPair(self, address, left, right):
+        """similar ot setValue() but for list pairs. sets values for both left and 
+            right of the list
+            used in instructions.py
+
+        parameters
+        ----------
+        address: the address were to store tha value
+        left: the left value to store
+        right: the right value to store
+        """
         self.setValue(address, left)
         self.setValue(address + 1, right)
 
     def getListPair(self, address):
+        """similar ot getValue() but for list pairs. returns both left and 
+            right values from the list
+            used in instructions.py
+
+        parameters
+        ----------
+        address: the address from were the value is wanted
+
+        returns
+        ------
+        left: the left value from the list
+        right: the right value from the list
+        """
         left = self.getValue(address)
         right = self.getValue(address + 1)
         return (left, right)
 
     def popContext(self):
+        """ goes back to the previous context by restoring the previous stack memory from the 
+            stacks 
+            used in instructions.py
+        """
         try:
             self.memory["local"] = self.localsStack.pop()
             self.memory["temporal"] = self.temporalsStack.pop()
@@ -292,6 +490,10 @@ class MemoryManager():
             raise Exception("Invalid context change, already  at global context")
 
     def pushContext(self):
+        """ goes into a new context by storing the current memory in the 
+            stacks and eliminating the current memory
+            used in instructions.py
+        """
         contextSize = self.getContextSize()
 
         self.stackMemorySpace -= contextSize
@@ -308,6 +510,15 @@ class MemoryManager():
         self.memory["temporalList"] = {}
 
     def popReturnPointers(self):
+        """ Used at the end of a user function execution for retrieving the function 
+            pointer were the vm execution needs to return to, and the address were to 
+            store the result of the function
+            used in instructions.py
+
+            returns
+            -------
+            addressInstpointerPair: the function pointer were the vm execution needs to return to, and the address were to store the result of the function
+        """
         self.stackMemorySpace += 2
         try:
             addressInstpointerPair = self.returnPointers.pop()
@@ -316,11 +527,34 @@ class MemoryManager():
             raise Exception("Invalid stack call")
 
     def pushReturnPointers(self, address, instructionPointer):
+        """ Used at the beggining of a user function execution for pushing the function 
+            pointer were the vm execution needs to return to, and the address were to 
+            store the result at the en of the function execution, later to retrieve them
+            used in instructions.py
+
+            parameters
+            ----------
+            address: address were to store the result of the function
+            instructionPointer: the function pointer were the vm execution needs to 
+                return to
+        """
         self.stackMemorySpace -= 2
         self.stackMemoryCheck("Memory limit exceeded, Stack Overflow")
         return self.returnPointers.push((address, instructionPointer))
 
     def popParams(self, size):
+        """ Used at the beggining of a function call for retrieving the function 
+            parameters in a list
+            used in instructions.py
+
+            parameters
+            ----------
+            size: the number of parameters to pop from the stack
+            
+            returns
+            -------
+            paramsList: the function parameters
+        """
         paramsList = []
         try:
             for _ in range(size):
@@ -333,6 +567,14 @@ class MemoryManager():
         return paramsList
 
     def pushParams(self, paramsList):
+        """ Used at the params quad instruction for pushing the function 
+            parameters into the stack
+            used in instructions.py
+
+            parameters
+            ----------
+            paramsList: the function parameters to push
+        """
         self.stackMemorySpace -= len(paramsList)
         self.stackMemoryCheck("Memory limit exceeded, Stack Overflow")
 

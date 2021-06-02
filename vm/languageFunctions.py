@@ -9,6 +9,19 @@ def handleEmpty(paramsList, operationName='handle'):
         raise Exception("cannot {} empty list".format(operationName))
 
 def binaryFunctionGenerator(op, operationName):
+    """ This function generates a binaryFunction for the VECING-Lang given a
+        simple operator that can be used in two single elements.
+        This function is only used in this same file.
+
+    parameters
+    ----------
+    op: the operator to apply to every pair of single elements
+    operationName: the name given to the created binaryFunction
+
+    returns
+    -------
+    binaryFunction: a function that applies the operator op to a pair of lists index wise
+    """
     def binaryFunction(memoryManager, paramsList):
         def binaryOperation(a , b):
             if a is None or b is None:
@@ -40,6 +53,19 @@ def binaryFunctionGenerator(op, operationName):
     return binaryFunction
 
 def unaryFunctionGenerator(op, operationName):
+    """ This function generates a unaryFunction for the VECING-Lang given a
+        simple operator that can be used in a single element.
+        This function is only used in this same file.
+
+    parameters
+    ----------
+    op: the operator to apply to every single elements
+    operationName: the name given to the created unaryFunction
+
+    returns
+    -------
+    unaryFunction: a function that applies the operator op to all the elements of a list
+    """
     def unaryFunction(memoryManager, paramsList):
         def unaryOperation(a):
             if a is None:
@@ -67,6 +93,15 @@ def unaryFunctionGenerator(op, operationName):
 #[((16.0, 17.0, 18.0),)]
 
 def flattenPythonList(pythonList):
+    """ This function converts a list in functional format like 
+        [(((16.0, None), ((17.0, None), ((18.0, None), None))), None)]
+        to a normal python list format like this [((16.0, 17.0, 18.0),)]
+        This function is used within this same file.
+
+    parameters
+    ----------
+    pythonList: the list to flatten
+    """
     if isEmptyList(pythonList):
         return []
 
@@ -152,6 +187,20 @@ def validateList(pythonList):
     return type(pythonList) == tuple or type(pythonList) == list
 
 def isList(memoryManager, paramsList):
+    """ Returns true in a function list format with float logic ([1.0])
+        if the parameter is a list, else returns false in a functional
+        list format ([0.0]).
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: a functional boolean expresion without name that determines whether or not the parameter is a list.
+    """
     if isEmptyList(paramsList):
         return [1.0]
     A = paramsList[0]
@@ -160,6 +209,17 @@ def isList(memoryManager, paramsList):
     return [0.0]
 
 def append(memoryManager, paramsList):
+    """ Apppends two lists into a single one. This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: the result of appending both lists given in the paramsList.
+    """
     handleEmpty(paramsList, "append lists of")
     A = paramsList[0]
     B = paramsList[1]
@@ -173,6 +233,18 @@ def append(memoryManager, paramsList):
 
 #true if list of format (1.2,)
 def single(memoryManager, paramsList):
+    """ Evaluates if a parameter is a single element, or a single element list.
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: a functional boolean expresion without name that determines whether or not the parameter is a single element.
+    """
     if isEmptyList(paramsList):
         return [0.0]
     A = paramsList[0]
@@ -183,6 +255,18 @@ def single(memoryManager, paramsList):
     return [0.0]
 
 def car(memoryManager, paramsList):
+    """ Gets the first element of a list in list format.
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: the result of getting the first element of a list and sending it in a list format.
+    """
     handleEmpty(paramsList, "car")
     #print("paramsList car: ", paramsList)
     A = paramsList[0]
@@ -191,6 +275,18 @@ def car(memoryManager, paramsList):
     return [A[0]]
 
 def cdr(memoryManager, paramsList):
+    """ Gets the all the elements from a list except the first and sends the result in a list.
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: the result of getting the first element of a list and sending it in a list format.
+    """
     handleEmpty(paramsList, "cdr")
     #print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     #print("paramsList cdr: ", paramsList)
@@ -205,6 +301,18 @@ def cdr(memoryManager, paramsList):
     return [A[1:]]
     
 def empty(memoryManager, paramsList):
+    """ Checks if a functional list is empty.
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: a functional boolean expresion without name that determines whether or not the parameter is an empty list
+    """
     if isEmptyList(paramsList):
         return [1.0]
     A = paramsList[0]
@@ -213,6 +321,18 @@ def empty(memoryManager, paramsList):
     return [float(len(A) == 0)]
 
 def elemCount(memoryManager, paramsList):
+    """ Returns how many single elements are in a list despite of possibly having nested lists.
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: the count of how many single elements exists in the list.
+    """
     handleEmpty(paramsList, "count elements of")
     head = paramsList[0]
     
@@ -236,6 +356,19 @@ def elemCount(memoryManager, paramsList):
     return [float(size)]
 
 def length(memoryManager, paramsList):
+    """ Returns how many element a list has, it just counts the outer elements
+        and not necessarily every single element inside.
+        This function is used in the Instructions file.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+
+    returns
+    -------
+    _: the count of how many single elements exists in the list.
+    """
     handleEmpty(paramsList, "cannot get length of")
     head = paramsList[0]
 
@@ -248,6 +381,13 @@ def length(memoryManager, paramsList):
 
 
 def printList(memoryManager, paramsList):
+    """ prints its parameter.
+
+    parameters
+    ----------
+    paramsList: the list of parameters given to the function
+    memoryManager: the manager of memory of the whole program
+    """
     if isEmptyList(paramsList):
         print(paramsList)
         return paramsList
