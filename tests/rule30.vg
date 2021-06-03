@@ -66,5 +66,3 @@ RENDER
 (forrow (sub (w) 1) 19)
 
 (stopRender)
-
-END
