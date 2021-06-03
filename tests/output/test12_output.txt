@@ -176,16 +176,3 @@ test12.vg
 >  (100.0,)
 >  (0.0,)
 >  (-1.0,)
-Traceback (most recent call last):
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\VENCING_VM.py", line 130, in <module>
-    executeQuads(quads)
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\VENCING_VM.py", line 97, in executeQuads
-    nextLine = instructions[instructionName](quad, instructionPointer)
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\Instructions.py", line 331, in gosub
-    returnValue = list(langFunctions[funcName](memoryManager, flattenedParams))
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\vm\graphicsFunctions.py", line 229, in stopRender
-    _window.getMouse()
-  File "../libs/graphics\graphics.py", line 317, in getMouse
-    time.sleep(.1) # give up thread
-KeyboardInterrupt
-^C

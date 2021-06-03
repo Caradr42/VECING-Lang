@@ -3,21 +3,12 @@ WARNING: There is 1 unused rule
 WARNING: Symbol 'comment' is unreachable
 WARNING: 21 shift/reduce conflicts
 WARNING: 29 reduce/reduce conflicts
-Traceback (most recent call last):
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compile.py", line 51, in parseFile
-    parser.parse(lexed)
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\libs\sly\yacc.py", line 2090, in parse
-    lookahead = next(tokens, None)  # Get the next token
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\libs\sly\lex.py", line 443, in tokenize
-    tok = self.error(tok)
-  File "C:\Users\carlo\Google Drive (a00823198@itesm.mx)\ITESM\Semestre 8\Diseño de compiladores\Proyecto\VECING-Lang\compiler\VECING_Lexer.py", line 200, in error
-    raise Exception("Illegal character '%s' in line %i" %
-Exception: Illegal character '/' in line 2
 
 
-Illegal character '/' in line 2
-File tests/test3.vg has error
-Illegal character '/' in line 2
+('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('sub', (('var', 'B'), (('var', 'A'), None))), None)))), (('DEFINE', ('myFunc2', (('params', (('param', 'A'), ('param', 'B'))), (('add', (('var', 'A'), (('var', 'B'), None))), None)))), None)), ('RENDER', ((('cond', (((('myFunc1', ((1000, None), ((1000, None), None))), None), ((('print', ((1000, None), None)), None), ((('myFunc2', ((1001, None), ((1002, None), None))), None), ((('print', ((1003, None), None)), None), ((('myFunc1', ((1004, None), ((1005, None), None))), None), ((('print', ((1006, None), None)), None), None)))))), None)), None), None))))) 
+
+No errors found in file tests/test3.vg
+test3.vg
 
 
 >  (2.0,)

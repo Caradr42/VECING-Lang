@@ -1,0 +1,70 @@
+rule30
+//Testing use of graphic functions;
+
+(DEFINE rule (col row)
+    (cond
+        [
+            (xor (getpixel (sub col 1) row) (or (getpixel col row) (getpixel (add col 1) row) ))  (empty (pixel col (add row 1)))
+            (#true) (print 100)
+        ]
+    )
+);
+
+(DEFINE forrow (j i)
+    (cond
+        [
+            (= j -1) (1)
+            (rule j i) ( (forrow (print (sub j 1)) i))
+        ]
+    )
+); 
+
+
+(DEFINE formatrix (i h l)
+    (cond
+        [
+            (= i h) (1)
+            (cdr (forrow i (sub l 1))) (formatrix (add 1 i) h l)
+        ]
+    )
+);
+
+(CONST h 21);
+(CONST w 41);
+
+
+RENDER
+(createwindow ((w) h) (0 0 0) 32)
+(setbgcolor (0 0 255))
+(clear)
+(setdrawcolor (255 0 0))
+
+(pixel (div (w) 2) 0)
+
+//(forrow 4 0);
+//(formatrix 0 10 10);
+
+(forrow (sub (w) 1) 0)
+(forrow (sub (w) 1) 1)
+(forrow (sub (w) 1) 2)
+(forrow (sub (w) 1) 3)
+(forrow (sub (w) 1) 4)
+(forrow (sub (w) 1) 5)
+(forrow (sub (w) 1) 6)
+(forrow (sub (w) 1) 7)
+(forrow (sub (w) 1) 8)
+(forrow (sub (w) 1) 9)
+(forrow (sub (w) 1) 10)
+(forrow (sub (w) 1) 11)
+(forrow (sub (w) 1) 12)
+(forrow (sub (w) 1) 13)
+(forrow (sub (w) 1) 14)
+(forrow (sub (w) 1) 15)
+(forrow (sub (w) 1) 16)
+(forrow (sub (w) 1) 17)
+(forrow (sub (w) 1) 18)
+(forrow (sub (w) 1) 19)
+
+(stopRender)
+
+END

@@ -1,18 +1,11 @@
 myProgram
-//This program tests deep recursion;
-//and the use of cond inside a function;
-
-(define myFunc1 (A B) 
-    (cond 
-        [
-            (sub A B) (0)
-            (myFunc1 (sub A B) B) (print (sub A B))
-        ]
-    )
-);
-
+//Easy cond test;
 
 RENDER 
-(print (myFunc1 100 10))
-
+    (cond 
+        [
+            (print (= 1 0)) (0)
+            (#true) 1
+        ]
+    )
 END

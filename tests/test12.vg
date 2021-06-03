@@ -1,56 +1,26 @@
-myProgram
+graphicsTest
 //Testing use of graphic functions;
 
-(DEFINE rule (col row)
-    (cond
-        [
-            (xor (getpixel (sub col 1) row) (or (getpixel col row) (getpixel (add col 1) row) ))  (empty (pixel col (add row 1)))
-            (#true) (print 100)
-        ]
-    )
-);
-
-(define forrow (j i)
-    (cond
-        [
-            (= j -1) (1)
-            (rule j i) ( (forrow (print (sub j 1)) i))
-        ]
-    )
-); 
-
-
-(define formatrix (i h l)
-    (cond
-        [
-            (= i h) (1)
-            (cdr (forrow i (sub l 1))) (formatrix (add 1 i) h l)
-        ]
-    )
-);
-
-
 RENDER
-(createwindow (11 11) (0 0 0) 32)
-(setbgcolor (0 0 255))
+(createwindow (5 5) (0 0 0) 64)
+(setbgcolor (255 255 255))
 (clear)
-(setdrawcolor (255 0 0))
+(setdrawcolor (0 0 0))
 
-(pixel 5 0)
+(pixel 0 0)
+(pixel 1 1)
+(pixel 2 2)
+(pixel 3 3)
+(pixel 4 4)
+(setdrawcolor (0 255 255))
+(pixel 4 0)
+(pixel 3 1)
+(pixel 2 2)
+(pixel 1 3)
+(pixel 0 4)
+(setdrawcolor (255 255 0))
+(pixel 2 2)
 
-//(forrow 4 0);
-//(formatrix 0 10 10);
-
-(forrow 10 0)
-(forrow 10 1)
-(forrow 10 2)
-(forrow 10 3)
-(forrow 10 4)
-(forrow 10 5)
-(forrow 10 6)
-(forrow 10 7)
-(forrow 10 8)
-(forrow 10 9)
 
 (stopRender)
 

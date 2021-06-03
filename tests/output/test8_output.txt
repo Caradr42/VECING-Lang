@@ -5,7 +5,7 @@ WARNING: 21 shift/reduce conflicts
 WARNING: 29 reduce/reduce conflicts
 
 
-('PROGRAM', ('myProgram', ((('DEFINE', ('myFunc1', (('params', (('param', 'A'), ('param', 'B'))), (('cond', (((('sub', (('var', 'A'), (('var', 'B'), None))), None), (((1000, None), None), ((('myFunc1', ((('sub', (('var', 'A'), (('var', 'B'), None))), None), (('var', 'B'), None))), None), ((('print', ((('sub', (('var', 'A'), (('var', 'B'), None))), None), None)), None), None)))), None)), None)))), None), ('RENDER', ((('print', ((('myFunc1', ((1001, None), ((1002, None), None))), None), None)), None), None))))) 
+('PROGRAM', ('myProgram', (None, ('RENDER', ((('cond', (((('print', ((('=', ((1000, None), ((1001, None), None))), None), None)), None), (((1001, None), None), (((1000, None), None), ((1000, None), None)))), None)), None), None))))) 
 
 No errors found in file tests/test8.vg
 test8.vg

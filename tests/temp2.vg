@@ -15,3 +15,5 @@ RENDER
 (print (or (myConst2) (1 1 0 0)))
 (print (myFunc2 3 10))
 END
+
+
