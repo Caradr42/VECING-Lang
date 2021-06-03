@@ -139,33 +139,18 @@ class MemoryManager():
                             newRight = rightright
                         if rightleftleft is None and rightleftright is None:
                             return (self.getPythonlistFromPointer(left), None)
-                
-                # if left is None and right is not None:
-                #     return self.getPythonlistFromPointer(right)
-                # elif left is None:
-                #     return None
-                # if self.pointerIsTemp(left):
-                #     left = self.getValue(left)
-                # if self.pointerIsTemp(right):
-                #     right = self.getValue(right)
 
                 return (self.getPythonlistFromPointer(left), self.getPythonlistFromPointer(newRight))
 
-            #TODO: FIX this ##########################################################################################
             elif self.pointerIsConstant(address):
                 address = self.getValue(address)
                 
                 return (self.getPythonlistFromPointer(address), None)
             else:
                 address = self.getValue(address)
-                # if self.pointerIsTemp(address):
-                #     address = self.getValue(address)
-                
                 return self.getPythonlistFromPointer(address)
-                #return (self.getPythonlistFromPointer(address), None)
 
         elif address is None or type(address) == float:
-            #debug.print("value")
             return address
         else:
             raise Exception("This is not posible")
