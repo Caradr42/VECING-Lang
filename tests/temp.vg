@@ -1,14 +1,27 @@
 myProgram
-//this program does important stuff;
-
-(define myFunc1 (A B) (sub B A));
-(define myFunc2 (A B) (add A B));
+//this is a basic graphic program;
 (CONST myConst1 "(1 2 3 4)");
 
 RENDER 
-(print (xor 1 0))
-(print (xor 1 1))
-(print (xor 0 1))
-(print (xor 0 0))
-(print (xor (3 3) (10.2 0)))
+
+(createwindow (11 11) (0 0 0) 32)
+(setbgcolor (0 0 255))
+(clear)
+(setdrawcolor (255 0 0))
+
+(pixel 0 0)
+(pixel 1 1)
+(pixel 2 2)
+(pixel 3 3)
+(pixel 4 4)
+(pixel 5 5)
+(pixel 6 6)
+(pixel 7 7)
+(pixel 8 8)
+(pixel 9 9)
+(pixel 10 10)
+
+
+(stopRender)
+
 END

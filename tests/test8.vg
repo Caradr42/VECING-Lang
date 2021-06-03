@@ -1,5 +1,6 @@
 myProgram
-//Deep recursion;
+//This program tests deep recursion;
+//and the use of cond inside a function;
 
 (define myFunc1 (A B) 
     (cond 

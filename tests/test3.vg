@@ -1,9 +1,9 @@
 myProgram
-//this program does important stuff;
+//this program tests the use of functions;
+//inside a condition;
 
 (define myFunc1 (A B) (sub B A));
 (define myFunc2 (A B) (add A B));
-(CONST myConst1 "(1 2 3 4)");
 
 RENDER 
 

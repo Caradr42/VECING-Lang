@@ -1,0 +1,17 @@
+myProgram
+// The word above is the name of my program.;
+
+// Here is the definition block.;
+// I can declare constants here,;
+(CONST myConst1 "(1 0 1 0)");
+(CONST myConst2  [1,0,0,1]);
+// and also functions.;
+(define myFunc2 (A B) (sub B A));
+
+// This is the render block.;
+// Here I can pass several list to evaluate.;
+RENDER 
+(print (or (myConst1) (1 1 0 0)))
+(print (or (myConst2) (1 1 0 0)))
+(print (myFunc2 3 10))
+END

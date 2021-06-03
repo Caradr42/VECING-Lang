@@ -1,10 +1,8 @@
 myProgram
-//Printing compound expression;
+//This program tests the action of printing compound expression;
 
 (define myFunc1 (A B C) (sub (add A C) (div B A)));
 
-
 RENDER 
 (print (myFunc1 (9 1 7) (1 10 11) (3 4 5)))
-
 END

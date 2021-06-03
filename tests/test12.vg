@@ -1,5 +1,5 @@
 myProgram
-//Testing use of constant lists;
+//Testing use of graphic functions;
 
 (DEFINE rule (col row)
     (cond
