@@ -142,8 +142,7 @@ def gotoFalse(quad, instructionPointer):
     -------
     instructionPointer: the quad number to which the VM will jump next 
     """
-    #debug.print("goto cond address: ", quad[1])
-    
+
     address = memoryManager.getValue(quad[1])
     condition = True
 
@@ -154,9 +153,7 @@ def gotoFalse(quad, instructionPointer):
     elif type(address) == float:
         condition = False if address == 0.0 else True
     elif memoryManager.pointerIsList(address):
-        #address = memoryManager.getValue(address)
         lista = memoryManager.getPythonlistFromPointer(address)
-        #debug.print("flatenned goto cond list: ", lista)
         debug.print("goto list as pythonList", lista)
         lista = flattenPythonList(lista)
         debug.print("goto list as flattened pythonList", lista)
@@ -171,9 +168,7 @@ def gotoFalse(quad, instructionPointer):
                     break
     
     if(not condition):
-        #debug.print("jumped :)")
         return quad[2]
-    #debug.print("did not jump :<")
 
 
 def era(quad, instructionPointer):
@@ -283,7 +278,6 @@ def gosub(quad, instructionPointer):
 
         pythonParamsList = []
         for e in paramsList:
-            #debug.print("converting param address", e, " to list")
             pythonParamsList.append(memoryManager.getPythonlistFromPointer(e))
         
         debug.print("user Func pythonParamsList: ", pythonParamsList)
@@ -305,7 +299,6 @@ def gosub(quad, instructionPointer):
 
         return funcName
     else:
-        #memoryManager.pushReturnPointers(returnAddress, instructionPointer)
         semanticTableParams = semanticTable[funcName][0]
         if len(semanticTableParams) == 1 and semanticTableParams[0] == None:
             paramCount = 0
@@ -339,14 +332,6 @@ def gosub(quad, instructionPointer):
         if returnValue is not None:
             returnList = memoryManager.pythonlistToPointerList(returnValue) #convert the returned python list from the language function to a pointer list in memory
             debug.print("lang Func memoryReturnList: ", returnList)
-        #backFromFunction(returnValue)
-
-        #(returnAddress, originalInstructionPointer) = memoryManager.popReturnPointers()
-        # Get list from pointer
-        #pythonList = memoryManager.getPythonlistFromPointer(returnValue)
-        #memoryManager.popContext()
-        # Store list in memory
-        #newAddress = memoryManager.pythonlistToPointerList(pythonList)
         memoryManager.setValue(returnAddress, returnList)
 
         debug.print("Memory after gosub : ", memoryManager.memory)
@@ -422,16 +407,13 @@ def flattenList(headAddress):
     if headAddress == None:
         return []
     listArray = []
-    #debug.print("flatenning: ", headAddress)
     flattenListRecursive(headAddress, listArray)
-    #debug.print("getListPair in flattening list: ", listArray)
     if listArray[-1] == None:
         listArray = listArray[0:-1]
     return listArray
 
 
 def flattenListRecursive(headAddress, listArray):
-    #memoryManager.pointerIsList(headAddress)
     (left, right) = memoryManager.getListPair(headAddress)
     
     listArray.append(left)
